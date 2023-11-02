@@ -1,0 +1,192 @@
+# Lecture 2
+
+## Today
+
+Introduction to C++
+
+## Assumption
+
+You are familiar with basic C programming (i.e., data types, variables, if statements, loops and functions)
+
+## Structure of a C++ program
+
+### Hello world printing in C++
+
+```cpp
+#include <iostream> // standard I/O library in C++
+using namespace std; // container for "names"
+int main() {
+    // cout: output in C++
+    // <<: operator to output
+    // endl: end of line or new line
+    cout << "Hello world!" << endl;
+    return 0;
+}
+```
+
+Recall in C it was:
+
+```c
+#include <studio.h>
+int main() {
+    printf("Hello world!\n");
+    return 0;
+}
+```
+
+### User enters a value
+
+```cpp
+#include <iostream>
+using namespace std;
+int main() {
+    // cin: input in C++
+    // >>: operator to input
+    // << value: output a variable
+    int value;
+    cout << "Enter an integer: " << endl;
+    cin >> value;
+    cout << "The integer is: " << value << endl;
+    return 0;
+}
+```
+
+Recall in C it was:
+
+```c
+#include <studio.h>
+int main() {
+    int value;
+    printf("Enter an integer: ");
+    scanf("%d", &value);
+    printf("The integer is: %d\n", value);
+    return 0;
+}
+```
+
+### Data types in C++ and C
+
+These are similar between the two languages.
+
+Integers: 7, 10, 0, -200 (e.g., `int attendees 126;`)
+
+* `int`: 32 bits, with range -2^31 to 2^31-1
+* `short`: 16 bits, with range -2^15 to 2^15-1
+* `long`: >= 32 bits
+
+Real numbers: 2.7, -101.25 (e.g. `double height = 1.72;`)
+
+* `float`: 32 bits, with 7 digits precision
+* `double`: 64 bits, with 15 digits precision
+* `long double`: >= 64 bits, with 19 digits precision
+
+Characters: a, b, $ (e.g. `char firstInitial = 's';`)
+
+Logic: true, false (e.g. `bool isRaining = false;`)
+
+Arrays can be used to store multiple data elements of same type under one variable (e.g. `int arr[7] = {1, 2, 3, 4, 5, 6, 7};`).
+
+Strings, in C, were null-terminted character arrays (e.g. `char h[6] = "hello";`). Hello is 5 characters, but we need 6 to store the null character as in `hello\0`.
+
+In C, you can access the string library functions `strcmp`, `strl;en`, `strcpy` from `# include <string.h>` (e.g. `int x = strlen(str)`).
+
+In C++, we have a string "class" that allows you to create a string type variable. You need to include it using `#include <string>` (e.g. `string courseTitle = "Programming Fundamentals";`).
+
+You can do interesting operations on strings with
+
+* `+`: concatenate
+* `==`: equal to
+* `!=`: not equal to
+
+```cpp
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    // == compares strings
+    string courseDepart, courseNum, courseCode;
+    cout << "Enter the course department and code: " << endl;
+    cin >> courseDepart >> courseNum;
+    courseCode = courseDepart + courseNum;
+    if (courseCode == "ECE244") {
+        cout << "That's Programming Fundamentals" << endl;
+    }
+    return 0;
+}
+```
+
+### Expressions and statements
+
+These are the same as C
+
+* Arithmetic and relational expressions: `x + y`, `x >= y`
+* Logical conditions: `A || B`, `A && B`, `!A`
+* Decision-making: if and if-else statements
+* Repetition: while, do-while, and for loops
+
+### Functions
+
+All code must have at least one function (i.e., `main` function)
+
+Functions allow you to
+
+* Divide code into pieces
+* Avoid repetition -> you can reuse code
+* Easier to debug
+
+Example: Write a function that gets the factorial of a number
+
+$$
+n! = n \times (n-1) \times (n-2) \times \cdots 3 \times 2 \times 1
+$$
+
+```cpp
+// Function definition
+int factorial(int n) {
+    int fact = 1;
+    for (int i = 1; i <= n; i++) {
+        fact *= i;
+    }
+    return fact;
+}
+
+int main() {
+    int n = 4;
+    // fact: return value stored in fact
+    // factorial(n): pass variable
+    int fact = factorial(n);
+    cout << "Factorial of " << n << " is " << fact << endl;
+    return 0;
+}
+```
+
+We can't call a function before it's declaration. It's good practice to declare functions first and then define them after the `main` function.
+
+```cpp
+// Function declaration
+int factorial(int n); // or int factorial(int);
+
+// for int factorial(int);
+// the first int is the return type
+// the second int is the parameter type
+
+int main() {
+    int n = 4;
+    // fact: return value stored in fact
+    // factorial(n): pass variable
+    int fact = factorial(n);
+    cout << "Factorial of " << n << " is " << fact << endl;
+    return 0;
+}
+
+// Function definition
+int factorial(int n) {
+    int fact = 1;
+    for (int i = 1; i <= n; i++) {
+        fact *= i;
+    }
+    return fact;
+}
+```

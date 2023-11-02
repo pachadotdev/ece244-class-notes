@@ -1,0 +1,21 @@
+# Lecture 1
+
+## Motivation
+
+We will learn about a programming paradigm (style/philosophy of programming)
+called object-oriented programming using C++
+
+## Why object-oriented programming?
+
+* Modular code — divide code into independent pieces
+* Reusable code
+* Easily extend code
+* Easier to maintain
+* Easier to collaborate with large teams
+* Popular programming paradigm
+
+## Why C++?
+
+* Generally C/C++ are more difficult as they are closer to the hardware
+* Can manage memory
+* Easier to learn other languages once you know C/C++

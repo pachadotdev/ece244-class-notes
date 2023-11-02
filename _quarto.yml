@@ -1,0 +1,20 @@
+project:
+  type: book
+  output-dir: docs
+
+execute: 
+  echo: true
+  warning: false
+  message: false
+  
+book:
+  title: "ECE244 Tidy Notes"
+  chapters:
+    - index.qmd
+    - lecture1.qmd
+    - lecture2.qmd
+    
+format:
+  html:
+    theme: [cosmo]
+    number-sections: false
