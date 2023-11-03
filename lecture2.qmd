@@ -1,4 +1,8 @@
-# Lecture 2
+# Lecture 2 - Sept 8, 2023
+
+## Summary
+
+In this lecture, we discuss computer hardware, input-output using cin and cout, data types and strings. if time permits, we will dig into functions.
 
 ## Today
 
@@ -7,6 +11,13 @@ Introduction to C++
 ## Assumption
 
 You are familiar with basic C programming (i.e., data types, variables, if statements, loops and functions)
+
+## Big picture
+
+Basic computer structure
+
+<!-- diagram of computer structure -->
+<img src="diagrams/lecture2-diagram1.svg" alt="diagrams/lecture2-diagram1.svg">
 
 ## Structure of a C++ program
 
@@ -84,13 +95,19 @@ Characters: a, b, $ (e.g. `char firstInitial = 's';`)
 
 Logic: true, false (e.g. `bool isRaining = false;`)
 
-Arrays can be used to store multiple data elements of same type under one variable (e.g. `int arr[7] = {1, 2, 3, 4, 5, 6, 7};`).
+Arrays can be used to store multiple data elements of same type under one
+variable (e.g. `int arr[7] = {1, 2, 3, 4, 5, 6, 7};`).
 
-Strings, in C, were null-terminted character arrays (e.g. `char h[6] = "hello";`). Hello is 5 characters, but we need 6 to store the null character as in `hello\0`.
+Strings, in C, were null-terminted character arrays (e.g.
+`char h[6] = "hello";`). Hello is 5 characters, but we need 6 to store the null 
+character as in `hello\0`.
 
-In C, you can access the string library functions `strcmp`, `strl;en`, `strcpy` from `# include <string.h>` (e.g. `int x = strlen(str)`).
+In C, you can access the string library functions `strcmp`, `strl;en`, `strcpy` 
+from `# include <string.h>` (e.g. `int x = strlen(str)`).
 
-In C++, we have a string "class" that allows you to create a string type variable. You need to include it using `#include <string>` (e.g. `string courseTitle = "Programming Fundamentals";`).
+In C++, we have a string "class" that allows you to create a string type 
+variable. You need to include it using `#include <string>` 
+(e.g. `string courseTitle = "Programming Fundamentals";`).
 
 You can do interesting operations on strings with
 
@@ -162,9 +179,14 @@ int main() {
 }
 ```
 
-We can't call a function before it's declaration. It's good practice to declare functions first and then define them after the `main` function.
+We can't call a function before it's declaration. It's good practice to declare
+functions first and then define them after the `main` function.
 
 ```cpp
+#include <iostream>
+
+using namespace std;
+
 // Function declaration
 int factorial(int n); // or int factorial(int);
 

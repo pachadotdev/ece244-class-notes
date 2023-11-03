@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ECE244 Tidy Notes</title>
+<title>ECE244 Tidy Notes - Lecture 1 - Sept 7, 2023</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./lecture1.html" rel="next">
+<link href="./lecture2.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -73,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-title">About ECE244 - Programming Fundamentals</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture1.html"><span class="chapter-title">Lecture 1 - Sept 7, 2023</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -100,22 +101,17 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">About ECE244 - Programming Fundamentals</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">About ECE244 - Programming Fundamentals</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 1 - Sept 7, 2023</span></a>
+  <a href="./lecture1.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Lecture 1 - Sept 7, 2023</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 2 - Sept 8, 2023</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lecture3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 3 - Sept 12, 2023</span></a>
   </div>
 </li>
     </ul>
@@ -128,8 +124,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#about-ece244---programming-fundamentals" id="toc-about-ece244---programming-fundamentals" class="nav-link active" data-scroll-target="#about-ece244---programming-fundamentals">About ECE244 - Programming Fundamentals</a></li>
-  <li><a href="#pachas-notes" id="toc-pachas-notes" class="nav-link" data-scroll-target="#pachas-notes">Pacha’s notes</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#why-object-oriented-programming" id="toc-why-object-oriented-programming" class="nav-link" data-scroll-target="#why-object-oriented-programming">Why object-oriented programming?</a></li>
+  <li><a href="#why-c" id="toc-why-c" class="nav-link" data-scroll-target="#why-c">Why C++?</a></li>
   </ul>
 </nav>
     </div>
@@ -138,7 +136,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ECE244 Tidy Notes</h1>
+<h1 class="title"><span class="chapter-title">Lecture 1 - Sept 7, 2023</span></h1>
 </div>
 
 
@@ -153,14 +151,32 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="about-ece244---programming-fundamentals" class="level2">
-<h2 class="anchored" data-anchor-id="about-ece244---programming-fundamentals">About ECE244 - Programming Fundamentals</h2>
-<p>This course provides a foundation in programming using an object-oriented programming language. Topics include classes and objects, inheritance, basic data structures (lists, tree, hash tables, etc.), Big-O complexity analysis, and testing and debugging. The laboratory assignments emphasize the use of object-oriented programming constructs in the design and implementation of reasonably large programs.</p>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>In this lecture, we discuss what we will learn in this course, motivate object-oriented programming, and how is the course planned/organized/managed.</p>
 </section>
-<section id="pachas-notes" class="level2">
-<h2 class="anchored" data-anchor-id="pachas-notes">Pacha’s notes</h2>
-<p>The notes are 100% adjusted to the class. In the snippets folder, I have included some (unofficial) code snippets with the same examples from the notes, that I use check if my code compiles.</p>
-<p>PACHA TERMINA DE ESCRIBIR ESTA CLASE</p>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>We will learn about a programming paradigm (style/philosophy of programming) called object-oriented programming using C++</p>
+</section>
+<section id="why-object-oriented-programming" class="level2">
+<h2 class="anchored" data-anchor-id="why-object-oriented-programming">Why object-oriented programming?</h2>
+<ul>
+<li>Modular code — divide code into independent pieces</li>
+<li>Reusable code</li>
+<li>Easily extend code</li>
+<li>Easier to maintain</li>
+<li>Easier to collaborate with large teams</li>
+<li>Popular programming paradigm</li>
+</ul>
+</section>
+<section id="why-c" class="level2">
+<h2 class="anchored" data-anchor-id="why-c">Why C++?</h2>
+<ul>
+<li>Generally C/C++ are more difficult as they are closer to the hardware</li>
+<li>Can manage memory</li>
+<li>Easier to learn other languages once you know C/C++</li>
+</ul>
 
 
 </section>
@@ -401,10 +417,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">About ECE244 - Programming Fundamentals</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./lecture1.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-title">Lecture 1 - Sept 7, 2023</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./lecture2.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Lecture 2 - Sept 8, 2023</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

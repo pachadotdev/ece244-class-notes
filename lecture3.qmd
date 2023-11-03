@@ -1,0 +1,153 @@
+# Lecture 3 - Sept 12, 2023
+
+## Summary
+
+In this lecture, we review functions, passing-by-value and by-pointers. We introduce passing-by-reference, and introduce multiple files programs. 
+
+## Last lecture
+
+Introduction to C++
+
+## Today
+
+Functions and passing parameters
+
+Example: Write a function that gets the factorial of a number $n! = n \times (n-1) \times (n-2) \times \cdots 3 \times 2 \times 1$
+
+```cpp
+int factorial (int n) {
+    int fact = 1;
+    for (int i=0; i <= n; i++) {
+        fact = fact * i;
+    }
+    return fact;
+}
+```
+
+We can invoke the function in main
+
+```cpp
+int main() {
+    int n = 4;
+    // fact: return value stored in fact
+    // factorial: call function that will return n!
+    // n: pass variable
+    int fact = factorial(n);
+    cout << "Factorial of " << n << " is " << fact << endl;
+    return 0;
+}
+```
+
+We passed the variable `n` by value. This means we only passed a copy of n. If we change `n` in the factorial function, it will not be changed in `main`. 
+
+This is called **pass-by-value**.
+
+Therefore, if we swap two variables in the following functions, they will not get swapped in `main`.
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+void swap(int x, int y) {
+    int temp = x;
+    x = y;
+    y = temp;
+}
+
+int main() {
+    int x = 7, y = 13;
+    cout << "Before swap: x = " << x << " y = " << y << endl;
+    swap(x, y);
+    cout << "After swap: x = " << x << " y = " << y << endl;
+    return 0;
+}
+```
+
+In C, we resolved this issue by passing the address of the two variables to the swap function.
+
+```c
+void swap(int* px, int* py) {
+    // *px: *(&(x)) = x in main
+    int temp = *px;
+    *px = *py;
+    *py = temp;
+}
+
+int main() {
+    int x = 7, y = 13;
+    // &x: address of x
+    // &y: address of y
+    swap(&x, &y);
+    return 0;
+}
+```
+
+In C++, there is **pass-by-reference** syntax that allows a function to access the original variable with no usage of pointers.
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+void swap(int& x, int& y) {
+    // no change
+    int temp = x;
+    x = y;
+    y = temp;
+}
+
+int main() {
+    // Pacha's note: I added the cout statements
+    int x = 7, y = 13;
+    cout << "Before swap: x = " << x << " y = " << y << endl;
+    swap(x, y);
+    cout << "After swap: x = " << x << " y = " << y << endl;
+    return 0;
+}
+```
+
+## Program organization
+
+Large programs are typically organized into multiple files. This helps when we divide tasks in a team.
+
+This also can speed up compilation, and we will explain how.
+
+### Single file program
+
+To compile, run the following command in the terminal
+
+```bash
+g++ lecture3-example3.cpp -o lecture3-example3.so
+```
+
+Use ".exe" instead of ".so" on Windows.
+
+This command generates the executable file, which contains zeroes and ones.
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+void printNum(int x);
+int userInputNum();
+
+int main() {
+    int num;
+    num = userInputNum();
+    printNum(num);
+    return 0;
+}
+
+void printNum(int x) {
+    cout << "The number is " << x << endl;
+}
+
+int userInputNum() {
+    int x;
+    cout << "Enter integer: ";
+    cin >> x;
+    return x;
+}
+```

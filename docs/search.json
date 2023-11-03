@@ -30,23 +30,23 @@
   {
     "objectID": "lecture2.html#today",
     "href": "lecture2.html#today",
-    "title": "Lecture 2",
+    "title": "Lecture 2 - Sept 8, 2023",
     "section": "Today",
     "text": "Today\nIntroduction to C++"
   },
   {
     "objectID": "lecture2.html#assumption",
     "href": "lecture2.html#assumption",
-    "title": "Lecture 2",
+    "title": "Lecture 2 - Sept 8, 2023",
     "section": "Assumption",
     "text": "Assumption\nYou are familiar with basic C programming (i.e., data types, variables, if statements, loops and functions)"
   },
   {
     "objectID": "lecture2.html#structure-of-a-c-program",
     "href": "lecture2.html#structure-of-a-c-program",
-    "title": "Lecture 2",
+    "title": "Lecture 2 - Sept 8, 2023",
     "section": "Structure of a C++ program",
-    "text": "Structure of a C++ program\n\nHello world printing in C++\n#include &lt;iostream&gt; // standard I/O library in C++\nusing namespace std; // container for \"names\"\nint main() {\n    // cout: output in C++\n    // &lt;&lt;: operator to output\n    // endl: end of line or new line\n    cout &lt;&lt; \"Hello world!\" &lt;&lt; endl;\n    return 0;\n}\nRecall in C it was:\n#include &lt;studio.h&gt;\nint main() {\n    printf(\"Hello world!\\n\");\n    return 0;\n}\n\n\nUser enters a value\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    // cin: input in C++\n    // &gt;&gt;: operator to input\n    // &lt;&lt; value: output a variable\n    int value;\n    cout &lt;&lt; \"Enter an integer: \" &lt;&lt; endl;\n    cin &gt;&gt; value;\n    cout &lt;&lt; \"The integer is: \" &lt;&lt; value &lt;&lt; endl;\n    return 0;\n}\nRecall in C it was:\n#include &lt;studio.h&gt;\nint main() {\n    int value;\n    printf(\"Enter an integer: \");\n    scanf(\"%d\", &value);\n    printf(\"The integer is: %d\\n\", value);\n    return 0;\n}\n\n\nData types in C++ and C\nThese are similar between the two languages.\nIntegers: 7, 10, 0, -200 (e.g., int attendees 126;)\n\nint: 32 bits, with range -2^31 to 2^31-1\nshort: 16 bits, with range -2^15 to 2^15-1\nlong: &gt;= 32 bits\n\nReal numbers: 2.7, -101.25 (e.g. double height = 1.72;)\n\nfloat: 32 bits, with 7 digits precision\ndouble: 64 bits, with 15 digits precision\nlong double: &gt;= 64 bits, with 19 digits precision\n\nCharacters: a, b, $ (e.g. char firstInitial = 's';)\nLogic: true, false (e.g. bool isRaining = false;)\nArrays can be used to store multiple data elements of same type under one variable (e.g. int arr[7] = {1, 2, 3, 4, 5, 6, 7};).\nStrings, in C, were null-terminted character arrays (e.g. char h[6] = \"hello\";). Hello is 5 characters, but we need 6 to store the null character as in hello\\0.\nIn C, you can access the string library functions strcmp, strl;en, strcpy from # include &lt;string.h&gt; (e.g. int x = strlen(str)).\nIn C++, we have a string “class” that allows you to create a string type variable. You need to include it using #include &lt;string&gt; (e.g. string courseTitle = \"Programming Fundamentals\";).\nYou can do interesting operations on strings with\n\n+: concatenate\n==: equal to\n!=: not equal to\n\n#include &lt;iostream&gt;\n#include &lt;string&gt;\n\nusing namespace std;\n\nint main() {\n    // == compares strings\n    string courseDepart, courseNum, courseCode;\n    cout &lt;&lt; \"Enter the course department and code: \" &lt;&lt; endl;\n    cin &gt;&gt; courseDepart &gt;&gt; courseNum;\n    courseCode = courseDepart + courseNum;\n    if (courseCode == \"ECE244\") {\n        cout &lt;&lt; \"That's Programming Fundamentals\" &lt;&lt; endl;\n    }\n    return 0;\n}\n\n\nExpressions and statements\nThese are the same as C\n\nArithmetic and relational expressions: x + y, x &gt;= y\nLogical conditions: A || B, A && B, !A\nDecision-making: if and if-else statements\nRepetition: while, do-while, and for loops\n\n\n\nFunctions\nAll code must have at least one function (i.e., main function)\nFunctions allow you to\n\nDivide code into pieces\nAvoid repetition -&gt; you can reuse code\nEasier to debug\n\nExample: Write a function that gets the factorial of a number\n\\[\nn! = n \\times (n-1) \\times (n-2) \\times \\cdots 3 \\times 2 \\times 1\n\\]\n// Function definition\nint factorial(int n) {\n    int fact = 1;\n    for (int i = 1; i &lt;= n; i++) {\n        fact *= i;\n    }\n    return fact;\n}\n\nint main() {\n    int n = 4;\n    // fact: return value stored in fact\n    // factorial(n): pass variable\n    int fact = factorial(n);\n    cout &lt;&lt; \"Factorial of \" &lt;&lt; n &lt;&lt; \" is \" &lt;&lt; fact &lt;&lt; endl;\n    return 0;\n}\nWe can’t call a function before it’s declaration. It’s good practice to declare functions first and then define them after the main function.\n// Function declaration\nint factorial(int n); // or int factorial(int);\n\n// for int factorial(int);\n// the first int is the return type\n// the second int is the parameter type\n\nint main() {\n    int n = 4;\n    // fact: return value stored in fact\n    // factorial(n): pass variable\n    int fact = factorial(n);\n    cout &lt;&lt; \"Factorial of \" &lt;&lt; n &lt;&lt; \" is \" &lt;&lt; fact &lt;&lt; endl;\n    return 0;\n}\n\n// Function definition\nint factorial(int n) {\n    int fact = 1;\n    for (int i = 1; i &lt;= n; i++) {\n        fact *= i;\n    }\n    return fact;\n}"
+    "text": "Structure of a C++ program\n\nHello world printing in C++\n#include &lt;iostream&gt; // standard I/O library in C++\nusing namespace std; // container for \"names\"\nint main() {\n    // cout: output in C++\n    // &lt;&lt;: operator to output\n    // endl: end of line or new line\n    cout &lt;&lt; \"Hello world!\" &lt;&lt; endl;\n    return 0;\n}\nRecall in C it was:\n#include &lt;studio.h&gt;\nint main() {\n    printf(\"Hello world!\\n\");\n    return 0;\n}\n\n\nUser enters a value\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    // cin: input in C++\n    // &gt;&gt;: operator to input\n    // &lt;&lt; value: output a variable\n    int value;\n    cout &lt;&lt; \"Enter an integer: \" &lt;&lt; endl;\n    cin &gt;&gt; value;\n    cout &lt;&lt; \"The integer is: \" &lt;&lt; value &lt;&lt; endl;\n    return 0;\n}\nRecall in C it was:\n#include &lt;studio.h&gt;\nint main() {\n    int value;\n    printf(\"Enter an integer: \");\n    scanf(\"%d\", &value);\n    printf(\"The integer is: %d\\n\", value);\n    return 0;\n}\n\n\nData types in C++ and C\nThese are similar between the two languages.\nIntegers: 7, 10, 0, -200 (e.g., int attendees 126;)\n\nint: 32 bits, with range -2^31 to 2^31-1\nshort: 16 bits, with range -2^15 to 2^15-1\nlong: &gt;= 32 bits\n\nReal numbers: 2.7, -101.25 (e.g. double height = 1.72;)\n\nfloat: 32 bits, with 7 digits precision\ndouble: 64 bits, with 15 digits precision\nlong double: &gt;= 64 bits, with 19 digits precision\n\nCharacters: a, b, $ (e.g. char firstInitial = 's';)\nLogic: true, false (e.g. bool isRaining = false;)\nArrays can be used to store multiple data elements of same type under one variable (e.g. int arr[7] = {1, 2, 3, 4, 5, 6, 7};).\nStrings, in C, were null-terminted character arrays (e.g. char h[6] = \"hello\";). Hello is 5 characters, but we need 6 to store the null character as in hello\\0.\nIn C, you can access the string library functions strcmp, strl;en, strcpy from # include &lt;string.h&gt; (e.g. int x = strlen(str)).\nIn C++, we have a string “class” that allows you to create a string type variable. You need to include it using #include &lt;string&gt; (e.g. string courseTitle = \"Programming Fundamentals\";).\nYou can do interesting operations on strings with\n\n+: concatenate\n==: equal to\n!=: not equal to\n\n#include &lt;iostream&gt;\n#include &lt;string&gt;\n\nusing namespace std;\n\nint main() {\n    // == compares strings\n    string courseDepart, courseNum, courseCode;\n    cout &lt;&lt; \"Enter the course department and code: \" &lt;&lt; endl;\n    cin &gt;&gt; courseDepart &gt;&gt; courseNum;\n    courseCode = courseDepart + courseNum;\n    if (courseCode == \"ECE244\") {\n        cout &lt;&lt; \"That's Programming Fundamentals\" &lt;&lt; endl;\n    }\n    return 0;\n}\n\n\nExpressions and statements\nThese are the same as C\n\nArithmetic and relational expressions: x + y, x &gt;= y\nLogical conditions: A || B, A && B, !A\nDecision-making: if and if-else statements\nRepetition: while, do-while, and for loops\n\n\n\nFunctions\nAll code must have at least one function (i.e., main function)\nFunctions allow you to\n\nDivide code into pieces\nAvoid repetition -&gt; you can reuse code\nEasier to debug\n\nExample: Write a function that gets the factorial of a number\n\\[\nn! = n \\times (n-1) \\times (n-2) \\times \\cdots 3 \\times 2 \\times 1\n\\]\n// Function definition\nint factorial(int n) {\n    int fact = 1;\n    for (int i = 1; i &lt;= n; i++) {\n        fact *= i;\n    }\n    return fact;\n}\n\nint main() {\n    int n = 4;\n    // fact: return value stored in fact\n    // factorial(n): pass variable\n    int fact = factorial(n);\n    cout &lt;&lt; \"Factorial of \" &lt;&lt; n &lt;&lt; \" is \" &lt;&lt; fact &lt;&lt; endl;\n    return 0;\n}\nWe can’t call a function before it’s declaration. It’s good practice to declare functions first and then define them after the main function.\n#include &lt;iostream&gt;\n\nusing namespace std;\n\n// Function declaration\nint factorial(int n); // or int factorial(int);\n\n// for int factorial(int);\n// the first int is the return type\n// the second int is the parameter type\n\nint main() {\n    int n = 4;\n    // fact: return value stored in fact\n    // factorial(n): pass variable\n    int fact = factorial(n);\n    cout &lt;&lt; \"Factorial of \" &lt;&lt; n &lt;&lt; \" is \" &lt;&lt; fact &lt;&lt; endl;\n    return 0;\n}\n\n// Function definition\nint factorial(int n) {\n    int fact = 1;\n    for (int i = 1; i &lt;= n; i++) {\n        fact *= i;\n    }\n    return fact;\n}"
   },
   {
     "objectID": "index.html#about-ece244---programming-fundamentals",
@@ -54,5 +54,82 @@
     "title": "ECE244 Tidy Notes",
     "section": "About ECE244 - Programming Fundamentals",
     "text": "About ECE244 - Programming Fundamentals\nThis course provides a foundation in programming using an object-oriented programming language. Topics include classes and objects, inheritance, basic data structures (lists, tree, hash tables, etc.), Big-O complexity analysis, and testing and debugging. The laboratory assignments emphasize the use of object-oriented programming constructs in the design and implementation of reasonably large programs."
+  },
+  {
+    "objectID": "lecture1.html#motivation",
+    "href": "lecture1.html#motivation",
+    "title": "Lecture 1 - Sept 7, 2023",
+    "section": "Motivation",
+    "text": "Motivation\nWe will learn about a programming paradigm (style/philosophy of programming) called object-oriented programming using C++"
+  },
+  {
+    "objectID": "lecture1.html#why-object-oriented-programming",
+    "href": "lecture1.html#why-object-oriented-programming",
+    "title": "Lecture 1 - Sept 7, 2023",
+    "section": "Why object-oriented programming?",
+    "text": "Why object-oriented programming?\n\nModular code — divide code into independent pieces\nReusable code\nEasily extend code\nEasier to maintain\nEasier to collaborate with large teams\nPopular programming paradigm"
+  },
+  {
+    "objectID": "lecture1.html#why-c",
+    "href": "lecture1.html#why-c",
+    "title": "Lecture 1 - Sept 7, 2023",
+    "section": "Why C++?",
+    "text": "Why C++?\n\nGenerally C/C++ are more difficult as they are closer to the hardware\nCan manage memory\nEasier to learn other languages once you know C/C++"
+  },
+  {
+    "objectID": "lecture2.html#big-picture",
+    "href": "lecture2.html#big-picture",
+    "title": "Lecture 2 - Sept 8, 2023",
+    "section": "Big picture",
+    "text": "Big picture\nBasic computer structure"
+  },
+  {
+    "objectID": "index.html#pachas-notes",
+    "href": "index.html#pachas-notes",
+    "title": "ECE244 Tidy Notes",
+    "section": "Pacha’s notes",
+    "text": "Pacha’s notes\nThe notes are 100% adjusted to the class. In the snippets folder, I have included some (unofficial) code snippets with the same examples from the notes, that I use check if my code compiles.\nPACHA TERMINA DE ESCRIBIR ESTA CLASE"
+  },
+  {
+    "objectID": "lecture1.html#summary",
+    "href": "lecture1.html#summary",
+    "title": "Lecture 1 - Sept 7, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we discuss what we will learn in this course, motivate object-oriented programming, and how is the course planned/organized/managed."
+  },
+  {
+    "objectID": "lecture2.html#summary",
+    "href": "lecture2.html#summary",
+    "title": "Lecture 2 - Sept 8, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we discuss computer hardware, input-output using cin and cout, data types and strings. if time permits, we will dig into functions."
+  },
+  {
+    "objectID": "lecture3.html#summary",
+    "href": "lecture3.html#summary",
+    "title": "Lecture 3 - Sept 12, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we review functions, passing-by-value and by-pointers. We introduce passing-by-reference, and introduce multiple files programs."
+  },
+  {
+    "objectID": "lecture3.html#last-lecture",
+    "href": "lecture3.html#last-lecture",
+    "title": "Lecture 3 - Sept 12, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nIntroduction to C++"
+  },
+  {
+    "objectID": "lecture3.html#today",
+    "href": "lecture3.html#today",
+    "title": "Lecture 3 - Sept 12, 2023",
+    "section": "Today",
+    "text": "Today\nFunctions and passing parameters\nExample: Write a function that gets the factorial of a number \\(n! = n \\times (n-1) \\times (n-2) \\times \\cdots 3 \\times 2 \\times 1\\)\nint factorial (int n) {\n    int fact = 1;\n    for (int i=0; i &lt;= n; i++) {\n        fact = fact * i;\n    }\n    return fact;\n}\nWe can invoke the function in main\nint main() {\n    int n = 4;\n    // fact: return value stored in fact\n    // factorial: call function that will return n!\n    // n: pass variable\n    int fact = factorial(n);\n    cout &lt;&lt; \"Factorial of \" &lt;&lt; n &lt;&lt; \" is \" &lt;&lt; fact &lt;&lt; endl;\n    return 0;\n}\nWe passed the variable n by value. This means we only passed a copy of n. If we change n in the factorial function, it will not be changed in main.\nThis is called pass-by-value.\nTherefore, if we swap two variables in the following functions, they will not get swapped in main.\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nvoid swap(int x, int y) {\n    int temp = x;\n    x = y;\n    y = temp;\n}\n\nint main() {\n    int x = 7, y = 13;\n    cout &lt;&lt; \"Before swap: x = \" &lt;&lt; x &lt;&lt; \" y = \" &lt;&lt; y &lt;&lt; endl;\n    swap(x, y);\n    cout &lt;&lt; \"After swap: x = \" &lt;&lt; x &lt;&lt; \" y = \" &lt;&lt; y &lt;&lt; endl;\n    return 0;\n}\nIn C, we resolved this issue by passing the address of the two variables to the swap function.\nvoid swap(int* px, int* py) {\n    // *px: *(&(x)) = x in main\n    int temp = *px;\n    *px = *py;\n    *py = temp;\n}\n\nint main() {\n    int x = 7, y = 13;\n    // &x: address of x\n    // &y: address of y\n    swap(&x, &y);\n    return 0;\n}\nIn C++, there is pass-by-reference syntax that allows a function to access the original variable with no usage of pointers.\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nvoid swap(int& x, int& y) {\n    // no change\n    int temp = x;\n    x = y;\n    y = temp;\n}\n\nint main() {\n    // Pacha's note: I added the cout statements\n    int x = 7, y = 13;\n    cout &lt;&lt; \"Before swap: x = \" &lt;&lt; x &lt;&lt; \" y = \" &lt;&lt; y &lt;&lt; endl;\n    swap(x, y);\n    cout &lt;&lt; \"After swap: x = \" &lt;&lt; x &lt;&lt; \" y = \" &lt;&lt; y &lt;&lt; endl;\n    return 0;\n}"
+  },
+  {
+    "objectID": "lecture3.html#program-organization",
+    "href": "lecture3.html#program-organization",
+    "title": "Lecture 3 - Sept 12, 2023",
+    "section": "Program organization",
+    "text": "Program organization\nLarge programs are typically organized into multiple files. This helps when we divide tasks in a team.\nThis also can speed up compilation, and we will explain how.\n\nSingle file program\nTo compile, run the following command in the terminal\ng++ lecture3-example3.cpp -o lecture3-example3.so\nUse “.exe” instead of “.so” on Windows.\nThis command generates the executable file, which contains zeroes and ones.\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nvoid printNum(int x);\nint userInputNum();\n\nint main() {\n    int num;\n    num = userInputNum();\n    printNum(num);\n    return 0;\n}\n\nvoid printNum(int x) {\n    cout &lt;&lt; \"The number is \" &lt;&lt; x &lt;&lt; endl;\n}\n\nint userInputNum() {\n    int x;\n    cout &lt;&lt; \"Enter integer: \";\n    cin &gt;&gt; x;\n    return x;\n}"
   }
 ]
