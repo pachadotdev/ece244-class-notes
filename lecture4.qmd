@@ -129,6 +129,8 @@ int userInputNum();
 
 We include `iostream` here.
 
+**Pacha's note: I added `using namespace std` here to make it work.**
+
 ```cpp
 #include "print.h"
 #include <iostream>
@@ -141,6 +143,8 @@ void printNum(int x) {
 ```
 
 #### input.cpp
+
+**Pacha's note: I added `using namespace std` here to make it work.**
 
 ```cpp
 #include "input.h"

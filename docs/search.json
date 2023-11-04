@@ -165,6 +165,55 @@
     "href": "lecture4.html#references",
     "title": "Lecture 4 - Sept 14, 2023",
     "section": "References",
-    "text": "References\nA reference is an alias, an alternate name, to a variable.\nExample\nint a = 7, b = 12;\nint& ra = a; // ra refers to a\ncout &lt;&lt; ra &lt;&lt; endl; // prints value of a = 7\nra = b; // changes value of a to 12\n\nReference cannot be re-assigned.\nMust be initialized when declared.\nReference does not have a separate memory location.\n\nAfter executing the following, what are the values of x and y?\nint x = 10;\nint& y = x;\ny = 20;\nx is 20, y is 20.\nWhat is the value of a, ra and b after executing the following?"
+    "text": "References\nA reference is an alias, an alternate name, to a variable.\nExample\nint a = 7, b = 12;\nint& ra = a; // ra refers to a\ncout &lt;&lt; ra &lt;&lt; endl; // prints value of a = 7\nra = b; // changes value of a to 12\n\nReference cannot be re-assigned.\nMust be initialized when declared.\nReference does not have a separate memory location.\n\nAfter executing the following, what are the values of x and y?\nint x = 10;\nint& y = x;\ny = 20;\nx is 20, y is 20.\nWhat is the value of a, ra and b after executing the following?\nint a = 7, b = 12;\nint& ra = a;\nra = b;\na is 12, ra is 12, and b is 12."
+  },
+  {
+    "objectID": "lecture4.html#program-organization",
+    "href": "lecture4.html#program-organization",
+    "title": "Lecture 4 - Sept 14, 2023",
+    "section": "Program organization",
+    "text": "Program organization\nWe want to split code accross multiple files.\n\nOrganized\nEasier to collaborate\nFaster to compile - Why? Today’s topic.\n\n\nSingle file program\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nvoid printNum(int x);\nint userInputNum();\n\nint main() {\n    int num;\n    num = userInputNum();\n    printNum(num);\n    return 0;\n}\n\nvoid printNum(int x) {\n    cout &lt;&lt; \"The number is \" &lt;&lt; x &lt;&lt; endl;\n}\n\nint userInputNum() {\n    int x;\n    cout &lt;&lt; \"Enter integer: \";\n    cin &gt;&gt; x;\n    return x;\n}\nTo compile, run the following command in the terminal:\ng++ lecture4-example1.cpp -o lecture4-example1.so\nThis command generates the executable file, which contains zeroes and ones.\n\n\nMultiple file program\n\nmain.cpp\nCorrection to the example from lectura 3: We do not need #include &lt;iostream&gt; nor using namespace std because we are not using cout and cin in this file.\n// \"\": searches in current directory\n#include \"print.h\"\n#include \"input.h\"\n\nint main() {\n    int num;\n    num = userInputNum();\n    printNum(num);\n    return 0;\n}\n\n\nprint.h\nvoid printNum(int x);\n\n\ninput.h\nint userInputNum();\n\n\nprint.cpp\nWe include iostream here.\nPacha’s note: I added using namespace std here to make it work.\n#include \"print.h\"\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nvoid printNum(int x) {\n    cout &lt;&lt; \"The number is \" &lt;&lt; x &lt;&lt; endl;\n}\n\n\ninput.cpp\nPacha’s note: I added using namespace std here to make it work.\n#include \"input.h\"\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nint userInputNum() {\n    int x;\n    cout &lt;&lt; \"Enter integer: \";\n    cin &gt;&gt; x;\n    return x;\n}\n\n\n\nOrganization\n\nFunction declaration goes in header files (i.e., .h files)\nFunction implementation goes in source files (i.e., .cpp files)\n\n\n\nCompilation\nTo compile this program with multiple files, there are different ways.\n\nCase 1\nTo compile, run the following command in the terminal:\ng++ main.cpp print.cpp input.cpp -o main.so\nThis command needs some explanation.\n\nWhat happens under the hood? Remind the diagram from lecture 3.\n\n\nSource file: Has function implementations (e.g, print.cpp, main.cpp).\nHeader file: Has function declarations (e.g., print.h, input.h).\nCompiler: Converts high-level programming language to machine language.\nObject file (cannot be executed): Has machine code with references to other variables in another file (e.g., main.o)\nLinking: A linker combines object files to produce one executable.\nExecutable file: Can be run directly on a CPU.\n\nStory of compilation:\n\n#include belongs to a class of instructions called pre-processor directives.\nBefore compiler compiles to object files, pre-processing textually replaces #include \"file-name\" with contents of the file name.\nCompiler converts pre-processed C++ code to an object file.\nObject file has machine code with references to other files.\nLinking appends function implementation in object files to create an executable.\nLinking takes much less time than compilation.\n\n\n\nCase 2\nSince linking takes less time compared to compiling, we can do separate compilation into\n\ng++ -c main.cpp produces main.o\ng++ -c print.cpp produces print.o\ng++ -c input.cpp produces input.o\ng++ main.o print.o input.o -o main.so produces main.so\n\nWhat if I update\n\nmain.cpp: print.o and input.o will not change. Only main.o will change.\n\ng++ -c main.cpp\ng++ main.o print.o input.o -o main.so\n\nprint.cpp: main.o and input.o will not change. Only print.o will change.\n\ng++ -c print.cpp\ng++ main.o print.o input.o -o main.so\n\nprint.h: This changes #include \"print.h\" in main.cpp and print.cpp. This is tricky!\n\ng++ -c main.cpp\ng++ -c print.cpp\ng++ main.o print.o input.o -o main.so\nIDEs, like VS Code, and Make files keep track of what file you changed and minimizes compile commands as they take time.\nIn short, dividing code across multiple files can save compilation time."
+  },
+  {
+    "objectID": "lecture5.html#summary",
+    "href": "lecture5.html#summary",
+    "title": "Lecture 5 - Sept 15, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we discuss #ifndef include guards for header files, and introduce C++ I/O."
+  },
+  {
+    "objectID": "lecture5.html#last-lecture",
+    "href": "lecture5.html#last-lecture",
+    "title": "Lecture 5 - Sept 15, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nMultiple file programs and separate compilation."
+  },
+  {
+    "objectID": "lecture5.html#today",
+    "href": "lecture5.html#today",
+    "title": "Lecture 5 - Sept 15, 2023",
+    "section": "Today",
+    "text": "Today\nMacros and C++ I/O."
+  },
+  {
+    "objectID": "lecture5.html#recap-from-previous-lecture",
+    "href": "lecture5.html#recap-from-previous-lecture",
+    "title": "Lecture 5 - Sept 15, 2023",
+    "section": "Recap from previous lecture",
+    "text": "Recap from previous lecture\n\nmain.cpp: print.o and input.o will not change. Only main.o will change.\n\ng++ -c main.cpp\ng++ main.o print.o input.o -o main.so\n\nprint.cpp: main.o and input.o will not change. Only print.o will change.\n\ng++ -c print.cpp\ng++ main.o print.o input.o -o main.so\n\nprint.h: This changes #include \"print.h\" in main.cpp and print.cpp. This is tricky!\n\ng++ -c main.cpp\ng++ -c print.cpp\ng++ main.o print.o input.o -o main.so\nIDEs, like VS Code, and Make files keep track of what file you changed and minimizes compile commands as they take time.\nIn short, dividing code across multiple files can save compilation time."
+  },
+  {
+    "objectID": "lecture5.html#macros",
+    "href": "lecture5.html#macros",
+    "title": "Lecture 5 - Sept 15, 2023",
+    "section": "Macros",
+    "text": "Macros\nWhat happens if I include the same header (.h file) multiple times?\nWhy would someone do that?\nWhat happens if?\n\nTo solve this, a preprocessor #ifndef guards against including a header file several times.\nSolution\n// a.h\n\n#ifdef A_H\n#define A_H\n\nstruct A {\n    ...\n}l\n\n#endif\nThe first time “a.h” is read, it will find A_H is not defined.\nThen it will define A_H and struct A.\nThe next time it reads “a.h”, A_H will be defined and hence would skip instructions until #endif.\nIn general, #ifdef [MACRO]ignores the whole code until #endif if [MACRO] is defined.\n#ifndef [MACRO] ignores the whole code until #endif if [MACRO] is not defined.\nWhy do we need header files? Can we just have .cpp files and include it?\nExample\n// main .cpp\n\n#include \"print.cpp\"\n\nint main() {\n    ...\n}\n// print.cpp\n\n#include &lt;iostream&gt;\n\nvoid printNum(int x) {\n    ...\n}\nThis means wheter I change print.cpp, I will have to re-compile main.cpp and print.cpp.\nAlso, linking will fail as main.cpp will have printNum() implemented and print.cpp too. You will have multiple definitions of printNum in the executable main, which is not allowed.\n\n\nmain.o will have printNum() implementation\nprint.o already has printNum() implementation\nprintNum() is defined twiece, so linking will fail."
+  },
+  {
+    "objectID": "lecture5.html#c-io",
+    "href": "lecture5.html#c-io",
+    "title": "Lecture 5 - Sept 15, 2023",
+    "section": "C++ I/O",
+    "text": "C++ I/O\nThere are many ways to take input and produce output.\n\nStandard input-output\nUsing cout and cin from iostream.\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nint main() {\n    int x;\n    cout \"Hello world\" &lt;&lt; endl;\n    cin &gt;&gt; x;\n    return 0;\n}\n\n\nFile input-output\nUsing ifstream (input file) and ofstream (output file) from fstream.\n\nOutput to a file\n#include &lt;fstream&gt;\n\nusing namespace std;\n\nint main() {\n    ofstream outFile(\"myFile.txt\");\n    string name = \"We are engineers!\";\n    outFile &lt;&lt; name;\n    outFile.close();\n}\nIf a file does not exist , it will be created. If it exists, its contents will be overwritten.\nTo append a file, use ofstream outFile(\"myFile.txt\", ios::app);.\n\n\nInput from a file\n#include &lt;fstream&gt;\n\nusing namespace std;\n\nint main() {\n    ifstream inputFile;\n    inputFile.open(\"myFile.txt\");\n\n    // or ifstream inputFile(\"myFile.txt\");\n    // to replace the two lines above\n\n    int num1, num2, num3;\n    \n    // input from file\n    inputFile &gt;&gt; num1 &gt;&gt; num2 &gt;&gt; num3;\n\n    inputFile.close();\n\n    return 0;\n}\n\nWhere to find the file?\n\n```cpp\n// absolute path\ninFile.open(\"/u/prof/emarasal/ece244/lab1/myFile.txt\")\n\n// relative path\ninFile.open(\"lab1/myFile.txt\")\ninFile.open(\"../myFile.txt\")\n\n// current directory\ninFile.open(\"myFile.txt\")\nBuffering\n\nThe output is not immediately written to a file.\nIt will be written in “chunks”.\nWhy buffering? Writing in a buffer is much faster than writing in a file.\nTo optimize resources, writing in files happens in chunks.\nTo force output, use outputFile.flush() or outputFile &lt;&lt; endl;."
   }
 ]
