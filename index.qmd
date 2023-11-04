@@ -4,6 +4,7 @@ This course provides a foundation in programming using an object-oriented progra
 
 ## Pacha's notes
 
-The notes are 100% adjusted to the class. In the snippets folder, I have included some (unofficial) code snippets with the same examples from the notes, that I use check if my code compiles.
-
-PACHA TERMINA DE ESCRIBIR ESTA CLASE
+* The notes are 100% adjusted to the class.
+* In the snippets folder, I have included some (unofficial) code snippets with the same examples from the notes, that I use to check if the code compiles.
+* Some of the examples in the notes have small additions, such as `using namespace std;` or `#include <iostream>`, to make them compile.
+* The diagrams are kinda ugly, my apologies! I'm not a graphic designer.

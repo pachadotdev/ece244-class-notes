@@ -1,0 +1,233 @@
+# Lecture 4 - Sept 14, 2023
+
+## Summary
+
+In this lecture, we review what's a reference variable, and delve deeply into what happens when we compile a multiple file program.
+
+## Last lecture
+
+Functions: pass-by-value and pass-by-reference.
+
+## Today
+
+Multiple file programs and separate compilation.
+
+## References
+
+A reference is an alias, an alternate name, to a variable.
+
+Example
+
+```cpp
+int a = 7, b = 12;
+int& ra = a; // ra refers to a
+cout << ra << endl; // prints value of a = 7
+ra = b; // changes value of a to 12
+```
+
+1. Reference cannot be re-assigned.
+2. Must be initialized when declared.
+3. Reference does not have a separate memory location.
+
+After executing the following, what are the values of `x` and `y`?
+
+```cpp
+int x = 10;
+int& y = x;
+y = 20;
+```
+
+`x` is 20, `y` is 20.
+
+What is the value of `a`, `ra` and `b` after executing the following?
+
+```cpp
+int a = 7, b = 12;
+int& ra = a;
+ra = b;
+```
+
+`a` is 12, `ra` is 12, and `b` is 12.
+
+## Program organization
+
+We want to split code accross multiple files.
+
+* Organized
+* Easier to collaborate
+* Faster to compile - Why? Today's topic.
+
+### Single file program
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+void printNum(int x);
+int userInputNum();
+
+int main() {
+    int num;
+    num = userInputNum();
+    printNum(num);
+    return 0;
+}
+
+void printNum(int x) {
+    cout << "The number is " << x << endl;
+}
+
+int userInputNum() {
+    int x;
+    cout << "Enter integer: ";
+    cin >> x;
+    return x;
+}
+```
+
+To compile, run the following command in the terminal:
+
+```bash
+g++ lecture4-example1.cpp -o lecture4-example1.so
+```
+
+This command generates the executable file, which contains zeroes and ones.
+
+### Multiple file program
+
+#### main.cpp
+
+Correction to the example from lectura 3: We do not need `#include <iostream>` nor `using namespace std` because we are not using `cout` and `cin` in this file.
+
+```cpp
+// "": searches in current directory
+#include "print.h"
+#include "input.h"
+
+int main() {
+    int num;
+    num = userInputNum();
+    printNum(num);
+    return 0;
+}
+```
+
+#### print.h
+
+```cpp
+void printNum(int x);
+```
+
+#### input.h
+
+```cpp
+int userInputNum();
+```
+
+#### print.cpp
+
+We include `iostream` here.
+
+```cpp
+#include "print.h"
+#include <iostream>
+
+using namespace std;
+
+void printNum(int x) {
+    cout << "The number is " << x << endl;
+}
+```
+
+#### input.cpp
+
+```cpp
+#include "input.h"
+#include <iostream>
+
+using namespace std;
+
+int userInputNum() {
+    int x;
+    cout << "Enter integer: ";
+    cin >> x;
+    return x;
+}
+```
+
+### Organization
+
+* Function declaration goes in header files (i.e., .h files)
+* Function implementation goes in source files (i.e., .cpp files)
+
+### Compilation
+
+To compile this program with multiple files, there are different ways.
+
+#### Case 1
+
+To compile, run the following command in the terminal:
+
+```bash
+g++ main.cpp print.cpp input.cpp -o main.so
+```
+
+This command needs some explanation.
+
+<img src="diagrams/lecture4-diagram1.svg" alt="diagrams/lecture4-diagram1.svg">
+
+What happens under the hood? Remind the diagram from lecture 3.
+
+<img src="diagrams/lecture3-diagram1.svg" alt="diagrams/lecture3-diagram1.svg">
+
+* Source file: Has function implementations (e.g, `print.cpp`, `main.cpp`).
+* Header file: Has function declarations (e.g., `print.h`, `input.h`).
+* Compiler: Converts high-level programming language to machine language.
+* Object file (cannot be executed): Has machine code with references to other variables in another file (e.g., `main.o`)
+* Linking: A linker combines object files to produce one executable.
+* Executable file: Can be run directly on a CPU.
+
+Story of compilation:
+
+* `#include` belongs to a class of instructions called **pre-processor directives**.
+* Before compiler compiles to object files, **pre-processing** textually replaces `#include "file-name"` with contents of the file name.
+* Compiler converts pre-processed C++ code to an object file.
+* Object file has machine code with references to other files.
+* Linking appends function implementation in object files to create an executable.
+* Linking takes much less time than compilation.
+
+#### Case 2
+
+Since linking takes less time compared to compiling, we can do separate compilation into
+
+1. `g++ -c main.cpp` produces `main.o`
+2. `g++ -c print.cpp` produces `print.o`
+3. `g++ -c input.cpp` produces `input.o`
+4. `g++ main.o print.o input.o -o main.so` produces `main.so`
+
+What if I update
+
+* main.cpp: print.o and input.o will not change. Only main.o will change.
+
+```bash
+g++ -c main.cpp
+g++ main.o print.o input.o -o main.so
+```
+* print.cpp: main.o and input.o will not change. Only print.o will change.
+
+```bash
+g++ -c print.cpp
+g++ main.o print.o input.o -o main.so
+```
+* print.h: This changes `#include "print.h"` in main.cpp and print.cpp. This is tricky!
+
+```bash
+g++ -c main.cpp
+g++ -c print.cpp
+g++ main.o print.o input.o -o main.so
+```
+
+IDEs, like VS Code, and Make files keep track of what file you changed and minimizes compile commands as they take time.
+
+In short, dividing code across multiple files can save compilation time.

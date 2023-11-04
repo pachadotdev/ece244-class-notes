@@ -29,9 +29,9 @@
      fit-margin-left="5"
      fit-margin-bottom="5"
      fit-margin-right="5"
-     inkscape:zoom="0.96630983"
-     inkscape:cx="7.2440534"
-     inkscape:cy="327.5347"
+     inkscape:zoom="0.68328423"
+     inkscape:cx="202.69749"
+     inkscape:cy="242.21253"
      inkscape:window-width="1920"
      inkscape:window-height="1007"
      inkscape:window-x="0"
@@ -53,6 +53,34 @@
   </sodipodi:namedview>
   <defs
      id="defs2">
+    <marker
+       style="overflow:visible"
+       id="TriangleInM"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleInM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(-0.4)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path1169" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleOutM"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path1178" />
+    </marker>
     <marker
        style="overflow:visible"
        id="marker1298"
@@ -241,11 +269,11 @@
          y="83.29068"
          id="tspan39938">Hardware</tspan></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1298)"
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
        d="M 19.212506,60.29008 V 76.903777"
        id="path41746" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker1280)"
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#TriangleInM)"
        d="M 22.916675,60.29008 V 76.903777"
        id="path1306" />
     <text
@@ -340,18 +368,24 @@
        sodipodi:nodetypes="cc" />
     <g
        id="g15630"
-       transform="translate(2.875602,-6.9819445)">
+       transform="matrix(1.0150164,0,0,0.88842608,2.3923961,11.925701)"
+       style="stroke-width:0.52652964;stroke-miterlimit:4;stroke-dasharray:none">
       <g
          id="g15623"
-         transform="translate(-7.9063556,-6.2916924)">
-        <path
-           style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1298)"
-           d="m 38.232895,162.43313 v 16.6137"
-           id="path13877" />
-        <path
-           style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker1280)"
-           d="m 41.937064,162.43313 v 16.6137"
-           id="path13879" />
+         transform="translate(-7.9063556,-6.2916924)"
+         style="stroke-width:0.52652964;stroke-miterlimit:4;stroke-dasharray:none">
+        <g
+           id="g1390"
+           style="stroke-width:0.52652964;stroke-miterlimit:4;stroke-dasharray:none">
+          <path
+             style="fill:none;stroke:#000000;stroke-width:0.52652964;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
+             d="m 38.232895,162.43313 v 16.6137"
+             id="path13877" />
+          <path
+             style="fill:none;stroke:#000000;stroke-width:0.52652964;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#TriangleInM)"
+             d="m 41.937064,162.43313 v 16.6137"
+             id="path13879" />
+        </g>
       </g>
     </g>
     <text
@@ -394,27 +428,35 @@
        id="path15640"
        sodipodi:nodetypes="cc" />
     <g
-       id="g31649">
+       id="g31649"
+       transform="matrix(0.8402503,0,0,1.0180882,11.652187,-2.2754166)"
+       style="stroke-width:0.54059617;stroke-miterlimit:4;stroke-dasharray:none">
       <g
          id="g31635"
-         transform="rotate(-90,32.669263,125.30476)">
+         transform="rotate(-90,32.669263,125.30476)"
+         style="stroke-width:0.54059617;stroke-miterlimit:4;stroke-dasharray:none">
         <g
            id="g31633"
-           transform="translate(-7.9063556,-6.2916924)">
-          <path
-             style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1298)"
-             d="m 38.232895,162.43313 v 16.6137"
-             id="path31629" />
-          <path
-             style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker1280)"
-             d="m 41.937064,162.43313 v 16.6137"
-             id="path31631" />
+           transform="translate(-7.9063556,-6.2916924)"
+           style="stroke-width:0.54059617;stroke-miterlimit:4;stroke-dasharray:none">
+          <g
+             id="g1394"
+             style="stroke-width:0.54059617;stroke-miterlimit:4;stroke-dasharray:none">
+            <path
+               style="fill:none;stroke:#000000;stroke-width:0.54059617;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
+               d="m 38.232895,162.43313 v 16.6137"
+               id="path31629" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:0.54059617;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#TriangleInM)"
+               d="m 41.937064,162.43313 v 16.6137"
+               id="path31631" />
+          </g>
         </g>
       </g>
     </g>
     <g
        id="g37359"
-       transform="translate(-2.6458334,-0.30553397)">
+       transform="translate(-2.6458404,-0.30553397)">
       <rect
          style="fill:#dacf2f;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none"
          id="rect35665"

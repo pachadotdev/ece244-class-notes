@@ -115,16 +115,6 @@ This also can speed up compilation, and we will explain how.
 
 ### Single file program
 
-To compile, run the following command in the terminal
-
-```bash
-g++ lecture3-example3.cpp -o lecture3-example3.so
-```
-
-Use ".exe" instead of ".so" on Windows.
-
-This command generates the executable file, which contains zeroes and ones.
-
 ```cpp
 #include <iostream>
 
@@ -151,3 +141,119 @@ int userInputNum() {
     return x;
 }
 ```
+
+To compile, run the following command in the terminal
+
+```bash
+g++ lecture3-example3.cpp -o lecture3-example3.so
+```
+
+Use ".exe" instead of ".so" on Windows.
+
+This command generates the executable file, which contains zeroes and ones.
+
+### Multiple files program
+
+We can divide the program into multiple files.
+
+The function declarations are in the header files (i.e. .h files).
+
+The function implementations are in the source files (i.e. .cpp files).
+
+#### main.cpp
+
+```cpp
+// <>: searches in standard library locations
+#include <iostream>
+
+using namespace std;
+
+// "": searches in current directory
+#include "print.h"
+#include "input.h"
+
+int main() {
+    int num;
+    num = userInputNum();
+    printNum(num);
+    return 0;
+}
+```
+
+#### print.h
+
+```cpp
+void printNum(int x);
+```
+
+#### input.h
+
+```cpp
+int userInputNum();
+```
+
+#### print.cpp
+
+```cpp
+#include "print.h"
+
+void printNum(int x) {
+    cout << "The number is " << x << endl;
+}
+```
+
+#### input.cpp
+
+```cpp
+#include "input.h"
+
+int userInputNum() {
+    int x;
+    cout << "Enter integer: ";
+    cin >> x;
+    return x;
+}
+```
+
+To compile this program with multiple files, there are different ways.
+
+```bash
+g++ main.cpp print.cpp input.cpp -o lecture3-example4.so
+```
+
+What happens under the hood?
+
+<img src="diagrams/lecture3-diagram1.svg" alt="diagrams/lecture3-diagram1.svg">
+
+## Notes
+
+* `#include`belongs to a class of instructions called **pre-processor directives**. 
+* Preprocessing happens before the compilation.
+* Preprocessing textually replaces the `#include` with the content of the filename.
+* You can include .cpp files instead of .h files. It is bad practice! Why?
+* Linking appends function implementations to produce the executable file.
+* Linking takes much less time than compiling.
+
+What if I update:
+
+* main.cpp: print.o and input.o will not change. Only main.o will change.
+
+```bash
+g++ main.cpp
+g++ main.o print.o input.o -o main.so
+```
+* print.cpp: main.o and input.o will not change. Only print.o will change.
+
+```bash
+g++ print.cpp
+g++ main.o print.o input.o -o main.so
+```
+* print.h: This changes `#include "print.h"` in main.cpp and print.cpp.
+
+```bash
+g++ main.cpp
+g++ print.cpp
+g++ main.o print.o input.o -o main.so
+```
+
+What happens if I include the same .h file multiple times? Why would someone do that? Next lecture.

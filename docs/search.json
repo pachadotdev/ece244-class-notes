@@ -88,7 +88,7 @@
     "href": "index.html#pachas-notes",
     "title": "ECE244 Tidy Notes",
     "section": "Pacha’s notes",
-    "text": "Pacha’s notes\nThe notes are 100% adjusted to the class. In the snippets folder, I have included some (unofficial) code snippets with the same examples from the notes, that I use check if my code compiles.\nPACHA TERMINA DE ESCRIBIR ESTA CLASE"
+    "text": "Pacha’s notes\n\nThe notes are 100% adjusted to the class.\nIn the snippets folder, I have included some (unofficial) code snippets with the same examples from the notes, that I use to check if the code compiles.\nSome of the examples in the notes have small additions, such as using namespace std; or #include &lt;iostream&gt;, to make them compile.\nThe diagrams are kinda ugly, my apologies! I’m not a graphic designer."
   },
   {
     "objectID": "lecture1.html#summary",
@@ -130,6 +130,41 @@
     "href": "lecture3.html#program-organization",
     "title": "Lecture 3 - Sept 12, 2023",
     "section": "Program organization",
-    "text": "Program organization\nLarge programs are typically organized into multiple files. This helps when we divide tasks in a team.\nThis also can speed up compilation, and we will explain how.\n\nSingle file program\nTo compile, run the following command in the terminal\ng++ lecture3-example3.cpp -o lecture3-example3.so\nUse “.exe” instead of “.so” on Windows.\nThis command generates the executable file, which contains zeroes and ones.\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nvoid printNum(int x);\nint userInputNum();\n\nint main() {\n    int num;\n    num = userInputNum();\n    printNum(num);\n    return 0;\n}\n\nvoid printNum(int x) {\n    cout &lt;&lt; \"The number is \" &lt;&lt; x &lt;&lt; endl;\n}\n\nint userInputNum() {\n    int x;\n    cout &lt;&lt; \"Enter integer: \";\n    cin &gt;&gt; x;\n    return x;\n}"
+    "text": "Program organization\nLarge programs are typically organized into multiple files. This helps when we divide tasks in a team.\nThis also can speed up compilation, and we will explain how.\n\nSingle file program\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nvoid printNum(int x);\nint userInputNum();\n\nint main() {\n    int num;\n    num = userInputNum();\n    printNum(num);\n    return 0;\n}\n\nvoid printNum(int x) {\n    cout &lt;&lt; \"The number is \" &lt;&lt; x &lt;&lt; endl;\n}\n\nint userInputNum() {\n    int x;\n    cout &lt;&lt; \"Enter integer: \";\n    cin &gt;&gt; x;\n    return x;\n}\nTo compile, run the following command in the terminal\ng++ lecture3-example3.cpp -o lecture3-example3.so\nUse “.exe” instead of “.so” on Windows.\nThis command generates the executable file, which contains zeroes and ones.\n\n\nMultiple files program\nWe can divide the program into multiple files.\nThe function declarations are in the header files (i.e. .h files).\nThe function implementations are in the source files (i.e. .cpp files).\n\nmain.cpp\n// &lt;&gt;: searches in standard library locations\n#include &lt;iostream&gt;\n\nusing namespace std;\n\n// \"\": searches in current directory\n#include \"print.h\"\n#include \"input.h\"\n\nint main() {\n    int num;\n    num = userInputNum();\n    printNum(num);\n    return 0;\n}\n\n\nprint.h\nvoid printNum(int x);\n\n\ninput.h\nint userInputNum();\n\n\nprint.cpp\n#include \"print.h\"\n\nvoid printNum(int x) {\n    cout &lt;&lt; \"The number is \" &lt;&lt; x &lt;&lt; endl;\n}\n\n\ninput.cpp\n#include \"input.h\"\n\nint userInputNum() {\n    int x;\n    cout &lt;&lt; \"Enter integer: \";\n    cin &gt;&gt; x;\n    return x;\n}\nTo compile this program with multiple files, there are different ways.\ng++ main.cpp print.cpp input.cpp -o lecture3-example4.so\nWhat happens under the hood?"
+  },
+  {
+    "objectID": "lecture3.html#notes",
+    "href": "lecture3.html#notes",
+    "title": "Lecture 3 - Sept 12, 2023",
+    "section": "Notes",
+    "text": "Notes\n\n#includebelongs to a class of instructions called pre-processor directives.\nPreprocessing happens before the compilation.\nPreprocessing textually replaces the #include with the content of the filename.\nYou can include .cpp files instead of .h files. It is bad practice! Why?\nLinking appends function implementations to produce the executable file.\nLinking takes much less time than compiling.\n\nWhat if I update:\n\nmain.cpp: print.o and input.o will not change. Only main.o will change.\n\ng++ main.cpp\ng++ main.o print.o input.o -o main.so\n\nprint.cpp: main.o and input.o will not change. Only print.o will change.\n\ng++ print.cpp\ng++ main.o print.o input.o -o main.so\n\nprint.h: This changes #include \"print.h\" in main.cpp and print.cpp.\n\ng++ main.cpp\ng++ print.cpp\ng++ main.o print.o input.o -o main.so\nWhat happens if I include the same .h file multiple times? Why would someone do that? Next lecture."
+  },
+  {
+    "objectID": "lecture4.html#summary",
+    "href": "lecture4.html#summary",
+    "title": "Lecture 4 - Sept 14, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we review what’s a reference variable, and delve deeply into what happens when we compile a multiple file program."
+  },
+  {
+    "objectID": "lecture4.html#last-lecture",
+    "href": "lecture4.html#last-lecture",
+    "title": "Lecture 4 - Sept 14, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nFunctions: pass-by-value and pass-by-reference."
+  },
+  {
+    "objectID": "lecture4.html#today",
+    "href": "lecture4.html#today",
+    "title": "Lecture 4 - Sept 14, 2023",
+    "section": "Today",
+    "text": "Today\nMultiple file programs and separate compilation."
+  },
+  {
+    "objectID": "lecture4.html#references",
+    "href": "lecture4.html#references",
+    "title": "Lecture 4 - Sept 14, 2023",
+    "section": "References",
+    "text": "References\nA reference is an alias, an alternate name, to a variable.\nExample\nint a = 7, b = 12;\nint& ra = a; // ra refers to a\ncout &lt;&lt; ra &lt;&lt; endl; // prints value of a = 7\nra = b; // changes value of a to 12\n\nReference cannot be re-assigned.\nMust be initialized when declared.\nReference does not have a separate memory location.\n\nAfter executing the following, what are the values of x and y?\nint x = 10;\nint& y = x;\ny = 20;\nx is 20, y is 20.\nWhat is the value of a, ra and b after executing the following?"
   }
 ]
