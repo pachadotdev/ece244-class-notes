@@ -200,3 +200,369 @@ Buffering
 * To force output, use `outputFile.flush()` or `outputFile << endl;`.
 
 <img src="diagrams/lecture5-diagram3.svg" alt="diagrams/lecture5-diagram3.svg">
+
+## Ungraded homework
+
+Solve the exercises of [Chapter 1: Programming Basics](https://learningcpp.org/chapters/chapter01-basics/exercises)
+
+### Exercise 1
+
+When you compile the following program, what happens? If there is an error, explain what the error is (one sentence max).
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+  hello(1);
+  return 0;
+}
+void hello(int i) {
+  cout << "Hello !" << i << endl;
+  return;
+}
+```
+
+Answer:
+
+There will be a compilation error because hello() is called before it is declared.
+
+The correct code is:
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Forward function
+void hello(int i);  
+
+int main() {
+  hello(1);
+  return 0;
+}
+
+// Function definition
+void hello(int i) {
+    cout << "Hello !" << i << endl;
+    return;
+}
+```
+
+### Exercise 2
+
+Which is the output of the following program?
+
+```cpp
+#include <iostream>
+using namespace std;
+
+void increment(int& a) {
+  a = a + 1;
+}
+
+void decrement(int a) {
+  a = a - 1;
+}
+
+void doubling(int* a) {
+  *a = (*a) * 2;
+}
+
+int main() {
+  int a = 3;
+  increment(a);
+  cout << a << endl;
+  decrement(a);
+  cout << a << endl;
+  doubling(&a);
+  cout << a << endl;
+  return 0;
+}
+```
+
+Answer: 4, 4 and 8 because `increment()` is called by reference, `decrement()` is called by value and `doubling()` takes a pointer and dereferences it to modify the original value.
+
+### Exercise 3
+
+Compared to C, passing by reference is introduced in C++. Both of the following two functions can be used to swap the value of two integers:
+
+```cpp
+void swap_by_p(int* a, int* b); // swap version.1
+void swap_by_r(int& a, int& b); // swap version.2
+```
+
+Part 1: Write the implementations for these two functions (no more than 4 lines of code for each function)
+
+```cpp
+void swap_by_p(int* a, int* b) {
+    ...
+}
+
+void swap_by_r(int& a, int& b) {
+    ...
+}
+```
+
+Part 2: If given two int variables x and y, write a function call that swaps the value of x and y, using swap_by_p.
+
+Part 3: If given two int variables x and y, write a function call that swaps the value of x and y, using swap_by_r.
+
+Answer:
+
+```cpp
+#include <iostream>
+using namespace std;
+
+void swap_by_p(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void swap_by_r(int& a, int& b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+int main() {
+    int x = 200;
+    int y = 100;
+    swap_by_p(&x, &y);
+    cout << x << " " << y << endl;
+    swap_by_r(x, y);
+    cout << x << " " << y << endl;
+    return 0;
+}
+```
+
+### Exercise 4
+
+Ellie writes a program to make a simple database for ECE students who like drinking soy milk from 2T2 to 2T6. She designs two classes: student and ECE, and puts them into different files below. The main function is in the main.cpp.
+
+**ECE.h**
+
+```cpp
+#ifndefine ECE
+#define ECE
+
+#include "student.h"
+
+class ECE{
+    ...
+};
+
+#endif
+```
+
+**ECE.cpp**
+
+```cpp
+#include "ECE.h"
+
+ECE::ECE() {
+    ...
+}
+```
+
+**student.h**
+
+```cpp
+#include <string>
+
+class Student {
+    ...
+};
+```
+
+**student.cpp**
+
+```cpp
+#include "student.h"
+
+Student::Student() {
+    ...
+}
+```
+
+**main.cpp**
+
+```cpp
+#include "ECE.h"
+#include "student.h"
+
+int main() {
+    ...
+}
+```
+
+Part 1: Ellie tries to compile this program with g++. What's the Unix (i.e., terminal) command that compiles the entire program using one command, which generates an executable called small_database?
+
+Part 2: However, it fails to compile. Can you point out the compile-time error and fix this error for her?
+
+Part 3: With your help, Ellie has fixed the compile-time error. Now, Ellie wants to use separate compilation learned from ECE244 to compile her project. Write down all the Unix commands necessary to separately compile the above files and generate an executable small_database.
+
+Part 4: Ellie then changes some code in ECE.cpp. Write down the Unix commands necessary to regenerate the executable by compiling the smallest number of files needed. Assume the generated executable is called small_database.
+
+Answer:
+
+Compile with
+
+```bash
+g++ main.cpp ECE.cpp student.cpp -o small_database
+```
+
+The first problem is that `student.h` has no header guard, and it is included in both `ECE.h` and `student.cpp`. This will cause a multiple definition error.
+
+The solution is to add a header guard to `student.h`.
+
+```cpp
+#ifndef STUDENT
+#define STUDENT
+
+#include <string>
+
+class Student {
+    ...
+};
+```
+
+The second problem is that `ECE.h` says `#ifndefine ECE`, but it should be `#ifndef ECE`.
+
+To compile separately, use
+
+```bash
+g++ -c student.cpp -o student.o
+g++ -c ECE.cpp -o ECE.o
+g++ -c main.cpp -o main.o
+g++ student.o ECE.o main.o -o small_database
+```
+
+After changing `ECE.cpp`, use
+
+```bash
+g++ -c ECE.cpp -o ECE.o
+g++ student.o ECE.o main.o -o small_database
+```
+
+### Exercise 5
+
+You are given a program that has a main function and 3 classes: First, Second and Third. For each of these classes, you have a definition file and an implementation file. Thus, you have seven files in total: First.h, First.cpp, Second.h, Second.cpp, Third.h, Third.cpp and main.cpp. All the files exist in the same directory.
+
+The first few lines of each file are shown below. The rest of the contents of each file is irrelevant to the question and is shown as .... You may assume the definition/implementation files are error-free.
+
+**First.h**
+
+```cpp
+#ifndef FIRST_H
+#define FIRST_H
+
+class First {
+    ...
+};
+#endif
+```
+
+**First.cpp**
+
+```cpp
+#include “First.h”
+
+First::First() {
+    ...
+}
+```
+
+**Second.h**
+
+```cpp
+#ifndef SECOND_H
+#define SECOND_H
+
+class Second {
+  ...
+};
+
+#endif
+```
+
+**Second.cpp**
+
+```cpp
+#include "First.h"
+#include "Second.h"
+
+Second::Second() {
+  ...
+}
+```
+
+**Third.h**
+
+```cpp
+#ifndef THIRD_H
+#define THIRD_H
+
+class Third {
+  ...
+};
+
+#endif
+```
+
+**Third.cpp**
+
+```cpp
+#include "Second.h"
+
+Third::Third() {
+  ...
+}
+```
+
+**main.cpp**
+
+```cpp
+#include "First.h"
+#include "Second.h"
+#include "Third.h"
+
+int main() {
+  ...
+}
+```
+
+The files are to be separately compiled and then linked into a single executable called `main`.
+
+Part 1: Write down the Unix commands necessary to separately compile the above files and generate the executable.
+
+Part 2: You modify the file `Second.cpp`. Write down the Unix commands necessary to regenerate the executable by compiling the smallest number of files possible.
+
+Part 3: You modify the file `First.h`. Write down the Unix commands necessary to regenerate the executable by compiling the smallest number of files possible.
+
+Answer:
+
+Part 1:
+
+```bash
+g++ -c First.cpp -o First.o
+g++ -c Second.cpp -o Second.o
+g++ -c Third.cpp -o Third.o
+g++ -c main.cpp -o main.o
+g++ First.o Second.o Third.o main.o -o main
+```
+
+Part 2:
+
+```bash
+g++ -c Second.cpp -o Second.o
+g++ First.o Second.o Third.o main.o -o main
+```
+
+Part 3:
+
+```bash
+g++ -c First.cpp -o First.o
+g++ -c Second.cpp -o Second.o
+g++ First.o Second.o Third.o main.o -o main
+```
