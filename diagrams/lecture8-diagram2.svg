@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="160.92915mm"
+   height="72.796684mm"
+   viewBox="0 0 160.92915 72.796684"
+   version="1.1"
+   id="svg1035"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="lecture8-diagram2.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1037"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     fit-margin-top="5"
+     fit-margin-left="5"
+     fit-margin-right="5"
+     fit-margin-bottom="5"
+     inkscape:zoom="1.2810465"
+     inkscape:cx="261.89526"
+     inkscape:cy="174.85704"
+     inkscape:window-width="1920"
+     inkscape:window-height="1043"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <sodipodi:guide
+       position="72.255085,49.421496"
+       orientation="0,-1"
+       id="guide45203" />
+    <sodipodi:guide
+       position="60.15614,28.095758"
+       orientation="0,-1"
+       id="guide45273" />
+    <sodipodi:guide
+       position="113.10017,28.095758"
+       orientation="1,0"
+       id="guide45355" />
+    <sodipodi:guide
+       position="52.914845,49.421498"
+       orientation="1,0"
+       id="guide45390" />
+    <sodipodi:guide
+       position="39.663408,57.880228"
+       orientation="0,-1"
+       id="guide49385" />
+    <sodipodi:guide
+       position="43.114741,45.173018"
+       orientation="0,-1"
+       id="guide49387" />
+    <sodipodi:guide
+       position="67.829199,37.630093"
+       orientation="0,-1"
+       id="guide49389" />
+    <sodipodi:guide
+       position="72.87994,37.630093"
+       orientation="1,0"
+       id="guide49908" />
+    <sodipodi:guide
+       position="75.306748,37.630093"
+       orientation="1,0"
+       id="guide49910" />
+    <sodipodi:guide
+       position="50.450009,11.013644"
+       orientation="0,-1"
+       id="guide56560" />
+    <sodipodi:guide
+       position="33.344651,50.500187"
+       orientation="0,-1"
+       id="guide56562" />
+    <sodipodi:guide
+       position="100.28212,23.914829"
+       orientation="0,-1"
+       id="guide58770" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1032">
+    <marker
+       style="overflow:visible"
+       id="TriangleOutM"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path24291" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(48.23276,-107.00329)">
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;stroke-width:0.264583"
+       x="-27.492081"
+       y="126.24654"
+       id="text14324"><tspan
+         sodipodi:role="line"
+         id="tspan14322"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+         x="-27.492081"
+         y="126.24654">class <tspan
+   style="fill:#181c57"
+   id="tspan24996">Student</tspan> {</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+         x="-27.492081"
+         y="131.56696"
+         id="tspan14326">    <tspan
+   style="fill:#a51d1e"
+   id="tspan33949">private</tspan>:</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+         x="-27.492081"
+         y="136.88736"
+         id="tspan14328">        int ID;</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+         x="-27.492081"
+         y="142.20778"
+         id="tspan14330">        string name;</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+         x="-27.492081"
+         y="147.52818"
+         id="tspan14332" /><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+         x="-27.492081"
+         y="152.8486"
+         id="tspan14334">    <tspan
+   style="fill:#a51d1e"
+   id="tspan36699">public</tspan>:</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+         x="-27.492081"
+         y="158.16901"
+         id="tspan14336">        void setName(string name);</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+         x="-27.492081"
+         y="163.48943"
+         id="tspan14338">        void getName();</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+         x="-27.492081"
+         y="168.80984"
+         id="tspan14340">        void print();</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+         x="-27.492081"
+         y="174.13025"
+         id="tspan14342">};</tspan></text>
+    <path
+       style="fill:none;stroke:#181c57;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
+       d="m -8.5693522,121.91975 5.3102562,-5.17149"
+       id="path27587" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#181c57;stroke-width:0.264583"
+       x="-2.2548509"
+       y="115.24179"
+       id="text30417"><tspan
+         sodipodi:role="line"
+         id="tspan30415"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#181c57;stroke-width:0.264583"
+         x="-2.2548509"
+         y="115.24179">Name of the class</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#a51d1e;stroke-width:0.264583"
+       x="31.354366"
+       y="131.60587"
+       id="text45201"><tspan
+         sodipodi:role="line"
+         id="tspan45199"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#a51d1e;stroke-width:0.264583"
+         x="31.354366"
+         y="131.60587">Access control</tspan></text>
+    <path
+       style="fill:none;stroke:#a51d1e;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
+       d="M 4.6820848,130.37848 H 29.380182"
+       id="path45238" />
+    <path
+       style="fill:none;stroke:#a51d1e;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
+       d="M 4.6820848,151.70422 H 64.86741 v -21.32574 h -3.377402"
+       id="path45392"
+       sodipodi:nodetypes="cccc" />
+    <path
+       style="fill:none;stroke:#2b5d0a;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 24.64718,134.62696 h 2.426808 v 7.54292 H 24.64718"
+       id="path49945" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;stroke-width:0.264583"
+       x="31.121532"
+       y="139.98592"
+       id="text53225"><tspan
+         sodipodi:role="line"
+         id="tspan53223"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#2b5d0a;stroke-width:0.264583"
+         x="31.121532"
+         y="139.98592">data members</tspan></text>
+    <path
+       style="fill:none;stroke:#3e3c5f;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -19.532094,129.29979 h -2.426808 v 39.48654 h 2.426808"
+       id="path56564" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#3e3c5f;stroke-width:0.264583"
+       x="-43.490993"
+       y="147.98473"
+       id="text56586"><tspan
+         sodipodi:role="line"
+         id="tspan56584"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#3e3c5f;stroke-width:0.264583"
+         x="-43.490993"
+         y="147.98473">Class</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#3e3c5f;stroke-width:0.264583"
+         x="-43.490993"
+         y="153.27638"
+         id="tspan56934">members</tspan></text>
+    <path
+       style="fill:none;stroke:#2b5d0a;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 62.440602,155.88515 h 2.426808 v 12.90118 h -2.426808"
+       id="path58764" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;stroke-width:0.264583"
+       x="66.798286"
+       y="158.64217"
+       id="text58768"><tspan
+         sodipodi:role="line"
+         id="tspan58766"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#2b5d0a;stroke-width:0.264583"
+         x="66.798286"
+         y="158.64217">function members</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#2b5d0a;stroke-width:0.264583"
+         x="66.798286"
+         y="163.93382"
+         id="tspan59817">or</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#2b5d0a;stroke-width:0.264583"
+         x="66.798286"
+         y="169.22549"
+         id="tspan59819">methods of the class</tspan></text>
+  </g>
+</svg>

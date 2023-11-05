@@ -2,7 +2,8 @@
 
 ## Summary
 
-In this lecture, we review what's a reference variable, and delve deeply into what happens when we compile a multiple file program.
+In this lecture, we review what's a reference variable, and delve deeply into
+what happens when we compile a multiple file program.
 
 ## Last lecture
 
@@ -16,7 +17,8 @@ Multiple file programs and separate compilation.
 
 A reference is an alias, an alternate name, to a variable.
 
-Example
+::: {.callout-note icon=false}
+## Example
 
 ```cpp
 int a = 7, b = 12;
@@ -24,10 +26,14 @@ int& ra = a; // ra refers to a
 cout << ra << endl; // prints value of a = 7
 ra = b; // changes value of a to 12
 ```
+:::
 
 1. Reference cannot be re-assigned.
 2. Must be initialized when declared.
 3. Reference does not have a separate memory location.
+
+::: {.callout-note icon=false}
+## Example
 
 After executing the following, what are the values of `x` and `y`?
 
@@ -38,6 +44,10 @@ y = 20;
 ```
 
 `x` is 20, `y` is 20.
+:::
+
+::: {.callout-note icon=false}
+## Example
 
 What is the value of `a`, `ra` and `b` after executing the following?
 
@@ -48,6 +58,7 @@ ra = b;
 ```
 
 `a` is 12, `ra` is 12, and `b` is 12.
+:::
 
 ## Program organization
 
@@ -98,7 +109,9 @@ This command generates the executable file, which contains zeroes and ones.
 
 #### main.cpp
 
-Correction to the example from lectura 3: We do not need `#include <iostream>` nor `using namespace std` because we are not using `cout` and `cin` in this file.
+Correction to the example from lectura 3: We do not need `#include <iostream>`
+nor `using namespace std` because we are not using `cout` and `cin` in this
+file.
 
 ```cpp
 // "": searches in current directory
@@ -129,7 +142,10 @@ int userInputNum();
 
 We include `iostream` here.
 
-**Pacha's note: I added `using namespace std` here to make it work.**
+::: {.callout-note icon=false}
+## Pacha's note
+I added `using namespace std` here to make the code compile.
+:::
 
 ```cpp
 #include "print.h"
@@ -144,7 +160,10 @@ void printNum(int x) {
 
 #### input.cpp
 
-**Pacha's note: I added `using namespace std` here to make it work.**
+::: {.callout-note icon=false}
+## Pacha's note
+I added `using namespace std` here to make the code compile.
+:::
 
 ```cpp
 #include "input.h"
@@ -181,29 +200,34 @@ This command needs some explanation.
 
 <img src="diagrams/lecture4-diagram1.svg" alt="diagrams/lecture4-diagram1.svg">
 
-What happens under the hood? Remind the diagram from lecture 3.
+What happens under the hood? Remember the diagram from lecture 3.
 
 <img src="diagrams/lecture3-diagram1.svg" alt="diagrams/lecture3-diagram1.svg">
 
 * Source file: Has function implementations (e.g, `print.cpp`, `main.cpp`).
 * Header file: Has function declarations (e.g., `print.h`, `input.h`).
 * Compiler: Converts high-level programming language to machine language.
-* Object file (cannot be executed): Has machine code with references to other variables in another file (e.g., `main.o`)
+* Object file (cannot be executed): Has machine code with references to other
+ variables in another file (e.g., `main.o`)
 * Linking: A linker combines object files to produce one executable.
 * Executable file: Can be run directly on a CPU.
 
 Story of compilation:
 
-* `#include` belongs to a class of instructions called **pre-processor directives**.
-* Before compiler compiles to object files, **pre-processing** textually replaces `#include "file-name"` with contents of the file name.
+* `#include` belongs to a class of instructions called
+ **pre-processor directives**.
+* Before compiler compiles to object files, **pre-processing** textually
+ replaces `#include "file-name"` with contents of the file name.
 * Compiler converts pre-processed C++ code to an object file.
 * Object file has machine code with references to other files.
-* Linking appends function implementation in object files to create an executable.
+* Linking appends function implementation in object files to create an
+ executable.
 * Linking takes much less time than compilation.
 
 #### Case 2
 
-Since linking takes less time compared to compiling, we can do separate compilation into
+Since linking takes less time compared to compiling, we can do separate
+compilation into
 
 1. `g++ -c main.cpp` produces `main.o`
 2. `g++ -c print.cpp` produces `print.o`
@@ -224,7 +248,8 @@ g++ main.o print.o input.o -o main.so
 g++ -c print.cpp
 g++ main.o print.o input.o -o main.so
 ```
-* print.h: This changes `#include "print.h"` in main.cpp and print.cpp. This is tricky!
+* print.h: This changes `#include "print.h"` in main.cpp and print.cpp. This is
+ tricky!
 
 ```bash
 g++ -c main.cpp
@@ -232,6 +257,7 @@ g++ -c print.cpp
 g++ main.o print.o input.o -o main.so
 ```
 
-IDEs, like VS Code, and Make files keep track of what file you changed and minimizes compile commands as they take time.
+IDEs, like VS Code, and Make files keep track of what file you changed and
+minimizes compile commands as they take time.
 
 In short, dividing code across multiple files can save compilation time.

@@ -2,7 +2,8 @@
 
 ## Summary
 
-In this lecture, we review functions, passing-by-value and by-pointers. We introduce passing-by-reference, and introduce multiple files programs. 
+In this lecture, we review functions, passing-by-value and by-pointers. We
+introduce passing-by-reference, and introduce multiple files programs. 
 
 ## Last lecture
 
@@ -12,7 +13,11 @@ Introduction to C++
 
 Functions and passing parameters
 
-Example: Write a function that gets the factorial of a number $n! = n \times (n-1) \times (n-2) \times \cdots 3 \times 2 \times 1$
+::: {.callout-note icon=false}
+## Example
+
+Write a function that gets the factorial of a number 
+$n! = n \times (n-1) \times (n-2) \times \cdots 3 \times 2 \times 1$
 
 ```cpp
 int factorial (int n) {
@@ -37,12 +42,15 @@ int main() {
     return 0;
 }
 ```
+:::
 
-We passed the variable `n` by value. This means we only passed a copy of n. If we change `n` in the factorial function, it will not be changed in `main`. 
+We passed the variable `n` by value. This means we only passed a copy of n. If
+we change `n` in the factorial function, it will not be changed in `main`. 
 
 This is called **pass-by-value**.
 
-Therefore, if we swap two variables in the following functions, they will not get swapped in `main`.
+Therefore, if we swap two variables in the following functions, they will not
+get swapped in `main`.
 
 ```cpp
 #include <iostream>
@@ -64,7 +72,8 @@ int main() {
 }
 ```
 
-In C, we resolved this issue by passing the address of the two variables to the swap function.
+In C, we resolved this issue by passing the address of the two variables to the
+swap function.
 
 ```c
 void swap(int* px, int* py) {
@@ -83,7 +92,13 @@ int main() {
 }
 ```
 
-In C++, there is **pass-by-reference** syntax that allows a function to access the original variable with no usage of pointers.
+In C++, there is **pass-by-reference** syntax that allows a function to access
+the original variable with no usage of pointers.
+
+::: {.callout-note icon=false}
+## Pacha's note
+I added the `cout` statements to the code below.
+:::
 
 ```cpp
 #include <iostream>
@@ -98,7 +113,6 @@ void swap(int& x, int& y) {
 }
 
 int main() {
-    // Pacha's note: I added the cout statements
     int x = 7, y = 13;
     cout << "Before swap: x = " << x << " y = " << y << endl;
     swap(x, y);
@@ -109,7 +123,8 @@ int main() {
 
 ## Program organization
 
-Large programs are typically organized into multiple files. This helps when we divide tasks in a team.
+Large programs are typically organized into multiple files. This helps when we
+divide tasks in a team.
 
 This also can speed up compilation, and we will explain how.
 
@@ -227,9 +242,11 @@ What happens under the hood?
 
 ## Notes
 
-* `#include`belongs to a class of instructions called **pre-processor directives**. 
+* `#include`belongs to a class of instructions called 
+ **pre-processor directives**. 
 * Preprocessing happens before the compilation.
-* Preprocessing textually replaces the `#include` with the content of the filename.
+* Preprocessing textually replaces the `#include` with the content of the
+ filename.
 * You can include .cpp files instead of .h files. It is bad practice! Why?
 * Linking appends function implementations to produce the executable file.
 * Linking takes much less time than compiling.
@@ -256,4 +273,5 @@ g++ print.cpp
 g++ main.o print.o input.o -o main.so
 ```
 
-What happens if I include the same .h file multiple times? Why would someone do that? Next lecture.
+What happens if I include the same .h file multiple times? Why would someone do
+that? Next lecture.

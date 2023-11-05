@@ -8,7 +8,7 @@ execute:
   message: false
   
 book:
-  title: "ECE244 Tidy Notes"
+  title: "Hiram: ECE244 Tidy Notes"
   chapters:
     - index.qmd
     - lecture1.qmd
@@ -16,6 +16,9 @@ book:
     - lecture3.qmd
     - lecture4.qmd
     - lecture5.qmd
+    - lecture6.qmd
+    - lecture7.qmd
+    - lecture8.qmd
     
 format:
   html:

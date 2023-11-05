@@ -1,0 +1,200 @@
+# Lecture 7 - Sept 22, 2023
+
+## Summary
+
+In this lecture, we discuss detecting and handling errors in the input from a
+file or user. 
+
+## Last lecture
+
+File I/O.
+
+## Today
+
+Handling I/O errors.
+
+### Handling I/O errors
+
+* Input stream if stored in a buffer.
+* This buffer is only available when `\n` is entered.
+* `cin` ignores/skips delimiters or whitespaces.
+* Delimiters are ` `, `\t`, `\n`.
+
+::: {.callout-note icon=false}
+## Example
+
+Remember the diagram from lecture 6.
+
+<img src="diagrams/lecture6-diagram1.svg" alt="diagrams/lecture6-diagram1.svg">
+:::
+
+Reading happens until a delimiter is seen or when something wrong happens!
+:::
+
+::: {.callout-note icon=false}
+## Example
+
+<img src="diagrams/lecture6-diagram2.svg" alt="diagrams/lecture6-diagram2.svg">
+
+* `cin` will read 13 into `x`, but it will not read `●` as it is not part of an 
+ integer.
+* `cin` will look for an int for `y`, but will find `●`.
+* `cin` will fail silently , `y` is unaffected, and the buffer is unaffected.
+* A fail flag is raised, and all other `cin` in the program will fail.
+
+What should you do?
+
+1. Check if the fail flag is raised.
+2. If yes, handle the error.
+:::
+
+::: {.callout-note icon=false}
+## Example
+
+```cpp
+// file input
+
+#include <fstream>
+
+int main() {
+    ifstream inputFile("myFile.txt"); // error 1
+    int a,b;
+    inputFile >> a >> b; // error 2 and 3
+    return 0;
+}
+```
+
+```cpp
+// standard input
+
+#include <iostream>
+
+int main() {
+    int a;
+    cin >> a; // error 2 and 3
+    return 0;
+}
+```
+
+What can go wrong?
+
+**Error 1.** The file to be opened for input does not exist.
+**Error 2.** The variable cannot be read.
+**Error 3.** Reached the end of a file.
+:::
+
+::: {.callout-note icon=false}
+## Example
+
+Detecting a failure
+
+```cpp
+// after ifstream inputFile("myFile.txt"); ...
+
+if (inputFile.fail()) {
+    cerr << "Cannot open file" << endl;
+    return 1;
+}
+```
+:::
+
+**What is `cerr`?** It is an output stream like `cout`. It is unbuffered unlike
+`cout`. This means that the output appears immediately on the console/terminal.
+
+**Why return `1`?** Any non-zero number signals an error.
+
+### What to do when a failure with input occurs?
+
+`cin.clear()` will clear the failure condition so `cin.fail()` and `cin.eof()`
+are back to `false`.
+
+`cin.ignore(int n, char ch)` will discard `n` characters or up to character
+`ch`, whichever comes first.
+
+::: {.callout-note icon=false}
+## Example
+
+For the following input, I want to ignore numbers before the space and read only
+the name.
+
+```
+1010 Asmita
+```
+
+```cpp
+cin.ignore(1000, ' ');
+cin >> name;
+```
+:::
+
+Write a program that reads a number from the user. It is not a number, prompt
+the user again.
+
+::: {.callout-note icon=false}
+## Pacha's note
+I added `#include <iostream>` and `using namespace std` here to make the code
+compile.
+:::
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int num = 0;
+    cout << "Enter a number:" << endl;
+    cin >> num;
+
+    // if cin.fail() is true,
+    // cin.ignore() will fail too
+    while(cin.fail()) {
+        // do not swtich the order
+        // we must clear first
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "Try again!" << endl;
+        cin >> num;
+    }
+
+    cout << "The number entered is " << num;
+    
+    return 0;
+}
+```
+
+Write a program that reads numbers from a file and prints their sum. If it reads
+a non-integer number, ignore it. Numbers are written on separate lines.
+
+::: {.callout-note icon=false}
+## Pacha's note
+I added `#include <iostream>`, `#include <fstream>` and `using namespace std` 
+here to make the code compile.
+:::
+
+```cpp
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+    ifstream inputFile("myFile.txt");
+
+    int num = 0, sum = 0;
+
+    while(!inFile.eof()) {
+        inFile >> num;
+        if (inFile.fail()) {
+            inFile.clear();
+            inFile.ignore(1000, '\n');
+        } else {
+            sum += num;
+        }
+    }
+
+    cout << "Reached end of file" << endl;
+    cout << "The sum is " << sum << endl;
+    return 0;
+}
+```

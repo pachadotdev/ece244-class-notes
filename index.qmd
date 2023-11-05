@@ -1,10 +1,29 @@
+::: {.callout-note icon=false}
+## Why Hiram?
+Hiram was an arquitect from Tyre (Lebanon), one of the finest back in the day,
+and who learned how to work the stone from a long tradition of stonecutters'
+unions created by skilled workers and led by craftmasters from Egypt.
+
+Because Professor Emara titled her notes Snefru and Khufu (C and C++,
+respectively), I am not the same height to have used Solomon (Hiram's boss) as
+the name of these notes. Also, I am like Hiram, and in this class I am learning
+from a craftmaster from Egypt.
+:::
+
 ## About ECE244 - Programming Fundamentals
 
-This course provides a foundation in programming using an object-oriented programming language. Topics include classes and objects, inheritance,  basic data structures (lists, tree, hash tables, etc.), Big-O complexity analysis, and testing and debugging. The laboratory assignments emphasize the use of object-oriented programming constructs in the design and implementation of reasonably large programs.
+This course provides a foundation in programming using an object-oriented
+programming language. Topics include classes and objects, inheritance,  basic
+data structures (lists, tree, hash tables, etc.), Big-O complexity analysis, and
+testing and debugging. The laboratory assignments emphasize the use of
+object-oriented programming constructs in the design and implementation of
+reasonably large programs.
 
 ## Pacha's notes
 
 * The notes are 100% adjusted to the class.
-* In the snippets folder, I have included some (unofficial) code snippets with the same examples from the notes, that I use to check if the code compiles.
-* Some of the examples in the notes have small additions, such as `using namespace std;` or `#include <iostream>`, to make them compile.
+* In the snippets folder, I have included some (unofficial) code snippets with
+ the same examples from the notes, that I use to check if the code compiles.
+* Some of the examples in the notes have small additions, such as
+ `using namespace std;` or `#include <iostream>`, to make them compile.
 * The diagrams are kinda ugly, my apologies! I'm not a graphic designer.

@@ -2,7 +2,8 @@
 
 ## Summary
 
-In this lecture, we discuss `#ifndef` include guards for header files, and introduce C++ I/O.
+In this lecture, we discuss `#ifndef` include guards for header files, and
+introduce C++ I/O.
 
 ## Last lecture
 
@@ -26,7 +27,8 @@ g++ main.o print.o input.o -o main.so
 g++ -c print.cpp
 g++ main.o print.o input.o -o main.so
 ```
-* print.h: This changes `#include "print.h"` in main.cpp and print.cpp. This is tricky!
+* print.h: This changes `#include "print.h"` in main.cpp and print.cpp. This is
+ tricky!
 
 ```bash
 g++ -c main.cpp
@@ -34,7 +36,8 @@ g++ -c print.cpp
 g++ main.o print.o input.o -o main.so
 ```
 
-IDEs, like VS Code, and Make files keep track of what file you changed and minimizes compile commands as they take time.
+IDEs, like VS Code, and Make files keep track of what file you changed and
+minimizes compile commands as they take time.
 
 In short, dividing code across multiple files can save compilation time.
 
@@ -44,13 +47,19 @@ What happens if I include the same header (.h file) multiple times?
 
 Why would someone do that?
 
-What happens if?
+::: {.callout-note icon=false}
+## Example
+
+What happens if we have this structure?
 
 <img src="diagrams/lecture5-diagram1.svg" alt="diagrams/lecture5-diagram1.svg">
 
-To solve this, a preprocessor `#ifndef` guards against including a header file several times.
+To solve this, a preprocessor `#ifndef` guards against including a header file
+several times.
+:::
 
-Solution
+::: {.callout-note icon=false collapse="true"}
+## Solution
 
 ```cpp
 // a.h
@@ -69,15 +78,20 @@ The first time "a.h" is read, it will find A_H is not defined.
 
 Then it will define `A_H` and `struct A`.
 
-The next time it reads "a.h", `A_H` will be defined and hence would skip instructions until `#endif`.
+The next time it reads "a.h", `A_H` will be defined and hence would skip
+instructions until `#endif`.
+:::
 
-In general, `#ifdef [MACRO]`ignores the whole code until `#endif` if `[MACRO]` is defined.
+In general, `#ifdef [MACRO]`ignores the whole code until `#endif` if `[MACRO]`
+is defined.
 
-`#ifndef [MACRO]` ignores the whole code until `#endif` if `[MACRO]` is not defined.
+`#ifndef [MACRO]` ignores the whole code until `#endif` if `[MACRO]` is not
+defined.
 
 Why do we need header files? Can we just have .cpp files and include it?
 
-Example
+::: {.callout-note icon=false}
+## Example
 
 ```cpp
 // main .cpp
@@ -99,15 +113,19 @@ void printNum(int x) {
 }
 ```
 
-This means wheter I change `print.cpp`, I will have to re-compile `main.cpp` and `print.cpp`.
+This means wheter I change `print.cpp`, I will have to re-compile `main.cpp` and
+`print.cpp`.
 
-Also, linking will fail as `main.cpp` will have `printNum()` implemented and `print.cpp` too. You will have multiple definitions of printNum in the executable main, which is not allowed.
+Also, linking will fail as `main.cpp` will have `printNum()` implemented and
+`print.cpp` too. You will have multiple definitions of printNum in the
+executable main, which is not allowed.
 
 <img src="diagrams/lecture5-diagram2.svg" alt="diagrams/lecture5-diagram2.svg">
 
 * `main.o` will have `printNum()` implementation
 * `print.o` already has `printNum()` implementation
 * `printNum()` is defined twiece, so linking will fail.
+:::
 
 ## C++ I/O
 
@@ -149,7 +167,8 @@ int main() {
 }
 ```
 
-If a file does not exist , it will be created. If it exists, its contents will be overwritten.
+If a file does not exist , it will be created. If it exists, its contents will
+be overwritten.
 
 To append a file, use `ofstream outFile("myFile.txt", ios::app);`.
 
@@ -191,7 +210,7 @@ inFile.open("../myFile.txt")
 inFile.open("myFile.txt")
 ```
 
-Buffering
+#### Buffering
 
 * The output is not immediately written to a file.
 * It will be written in "chunks".
@@ -205,9 +224,11 @@ Buffering
 
 Solve the exercises of [Chapter 1: Programming Basics](https://learningcpp.org/chapters/chapter01-basics/exercises)
 
-### Exercise 1
+::: {.callout-note icon=false}
+## Exercise 1
 
-When you compile the following program, what happens? If there is an error, explain what the error is (one sentence max).
+When you compile the following program, what happens? If there is an error,
+explain what the error is (one sentence max).
 
 ```cpp
 #include <iostream>
@@ -222,10 +243,13 @@ void hello(int i) {
   return;
 }
 ```
+:::
 
-Answer:
+::: {.callout-note icon=false collapse="true"}
+## Solution
 
-There will be a compilation error because hello() is called before it is declared.
+There will be a compilation error because hello() is called before it is
+declared.
 
 The correct code is:
 
@@ -247,8 +271,10 @@ void hello(int i) {
     return;
 }
 ```
+:::
 
-### Exercise 2
+::: {.callout-note icon=false}
+## Exercise 2
 
 Which is the output of the following program?
 
@@ -279,19 +305,30 @@ int main() {
   return 0;
 }
 ```
+:::
 
-Answer: 4, 4 and 8 because `increment()` is called by reference, `decrement()` is called by value and `doubling()` takes a pointer and dereferences it to modify the original value.
+::: {.callout-note icon=false collapse="true"}
+## Solution
 
-### Exercise 3
+4, 4 and 8 because `increment()` is called by reference, `decrement()` is called
+by value and `doubling()` takes a pointer and dereferences it to modify the
+original value.
+:::
 
-Compared to C, passing by reference is introduced in C++. Both of the following two functions can be used to swap the value of two integers:
+::: {.callout-note icon=false}
+## Exercise 3
+
+Compared to C, passing by reference is introduced in C++. Both of the following
+two functions can be used to swap the value of two integers:
 
 ```cpp
 void swap_by_p(int* a, int* b); // swap version.1
 void swap_by_r(int& a, int& b); // swap version.2
 ```
 
-Part 1: Write the implementations for these two functions (no more than 4 lines of code for each function)
+**Part 1.**
+Write the implementations for these two functions (no more than 4 lines of code
+for each function)
 
 ```cpp
 void swap_by_p(int* a, int* b) {
@@ -303,11 +340,17 @@ void swap_by_r(int& a, int& b) {
 }
 ```
 
-Part 2: If given two int variables x and y, write a function call that swaps the value of x and y, using swap_by_p.
+**Part 2.**
+If given two int variables x and y, write a function call that swaps the value
+of x and y, using swap_by_p.
 
-Part 3: If given two int variables x and y, write a function call that swaps the value of x and y, using swap_by_r.
+**Part 3.**
+If given two int variables x and y, write a function call that swaps the value
+of x and y, using swap_by_r.
+:::
 
-Answer:
+::: {.callout-note icon=false collapse="true"}
+## Solution
 
 ```cpp
 #include <iostream>
@@ -335,10 +378,14 @@ int main() {
     return 0;
 }
 ```
+:::
 
-### Exercise 4
+::: {.callout-note icon=false}
+## Exercise 4
 
-Ellie writes a program to make a simple database for ECE students who like drinking soy milk from 2T2 to 2T6. She designs two classes: student and ECE, and puts them into different files below. The main function is in the main.cpp.
+Ellie writes a program to make a simple database for ECE students who like
+drinking soy milk from 2T2 to 2T6. She designs two classes: student and ECE, and
+puts them into different files below. The main function is in the main.cpp.
 
 **ECE.h**
 
@@ -396,15 +443,29 @@ int main() {
 }
 ```
 
-Part 1: Ellie tries to compile this program with g++. What's the Unix (i.e., terminal) command that compiles the entire program using one command, which generates an executable called small_database?
+**Part 1.**
+Ellie tries to compile this program with g++. What's the Unix (i.e., terminal)
+command that compiles the entire program using one command, which generates an
+executable called small_database?
 
-Part 2: However, it fails to compile. Can you point out the compile-time error and fix this error for her?
+**Part 2.**
+However, it fails to compile. Can you point out the compile-time error and fix
+this error for her?
 
-Part 3: With your help, Ellie has fixed the compile-time error. Now, Ellie wants to use separate compilation learned from ECE244 to compile her project. Write down all the Unix commands necessary to separately compile the above files and generate an executable small_database.
+**Part 3.**
+With your help, Ellie has fixed the compile-time error. Now, Ellie wants to use
+separate compilation learned from ECE244 to compile her project. Write down all
+the Unix commands necessary to separately compile the above files and generate
+an executable small_database.
 
-Part 4: Ellie then changes some code in ECE.cpp. Write down the Unix commands necessary to regenerate the executable by compiling the smallest number of files needed. Assume the generated executable is called small_database.
+**Part 4.**
+Ellie then changes some code in ECE.cpp. Write down the Unix commands necessary
+to regenerate the executable by compiling the smallest number of files needed.
+Assume the generated executable is called small_database.
+:::
 
-Answer:
+::: {.callout-note icon=false collapse="true"}
+## Solution
 
 Compile with
 
@@ -412,7 +473,8 @@ Compile with
 g++ main.cpp ECE.cpp student.cpp -o small_database
 ```
 
-The first problem is that `student.h` has no header guard, and it is included in both `ECE.h` and `student.cpp`. This will cause a multiple definition error.
+The first problem is that `student.h` has no header guard, and it is included in
+both `ECE.h` and `student.cpp`. This will cause a multiple definition error.
 
 The solution is to add a header guard to `student.h`.
 
@@ -427,7 +489,8 @@ class Student {
 };
 ```
 
-The second problem is that `ECE.h` says `#ifndefine ECE`, but it should be `#ifndef ECE`.
+The second problem is that `ECE.h` says `#ifndefine ECE`, but it should be
+`#ifndef ECE`.
 
 To compile separately, use
 
@@ -444,12 +507,20 @@ After changing `ECE.cpp`, use
 g++ -c ECE.cpp -o ECE.o
 g++ student.o ECE.o main.o -o small_database
 ```
+:::
 
-### Exercise 5
+::: {.callout-note icon=false collapse="true"}
+## Exercise 5
 
-You are given a program that has a main function and 3 classes: First, Second and Third. For each of these classes, you have a definition file and an implementation file. Thus, you have seven files in total: First.h, First.cpp, Second.h, Second.cpp, Third.h, Third.cpp and main.cpp. All the files exist in the same directory.
+You are given a program that has a main function and 3 classes: First, Second
+and Third. For each of these classes, you have a definition file and an
+implementation file. Thus, you have seven files in total: First.h, First.cpp,
+Second.h, Second.cpp, Third.h, Third.cpp and main.cpp. All the files exist in
+the same directory.
 
-The first few lines of each file are shown below. The rest of the contents of each file is irrelevant to the question and is shown as .... You may assume the definition/implementation files are error-free.
+The first few lines of each file are shown below. The rest of the contents of 
+each file is irrelevant to the question and is shown as .... You may assume the
+definition/implementation files are error-free.
 
 **First.h**
 
@@ -532,17 +603,26 @@ int main() {
 }
 ```
 
-The files are to be separately compiled and then linked into a single executable called `main`.
+The files are to be separately compiled and then linked into a single executable
+called `main`.
 
-Part 1: Write down the Unix commands necessary to separately compile the above files and generate the executable.
+**Part 1.**
+Write down the Unix commands necessary to separately compile the above files and
+generate the executable.
 
-Part 2: You modify the file `Second.cpp`. Write down the Unix commands necessary to regenerate the executable by compiling the smallest number of files possible.
+**Part 2.**
+You modify the file `Second.cpp`. Write down the Unix commands necessary to
+regenerate the executable by compiling the smallest number of files possible.
 
-Part 3: You modify the file `First.h`. Write down the Unix commands necessary to regenerate the executable by compiling the smallest number of files possible.
+**Part 3.**
+You modify the file `First.h`. Write down the Unix commands necessary to
+regenerate the executable by compiling the smallest number of files possible.
+:::
 
-Answer:
+::: {.callout-note icon=false collapse="true"}
+## Solution
 
-Part 1:
+**Part 1**
 
 ```bash
 g++ -c First.cpp -o First.o
@@ -552,17 +632,18 @@ g++ -c main.cpp -o main.o
 g++ First.o Second.o Third.o main.o -o main
 ```
 
-Part 2:
+**Part 2**
 
 ```bash
 g++ -c Second.cpp -o Second.o
 g++ First.o Second.o Third.o main.o -o main
 ```
 
-Part 3:
+**Part 3**
 
 ```bash
 g++ -c First.cpp -o First.o
 g++ -c Second.cpp -o Second.o
 g++ First.o Second.o Third.o main.o -o main
 ```
+:::

@@ -2,7 +2,8 @@
 
 ## Summary
 
-In this lecture, we discuss what we will learn in this course, motivate object-oriented programming, and how is the course planned/organized/managed.
+In this lecture, we discuss what we will learn in this course, motivate
+object-oriented programming, and how is the course planned/organized/managed.
 
 ## Motivation
 

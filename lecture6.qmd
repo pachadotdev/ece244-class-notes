@@ -1,0 +1,216 @@
+# Lecture 6 - Sept 19, 2023
+
+## Summary
+
+In this lecture, we introduce file input/output and what happens when the input
+is unexpected.
+
+## Last lecture
+
+Separate compilation and header guards.
+
+## Today
+
+C++ file I/O and handling errors.
+
+There are many ways to take input and produce output.
+
+### Standard input-output
+
+Using `cout` and `cin` from `iostream`.
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int x;
+    cout << "Hello world" << endl;
+    cin >> x;
+    return 0;
+}
+```
+
+### File input-output
+
+Using `ifstream` and `ofstream` from `fstream`.
+
+#### Output to a file
+
+```cpp
+#include <fstream>
+
+using namespace std;
+
+int main() {
+    ofstream outFile("output.txt");
+    string name = "We are engineers!";
+    outFile << name;
+    outFile.close();
+}
+```
+
+If a file does not exist, it will be created. If it exists, its contents will be
+overwritten.
+
+To append to a file, use `outFile.open("output.txt", ios::app)`.
+
+#### Input from a file
+
+```cpp
+#include <fstream>
+
+using namespace std;
+
+int main() {
+    ifstream inputFile;
+    inputFile.open("myFile.txt");
+
+    // or ifstream inputFile("myFile.txt");
+    // to replace the two lines above
+
+    int num1, num2, num3;
+
+    // input from file
+    inputFile >> num1 >> num2 >> num3;
+
+    inputFile.close();
+
+    return 0;
+}
+```
+
+Where to find the file?
+
+```cpp
+// absolute path
+inFile.open("/u/prof/emarasal/ece244/lab1/myFile.txt")
+
+// relative path
+inFile.open("lab1/myFile.txt")
+inFile.open("../myFile.txt")
+
+// current directory
+inFile.open("myFile.txt")
+```
+
+Buffering
+
+* The output is not immediately written to a file.
+* It will be written in "chunks".
+* Why buffering? Writing in a buffer is much faster than writing in a file.
+* To optimize resources, writing in files happens in chunks.
+* To force output, use `outputFile.flush()` or `outputFile << endl;`.
+
+Remember the diagram from lecture 5.
+
+<img src="diagrams/lecture5-diagram3.svg" alt="diagrams/lecture5-diagram3.svg">
+
+
+## Handling I/O errors
+
+* Input stream is stored in a buffer.
+* This buffer is only available when `\n` is entered.
+* `cin` ignores/skips delimiters or whitespaces
+* Delimiters are ` `, `\t`, `\n`.
+
+::: {.callout-note icon=false}
+## Example
+
+<img src="diagrams/lecture6-diagram1.svg" alt="diagrams/lecture6-diagram1.svg">
+:::
+
+Reading still happens until a delimiter is seen or when something wrong happens!
+
+::: {.callout-note icon=false}
+## Example
+
+<img src="diagrams/lecture6-diagram2.svg" alt="diagrams/lecture6-diagram2.svg">
+
+* `cin` will read 13 into `x`, but it will not read `●` as it is not part of an
+ integer.
+* `cin` will look for an int for `y`, but will find `●`.
+* `cin` will fail silently , `y` is unaffected, and the buffer is unaffected.
+* A fail flag is raised, and all other `cin` in the program will fail.
+
+What should you do?
+
+1. Check if the fail flag is raised.
+2. If yes, handle the error.
+:::
+
+::: {.callout-note icon=false}
+## Example
+
+```cpp
+// file input
+
+#include <fstream>
+
+int main() {
+    ifstream inputFile("myFile.txt"); // error 1
+    int a,b;
+    inputFile >> a >> b; // error 2 and 3
+    return 0;
+}
+```
+
+```cpp
+// standard input
+
+#include <iostream>
+
+int main() {
+    int a;
+    cin >> a; // error 2 and 3
+    return 0;
+}
+```
+
+What can go wrong?
+
+**Error 1.** The file to be opened for input does not exist.
+**Error 2.** The variable cannot be read.
+**Error 3.** Reached the end of a file.
+:::
+
+### How do we know a failure ocurred?
+
+1. To detect tat a file does not exist, `inputFile.fail()` will be set to
+ `true`.
+2. TO detect an issue with reading a variable, `cin.fail()` or
+ `inputFile.fail()` will be set to `true`.
+3. To detect we reached the end of a file, `cin.eof()` and `inputFile.eof()`
+ will be set to `true`. However, `inputFile.eof()` will not set the failure flag
+ to `true`.
+
+`cin.eof()` is CTRL+D on PC and CMD+D on Mac.
+
+::: {.callout-note icon=false}
+## Example
+
+Detecting a failure
+
+```cpp
+// after ifstream inputFile("myFile.txt"); ...
+
+if (inputFile.fail()) {
+    cerr << "Cannot open file" << endl;
+    return 1;
+}
+```
+:::
+
+**What is `cerr`?** It is an output stream like `cout`. It is unbuffered unlike
+`cout`. This means that the output appears immediately on the console/terminal.
+
+**Why return `1`?** Any non-zero number signals an error.
+
+### What to do when a failure with input occurs?
+
+`cin.clear()` will clear the failure condition so `cin.fail()` and `cin.eof()`
+are back to `false`.
+
+`cin.ignore(int n, char ch)` will discard `n` characters or up to character
+`ch`, whichever comes first.

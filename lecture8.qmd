@@ -1,0 +1,274 @@
+# Lecture 8 - Sept 22, 2023
+
+## Summary
+
+In this lecture, we discuss string streams. Then we start introducing classes.
+
+## Last lecture
+
+Handling I/O errors.
+
+## Today
+
+String streams and introduce classes.
+
+## Recap on flags
+
+Remember `.eof()` and `.fail()` flags.
+
+Write a program that reads numbers from a file and prints their sum. If it reads
+a non-integer number, ignore it. Numbers are written on separate lines.
+
+::: {.callout-note icon=false}
+## Pacha's note
+I added `#include <iostream>`, `#include <fstream>` and `using namespace std` 
+here to make the code compile. I also added an `<< endl` after `cerr <<` to
+avoid this in the terminal
+
+```bash
+lecture8 (main) $ ./example1.so 
+Can't open filelecture8 (main) $ 
+```
+
+but to see this instead
+
+```bash
+lecture8 (main) $ ./example1.so 
+Can't open file
+lecture8 (main) $ 
+```
+:::
+
+```cpp
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+    ifstream inputFile("myFile.txt");
+
+    if (inFile.fail()) {
+        cerr << "Can't open file" << endl;
+        return 1;
+    }
+
+    int num = 0, sum = 0;
+
+    while (!inFile.eof()) {
+        inFile >> num;
+
+        if (inFile.fail()) {
+            inFile.clear();
+            inFile.ignore(1000, '\n');
+        } else {
+            sum += num;
+        }
+
+    }
+
+    cout << "Reached end of file" << endl;
+    cout << "The sum is " << sum << endl;
+    return 0;
+}
+```
+
+## String streams
+
+String streams are helpful when inputs are line-oriented (i.e., user will enter
+a line and program has to check if inputs on that line are correct).
+
+String streams can be used to extract inputs in the line.
+
+::: {.callout-note icon=false}
+## Pacha's note
+I added `#include <iostream>` and `using namespace std` here to make the code
+compile.
+:::
+
+```cpp
+#include <sstream>
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int ID;
+    
+    string name;
+    string inputLine = "1001 Joe";
+    
+    // create a string stream initialized with input line
+    stringstream myStringStream(inputLine);
+
+    myStringStream >> ID; // takes input into ID
+    myStringStream >> name; // takes input into name
+
+    cout << "Name: " << name << endl << "ID: " << ID << endl;
+
+    myStringStream << name << ID; 
+
+    // converts a string stream to a string to print it
+    cout << myStringStream.str() << endl;
+
+    return 0;
+}
+```
+
+What happens if I read more out of `myStringStream` than there is?
+`myStringStream.eof()` will be true.
+
+## Getline function
+
+`getline` is part of `iostream` and it can be used to grab an entire line.
+
+```cpp
+...
+
+string inputLine;
+
+// entire line entered by user gets stored in inputLine
+getline(cin, inputLine);
+
+stringstream myStringStream(inputLine);
+
+myStream >> ID;
+myStream >> name;
+
+...
+```
+
+**Lab 3 will use string streams.**
+
+## Introduction to classes
+
+A class is a user defined data type.
+
+A variable of that user-defined data type is called an object.
+
+Declaring an object is called creating an instance or instantiation.
+
+<img src="diagrams/lecture8-diagram1.svg" alt="diagrams/lecture8-diagram1.svg">
+
+::: {.callout-note icon=false}
+## Example
+
+Recall structs in C.
+
+This is a data structure that stores data of different types using one
+variable name.
+
+```c
+struct Student {
+    string name;
+    int ID;
+}
+
+struct Student x;
+
+// access name of x using . operator
+x.name = "Cindy";
+```
+:::
+
+The definition of a class goes to a header file (e.g. `Student.h`)
+
+### Student.h
+
+```cpp
+class Student {
+    private:
+        int ID;
+        string name;
+
+    public:
+        void setName(string name);
+        void getName();
+        void print();
+};
+```
+
+This needs a diagram to explain the different parts.
+
+<img src="diagrams/lecture8-diagram2.svg" alt="diagrams/lecture8-diagram2.svg">
+
+**private** members can only be accessed within the class.
+
+**public** members can be accessed outside the class.
+
+Why? This is called **encapsulation**
+
+* Hide information related to the class (e.g., student ID).
+* It is not available outside the class.
+* It brings related data and functions together.
+* It organizes the code.
+
+## Class implementation
+
+The class implementation goes in a source file and it has function definitions.
+
+::: {.callout-note icon=false}
+## Pacha's note
+
+I added `endl` after the `cout` statements for the same reason as above.
+
+I also think that `Student.cpp` starts with `#include "Student.h"` instead of
+`#include "Student.cpp"` - EMAIL SENT, WAITING FOR CONFIRMATION
+:::
+
+### Student.cpp
+
+```cpp
+#include "Student.h"
+#include <iostream>
+
+// Setter or mutator function
+
+// class name: Student
+// scope operator: ::
+// function name: setName
+void Student::setName(string n) {
+    // private member of Student class can be accessed
+    // inside the class implementation
+    name = n;
+}
+
+// Getter or accessor function
+
+string Student::getName() {
+    return name;
+}
+
+void Student::print() {
+    cout << "Student name: " << name << endl;
+    cout << "Student ID: " << ID << endl;
+}
+```
+
+### main.cpp
+
+Instatiating and using objects here.
+
+```cpp
+#include "Student.h"
+
+int main() {
+    // declare 2 objects and allocate memory for them
+    Student x,y;
+
+    x.setName("Kenya");
+    y.setName("Christina");
+
+    // x.ID = 2730; gives an error because we cannot access a private member
+
+    // y.name = "Salma" same error
+
+    y.print(); // wait! what is the value of ID in Student y?
+
+    return 0;
+}
+```
+
+ID in `x` and `y` are not initialized. The solution is defining constructors
+in the next lecture.

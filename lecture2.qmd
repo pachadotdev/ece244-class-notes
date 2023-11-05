@@ -2,7 +2,8 @@
 
 ## Summary
 
-In this lecture, we discuss computer hardware, input-output using cin and cout, data types and strings. if time permits, we will dig into functions.
+In this lecture, we discuss computer hardware, input-output using cin and cout,
+data types and strings. if time permits, we will dig into functions.
 
 ## Today
 
@@ -10,7 +11,8 @@ Introduction to C++
 
 ## Assumption
 
-You are familiar with basic C programming (i.e., data types, variables, if statements, loops and functions)
+You are familiar with basic C programming (i.e., data types, variables, if
+statements, loops and functions)
 
 ## Big picture
 
