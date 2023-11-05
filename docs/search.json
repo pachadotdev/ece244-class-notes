@@ -327,5 +327,19 @@
     "title": "Lecture 8 - Sept 22, 2023",
     "section": "Class implementation",
     "text": "Class implementation\nThe class implementation goes in a source file and it has function definitions.\n\n\n\n\n\n\nPacha’s note\n\n\n\nI added endl after the cout statements for the same reason as above.\nI also think that Student.cpp starts with #include \"Student.h\" instead of #include \"Student.cpp\" - EMAIL SENT, WAITING FOR CONFIRMATION\n\n\n\nStudent.cpp\n#include \"Student.h\"\n#include &lt;iostream&gt;\n\n// Setter or mutator function\n\n// class name: Student\n// scope operator: ::\n// function name: setName\nvoid Student::setName(string n) {\n    // private member of Student class can be accessed\n    // inside the class implementation\n    name = n;\n}\n\n// Getter or accessor function\n\nstring Student::getName() {\n    return name;\n}\n\nvoid Student::print() {\n    cout &lt;&lt; \"Student name: \" &lt;&lt; name &lt;&lt; endl;\n    cout &lt;&lt; \"Student ID: \" &lt;&lt; ID &lt;&lt; endl;\n}\n\n\nmain.cpp\nInstatiating and using objects here.\n#include \"Student.h\"\n\nint main() {\n    // declare 2 objects and allocate memory for them\n    Student x,y;\n\n    x.setName(\"Kenya\");\n    y.setName(\"Christina\");\n\n    // x.ID = 2730; gives an error because we cannot access a private member\n\n    // y.name = \"Salma\" same error\n\n    y.print(); // wait! what is the value of ID in Student y?\n\n    return 0;\n}\nID in x and y are not initialized. The solution is defining constructors in the next lecture."
+  },
+  {
+    "objectID": "index.html#why-hiram",
+    "href": "index.html#why-hiram",
+    "title": "Hiram: ECE244 Tidy Notes",
+    "section": "Why Hiram?",
+    "text": "Why Hiram?\nHiram was an arquitect from Tyre (Lebanon), one of the finest back in the day, and who learned how to work the stone from a long tradition of stonecutters’ unions created by skilled workers and led by craftmasters from Egypt.\nBecause Professor Emara titled her notes Snefru and Khufu (C and C++, respectively), I am not the same height to have used Solomon (Hiram’s boss) as the name of these notes. Also, I am like Hiram, and in this class I am learning from a craftmaster from Egypt."
+  },
+  {
+    "objectID": "index.html#introduction",
+    "href": "index.html#introduction",
+    "title": "Hiram: ECE244 Tidy Notes",
+    "section": "Introduction",
+    "text": "Introduction\n\nWhy Hiram?\nHiram was an arquitect from Tyre (Lebanon), one of the finest back in the day, and who learned how to work the stone from a long tradition of stonecutters’ unions created by skilled workers and led by craftmasters from Egypt.\nBecause Professor Emara titled her notes Snefru and Khufu (C and C++, respectively), I am not the same height to have used Solomon (Hiram’s boss) as the name of these notes. Also, I am like Hiram, and in this class I am learning from a craftmaster from Egypt.\n\n\nAbout ECE244 - Programming Fundamentals\nThis course provides a foundation in programming using an object-oriented programming language. Topics include classes and objects, inheritance, basic data structures (lists, tree, hash tables, etc.), Big-O complexity analysis, and testing and debugging. The laboratory assignments emphasize the use of object-oriented programming constructs in the design and implementation of reasonably large programs.\n\n\nPacha’s notes\n\nThe notes are 100% adjusted to the class.\nIn the snippets folder, I have included some (unofficial) code snippets with the same examples from the notes, that I use to check if the code compiles.\nSome of the examples in the notes have small additions, such as using namespace std; or #include &lt;iostream&gt;, to make them compile.\nThe diagrams are kinda ugly, my apologies! I’m not a graphic designer."
   }
 ]
