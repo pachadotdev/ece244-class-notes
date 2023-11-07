@@ -1,0 +1,187 @@
+# Lecture 11 - Sept 29, 2023
+
+## Summary
+
+In this lecture, we discuss pointers and introduce if we have a dynamically
+allocated memory in an object, how do we free it when an object goes out of
+scope.
+
+## Last lecture
+
+Constructors.
+
+## Today
+
+Destructors, pointers and objects with pointers.
+
+## Memory
+
+Memory is divided into cells. Each cell can store a byte of data (8 bits) and
+has an address.
+
+A program's memory space.
+
+<img src="diagrams/lecture10-diagram1.svg" alt="diagrams/lecture10-diagram1.svg">
+
+A **pointer** is a variable that stores and **address** to a byte.
+
+Memory on stack gets freed when a function returns. All local variables in a
+function dissappear when the function returns or when they go out of scope.
+
+**But** memory allocated on the heap dynamically has to be explicitly freed. It
+does not get freed when a variable goes outo f scope. It creates a memory leak
+if we do not free it.
+
+::: {.callout-note icon=false}
+## Example
+
+```cpp
+int x;
+int *p;
+x = 7;
+p = NULL;
+p = &x // address of x
+
+cout << *p;; // print 7
+
+// dereference p / value at address in p
+cout << p; // prints 0x124
+
+*p = 5; // change the value of p to 5
+
+p = new int; // change address stored in p to a newely allocated memory space
+
+*p = 3; // change value at address 0x560
+
+...
+
+// before exiting our program, we need to return dynamically allocated memory
+// to the operating system
+
+delete p; // p now has address of expired data
+
+p = nullptr; // good practice
+```
+<img src="diagrams/lecture11-diagram1.svg" alt="diagrams/lecture11-diagram1.svg">
+:::
+
+Recall that in C, for every `malloc` there has to be a `free`. In C++, we have
+new `add` and `delete`.
+
+::: {.callout-note icon=false}
+## Example
+
+### Integer
+
+```cpp
+// return address of an int variable created at run-time
+int* pNum = new int;
+
+// de-allocate memory at pNum
+delete pNum;
+```
+
+### Array
+
+```cpp
+int* arr = new int[10];
+delete[] arr;
+```
+:::
+
+::: {.callout-note icon=false}
+## Example
+
+With a class
+
+```cpp
+class Student {
+    private:
+        int *grades; string name;
+    public:
+        Student();
+        Student(int);
+};
+
+Student::Student() {
+    grades = nullptr;
+}
+
+Student::Student(int numLabs) {
+    grades = new int[numLabs];
+}
+
+int main() {
+    // dynamically allocates 3 integers
+    Student x(3);
+    return 0;
+
+    // we did not deallocate them
+    // this will create a memory leak!
+}
+```
+
+<img src="diagrams/lecture11-diagram2.svg" alt="diagrams/lecture11-diagram2.svg">
+:::
+
+The solution is to define destructors.
+
+```cpp
+class Student {
+    private:
+        int *grades; string name;
+    public:
+        Student();
+        Student(int);
+        // the destructor must be public
+        ~Student(); // no return, like constructors
+                    // no parameters
+};
+
+...
+
+Student::~Student() {
+    if (grades != nullptr) {
+        delete[] grades;
+    }
+}
+```
+
+The default destructor exists by default, and is called when the object goes out
+of scope.
+
+If you dynamically allocate memory in your class, you will need a destructor to
+free up this memory space.
+
+### main.cpp
+
+```cpp
+int main() {
+    Student x(3); // dynamically allocates 3 integers
+
+    return 0; // destructor of x will be called if grades is !nullptr
+              // we will free dynamically allocated space 
+}
+```
+
+## Exercise on double pointers
+
+Double pointers (i.e., pointers to pointers) are variables that store an
+address too. That address is an address of a pointer.
+
+```cpp
+int** p2p;
+int *p, *q;
+
+p = new int;
+*p = 5;
+
+p2p = &p;
+q = *p2p; // *(&p) = p
+
+*q = 8; // the new int
+
+cout << **&p2p; // **(&p) = *p = the new int, prints 8
+```
+
+<img src="diagrams/lecture11-diagram3.svg" alt="diagrams/lecture11-diagram3.svg">

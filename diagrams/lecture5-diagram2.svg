@@ -2,13 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="131.68985mm"
-   height="62.182613mm"
-   viewBox="0 0 131.68985 62.182614"
+   width="124.48986mm"
+   height="55.082615mm"
+   viewBox="0 0 124.48986 55.082615"
    version="1.1"
    id="svg5"
    sodipodi:docname="lecture5-diagram2.svg"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -29,23 +29,27 @@
      fit-margin-left="5"
      fit-margin-bottom="5"
      fit-margin-right="5"
-     inkscape:zoom="0.48315493"
-     inkscape:cx="-63.126749"
-     inkscape:cy="144.88106"
-     inkscape:window-width="1419"
-     inkscape:window-height="884"
-     inkscape:window-x="527"
-     inkscape:window-y="169"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="g28818">
+     inkscape:zoom="1.9326197"
+     inkscape:cx="272.16943"
+     inkscape:cy="52.260669"
+     inkscape:window-width="1920"
+     inkscape:window-height="1043"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g28818"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1">
     <sodipodi:guide
-       position="70.629322,21.536456"
+       position="67.029323,17.93645"
        orientation="1,0"
-       id="guide18011" />
+       id="guide18011"
+       inkscape:locked="false" />
     <sodipodi:guide
-       position="9.414619,36.581575"
+       position="5.8146203,32.981569"
        orientation="0,-1"
-       id="guide21869" />
+       id="guide21869"
+       inkscape:locked="false" />
   </sodipodi:namedview>
   <defs
      id="defs2">
@@ -208,7 +212,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-132.11116,-111.10232)">
+     transform="translate(-135.71116,-114.60232)">
     <g
        id="g28818"
        transform="rotate(43.897807,191.25364,148.69905)">
@@ -224,12 +228,12 @@
            y="154.16026"
            id="tspan22538">preprocessor</tspan></text>
       <path
-         style="fill:none;stroke:#a51d1e;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
+         style="fill:none;stroke:#a51d1e;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
          d="M 205.75197,149.33851 H 178.88125"
          id="path28715" />
     </g>
     <rect
-       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect83769"
        width="55.56004"
        height="38.125008"
@@ -260,30 +264,30 @@
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
          x="139.24391"
-         y="132.53839"
-         id="tspan1304"></tspan><tspan
+         y="132.61594"
+         id="tspan1304" /><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
          x="139.24391"
-         y="137.85881"
+         y="138.0139"
          id="tspan1306">#include &quot;print.cpp&quot;</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
          x="139.24391"
-         y="143.17921"
+         y="143.41185"
          id="tspan9883">int main() {</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
          x="139.24391"
-         y="148.49963"
+         y="148.80981"
          id="tspan1308"> ...</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
          x="139.24391"
-         y="153.82004"
+         y="154.20778"
          id="tspan1310">}</tspan></text>
     <rect
-       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect11679"
        width="55.810539"
        height="9.4505644"
@@ -312,7 +316,7 @@
          y="127.21798"
          id="tspan11695">void printNum(int);</tspan></text>
     <rect
-       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect14845"
        width="55.490345"
        height="25.576923"
@@ -343,15 +347,15 @@
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
          x="204.80351"
-         y="153.27467"
+         y="153.35222"
          id="tspan18461"> ...</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
          x="204.80351"
-         y="158.59508"
+         y="158.75017"
          id="tspan18463">}</tspan></text>
     <path
-       style="fill:none;stroke:#a51d1e;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#a51d1e;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 138.67454,136.70336 h 52.02279"
        id="path21904" />
   </g>

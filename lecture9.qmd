@@ -1,0 +1,223 @@
+# Lecture 9 - Sept 26, 2023
+
+## Summary
+
+In this lecture, we introduce classes, access controls: private and public, and
+initializing data members problem.
+
+## Last lecture
+
+Using `.fail()` and `.eof()` flags.
+
+## Today
+
+Introduction to classes.
+
+## Demo of stringstreams
+
+Avoid using stream for reading and writing interchangeably. You can write and
+then read, but it gets confusing when you write again.
+
+::: {.callout-note icon=false}
+## Pacha's note
+
+I added `include<iostream>` to make `cin` work. I also changed
+`cout << ss str();` from the notes to `cout << ss.str();`, or it will not
+compile.
+
+I also added `endl` after `cout` for the same reason as in lecture 8.
+:::
+
+::: {.callout-note icon=false}
+## Example
+
+```cpp
+#include <sstream>
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int ID;
+    string name, inputLine;
+    getline (cin, inputLine);
+
+    stringstream ss;
+    // write into ss
+    ss << inputLine;
+
+    // or stringstream ss(inputLine);
+
+    // read from ss
+    ss >> ID; // ID reads 1001
+    ss >> name; // name reads Joe
+
+    cout << ss.str() << endl; // ss still has content written to it "1001 Joe"
+
+    return 0;
+}
+```
+
+When the user enters "1001 Joe", what is in `ss` remains there. Only the reading
+cursor moves.
+:::
+
+## Introduction to clases
+
+Recall structs in C
+
+::: {.callout-note icon=false}
+## Example
+
+Recall structs in C.
+
+This is a data structure that stores data of different types using one
+variable name.
+
+```c
+struct Student {
+    string name;
+    int ID;
+}
+
+struct Student x;
+
+// access name of x using . operator
+x.name = "Cindy";
+```
+:::
+
+A class is an expansion to structs by bringing together data and
+functions/operations.
+
+Consider that:
+
+* Data is similar to structs.
+* Functions/operations are different from structs.
+
+A class is a user-defined data type. A variable of that user-defined data type
+is called an object.
+
+Declaring an object is called creating an instance or instantiation.
+
+Remember the diagram from lecture 8.
+
+<img src="diagrams/lecture8-diagram1.svg" alt="diagrams/lecture8-diagram1.svg">
+
+The definition of a class goes to a header file (e.g. `Student.h`).
+
+### Student.h
+
+```cpp
+class Student {
+    private:
+        int ID;
+        string name;
+
+    public:
+        void setName(string name);
+        void getName();
+        void print();
+};
+```
+
+Remember the diagram from lecture 8.
+
+<img src="diagrams/lecture8-diagram2.svg" alt="diagrams/lecture8-diagram2.svg">
+
+**private** members can only be accessed within the class.
+
+**public** members can be accessed outside the class.
+
+Why? This is called **encapsulation**
+
+* Hide information related to the class (e.g., student ID).
+* It is not available outside the class.
+* It brings related data and functions together.
+* It organizes the code.
+
+## Class implementation
+
+The class implementation goes in a source file and it has function definitions.
+
+::: {.callout-note icon=false}
+## Pacha's note
+
+I added `endl` after the `cout` statements for the same reason as above.
+
+I also think that `Student.cpp` starts with `#include "Student.h"` instead of
+`#include "Student.cpp"` - EMAIL SENT, WAITING FOR CONFIRMATION
+:::
+
+### Student.cpp
+
+```cpp
+#include "Student.h"
+#include <iostream>
+
+// Setter or mutator function
+
+// class name: Student
+// scope operator: ::
+// function name: setName
+void Student::setName(string n) {
+    // private member of Student class can be accessed
+    // inside the class implementation
+    name = n;
+}
+
+// Getter or accessor function
+
+string Student::getName() {
+    return name;
+}
+
+void Student::print() {
+    cout << "Student name: " << name << endl;
+    cout << "Student ID: " << ID << endl;
+}
+```
+
+### main.cpp
+
+Instatiating and using objects here.
+
+```cpp
+#include "Student.h"
+
+int main() {
+    // declare 2 objects and allocate memory for them
+    Student x,y;
+
+    x.setName("Kenya");
+    y.setName("Christina");
+
+    // x.ID = 2730; gives an error because we cannot access a private member
+
+    // y.name = "Salma" same error
+
+    y.print(); // wait! what is the value of ID in Student y?
+
+    return 0;
+}
+```
+
+In the line that reads `Student x,y`, `ID` in `x` and `y` are not initialized.
+
+The solution is to define a constructor.
+
+### Student.h
+
+```cpp
+class Student {
+    private:
+        int ID;
+        string name;
+    
+    public:
+        Student(); // constructor
+        void setName(string name);
+        ...
+}
+```

@@ -341,5 +341,117 @@
     "title": "Hiram: ECE244 Tidy Notes",
     "section": "Introduction",
     "text": "Introduction\n\nWhy Hiram?\nHiram was an arquitect from Tyre (Lebanon), one of the finest back in the day, and who learned how to work the stone from a long tradition of stonecutters’ unions created by skilled workers and led by craftmasters from Egypt.\nBecause Professor Emara titled her notes Snefru and Khufu (C and C++, respectively), I am not the same height to have used Solomon (Hiram’s boss) as the name of these notes. Also, I am like Hiram, and in this class I am learning from a craftmaster from Egypt.\n\n\nAbout ECE244 - Programming Fundamentals\nThis course provides a foundation in programming using an object-oriented programming language. Topics include classes and objects, inheritance, basic data structures (lists, tree, hash tables, etc.), Big-O complexity analysis, and testing and debugging. The laboratory assignments emphasize the use of object-oriented programming constructs in the design and implementation of reasonably large programs.\n\n\nPacha’s notes\n\nThe notes are 100% adjusted to the class.\nIn the snippets folder, I have included some (unofficial) code snippets with the same examples from the notes, that I use to check if the code compiles.\nSome of the examples in the notes have small additions, such as using namespace std; or #include &lt;iostream&gt;, to make them compile.\nThe diagrams are kinda ugly, my apologies! I’m not a graphic designer."
+  },
+  {
+    "objectID": "lecture9.html#summary",
+    "href": "lecture9.html#summary",
+    "title": "Lecture 9 - Sept 26, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we introduce classes, access controls: private and public, and initializing data members problem."
+  },
+  {
+    "objectID": "lecture9.html#last-lecture",
+    "href": "lecture9.html#last-lecture",
+    "title": "Lecture 9 - Sept 26, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nUsing .fail() and .eof() flags."
+  },
+  {
+    "objectID": "lecture9.html#today",
+    "href": "lecture9.html#today",
+    "title": "Lecture 9 - Sept 26, 2023",
+    "section": "Today",
+    "text": "Today\nIntroduction to classes."
+  },
+  {
+    "objectID": "lecture9.html#demo-of-stringstreams",
+    "href": "lecture9.html#demo-of-stringstreams",
+    "title": "Lecture 9 - Sept 26, 2023",
+    "section": "Demo of stringstreams",
+    "text": "Demo of stringstreams\nAvoid using stream for reading and writing interchangeably. You can write and then read, but it gets confusing when you write again.\n\n\n\n\n\n\nPacha’s note\n\n\n\nI added include&lt;iostream&gt; to make cin work. I also changed cout &lt;&lt; ss str(); from the notes to cout &lt;&lt; ss.str();, or it will not compile.\nI also added endl after cout for the same reason as in lecture 8.\n\n\n\n\n\n\n\n\nExample\n\n\n\n#include &lt;sstream&gt;\n#include &lt;string&gt;\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nint main() {\n    int ID;\n    string name, inputLine;\n    getline (cin, inputLine);\n\n    stringstream ss;\n    // write into ss\n    ss &lt;&lt; inputLine;\n\n    // or stringstream ss(inputLine);\n\n    // read from ss\n    ss &gt;&gt; ID; // ID reads 1001\n    ss &gt;&gt; name; // name reads Joe\n\n    cout &lt;&lt; ss.str() &lt;&lt; endl; // ss still has content written to it \"1001 Joe\"\n\n    return 0;\n}\nWhen the user enters “1001 Joe”, what is in ss remains there. Only the reading cursor moves."
+  },
+  {
+    "objectID": "lecture9.html#introduction-to-clases",
+    "href": "lecture9.html#introduction-to-clases",
+    "title": "Lecture 9 - Sept 26, 2023",
+    "section": "Introduction to clases",
+    "text": "Introduction to clases\nRecall structs in C\n\n\n\n\n\n\nExample\n\n\n\nRecall structs in C.\nThis is a data structure that stores data of different types using one variable name.\nstruct Student {\n    string name;\n    int ID;\n}\n\nstruct Student x;\n\n// access name of x using . operator\nx.name = \"Cindy\";\n\n\nA class is an expansion to structs by bringing together data and functions/operations.\nConsider that:\n\nData is similar to structs.\nFunctions/operations are different from structs.\n\nA class is a user-defined data type. A variable of that user-defined data type is called an object.\nDeclaring an object is called creating an instance or instantiation.\nRemember the diagram from lecture 8.\n\nThe definition of a class goes to a header file (e.g. Student.h).\n\nStudent.h\nclass Student {\n    private:\n        int ID;\n        string name;\n\n    public:\n        void setName(string name);\n        void getName();\n        void print();\n};\nRemember the diagram from lecture 8.\n\nprivate members can only be accessed within the class.\npublic members can be accessed outside the class.\nWhy? This is called encapsulation\n\nHide information related to the class (e.g., student ID).\nIt is not available outside the class.\nIt brings related data and functions together.\nIt organizes the code."
+  },
+  {
+    "objectID": "lecture9.html#class-implementation",
+    "href": "lecture9.html#class-implementation",
+    "title": "Lecture 9 - Sept 26, 2023",
+    "section": "Class implementation",
+    "text": "Class implementation\nThe class implementation goes in a source file and it has function definitions.\n\n\n\n\n\n\nPacha’s note\n\n\n\nI added endl after the cout statements for the same reason as above.\nI also think that Student.cpp starts with #include \"Student.h\" instead of #include \"Student.cpp\" - EMAIL SENT, WAITING FOR CONFIRMATION\n\n\n\nStudent.cpp\n#include \"Student.h\"\n#include &lt;iostream&gt;\n\n// Setter or mutator function\n\n// class name: Student\n// scope operator: ::\n// function name: setName\nvoid Student::setName(string n) {\n    // private member of Student class can be accessed\n    // inside the class implementation\n    name = n;\n}\n\n// Getter or accessor function\n\nstring Student::getName() {\n    return name;\n}\n\nvoid Student::print() {\n    cout &lt;&lt; \"Student name: \" &lt;&lt; name &lt;&lt; endl;\n    cout &lt;&lt; \"Student ID: \" &lt;&lt; ID &lt;&lt; endl;\n}\n\n\nmain.cpp\nInstatiating and using objects here.\n#include \"Student.h\"\n\nint main() {\n    // declare 2 objects and allocate memory for them\n    Student x,y;\n\n    x.setName(\"Kenya\");\n    y.setName(\"Christina\");\n\n    // x.ID = 2730; gives an error because we cannot access a private member\n\n    // y.name = \"Salma\" same error\n\n    y.print(); // wait! what is the value of ID in Student y?\n\n    return 0;\n}\nIn the line that reads Student x,y, ID in x and y are not initialized.\nThe solution is to define a constructor.\n\n\nStudent.h\nclass Student {\n    private:\n        int ID;\n        string name;\n    \n    public:\n        Student(); // constructor\n        void setName(string name);\n        ...\n}"
+  },
+  {
+    "objectID": "lecture10.html#summary",
+    "href": "lecture10.html#summary",
+    "title": "Lecture 10 - Sept 28, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we discuss how can we initialize data members at the time of instantiating an object using constructors. We also introduce, if we have a dynamically allocated memory, how do we free it when an object goes out of scope."
+  },
+  {
+    "objectID": "lecture10.html#last-lecture",
+    "href": "lecture10.html#last-lecture",
+    "title": "Lecture 10 - Sept 28, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nIntroduction to classes."
+  },
+  {
+    "objectID": "lecture10.html#today",
+    "href": "lecture10.html#today",
+    "title": "Lecture 10 - Sept 28, 2023",
+    "section": "Today",
+    "text": "Today\nConstructors and destructors."
+  },
+  {
+    "objectID": "lecture10.html#constructors",
+    "href": "lecture10.html#constructors",
+    "title": "Lecture 10 - Sept 28, 2023",
+    "section": "Constructors",
+    "text": "Constructors\n\nConstructors are called by default when an object is instantiated.\nIf you do not implement them, they are empty functions.\nYou cannot call a constructor explicitly. It is only called when you instatiate an object.\nIt’s name is the same as the class name.\nIt has no return or even return type (not void).\n\n\n\n\n\n\n\nExample\n\n\n\n\nStudent.h\nclass Student {\n    private:\n        int ID;\n        string name;\n    public:\n        Student(); // constructor\n        void setName(string n); // setter / mutator\n        string getName(); // getter  accessor\n        void print();\n}\n\n\nStudent.cpp\nStudent::Student() {\n    /// typically used to initialize data members of a class\n    ID = 0;\n    name = \"\";\n}\n\n\nmain.cpp\nint main() {\n    Student x; // calls the constructor\n    Student y[10]; // calls the constructor 10 times\n    Student* z; // no constructor called, no object is instatiated\n}\n\n\n\nWhat if I want to initialize ID with a specific value? We can have multiple constructors/\n\n\n\n\n\n\nExample\n\n\n\n\nStudent.h\nclass Student {\n    private:\n        int ID;\n        string name;\n    public:\n        // multiple constructors\n        // same function name\n        // different arguments\n        // this is called function overloading\n        Student(); // constructor\n        Student(int id);\n        Student(int id, string name);\n        ...\n}\n\n\nStudent.cpp\nStudent::Student() {\n    ID = 0; name = \"\";\n}\n\nStudent::Student(int id) {\n    ID = id; name = \"\";\n}\n\nStudent::Student(int id, string n) {\n    ID = id; name = n;\n}\n\n\nmain.cpp\nStudent x; // default constructor\nStudent y(2307); // second constructor\nStudent z(8731, \"Osiris\"); // third constructor\n\n\n\nThe respective constructors are called depending on the arguments.\nVery important: If the default constructor Student() is not implemented, but Student(int) is implemented, then Student x; will cause an error, as it will call Student() that is not defined.\nWhat if I dynamically allocate memory in an object?\n\nMemory allocated on the heap dynamically has to be explicitly freed. It does not get freed when a variable goes out of scope.\n\n\n\n\n\n\nExample\n\n\n\nfor (int i=0; i &lt; 3; i++) {\n    cout &lt;&lt; i;\n}\nOutside the loop, i does not exist.\n\n\nRecall that in C, for every malloc there has to be a free.\nIn C++, we have new and delete.\n\n\n\n\n\n\nExample\n\n\n\n\nInteger\n// return address of an int variable created at run-time\nint* pNum = new int;\n\n// de-allocate memory at pNum\ndelete pNum;\n\n\nArray\nint* arr = new int[10];\ndelete[] arr;\n\n\n\n\n\n\n\n\n\nExample\n\n\n\nclass Student {\n    private:\n        int* grades;\n    public:\n        Student();\n        Student(int);\n};\n\nStudent::Student() {\n    grades = nullptr;\n}\n\nStudent::Student(int numLabs) {\n    grades = new int[numLabs];\n}\n\nint main() {\n    // dynamically allocates 7 integers\n    // if we do not de-allocate, this creates a memory leak\n    Student x(7);\n}"
+  },
+  {
+    "objectID": "lecture10.html#destructors",
+    "href": "lecture10.html#destructors",
+    "title": "Lecture 10 - Sept 28, 2023",
+    "section": "Destructors",
+    "text": "Destructors\nTo solve memory leaks as in the previous example, we can use destructors.\n\n\n\n\n\n\nExample\n\n\n\nclass Student {\n    private:\n        int* grades;\n    public:\n        Student();\n        Student(int);\n        // destructors must be public\n        // a destructor has no return, like constructors\n        // also it has no parameters\n        ~Student();\n};\n\n...\n\nStudent::~Student() {\n    if (grades != nullptr) {\n        delete[] grades;\n    }\n}\n\n\nThe default destructor exists by default, and is called when the object goes out of scope.\nIf you dynamically allocate memory in your class, you will need a destructor to free up this memory space."
+  },
+  {
+    "objectID": "lecture11.html#summary",
+    "href": "lecture11.html#summary",
+    "title": "Lecture 11 - Sept 29, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we discuss pointers and introduce if we have a dynamically allocated memory in an object, how do we free it when an object goes out of scope."
+  },
+  {
+    "objectID": "lecture11.html#last-lecture",
+    "href": "lecture11.html#last-lecture",
+    "title": "Lecture 11 - Sept 29, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nConstructors."
+  },
+  {
+    "objectID": "lecture11.html#today",
+    "href": "lecture11.html#today",
+    "title": "Lecture 11 - Sept 29, 2023",
+    "section": "Today",
+    "text": "Today\nDestructors, pointers and objects with pointers."
+  },
+  {
+    "objectID": "lecture11.html#memory",
+    "href": "lecture11.html#memory",
+    "title": "Lecture 11 - Sept 29, 2023",
+    "section": "Memory",
+    "text": "Memory\nMemory is divided into cells. Each cell can store a byte of data (8 bits) and has an address.\nA program’s memory space.\n\nA pointer is a variable that stores and address to a byte.\nMemory on stack gets freed when a function returns. All local variables in a function dissappear when the function returns or when they go out of scope.\nBut memory allocated on the heap dynamically has to be explicitly freed. It does not get freed when a variable goes outo f scope. It creates a memory leak if we do not free it.\n\n\n\n\n\n\nExample\n\n\n\nint x;\nint *p;\nx = 7;\np = NULL;\np = &x // address of x\n\ncout &lt;&lt; *p;; // print 7\n\n// dereference p / value at address in p\ncout &lt;&lt; p; // prints 0x124\n\n*p = 5; // change the value of p to 5\n\np = new int; // change address stored in p to a newely allocated memory space\n\n*p = 3; // change value at address 0x560\n\n...\n\n// before exiting our program, we need to return dynamically allocated memory\n// to the operating system\n\ndelete p; // p now has address of expired data\n\np = nullptr; // good practice\n\n\n\nRecall that in C, for every malloc there has to be a free. In C++, we have new add and delete.\n\n\n\n\n\n\nExample\n\n\n\n\nInteger\n// return address of an int variable created at run-time\nint* pNum = new int;\n\n// de-allocate memory at pNum\ndelete pNum;\n\n\nArray\nint* arr = new int[10];\ndelete[] arr;\n\n\n\n\n\n\n\n\n\nExample\n\n\n\nWith a class\nclass Student {\n    private:\n        int *grades; string name;\n    public:\n        Student();\n        Student(int);\n};\n\nStudent::Student() {\n    grades = nullptr;\n}\n\nStudent::Student(int numLabs) {\n    grades = new int[numLabs];\n}\n\nint main() {\n    // dynamically allocates 3 integers\n    Student x(3);\n    return 0;\n\n    // we did not deallocate them\n    // this will create a memory leak!\n}\n\n\n\nThe solution is to define destructors.\nclass Student {\n    private:\n        int *grades; string name;\n    public:\n        Student();\n        Student(int);\n        // the destructor must be public\n        ~Student(); // no return, like constructors\n                    // no parameters\n};\n\n...\n\nStudent::~Student() {\n    if (grades != nullptr) {\n        delete[] grades;\n    }\n}\nThe default destructor exists by default, and is called when the object goes out of scope.\nIf you dynamically allocate memory in your class, you will need a destructor to free up this memory space.\n\nmain.cpp\nint main() {\n    Student x(3); // dynamically allocates 3 integers\n\n    return 0; // destructor of x will be called if grades is !nullptr\n              // we will free dynamically allocated space \n}"
+  },
+  {
+    "objectID": "lecture11.html#exercise-on-double-pointers",
+    "href": "lecture11.html#exercise-on-double-pointers",
+    "title": "Lecture 11 - Sept 29, 2023",
+    "section": "Exercise on double pointers",
+    "text": "Exercise on double pointers\nDouble pointers (i.e., pointers to pointers) are variables that store an address too. That address is an address of a pointer.\nint** p2p;\nint *p, *q;\n\np = new int;\n*p = 5;\n\np2p = &p;\nq = *p2p; // *(&p) = p\n\n*q = 8; // the new int\n\ncout &lt;&lt; **&p2p; // **(&p) = *p = the new int, prints 8"
   }
 ]

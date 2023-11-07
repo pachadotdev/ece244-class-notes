@@ -1,0 +1,227 @@
+# Lecture 10 - Sept 28, 2023
+
+## Summary
+
+In this lecture, we discuss how can we initialize data members at the time of
+instantiating an object using constructors. We also introduce, if we have a
+dynamically allocated memory, how do we free it when an object goes out of scope.
+
+## Last lecture
+
+Introduction to classes.
+
+## Today
+
+Constructors and destructors.
+
+## Constructors
+
+* Constructors are called by default when an object is instantiated.
+* If you do not implement them, they are empty functions.
+* You cannot call a constructor explicitly. It is only called when you
+ instatiate an object.
+* It's name is the same as the class name.
+* It has no return or even return type (not void).
+
+::: {.callout-note icon=false}
+## Example
+
+### Student.h
+
+```cpp
+class Student {
+    private:
+        int ID;
+        string name;
+    public:
+        Student(); // constructor
+        void setName(string n); // setter / mutator
+        string getName(); // getter  accessor
+        void print();
+}
+```
+
+### Student.cpp
+
+```cpp
+Student::Student() {
+    /// typically used to initialize data members of a class
+    ID = 0;
+    name = "";
+}
+```
+
+### main.cpp
+
+```cpp
+int main() {
+    Student x; // calls the constructor
+    Student y[10]; // calls the constructor 10 times
+    Student* z; // no constructor called, no object is instatiated
+}
+```
+:::
+
+What if I want to initialize ID with a specific value? We can have multiple
+constructors/
+
+::: {.callout-note icon=false}
+## Example
+
+### Student.h
+
+```cpp
+class Student {
+    private:
+        int ID;
+        string name;
+    public:
+        // multiple constructors
+        // same function name
+        // different arguments
+        // this is called function overloading
+        Student(); // constructor
+        Student(int id);
+        Student(int id, string name);
+        ...
+}
+```
+
+### Student.cpp
+
+```cpp
+Student::Student() {
+    ID = 0; name = "";
+}
+
+Student::Student(int id) {
+    ID = id; name = "";
+}
+
+Student::Student(int id, string n) {
+    ID = id; name = n;
+}
+```
+
+### main.cpp
+
+```cpp
+Student x; // default constructor
+Student y(2307); // second constructor
+Student z(8731, "Osiris"); // third constructor
+```
+:::
+
+The respective constructors are called depending on the arguments.
+
+**Very important**: If the default constructor `Student()` is not implemented,
+but `Student(int)` is implemented, then `Student x;` will cause an error, as it
+will call `Student()` that is not defined.
+
+What if I dynamically allocate memory in an object?
+
+<img src="diagrams/lecture10-diagram1.svg" alt="diagrams/lecture10-diagram1.svg">
+
+Memory allocated on the heap dynamically has to be explicitly freed. It does not
+get freed when a variable goes out of scope.
+
+::: {.callout-note icon=false}
+## Example
+
+```cpp
+for (int i=0; i < 3; i++) {
+    cout << i;
+}
+```
+
+Outside the loop, `i` does not exist.
+:::
+
+Recall that in C, for every `malloc` there has to be a `free`.
+
+In C++, we have `new` and `delete`.
+
+::: {.callout-note icon=false}
+## Example
+
+### Integer
+
+```cpp
+// return address of an int variable created at run-time
+int* pNum = new int;
+
+// de-allocate memory at pNum
+delete pNum;
+```
+
+### Array
+
+```cpp
+int* arr = new int[10];
+delete[] arr;
+```
+:::
+
+::: {.callout-note icon=false}
+## Example
+
+```cpp
+class Student {
+    private:
+        int* grades;
+    public:
+        Student();
+        Student(int);
+};
+
+Student::Student() {
+    grades = nullptr;
+}
+
+Student::Student(int numLabs) {
+    grades = new int[numLabs];
+}
+
+int main() {
+    // dynamically allocates 7 integers
+    // if we do not de-allocate, this creates a memory leak
+    Student x(7);
+}
+```
+:::
+
+## Destructors
+
+To solve memory leaks as in the previous example, we can use destructors.
+
+::: {.callout-note icon=false}
+## Example
+
+```cpp
+class Student {
+    private:
+        int* grades;
+    public:
+        Student();
+        Student(int);
+        // destructors must be public
+        // a destructor has no return, like constructors
+        // also it has no parameters
+        ~Student();
+};
+
+...
+
+Student::~Student() {
+    if (grades != nullptr) {
+        delete[] grades;
+    }
+}
+```
+:::
+
+The default destructor exists by default, and is called when the object goes out
+of scope.
+
+If you dynamically allocate memory in your class, you will need a destructor to
+free up this memory space.

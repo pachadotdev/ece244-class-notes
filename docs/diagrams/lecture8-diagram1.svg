@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="97.923401mm"
-   height="42.298359mm"
-   viewBox="0 0 97.923401 42.298359"
+   width="90.723396mm"
+   height="35.19836mm"
+   viewBox="0 0 90.723396 35.198361"
    version="1.1"
    id="svg1035"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    sodipodi:docname="lecture8-diagram1.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -30,14 +30,16 @@
      fit-margin-right="5"
      fit-margin-bottom="5"
      inkscape:zoom="1.8116734"
-     inkscape:cx="266.32835"
-     inkscape:cy="155.10522"
+     inkscape:cx="252.25297"
+     inkscape:cy="141.30582"
      inkscape:window-width="1920"
      inkscape:window-height="1043"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="layer1"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1" />
   <defs
      id="defs1032">
     <marker
@@ -59,7 +61,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-8.8987446,-47.351067)">
+     transform="translate(-12.498745,-50.951069)">
     <text
        xml:space="preserve"
        style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;stroke-width:0.264583"
@@ -67,14 +69,14 @@
        y="84.607094"
        id="text24418"><tspan
          sodipodi:role="line"
-         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583"
          x="57.947224"
          y="84.607094"
          id="tspan24416">Instantiation</tspan></text>
     <g
        id="g26911">
       <rect
-         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none"
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
          id="rect24017"
          width="34.713047"
          height="8.8940248"
@@ -89,7 +91,7 @@
          id="text24021"
          transform="translate(0.52916667,15.345843)"><tspan
            sodipodi:role="line"
-           style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583"
            x="83.665291"
            y="58.148746"
            id="tspan24019">Object instance</tspan></text>
@@ -99,7 +101,7 @@
            id="g24029"
            transform="translate(0,1.1831718)">
           <rect
-             style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none"
+             style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
              id="rect1118"
              width="43.187206"
              height="15.164696"
@@ -113,43 +115,39 @@
              id="text8308"><tspan
                sodipodi:role="line"
                id="tspan8306"
-               style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583"
                x="35.659794"
                y="61.992661">Class: The blueprint</tspan><tspan
                sodipodi:role="line"
-               style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583"
                x="35.659794"
                y="67.284325"
                id="tspan8310">of the data type</tspan></text>
         </g>
-        <g
-           id="g24015"
-           transform="translate(0.52916667)">
-          <rect
-             style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none"
-             id="rect11374"
-             width="34.713047"
-             height="8.8940248"
-             x="66.329933"
-             y="52.601067" />
-          <text
-             xml:space="preserve"
-             style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;stroke-width:0.264583"
-             x="83.665291"
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+           id="rect11374"
+           width="34.713047"
+           height="8.8940248"
+           x="66.8591"
+           y="52.601067" />
+        <text
+           xml:space="preserve"
+           style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;stroke-width:0.264583"
+           x="84.194458"
+           y="58.148746"
+           id="text11380"><tspan
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583"
+             x="84.194458"
              y="58.148746"
-             id="text11380"><tspan
-               sodipodi:role="line"
-               style="text-align:center;text-anchor:middle;stroke-width:0.264583"
-               x="83.665291"
-               y="58.148746"
-               id="tspan11378">Object instance</tspan></text>
-        </g>
+             id="tspan11378">Object instance</tspan></text>
         <path
-           style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
+           style="fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
            d="m 58.15816,61.229001 6.88145,-3.23863"
            id="path24064" />
         <path
-           style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
+           style="fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
            d="m 58.15816,68.212999 6.88145,3.23863"
            id="path24414" />
       </g>

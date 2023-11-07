@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="87.94603mm"
+   height="40.255775mm"
+   viewBox="0 0 87.946031 40.255775"
+   version="1.1"
+   id="svg1035"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="lecture10-diagram1.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1037"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     fit-margin-top="5"
+     fit-margin-left="5"
+     fit-margin-right="5"
+     fit-margin-bottom="5"
+     inkscape:zoom="4"
+     inkscape:cx="102"
+     inkscape:cy="111.5"
+     inkscape:window-width="1920"
+     inkscape:window-height="1043"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid313"
+       originx="-23.948101"
+       originy="-11.862984" />
+    <sodipodi:guide
+       position="1.4999997,38.755774"
+       orientation="1,0"
+       id="guide1068"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="1.4999997,38.755774"
+       orientation="0,-1"
+       id="guide1070"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="18.715963,29.041824"
+       orientation="1,0"
+       id="guide1232"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1032">
+    <marker
+       style="overflow:visible"
+       id="TriangleStart"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="TriangleStart"
+       markerWidth="5.3244081"
+       markerHeight="6.155385"
+       viewBox="0 0 5.3244081 6.1553851"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleOutM"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path24291" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(24.284658,-118.86628)">
+    <path
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.3;stroke-dasharray:none"
+       d="m -22.534659,120.61629 v 36.85577 H -2.7018927 V 120.61629 H -22.534659"
+       id="path1208" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#000000;stroke-width:0.264583"
+       x="-17.95862"
+       y="126.22655"
+       id="text30417"><tspan
+         sodipodi:role="line"
+         id="tspan30415"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;stroke-width:0.264583"
+         x="-17.95862"
+         y="126.22655">Heap</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#000000;stroke-width:0.264583"
+       x="-17.967089"
+       y="136.0247"
+       id="text1062"><tspan
+         sodipodi:role="line"
+         id="tspan1060"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;stroke-width:0.264583"
+         x="-17.967089"
+         y="136.0247">Stack</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#000000;stroke-width:0.264583"
+       x="-17.336323"
+       y="145.14128"
+       id="text1137"><tspan
+         sodipodi:role="line"
+         id="tspan1135"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;stroke-width:0.264583"
+         x="-17.336323"
+         y="145.14128">Data</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#000000;stroke-width:0.264583"
+       x="-17.753304"
+       y="154.45259"
+       id="text1143"><tspan
+         sodipodi:role="line"
+         id="tspan1141"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;stroke-width:0.264583"
+         x="-17.753304"
+         y="154.45259">Code</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.3;stroke-dasharray:1.2, 1.2;stroke-dashoffset:0"
+       d="M -22.534659,129.83023 H -2.7018927"
+       id="path1210" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.3;stroke-dasharray:none"
+       d="M -22.534659,139.04418 H -2.7018927"
+       id="path1212" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.3;stroke-dasharray:none"
+       d="M -22.534659,148.25812 H -2.7018927"
+       id="path1214" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#000000;stroke-width:0.264583"
+       x="0.52622712"
+       y="126.22655"
+       id="text1218"><tspan
+         sodipodi:role="line"
+         id="tspan1216"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;stroke-width:0.264583"
+         x="0.52622712"
+         y="126.22655">Dynamically allocated memory</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#000000;stroke-width:0.264583"
+       x="0.52622712"
+       y="136.0247"
+       id="text1222"><tspan
+         sodipodi:role="line"
+         id="tspan1220"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;stroke-width:0.264583"
+         x="0.52622712"
+         y="136.0247">Local variables inside functions</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#000000;stroke-width:0.264583"
+       x="0.67862701"
+       y="145.14128"
+       id="text1226"><tspan
+         sodipodi:role="line"
+         id="tspan1224"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;stroke-width:0.264583"
+         x="0.67862701"
+         y="145.14128">Global variables</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#000000;stroke-width:0.264583"
+       x="0.76752692"
+       y="154.45259"
+       id="text1230"><tspan
+         sodipodi:role="line"
+         id="tspan1228"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;stroke-width:0.264583"
+         x="0.76752692"
+         y="154.45259">Instructions</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#TriangleStart)"
+       d="m -5.486791,122.14561 -0.081907,4.95205"
+       id="path1234" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#TriangleStart)"
+       d="m -5.5686945,137.51485 0.0819,-4.95205"
+       id="path1535" />
+  </g>
+</svg>
