@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ECE244 Tidy Notes - Lecture 3 - Sept 12, 2023</title>
+<title>Hiram: ECE244 Tidy Notes - Lecture 3 - Sept 12, 2023</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -125,7 +125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">ECE244 Tidy Notes</a> 
+      <a href="./">Hiram: ECE244 Tidy Notes</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -137,7 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">About ECE244 - Programming Fundamentals</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -173,6 +173,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture7.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 7 - Sept 22, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture8.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 8 - Sept 22, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture9.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 9 - Sept 26, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture10.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 10 - Sept 28, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture11.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 11 - Sept 29, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture12.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 12 - Oct 3, 2023</span></a>
   </div>
 </li>
     </ul>
@@ -427,26 +452,29 @@ Pacha’s note
 <li>Linking appends function implementations to produce the executable file.</li>
 <li>Linking takes much less time than compiling.</li>
 </ul>
-<p>What if I update:</p>
-<ul>
-<li>main.cpp: print.o and input.o will not change. Only main.o will change.</li>
-</ul>
+<p>What if I update…</p>
+<section id="main.cpp-1" class="level4">
+<h4 class="anchored" data-anchor-id="main.cpp-1">main.cpp</h4>
+<p>print.o and input.o will not change. Only main.o will change.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> main.cpp</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> main.o print.o input.o <span class="at">-o</span> main.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>print.cpp: main.o and input.o will not change. Only print.o will change.</li>
-</ul>
+</section>
+<section id="print.cpp-1" class="level4">
+<h4 class="anchored" data-anchor-id="print.cpp-1">print.cpp</h4>
+<p>main.o and input.o will not change. Only print.o will change.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> print.cpp</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> main.o print.o input.o <span class="at">-o</span> main.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>print.h: This changes <code>#include "print.h"</code> in main.cpp and print.cpp.</li>
-</ul>
+</section>
+<section id="print.h-1" class="level4">
+<h4 class="anchored" data-anchor-id="print.h-1">print.h</h4>
+<p>This changes <code>#include "print.h"</code> in main.cpp and print.cpp.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> main.cpp</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> print.cpp</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> main.o print.o input.o <span class="at">-o</span> main.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>What happens if I include the same .h file multiple times? Why would someone do that? Next lecture.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

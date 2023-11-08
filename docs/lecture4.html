@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ECE244 Tidy Notes - Lecture 4 - Sept 14, 2023</title>
+<title>Hiram: ECE244 Tidy Notes - Lecture 4 - Sept 14, 2023</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -123,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">ECE244 Tidy Notes</a> 
+      <a href="./">Hiram: ECE244 Tidy Notes</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -135,7 +135,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">About ECE244 - Programming Fundamentals</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -171,6 +171,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture7.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 7 - Sept 22, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture8.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 8 - Sept 22, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture9.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 9 - Sept 26, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture10.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 10 - Sept 28, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture11.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 11 - Sept 29, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture12.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 12 - Oct 3, 2023</span></a>
   </div>
 </li>
     </ul>
@@ -330,7 +355,7 @@ Example
 <h3 class="anchored" data-anchor-id="multiple-file-program">Multiple file program</h3>
 <section id="main.cpp" class="level4">
 <h4 class="anchored" data-anchor-id="main.cpp">main.cpp</h4>
-<p>Correction to the example from lectura 3: We do not need <code>#include &lt;iostream&gt;</code> nor <code>using namespace std</code> because we are not using <code>cout</code> and <code>cin</code> in this file.</p>
+<p>Correction to the example from lecture 3: We do not need <code>#include &lt;iostream&gt;</code> nor <code>using namespace std</code> because we are not using <code>cout</code> and <code>cin</code> in this file.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// "": searches in current directory</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"print.h"</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"input.h"</span></span>
@@ -448,20 +473,23 @@ Pacha’s note
 <li><code>g++ -c input.cpp</code> produces <code>input.o</code></li>
 <li><code>g++ main.o print.o input.o -o main.so</code> produces <code>main.so</code></li>
 </ol>
-<p>What if I update</p>
-<ul>
-<li>main.cpp: print.o and input.o will not change. Only main.o will change.</li>
-</ul>
+<p>What if I update…</p>
+</section>
+<section id="main.cpp-1" class="level4">
+<h4 class="anchored" data-anchor-id="main.cpp-1">main.cpp</h4>
+<p>print.o and input.o will not change. Only main.o will change.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> <span class="at">-c</span> main.cpp</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> main.o print.o input.o <span class="at">-o</span> main.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>print.cpp: main.o and input.o will not change. Only print.o will change.</li>
-</ul>
+</section>
+<section id="print.cpp-1" class="level4">
+<h4 class="anchored" data-anchor-id="print.cpp-1">print.cpp</h4>
+<p>main.o and input.o will not change. Only print.o will change.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> <span class="at">-c</span> print.cpp</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> main.o print.o input.o <span class="at">-o</span> main.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>print.h: This changes <code>#include "print.h"</code> in main.cpp and print.cpp. This is tricky!</li>
-</ul>
+</section>
+<section id="print.h-1" class="level4">
+<h4 class="anchored" data-anchor-id="print.h-1">print.h</h4>
+<p>This changes <code>#include "print.h"</code> in main.cpp and print.cpp. This is tricky!</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> <span class="at">-c</span> main.cpp</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> <span class="at">-c</span> print.cpp</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> main.o print.o input.o <span class="at">-o</span> main.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

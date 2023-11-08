@@ -251,21 +251,29 @@ What happens under the hood?
 * Linking appends function implementations to produce the executable file.
 * Linking takes much less time than compiling.
 
-What if I update:
+What if I update...
 
-* main.cpp: print.o and input.o will not change. Only main.o will change.
+#### main.cpp
+
+print.o and input.o will not change. Only main.o will change.
 
 ```bash
 g++ main.cpp
 g++ main.o print.o input.o -o main.so
 ```
-* print.cpp: main.o and input.o will not change. Only print.o will change.
+
+#### print.cpp
+
+main.o and input.o will not change. Only print.o will change.
 
 ```bash
 g++ print.cpp
 g++ main.o print.o input.o -o main.so
 ```
-* print.h: This changes `#include "print.h"` in main.cpp and print.cpp.
+
+#### print.h
+
+This changes `#include "print.h"` in main.cpp and print.cpp.
 
 ```bash
 g++ main.cpp

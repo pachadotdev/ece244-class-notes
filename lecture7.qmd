@@ -79,7 +79,9 @@ int main() {
 What can go wrong?
 
 **Error 1.** The file to be opened for input does not exist.
+
 **Error 2.** The variable cannot be read.
+
 **Error 3.** Reached the end of a file.
 :::
 

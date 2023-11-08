@@ -174,7 +174,7 @@ x.name = "Cindy";
 
 The definition of a class goes to a header file (e.g. `Student.h`)
 
-### Student.h
+#### Student.h
 
 ```cpp
 class Student {
@@ -217,7 +217,7 @@ I also think that `Student.cpp` starts with `#include "Student.h"` instead of
 `#include "Student.cpp"` - EMAIL SENT, WAITING FOR CONFIRMATION
 :::
 
-### Student.cpp
+#### Student.cpp
 
 ```cpp
 #include "Student.h"
@@ -246,7 +246,7 @@ void Student::print() {
 }
 ```
 
-### main.cpp
+#### main.cpp
 
 Instatiating and using objects here.
 

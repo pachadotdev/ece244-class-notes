@@ -71,7 +71,7 @@ new `add` and `delete`.
 ::: {.callout-note icon=false}
 ## Example
 
-### Integer
+#### Integer
 
 ```cpp
 // return address of an int variable created at run-time
@@ -81,7 +81,7 @@ int* pNum = new int;
 delete pNum;
 ```
 
-### Array
+#### Array
 
 ```cpp
 int* arr = new int[10];
@@ -153,7 +153,7 @@ of scope.
 If you dynamically allocate memory in your class, you will need a destructor to
 free up this memory space.
 
-### main.cpp
+#### main.cpp
 
 ```cpp
 int main() {
@@ -169,19 +169,35 @@ int main() {
 Double pointers (i.e., pointers to pointers) are variables that store an
 address too. That address is an address of a pointer.
 
+
+::: {.callout-note icon=false}
+## Pacha's note
+
+I added the header and put the original example inside `main()` with an
+added `return 0;` at the end, otherwise it would not compile.
+:::
+
 ```cpp
-int** p2p;
-int *p, *q;
+#include <iostream>
 
-p = new int;
-*p = 5;
+using namespace std;
 
-p2p = &p;
-q = *p2p; // *(&p) = p
+int main() {
+  int** p2p;
+  int *p, *q;
 
-*q = 8; // the new int
+  p = new int;
+  *p = 5;
 
-cout << **&p2p; // **(&p) = *p = the new int, prints 8
+  p2p = &p;
+  q = *p2p;  // *(&p) = p
+
+  *q = 8;  // the new int
+
+  cout << **&p2p;  // **(&p) = *p = the new int, prints 8
+
+  return 0;
+}
 ```
 
 <img src="diagrams/lecture11-diagram3.svg" alt="diagrams/lecture11-diagram3.svg">

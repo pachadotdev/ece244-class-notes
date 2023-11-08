@@ -188,6 +188,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="./lecture10.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 10 - Sept 28, 2023</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture11.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 11 - Sept 29, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture12.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 12 - Oct 3, 2023</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -204,15 +214,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#recap-on-flags" id="toc-recap-on-flags" class="nav-link" data-scroll-target="#recap-on-flags">Recap on flags</a></li>
   <li><a href="#string-streams" id="toc-string-streams" class="nav-link" data-scroll-target="#string-streams">String streams</a></li>
   <li><a href="#getline-function" id="toc-getline-function" class="nav-link" data-scroll-target="#getline-function">Getline function</a></li>
-  <li><a href="#introduction-to-classes" id="toc-introduction-to-classes" class="nav-link" data-scroll-target="#introduction-to-classes">Introduction to classes</a>
-  <ul class="collapse">
-  <li><a href="#student.h" id="toc-student.h" class="nav-link" data-scroll-target="#student.h">Student.h</a></li>
-  </ul></li>
-  <li><a href="#class-implementation" id="toc-class-implementation" class="nav-link" data-scroll-target="#class-implementation">Class implementation</a>
-  <ul class="collapse">
-  <li><a href="#student.cpp" id="toc-student.cpp" class="nav-link" data-scroll-target="#student.cpp">Student.cpp</a></li>
-  <li><a href="#main.cpp" id="toc-main.cpp" class="nav-link" data-scroll-target="#main.cpp">main.cpp</a></li>
-  </ul></li>
+  <li><a href="#introduction-to-classes" id="toc-introduction-to-classes" class="nav-link" data-scroll-target="#introduction-to-classes">Introduction to classes</a></li>
+  <li><a href="#class-implementation" id="toc-class-implementation" class="nav-link" data-scroll-target="#class-implementation">Class implementation</a></li>
   </ul>
 </nav>
     </div>
@@ -397,8 +400,8 @@ Example
 </div>
 </div>
 <p>The definition of a class goes to a header file (e.g.&nbsp;<code>Student.h</code>)</p>
-<section id="student.h" class="level3">
-<h3 class="anchored" data-anchor-id="student.h">Student.h</h3>
+<section id="student.h" class="level4">
+<h4 class="anchored" data-anchor-id="student.h">Student.h</h4>
 <div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Student <span class="op">{</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span><span class="op">:</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> ID<span class="op">;</span></span>
@@ -439,8 +442,8 @@ Pacha’s note
 <p>I also think that <code>Student.cpp</code> starts with <code>#include "Student.h"</code> instead of <code>#include "Student.cpp"</code> - EMAIL SENT, WAITING FOR CONFIRMATION</p>
 </div>
 </div>
-<section id="student.cpp" class="level3">
-<h3 class="anchored" data-anchor-id="student.cpp">Student.cpp</h3>
+<section id="student.cpp" class="level4">
+<h4 class="anchored" data-anchor-id="student.cpp">Student.cpp</h4>
 <div class="sourceCode" id="cb8"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"Student.h"</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -466,8 +469,8 @@ Pacha’s note
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Student ID: "</span> <span class="op">&lt;&lt;</span> ID <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
 <span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="main.cpp" class="level3">
-<h3 class="anchored" data-anchor-id="main.cpp">main.cpp</h3>
+<section id="main.cpp" class="level4">
+<h4 class="anchored" data-anchor-id="main.cpp">main.cpp</h4>
 <p>Instatiating and using objects here.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"Student.h"</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>

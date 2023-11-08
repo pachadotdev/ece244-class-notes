@@ -109,7 +109,7 @@ This command generates the executable file, which contains zeroes and ones.
 
 #### main.cpp
 
-Correction to the example from lectura 3: We do not need `#include <iostream>`
+Correction to the example from lecture 3: We do not need `#include <iostream>`
 nor `using namespace std` because we are not using `cout` and `cin` in this
 file.
 
@@ -234,22 +234,27 @@ compilation into
 3. `g++ -c input.cpp` produces `input.o`
 4. `g++ main.o print.o input.o -o main.so` produces `main.so`
 
-What if I update
+What if I update...
 
-* main.cpp: print.o and input.o will not change. Only main.o will change.
+#### main.cpp
+
+print.o and input.o will not change. Only main.o will change.
 
 ```bash
 g++ -c main.cpp
 g++ main.o print.o input.o -o main.so
 ```
-* print.cpp: main.o and input.o will not change. Only print.o will change.
+#### print.cpp
+
+main.o and input.o will not change. Only print.o will change.
 
 ```bash
 g++ -c print.cpp
 g++ main.o print.o input.o -o main.so
 ```
-* print.h: This changes `#include "print.h"` in main.cpp and print.cpp. This is
- tricky!
+#### print.h
+
+This changes `#include "print.h"` in main.cpp and print.cpp. This is tricky!
 
 ```bash
 g++ -c main.cpp

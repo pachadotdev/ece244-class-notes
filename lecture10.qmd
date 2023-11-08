@@ -26,7 +26,7 @@ Constructors and destructors.
 ::: {.callout-note icon=false}
 ## Example
 
-### Student.h
+#### Student.h
 
 ```cpp
 class Student {
@@ -41,7 +41,7 @@ class Student {
 }
 ```
 
-### Student.cpp
+#### Student.cpp
 
 ```cpp
 Student::Student() {
@@ -51,7 +51,7 @@ Student::Student() {
 }
 ```
 
-### main.cpp
+#### main.cpp
 
 ```cpp
 int main() {
@@ -68,7 +68,7 @@ constructors/
 ::: {.callout-note icon=false}
 ## Example
 
-### Student.h
+#### Student.h
 
 ```cpp
 class Student {
@@ -87,7 +87,7 @@ class Student {
 }
 ```
 
-### Student.cpp
+#### Student.cpp
 
 ```cpp
 Student::Student() {
@@ -103,7 +103,7 @@ Student::Student(int id, string n) {
 }
 ```
 
-### main.cpp
+#### main.cpp
 
 ```cpp
 Student x; // default constructor

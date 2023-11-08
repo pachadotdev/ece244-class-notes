@@ -2,13 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="152.20842mm"
-   height="45.061218mm"
-   viewBox="0 0 152.20841 45.061219"
+   width="145.16513mm"
+   height="38.061218mm"
+   viewBox="0 0 145.16512 38.061219"
    version="1.1"
    id="svg5"
    sodipodi:docname="lecture4-diagram1.svg"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -30,50 +30,61 @@
      fit-margin-bottom="5"
      fit-margin-right="5"
      inkscape:zoom="1.3665684"
-     inkscape:cx="261.97005"
-     inkscape:cy="-22.318678"
+     inkscape:cx="249.53014"
+     inkscape:cy="-35.856237"
      inkscape:window-width="1920"
-     inkscape:window-height="1007"
+     inkscape:window-height="1043"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1">
+     inkscape:current-layer="layer1"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1">
     <sodipodi:guide
-       position="12.60104,22.799793"
+       position="9.0576299,19.299792"
        orientation="0,-1"
-       id="guide21538" />
+       id="guide21538"
+       inkscape:locked="false" />
     <sodipodi:guide
-       position="108.36985,22.799793"
+       position="104.82644,19.299792"
        orientation="0,-1"
-       id="guide25094" />
+       id="guide25094"
+       inkscape:locked="false" />
     <sodipodi:guide
-       position="15.103111,21.202503"
+       position="11.559701,17.702502"
        orientation="1,0"
-       id="guide31644" />
+       id="guide31644"
+       inkscape:locked="false" />
     <sodipodi:guide
-       position="35.011565,21.202503"
+       position="31.468154,17.702502"
        orientation="1,0"
-       id="guide31646" />
+       id="guide31646"
+       inkscape:locked="false" />
     <sodipodi:guide
-       position="38.161125,21.202503"
+       position="34.617715,17.702502"
        orientation="1,0"
-       id="guide48033" />
+       id="guide48033"
+       inkscape:locked="false" />
     <sodipodi:guide
-       position="85.805423,21.202503"
+       position="82.262013,17.702502"
        orientation="1,0"
-       id="guide48035" />
+       id="guide48035"
+       inkscape:locked="false" />
     <sodipodi:guide
-       position="89.227043,23.628253"
+       position="85.683633,20.128252"
        orientation="1,0"
-       id="guide90826" />
+       id="guide90826"
+       inkscape:locked="false" />
     <sodipodi:guide
-       position="96.652613,22.799793"
+       position="93.109202,19.299792"
        orientation="1,0"
-       id="guide111642" />
+       id="guide111642"
+       inkscape:locked="false" />
     <sodipodi:guide
-       position="113.79513,22.799794"
+       position="110.25172,19.299793"
        orientation="1,0"
-       id="guide2703" />
+       id="guide2703"
+       inkscape:locked="false" />
   </sodipodi:namedview>
   <defs
      id="defs2">
@@ -236,7 +247,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-63.199014,-120.83223)">
+     transform="translate(-66.742424,-124.33223)">
     <text
        xml:space="preserve"
        style="font-size:21.1667px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
@@ -256,7 +267,7 @@
          y="166.64873"
          id="tspan4716" /></text>
     <path
-       style="fill:none;stroke:#3139ae;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#3139ae;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 78.302126,143.09365 v 1.59729 H 98.21058 v -1.59729"
        id="path31681" />
     <text
@@ -286,7 +297,7 @@
          y="166.14278"
          id="tspan31767" /></text>
     <path
-       style="fill:none;stroke:#3139ae;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#3139ae;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 101.36014,143.09365 v 1.59729 h 47.6443 v -1.59729"
        id="path48066" />
     <text
@@ -322,7 +333,7 @@
          y="134.34122"
          id="tspan107230">file name</tspan></text>
     <path
-       style="fill:none;stroke:#3139ae;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#3139ae;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 159.85163,143.09365 v 1.59729 h 17.14252 v -1.59729"
        id="path110360" />
     <text

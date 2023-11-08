@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./lecture12.html" rel="next">
 <link href="./lecture10.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -192,6 +193,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="./lecture11.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Lecture 11 - Sept 29, 2023</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture12.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 12 - Oct 3, 2023</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -205,10 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#last-lecture" id="toc-last-lecture" class="nav-link" data-scroll-target="#last-lecture">Last lecture</a></li>
   <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
-  <li><a href="#memory" id="toc-memory" class="nav-link" data-scroll-target="#memory">Memory</a>
-  <ul class="collapse">
-  <li><a href="#main.cpp" id="toc-main.cpp" class="nav-link" data-scroll-target="#main.cpp">main.cpp</a></li>
-  </ul></li>
+  <li><a href="#memory" id="toc-memory" class="nav-link" data-scroll-target="#memory">Memory</a></li>
   <li><a href="#exercise-on-double-pointers" id="toc-exercise-on-double-pointers" class="nav-link" data-scroll-target="#exercise-on-double-pointers">Exercise on double pointers</a></li>
   </ul>
 </nav>
@@ -302,16 +305,16 @@ Example
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<section id="integer" class="level3">
-<h3 class="anchored" data-anchor-id="integer">Integer</h3>
+<section id="integer" class="level4">
+<h4 class="anchored" data-anchor-id="integer">Integer</h4>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// return address of an int variable created at run-time</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span><span class="op">*</span> pNum <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">// de-allocate memory at pNum</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">delete</span> pNum<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="array" class="level3">
-<h3 class="anchored" data-anchor-id="array">Array</h3>
+<section id="array" class="level4">
+<h4 class="anchored" data-anchor-id="array">Array</h4>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span><span class="op">*</span> arr <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">[</span><span class="dv">10</span><span class="op">];</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">delete</span><span class="op">[]</span> arr<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
@@ -376,8 +379,8 @@ Example
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The default destructor exists by default, and is called when the object goes out of scope.</p>
 <p>If you dynamically allocate memory in your class, you will need a destructor to free up this memory space.</p>
-<section id="main.cpp" class="level3">
-<h3 class="anchored" data-anchor-id="main.cpp">main.cpp</h3>
+<section id="main.cpp" class="level4">
+<h4 class="anchored" data-anchor-id="main.cpp">main.cpp</h4>
 <div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    Student x<span class="op">(</span><span class="dv">3</span><span class="op">);</span> <span class="co">// dynamically allocates 3 integers</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -389,18 +392,39 @@ Example
 <section id="exercise-on-double-pointers" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-on-double-pointers">Exercise on double pointers</h2>
 <p>Double pointers (i.e., pointers to pointers) are variables that store an address too. That address is an address of a pointer.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span><span class="op">**</span> p2p<span class="op">;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="op">*</span>p<span class="op">,</span> <span class="op">*</span>q<span class="op">;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>p <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>p2p <span class="op">=</span> <span class="op">&amp;</span>p<span class="op">;</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> <span class="op">*</span>p2p<span class="op">;</span> <span class="co">// *(&amp;p) = p</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>q <span class="op">=</span> <span class="dv">8</span><span class="op">;</span> <span class="co">// the new int</span></span>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pacha’s note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I added the header and put the original example inside <code>main()</code> with an added <code>return 0;</code> at the end, otherwise it would not compile.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span><span class="op">**</span> p2p<span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> <span class="op">*</span>p<span class="op">,</span> <span class="op">*</span>q<span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  p <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">*</span>p <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>cout <span class="op">&lt;&lt;</span> <span class="op">**&amp;</span>p2p<span class="op">;</span> <span class="co">// **(&amp;p) = *p = the new int, prints 8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  p2p <span class="op">=</span> <span class="op">&amp;</span>p<span class="op">;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  q <span class="op">=</span> <span class="op">*</span>p2p<span class="op">;</span>  <span class="co">// *(&amp;p) = p</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">*</span>q <span class="op">=</span> <span class="dv">8</span><span class="op">;</span>  <span class="co">// the new int</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  cout <span class="op">&lt;&lt;</span> <span class="op">**&amp;</span>p2p<span class="op">;</span>  <span class="co">// **(&amp;p) = *p = the new int, prints 8</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="diagrams/lecture11-diagram3.svg" alt="diagrams/lecture11-diagram3.svg"></p>
 
 
@@ -647,6 +671,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./lecture12.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Lecture 12 - Oct 3, 2023</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
