@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="99.079483mm"
+   height="34.23262mm"
+   viewBox="0 0 99.079483 34.232621"
+   version="1.1"
+   id="svg34701"
+   sodipodi:docname="lecture13-diagram6.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview34703"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     fit-margin-top="3"
+     fit-margin-left="3"
+     fit-margin-right="3"
+     fit-margin-bottom="3"
+     inkscape:zoom="2"
+     inkscape:cx="176"
+     inkscape:cy="124.5"
+     inkscape:window-width="1904"
+     inkscape:window-height="1003"
+     inkscape:window-x="1928"
+     inkscape:window-y="32"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g1866"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1">
+    <sodipodi:guide
+       position="9.1629773,28.089876"
+       orientation="0,-1"
+       id="guide23522"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="46.936323,25.093847"
+       orientation="1,0"
+       id="guide852" />
+    <sodipodi:guide
+       position="46.936322,7.4333663"
+       orientation="0,-1"
+       id="guide8704" />
+    <sodipodi:guide
+       position="70.374562,25.022247"
+       orientation="1,0"
+       id="guide15173" />
+  </sodipodi:namedview>
+  <defs
+     id="defs34698">
+    <marker
+       style="overflow:visible"
+       id="TriangleOutM"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path23811" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Send"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Send"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.3,0,0,-0.3,0.69,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
+         id="path23699" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-133.50097,-91.578516)">
+    <g
+       id="g1866">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#TriangleOutM)"
+         d="m 149.68203,97.72126 h 4.02915"
+         id="path12322" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;stroke-width:0.264583"
+         x="136.24672"
+         y="99.233917"
+         id="text12406"><tspan
+           sodipodi:role="line"
+           id="tspan12404"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583"
+           x="136.24672"
+           y="99.233917">arr2p</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;stroke-width:0.264583"
+         x="158.47142"
+         y="99.233917"
+         id="text57380"><tspan
+           sodipodi:role="line"
+           id="tspan57378"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+           x="158.47142"
+           y="99.233917">Student*</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 156.99905,94.728516 v 5.988774"
+         id="path1491" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 156.99905,94.728516 23.43824,10e-7"
+         id="path11925" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 156.99905,100.71729 23.43824,0.0358"
+         id="path11927" />
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#TriangleOutM)"
+         d="m 166.87243,102.46177 v 4.02917"
+         id="path14142" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#181c57;stroke-width:0.264583"
+         x="155.7036"
+         y="113.52143"
+         id="text14262"><tspan
+           sodipodi:role="line"
+           id="tspan14260"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#181c57;stroke-width:0.264583"
+           x="155.7036"
+           y="113.52143">name</tspan></text>
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 154.88237,109.01608 v 9.30612"
+         id="path14264" />
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 166.87243,109.01608 v 9.36169"
+         id="path14266" />
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 154.88237,109.01608 h 23.43824"
+         id="path14268" />
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 154.88237,118.34197 23.43824,0.0358"
+         id="path14270" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 180.43729,94.728517 v 5.988773"
+         id="path5517" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;stroke-width:0.264583"
+         x="181.90965"
+         y="99.233917"
+         id="text5521"><tspan
+           sodipodi:role="line"
+           id="tspan5519"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+           x="181.90965"
+           y="99.233917">Student*</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 180.43729,94.728517 23.43824,10e-7"
+         id="path5525" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 180.43729,100.75309 23.43824,0.0358"
+         id="path5527" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 203.87553,94.728518 v 5.988772"
+         id="path5529" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;stroke-width:0.264583"
+         x="205.34789"
+         y="99.233917"
+         id="text5695"><tspan
+           sodipodi:role="line"
+           id="tspan5693"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+           x="205.34789"
+           y="99.233917">Student*</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 203.87553,94.728518 23.43824,1e-6"
+         id="path5697" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 203.87553,100.78889 23.43824,0.0358"
+         id="path5699" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 227.31377,94.728519 v 5.988771"
+         id="path5701" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#181c57;stroke-width:0.264583"
+         x="169.97141"
+         y="113.52143"
+         id="text5865"><tspan
+           sodipodi:role="line"
+           id="tspan5863"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#181c57;stroke-width:0.264583"
+           x="169.97141"
+           y="113.52143">ID</tspan></text>
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 178.32061,109.01608 v 9.30612"
+         id="path8615" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#181c57;stroke-width:0.264583"
+         x="157.74524"
+         y="122.75119"
+         id="text8708"><tspan
+           sodipodi:role="line"
+           id="tspan8706"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#181c57;stroke-width:0.264583"
+           x="157.74524"
+           y="122.75119">Student</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#181c57;stroke-width:0.264583"
+         x="181.25851"
+         y="113.52143"
+         id="text15131"><tspan
+           sodipodi:role="line"
+           id="tspan15129"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#181c57;stroke-width:0.264583"
+           x="181.25851"
+           y="113.52143">name</tspan></text>
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 180.43729,109.01608 v 9.30612"
+         id="path15133" />
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 192.42735,109.01608 v 9.36169"
+         id="path15135" />
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 180.43729,109.01608 h 23.43824"
+         id="path15137" />
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 180.43729,118.34197 23.43824,0.0358"
+         id="path15139" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#181c57;stroke-width:0.264583"
+         x="195.52632"
+         y="113.52143"
+         id="text15143"><tspan
+           sodipodi:role="line"
+           id="tspan15141"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#181c57;stroke-width:0.264583"
+           x="195.52632"
+           y="113.52143">ID</tspan></text>
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 203.87553,109.01608 v 9.30612"
+         id="path15145" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#181c57;stroke-width:0.264583"
+         x="183.30016"
+         y="122.75119"
+         id="text15149"><tspan
+           sodipodi:role="line"
+           id="tspan15147"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#181c57;stroke-width:0.264583"
+           x="183.30016"
+           y="122.75119">Student</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#181c57;stroke-width:0.264583"
+         x="206.81339"
+         y="113.52143"
+         id="text15153"><tspan
+           sodipodi:role="line"
+           id="tspan15151"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#181c57;stroke-width:0.264583"
+           x="206.81339"
+           y="113.52143">name</tspan></text>
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 205.99221,109.01608 v 9.30612"
+         id="path15155" />
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 217.98227,109.01608 v 9.36169"
+         id="path15157" />
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 205.99221,109.01608 h 23.43824"
+         id="path15159" />
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 205.99221,118.34197 23.43824,0.0358"
+         id="path15161" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#181c57;stroke-width:0.264583"
+         x="221.08119"
+         y="113.52143"
+         id="text15165"><tspan
+           sodipodi:role="line"
+           id="tspan15163"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#181c57;stroke-width:0.264583"
+           x="221.08119"
+           y="113.52143">ID</tspan></text>
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 229.43045,109.01608 v 9.30612"
+         id="path15167" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#181c57;stroke-width:0.264583"
+         x="208.85503"
+         y="122.75119"
+         id="text15171"><tspan
+           sodipodi:role="line"
+           id="tspan15169"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#181c57;stroke-width:0.264583"
+           x="208.85503"
+           y="122.75119">Student</tspan></text>
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#TriangleOutM)"
+         d="m 217.98227,102.46177 v 4.02917"
+         id="path15175" />
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#TriangleOutM)"
+         d="m 192.42735,102.46177 v 4.02917"
+         id="path15177" />
+    </g>
+  </g>
+</svg>

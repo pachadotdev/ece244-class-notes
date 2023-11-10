@@ -1,0 +1,217 @@
+# Lecture 13 - Oct 5, 2023
+
+## Summary
+
+In this lecture, we discuss dynamic memory allocation of arrays (of objects and
+of pointers to objects).
+
+## Last lecture
+
+Destructors.
+
+## Today
+
+Dynamic memory allocation of arrays of objects and pointers to objects.
+
+## Double pointers
+
+Double pointers are variables that store an address to a pointer.
+
+::: {.callout-note icon=false}
+## Example
+
+```cpp
+int** p2p;
+int *p, *q;
+
+p = new int;
+*p = 5;
+p2p = &p;
+q = *p2p; // *(&p) = p
+*q = 8; // the new int
+
+cout << **p2p << endl; // **(&p) = *p = the new int = 8
+
+delete p; // frees up space pointed to by p
+delete q; // double free
+delete *p2p; // triple free
+```
+
+Remember the diagram from lecture 11.
+
+<img src="diagrams/lecture11-diagram3.svg" alt="diagrams/lecture11-diagram3.svg">
+:::
+
+## Dynamic memory allocation of arrays
+
+<img src="diagrams/lecture13-diagram1.svg" alt="diagrams/lecture13-diagram1.svg">
+
+```cpp
+int a[4] = {1,2,3,4}
+```
+
+`a` is an alias/nickname that has address to the first element in the array.
+
+```
+a      <-> &a[0]
+*a     <-> a[0
+*(a+1) <-> a[1]
+```
+
+There are different ways to have an array that stores data.
+
+### Fixed-size array
+
+```cpp
+int arr[4]; // fixed number
+```
+
+This will be allocated on the stack.
+
+### Variable-size array
+
+```cpp
+int size;
+cin >> size;
+int arr[size]; // variable number
+```
+
+This will be allocated on the stack too.
+
+### Dynamically allocate memory for the array
+
+```cpp
+int size = 7;
+int* arr = new int[size]; // dynamically allocate memory
+```
+
+This array will be allocated on the **heap**.
+
+**Advice**: The programmer can "control" the lifetime of the array in the memory
+by freeing the memory anytime with `delete`.
+
+::: {.callout-note icon=false}
+## Example
+
+```cpp
+delete [] arr;
+arr = NULL;
+```
+:::
+
+Can we dynamically allocate an array of pointers to integers? Yes.
+
+<img src="diagrams/lecture13-diagram2.svg" alt="diagrams/lecture13-diagram2.svg">
+
+```cpp
+int** arr2p = new int*[4];
+
+for (int i = 0; i < 4; i++) {
+	arr2p[i] = new int;
+}
+```
+
+<img src="diagrams/lecture13-diagram3.svg" alt="diagrams/lecture13-diagram3.svg">
+
+```cpp
+for (int i = 0; i < 4; i++) {
+	*arr2p[i] = i + 1;
+}
+```
+
+<img src="diagrams/lecture13-diagram4.svg" alt="diagrams/lecture13-diagram4.svg">
+
+```cpp
+for (int i = 0; i < 4; i++) {
+	delete arr2p[i];
+	arr2p[i] = NULL;
+}
+```
+
+<img src="diagrams/lecture13-diagram5.svg" alt="diagrams/lecture13-diagram5.svg">
+
+```cpp
+delete [] arr2p;
+arr2p = NULL; // arr2p -> NULL
+```
+
+Can we dynamically allocate an array of objects? Yes.
+
+```cpp
+class Student {
+	public:
+		string name;
+		int ID;
+		Student() { ID = 0; name = ""; }
+		~Student() { cout << "Destructor" << endl; }
+}
+
+int main() {
+	// Default constructor called 3 times
+	Student* arr = new Student[3];
+	
+	// Destructor called 3 times
+	// no destructor will be called without delete
+	delete [] arr;
+	arr = NULL;
+
+	return 0;
+}
+```
+
+Can I have an array of pointers to objects? Yes
+
+<img src="diagrams/lecture13-diagram6.svg" alt="diagrams/lecture13-diagram6.svg">
+
+```cpp
+int main() {
+	// no constructors called
+	Student** arr2p = new Student*[3];
+
+...
+```
+
+<img src="diagrams/lecture13-diagram7.svg" alt="diagrams/lecture13-diagram7.svg">
+
+```cpp
+...
+
+	for (int i = 0; i < 3; i++) {
+		arr2p[i] = new Student;
+	}
+
+...
+```
+
+<img src="diagrams/lecture13-diagram6.svg" alt="diagrams/lecture13-diagram6.svg">
+
+```cpp
+...
+
+	for (int i = 0; i < 3; i++) { 
+		arr2p[i]->ID = i + 1;
+	}
+...
+```
+
+<img src="diagrams/lecture13-diagram8.svg" alt="diagrams/lecture13-diagram8.svg">
+
+```cpp
+...
+
+	for (int i = 0; i < 3; i++) { 
+		delete arr2p[i];
+	}
+
+...
+```
+
+<img src="diagrams/lecture13-diagram9.svg" alt="diagrams/lecture13-diagram9.svg">
+
+```cpp
+...
+
+	delete [] arr2p;
+	arr2p = NULL;
+}
+```
