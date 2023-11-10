@@ -21,11 +21,11 @@ $n! = n \times (n-1) \times (n-2) \times \cdots 3 \times 2 \times 1$
 
 ```cpp
 int factorial (int n) {
-    int fact = 1;
-    for (int i=0; i <= n; i++) {
-        fact = fact * i;
-    }
-    return fact;
+	int fact = 1;
+	for (int i=0; i <= n; i++) {
+		fact = fact * i;
+	}
+	return fact;
 }
 ```
 
@@ -33,13 +33,13 @@ We can invoke the function in main
 
 ```cpp
 int main() {
-    int n = 4;
-    // fact: return value stored in fact
-    // factorial: call function that will return n!
-    // n: pass variable
-    int fact = factorial(n);
-    cout << "Factorial of " << n << " is " << fact << endl;
-    return 0;
+	int n = 4;
+	// fact: return value stored in fact
+	// factorial: call function that will return n!
+	// n: pass variable
+	int fact = factorial(n);
+	cout << "Factorial of " << n << " is " << fact << endl;
+	return 0;
 }
 ```
 :::
@@ -58,17 +58,17 @@ get swapped in `main`.
 using namespace std;
 
 void swap(int x, int y) {
-    int temp = x;
-    x = y;
-    y = temp;
+	int temp = x;
+	x = y;
+	y = temp;
 }
 
 int main() {
-    int x = 7, y = 13;
-    cout << "Before swap: x = " << x << " y = " << y << endl;
-    swap(x, y);
-    cout << "After swap: x = " << x << " y = " << y << endl;
-    return 0;
+	int x = 7, y = 13;
+	cout << "Before swap: x = " << x << " y = " << y << endl;
+	swap(x, y);
+	cout << "After swap: x = " << x << " y = " << y << endl;
+	return 0;
 }
 ```
 
@@ -77,18 +77,18 @@ swap function.
 
 ```c
 void swap(int* px, int* py) {
-    // *px: *(&(x)) = x in main
-    int temp = *px;
-    *px = *py;
-    *py = temp;
+	// *px: *(&(x)) = x in main
+	int temp = *px;
+	*px = *py;
+	*py = temp;
 }
 
 int main() {
-    int x = 7, y = 13;
-    // &x: address of x
-    // &y: address of y
-    swap(&x, &y);
-    return 0;
+	int x = 7, y = 13;
+	// &x: address of x
+	// &y: address of y
+	swap(&x, &y);
+	return 0;
 }
 ```
 
@@ -106,18 +106,18 @@ I added the `cout` statements to the code below.
 using namespace std;
 
 void swap(int& x, int& y) {
-    // no change
-    int temp = x;
-    x = y;
-    y = temp;
+	// no change
+	int temp = x;
+	x = y;
+	y = temp;
 }
 
 int main() {
-    int x = 7, y = 13;
-    cout << "Before swap: x = " << x << " y = " << y << endl;
-    swap(x, y);
-    cout << "After swap: x = " << x << " y = " << y << endl;
-    return 0;
+	int x = 7, y = 13;
+	cout << "Before swap: x = " << x << " y = " << y << endl;
+	swap(x, y);
+	cout << "After swap: x = " << x << " y = " << y << endl;
+	return 0;
 }
 ```
 
@@ -139,21 +139,21 @@ void printNum(int x);
 int userInputNum();
 
 int main() {
-    int num;
-    num = userInputNum();
-    printNum(num);
-    return 0;
+	int num;
+	num = userInputNum();
+	printNum(num);
+	return 0;
 }
 
 void printNum(int x) {
-    cout << "The number is " << x << endl;
+	cout << "The number is " << x << endl;
 }
 
 int userInputNum() {
-    int x;
-    cout << "Enter integer: ";
-    cin >> x;
-    return x;
+	int x;
+	cout << "Enter integer: ";
+	cin >> x;
+	return x;
 }
 ```
 
@@ -188,10 +188,10 @@ using namespace std;
 #include "input.h"
 
 int main() {
-    int num;
-    num = userInputNum();
-    printNum(num);
-    return 0;
+	int num;
+	num = userInputNum();
+	printNum(num);
+	return 0;
 }
 ```
 
@@ -213,7 +213,7 @@ int userInputNum();
 #include "print.h"
 
 void printNum(int x) {
-    cout << "The number is " << x << endl;
+	cout << "The number is " << x << endl;
 }
 ```
 
@@ -223,10 +223,10 @@ void printNum(int x) {
 #include "input.h"
 
 int userInputNum() {
-    int x;
-    cout << "Enter integer: ";
-    cin >> x;
-    return x;
+	int x;
+	cout << "Enter integer: ";
+	cin >> x;
+	return x;
 }
 ```
 

@@ -1,27 +1,27 @@
+#include <iostream>
 #include <sstream>
 #include <string>
-#include <iostream>
 
 using namespace std;
 
 int main() {
-    int ID;
-    
-    string name;
-    string inputLine = "1001 Joe";
-    
-    // create a string stream initialized with input line
-    stringstream myStringStream(inputLine);
+  int ID;
 
-    myStringStream >> ID; // takes input into ID
-    myStringStream >> name; // takes input into name
+  string name;
+  string inputLine = "1001 Joe";
 
-    cout << "Name: " << name << endl << "ID: " << ID << endl;
+  // create a string stream initialized with input line
+  stringstream myStringStream(inputLine);
 
-    myStringStream << name << ID; 
+  myStringStream >> ID;    // takes input into ID
+  myStringStream >> name;  // takes input into name
 
-    // converts a string stream to a string to print it
-    cout << myStringStream.str() << endl;
+  cout << "Name: " << name << endl << "ID: " << ID << endl;
 
-    return 0;
+  myStringStream << name << ID;
+
+  // converts a string stream to a string to print it
+  cout << myStringStream.str() << endl;
+
+  return 0;
 }

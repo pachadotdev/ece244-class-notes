@@ -79,21 +79,21 @@ void printNum(int x);
 int userInputNum();
 
 int main() {
-    int num;
-    num = userInputNum();
-    printNum(num);
-    return 0;
+	int num;
+	num = userInputNum();
+	printNum(num);
+	return 0;
 }
 
 void printNum(int x) {
-    cout << "The number is " << x << endl;
+	cout << "The number is " << x << endl;
 }
 
 int userInputNum() {
-    int x;
-    cout << "Enter integer: ";
-    cin >> x;
-    return x;
+	int x;
+	cout << "Enter integer: ";
+	cin >> x;
+	return x;
 }
 ```
 
@@ -119,10 +119,10 @@ file.
 #include "input.h"
 
 int main() {
-    int num;
-    num = userInputNum();
-    printNum(num);
-    return 0;
+	int num;
+	num = userInputNum();
+	printNum(num);
+	return 0;
 }
 ```
 
@@ -154,7 +154,7 @@ I added `using namespace std` here to make the code compile.
 using namespace std;
 
 void printNum(int x) {
-    cout << "The number is " << x << endl;
+	cout << "The number is " << x << endl;
 }
 ```
 
@@ -172,10 +172,10 @@ I added `using namespace std` here to make the code compile.
 using namespace std;
 
 int userInputNum() {
-    int x;
-    cout << "Enter integer: ";
-    cin >> x;
-    return x;
+	int x;
+	cout << "Enter integer: ";
+	cin >> x;
+	return x;
 }
 ```
 

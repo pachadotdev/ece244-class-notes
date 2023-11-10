@@ -300,11 +300,11 @@ Example
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Student <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span><span class="op">:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> <span class="op">*</span>grades<span class="op">;</span> string name<span class="op">;</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span><span class="op">:</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        Student<span class="op">();</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        Student<span class="op">(</span><span class="dt">int</span><span class="op">);</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        Student<span class="op">(</span>iprivatent<span class="op">);</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">// the destructor must be public</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">~</span>Student<span class="op">();</span> <span class="co">// no return, like constructors</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                    <span class="co">// no parameters</span></span>
@@ -409,7 +409,7 @@ Pacha’s note
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  ComplexNum<span class="op">*</span> px <span class="op">=</span> <span class="kw">new</span> ComplexNum<span class="op">;</span> <span class="co">// 1</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    ComplexNum<span class="op">*</span> px <span class="op">=</span> <span class="kw">new</span> ComplexNum<span class="op">;</span> <span class="co">// 1</span></span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  px<span class="op">-&gt;</span>next <span class="op">=</span> <span class="kw">new</span> ComplexNum<span class="op">;</span> <span class="co">// 2</span></span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  px<span class="op">-&gt;</span>next<span class="op">-&gt;</span>real <span class="op">=</span> <span class="dv">8</span><span class="op">;</span> <span class="co">// 3</span></span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="kw">delete</span> px<span class="op">;</span> <span class="co">// calls the destructor</span></span>

@@ -96,28 +96,28 @@ With a class
 
 ```cpp
 class Student {
-    private:
+	private:
         int *grades; string name;
-    public:
-        Student();
-        Student(int);
+	public:
+		Student();
+		Student(int);
 };
 
 Student::Student() {
-    grades = nullptr;
+	grades = nullptr;
 }
 
 Student::Student(int numLabs) {
-    grades = new int[numLabs];
+	grades = new int[numLabs];
 }
 
 int main() {
-    // dynamically allocates 3 integers
-    Student x(3);
-    return 0;
+	// dynamically allocates 3 integers
+	Student x(3);
+	return 0;
 
-    // we did not deallocate them
-    // this will create a memory leak!
+	// we did not deallocate them
+	// this will create a memory leak!
 }
 ```
 
@@ -128,22 +128,22 @@ The solution is to define destructors.
 
 ```cpp
 class Student {
-    private:
-        int *grades; string name;
-    public:
-        Student();
-        Student(int);
-        // the destructor must be public
-        ~Student(); // no return, like constructors
-                    // no parameters
+	private:
+		int *grades; string name;
+	public:
+		Student();
+		Student(int);
+		// the destructor must be public
+		~Student(); // no return, like constructors
+					// no parameters
 };
 
 ...
 
 Student::~Student() {
-    if (grades != nullptr) {
-        delete[] grades;
-    }
+	if (grades != nullptr) {
+		delete[] grades;
+	}
 }
 ```
 
@@ -157,10 +157,10 @@ free up this memory space.
 
 ```cpp
 int main() {
-    Student x(3); // dynamically allocates 3 integers
+	Student x(3); // dynamically allocates 3 integers
 
-    return 0; // destructor of x will be called if grades is !nullptr
-              // we will free dynamically allocated space 
+	return 0; // destructor of x will be called if grades is !nullptr
+			  // we will free dynamically allocated space 
 }
 ```
 

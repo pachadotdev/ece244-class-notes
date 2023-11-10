@@ -46,30 +46,30 @@ lecture8 (main) $
 using namespace std;
 
 int main() {
-    ifstream inputFile("myFile.txt");
+		ifstream inputFile("myFile.txt");
 
-    if (inFile.fail()) {
-        cerr << "Can't open file" << endl;
-        return 1;
-    }
+		if (inFile.fail()) {
+				cerr << "Can't open file" << endl;
+				return 1;
+		}
 
-    int num = 0, sum = 0;
+		int num = 0, sum = 0;
 
-    while (!inFile.eof()) {
-        inFile >> num;
+		while (!inFile.eof()) {
+				inFile >> num;
 
-        if (inFile.fail()) {
-            inFile.clear();
-            inFile.ignore(1000, '\n');
-        } else {
-            sum += num;
-        }
+				if (inFile.fail()) {
+						inFile.clear();
+						inFile.ignore(1000, '\n');
+				} else {
+						sum += num;
+				}
 
-    }
+		}
 
-    cout << "Reached end of file" << endl;
-    cout << "The sum is " << sum << endl;
-    return 0;
+		cout << "Reached end of file" << endl;
+		cout << "The sum is " << sum << endl;
+		return 0;
 }
 ```
 
@@ -94,25 +94,25 @@ compile.
 using namespace std;
 
 int main() {
-    int ID;
-    
-    string name;
-    string inputLine = "1001 Joe";
-    
-    // create a string stream initialized with input line
-    stringstream myStringStream(inputLine);
+		int ID;
+		
+		string name;
+		string inputLine = "1001 Joe";
+		
+		// create a string stream initialized with input line
+		stringstream myStringStream(inputLine);
 
-    myStringStream >> ID; // takes input into ID
-    myStringStream >> name; // takes input into name
+		myStringStream >> ID; // takes input into ID
+		myStringStream >> name; // takes input into name
 
-    cout << "Name: " << name << endl << "ID: " << ID << endl;
+		cout << "Name: " << name << endl << "ID: " << ID << endl;
 
-    myStringStream << name << ID; 
+		myStringStream << name << ID; 
 
-    // converts a string stream to a string to print it
-    cout << myStringStream.str() << endl;
+		// converts a string stream to a string to print it
+		cout << myStringStream.str() << endl;
 
-    return 0;
+		return 0;
 }
 ```
 
@@ -161,8 +161,8 @@ variable name.
 
 ```c
 struct Student {
-    string name;
-    int ID;
+		string name;
+		int ID;
 }
 
 struct Student x;
@@ -178,14 +178,14 @@ The definition of a class goes to a header file (e.g. `Student.h`)
 
 ```cpp
 class Student {
-    private:
-        int ID;
-        string name;
+		private:
+				int ID;
+				string name;
 
-    public:
-        void setName(string name);
-        void getName();
-        void print();
+		public:
+				void setName(string name);
+				void getName();
+				void print();
 };
 ```
 
@@ -229,20 +229,20 @@ I also think that `Student.cpp` starts with `#include "Student.h"` instead of
 // scope operator: ::
 // function name: setName
 void Student::setName(string n) {
-    // private member of Student class can be accessed
-    // inside the class implementation
-    name = n;
+		// private member of Student class can be accessed
+		// inside the class implementation
+		name = n;
 }
 
 // Getter or accessor function
 
 string Student::getName() {
-    return name;
+		return name;
 }
 
 void Student::print() {
-    cout << "Student name: " << name << endl;
-    cout << "Student ID: " << ID << endl;
+		cout << "Student name: " << name << endl;
+		cout << "Student ID: " << ID << endl;
 }
 ```
 
@@ -254,21 +254,527 @@ Instatiating and using objects here.
 #include "Student.h"
 
 int main() {
-    // declare 2 objects and allocate memory for them
-    Student x,y;
+		// declare 2 objects and allocate memory for them
+		Student x,y;
 
-    x.setName("Kenya");
-    y.setName("Christina");
+		x.setName("Kenya");
+		y.setName("Christina");
 
-    // x.ID = 2730; gives an error because we cannot access a private member
+		// x.ID = 2730; gives an error because we cannot access a private member
 
-    // y.name = "Salma" same error
+		// y.name = "Salma" same error
 
-    y.print(); // wait! what is the value of ID in Student y?
+		y.print(); // wait! what is the value of ID in Student y?
 
-    return 0;
+		return 0;
 }
 ```
 
 ID in `x` and `y` are not initialized. The solution is defining constructors
 in the next lecture.
+
+## Ungraded homework
+
+Solve the exercises of [Chapter 1: C++ I/O](https://learningcpp.org/chapters/chapter02-io/exercises)
+
+::: {.callout-note icon=false}
+## Exercise 1
+
+Consider the following program.
+
+```cpp
+#include <fstream>
+#include <iostream>
+using namespace std;
+
+int main() {
+	int a;
+	ifstream inFile;
+	inFile.open("input.txt");
+	if (inFile.fail()) {
+		return 1;
+	}
+	while (1) {
+		inFile >> a;
+		if (inFile.fail()) {
+			cout << "failed.." << endl;
+			inFile.clear();
+			inFile.ignore(100, '\n');
+			continue;
+		}
+		cout << "a = " << a << endl;
+		break;
+	}
+	return 0;
+}
+```
+
+Given the following contents of "input.txt", write the output.
+
+Case 1:
+
+```
+1
+2
+3
+```
+
+Case 2:
+
+```
+a32
+b86
+3
+```
+
+Case 3:
+
+```
+a32
+b86 3
+``` 
+:::
+
+::: {.callout-note icon=false collapse="true"}
+## Solution
+
+**Case 1**
+
+```
+a = 1
+```
+
+Explanation:
+
+* The `while (1)` loop is an infinite loop that will continue until it's
+ explicitly broken. 
+* If the file reading operation is successful, the program outputs the value of
+ `a` to the console and then breaks out of the loop with `break;`.
+
+**Case 2**
+
+```
+failed..
+failed..
+a = 3
+```
+
+Explanation:
+
+* The `while(1)` loop will continue until it's explicitly broken.
+* The first two cases fail, because the program read a non-integer value.
+
+**Case 3**
+
+```
+failed..
+failed..
+...
+infinite output
+```
+
+Explanation:
+
+* The `while(1)` loop will continue until it's explicitly broken.
+* It fails for the first two lines and then the loop continues.
+:::
+
+::: {.callout-note icon=false}
+## Exercise 2
+
+Now you remove the `infile.clear()` from the code, so the program becomes:
+
+```cpp
+#include <fstream>
+#include <iostream>
+using namespace std;
+
+int main() {
+	int a;
+	ifstream inFile;
+	inFile.open("input.txt");
+	if (inFile.fail()) {
+		return 1;
+	}
+	while (1) {
+		inFile >> a;
+		if (inFile.fail()) {
+			cout << "failed.." << endl;
+			// inFile.clear(); // COMMENTED OUT
+			inFile.ignore(100, '\n');
+			continue;
+		}
+		cout << "a = " << a << endl;
+		break;
+	}
+	return 0;
+}
+```
+:::
+
+::: {.callout-note icon=false collapse="true"}
+## Solution
+
+**Case 1**
+
+```
+a = 1
+```
+
+**Case 2**
+
+```
+failed..
+failed..
+...
+infinite output
+```
+
+Explanation:
+
+* The input stream is not cleared, so the program will continue to read the
+ same non-integer value.
+
+**Case 3**
+
+```
+failed..
+failed..
+...
+infinite output
+```
+
+Explanation:
+
+* Same as case 2.
+:::
+
+::: {.callout-note icon=false}
+## Exercise 3
+
+Write a C++ function `void readInts()` that repeatedly reads integers from the
+standard input (using `cin`) and then immediately outputs the input integer
+(using `cout`), one integer per line. When a `'.'` character is encountered, the
+function prints the message `Done` on a line by itself and returns. If the user
+enters any characters other than integer digits or the `'.'`, the function
+prints the message `Error` on a line by itself and returns. You may assume the
+user will never enter `eof`.
+
+Thus, for example, if the user enters `51 16 700 .`, the function prints:
+
+```
+51
+16
+700
+Done
+```
+
+However, if the user enters `101 21 13 abc 444`, the function prints:
+
+```
+101
+21
+13
+Error
+```
+:::
+
+::: {.callout-note icon=false collapse="true"}
+## Solution
+
+```cpp
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+void readInts() {
+		int num;
+		cin >> num;
+
+		while (!cin.fail()) {
+				cout << num << endl;
+				cin >> num;
+		}
+
+		cin.clear();
+
+		string chr;
+		cin >> chr;
+
+		if (chr == ".") {
+				cout << "Done" << endl;
+		} else {
+			cout << "Error" << endl;
+		}
+}
+
+int main() {
+		readInts();
+		return 0;
+}
+```
+:::
+
+
+::: {.callout-note icon=false}
+## Exercise 4
+
+Consider the following program that uses `stringstreams` to read a command. The
+command has the following format:
+
+```
+count intArg
+```
+
+The command word is `count` and `intArg` is an integer argument. The command
+must have only one integer argument, e.g `count 3`.
+
+The function `handle_count` performs the reading of the integer value. If the
+integer is valid, it returns `true` and updates the value of `intArg`.
+Otherwise, it returns `false`.
+
+```cpp
+#include <iostream>
+using namespace std;
+#include <sstream>
+#include <string>
+// function prototype
+bool handle_count( <fill in the blank> );
+
+int main() {
+	string line;
+	string command;
+	int intArg;
+	getline(cin, line);
+	stringstream lineStream(line);
+	lineStream >> command;
+	if (command == "count") {
+		if (handle_count( <fill in the blank> )) {
+			cout << "Integer argument is " << intArg << endl;
+			return (0);
+		} else {
+			cout << "Invalid arguments" << endl;
+			return (-1);
+		}
+	} else {
+		cout << "Invalid command" << endl;
+		return (-1);
+	}
+}
+```
+
+1. Determine the number of arguments and the type of each argument and indicate
+		them in the code above in the prototype of the function, `handle_count`.
+		Further, indicate what parameters are passed to the function when it is
+		invoked. Write your answers where indicated in the code above. You may not
+		modify main by adding or removing line, other than by indicating the formal
+		arguments in the function prototype and actual arguments of the function
+		invocation.
+2. Write the header and body of the handle_count function below so it performs
+		as indicated above.
+:::
+
+::: {.callout-note icon=false collapse="true"}
+## Solution
+
+**Part 1**
+
+We need two arguments, a `stringstream` (`lineStream`) and an `int` (`intArg`).
+
+```cpp
+#include <iostream>
+using namespace std;
+#include <sstream>
+#include <string>
+// function prototype
+bool handle_count(stringstream& lineStream, int& intArg);
+
+int main() {
+	string line;
+	string command;
+	int intArg;
+	getline(cin, line);
+	stringstream lineStream(line);
+	lineStream >> command;
+	if (command == "count") {
+		if (handle_count(lineStream, intArg)) {
+			cout << "Integer argument is " << intArg << endl;
+			return (0);
+		} else {
+			cout << "Invalid arguments" << endl;
+			return (-1);
+		}
+	} else {
+		cout << "Invalid command" << endl;
+		return (-1);
+	}
+}
+```
+
+**Part 2**
+
+```cpp
+#include <iostream>
+using namespace std;
+#include <sstream>
+#include <string>
+// function prototype
+bool handle_count(stringstream& lineStream, int& intArg);
+
+int main() {
+	string line;
+	string command;
+	int intArg;
+	getline(cin, line);
+	stringstream lineStream(line);
+	lineStream >> command;
+	if (command == "count") {
+		if (handle_count(lineStream, intArg)) {
+			cout << "Integer argument is " << intArg << endl;
+			return (0);
+		} else {
+			cout << "Invalid arguments" << endl;
+			return (-1);
+		}
+	} else {
+		cout << "Invalid command" << endl;
+		return (-1);
+	}
+}
+
+bool handle_count(stringstream& line, int& intArg) {
+	line >> intArg;
+
+	if (line.fail()) {
+		return false;
+	}
+
+	string dummy;
+	line >> dummy;
+
+	if (line.fail()) {
+		return true;
+	} else {
+		return false;
+	}
+}
+```
+:::
+
+::: {.callout-note icon=false}
+## Exercise 5
+
+For each of the following main functions, indicate the output produced in 
+response to the user entering `1 2 3 4 five` on the keyboard followed by the
+Enter key. Choose only one answer.
+
+**Part 1**
+
+```cpp
+#include <iostream>
+using namespace std;
+int main() {
+	int num = 0;
+	int sum = 0;
+	while (!cin.fail()) {
+		cin >> num;
+		sum = sum + num;
+	}
+	cout << sum << endl;
+	return (0);
+}
+```
+
+1. 6
+2. 10
+3. 14
+4. None; the program runs in an infinite loop
+
+**Part 2**
+
+```cpp
+#include <iostream>
+using namespace std;
+int main() {
+	int num = 0;
+	int sum = 0;
+	bool more = true;
+	while (more) {
+		cin >> num;
+		if (cin.fail())
+			more = false;
+		else
+			sum = sum + num;
+	}
+	cout << sum << endl;
+	return (0);
+}
+```
+
+1. 6
+2. 10
+3. 14
+4. None; the program runs in an infinite loop
+:::
+
+::: {.callout-note icon=false collapse="true"}
+## Solution
+
+**Part 1**
+
+Result: 10 or 14. In some compilers `num` will be unchanged and will be added to the
+sum again.
+
+**Part 2**
+
+Result: 10. `more` will be set to `false` after the first non-integer input.
+:::
+
+::: {.callout-note icon=false}
+## Exercise 6
+
+Write a C++ function `void readInts()` that repeatedly reads integers from the
+standard input (using `cin`) and then immediately outputs the input integer 
+(using `cout`), one integer per line.
+
+When the end-of-file is reached, the function prints the message
+"End of File Reached" on a line by itself before returning. If a non-integer is
+input the function should print the message "Invalid Input" on a line by itself,
+should discard the rest of the stream and should continue reading integers again
+until the end-of-file is reached.
+::: 
+
+::: {.callout-note icon=false collapse="true"}
+## Solution
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+void readInts() {
+	// pass number from cin
+	int num;
+	cin >> num;
+
+	// print until end of file
+	while (!cin.eof()) {
+		if (cin.fail()) {
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << "Invalid Input" << endl;
+			cin >> num;
+		} else {
+			cout << num << endl;
+			cin >> num;
+		}
+	}
+	cout << "End of File Reached" << endl;
+}
+
+int main() {
+	readInts();
+	return 0;
+}
+```

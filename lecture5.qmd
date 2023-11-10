@@ -68,8 +68,8 @@ several times.
 #define A_H
 
 struct A {
-    ...
-}l
+	...
+}
 
 #endif
 ```
@@ -99,7 +99,7 @@ Why do we need header files? Can we just have .cpp files and include it?
 #include "print.cpp"
 
 int main() {
-    ...
+  ...
 }
 ```
 
@@ -109,7 +109,7 @@ int main() {
 #include <iostream>
 
 void printNum(int x) {
-    ...
+	...
 }
 ```
 
@@ -141,10 +141,10 @@ Using `cout` and `cin` from `iostream`.
 using namespace std;
 
 int main() {
-    int x;
-    cout "Hello world" << endl;
-    cin >> x;
-    return 0;
+	int x;
+	cout "Hello world" << endl;
+	cin >> x;
+	return 0;
 }
 ```
 
@@ -160,10 +160,10 @@ Using `ifstream` (input file) and `ofstream` (output file) from `fstream`.
 using namespace std;
 
 int main() {
-    ofstream outFile("myFile.txt");
-    string name = "We are engineers!";
-    outFile << name;
-    outFile.close();
+	ofstream outFile("myFile.txt");
+	string name = "We are engineers!";
+	outFile << name;
+	outFile.close();
 }
 ```
 
@@ -180,20 +180,20 @@ To append a file, use `ofstream outFile("myFile.txt", ios::app);`.
 using namespace std;
 
 int main() {
-    ifstream inputFile;
-    inputFile.open("myFile.txt");
+	ifstream inputFile;
+	inputFile.open("myFile.txt");
 
-    // or ifstream inputFile("myFile.txt");
-    // to replace the two lines above
+	// or ifstream inputFile("myFile.txt");
+	// to replace the two lines above
 
-    int num1, num2, num3;
-    
-    // input from file
-    inputFile >> num1 >> num2 >> num3;
+	int num1, num2, num3;
+	
+	// input from file
+	inputFile >> num1 >> num2 >> num3;
 
-    inputFile.close();
+	inputFile.close();
 
-    return 0;
+	return 0;
 }
 
 Where to find the file?
@@ -267,8 +267,8 @@ int main() {
 
 // Function definition
 void hello(int i) {
-    cout << "Hello !" << i << endl;
-    return;
+	cout << "Hello !" << i << endl;
+	return;
 }
 ```
 :::
@@ -332,11 +332,11 @@ for each function)
 
 ```cpp
 void swap_by_p(int* a, int* b) {
-    ...
+	...
 }
 
 void swap_by_r(int& a, int& b) {
-    ...
+	...
 }
 ```
 
@@ -357,25 +357,25 @@ of x and y, using swap_by_r.
 using namespace std;
 
 void swap_by_p(int* a, int* b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
 void swap_by_r(int& a, int& b) {
-    int temp = a;
-    a = b;
-    b = temp;
+	int temp = a;
+	a = b;
+	b = temp;
 }
 
 int main() {
-    int x = 200;
-    int y = 100;
-    swap_by_p(&x, &y);
-    cout << x << " " << y << endl;
-    swap_by_r(x, y);
-    cout << x << " " << y << endl;
-    return 0;
+	int x = 200;
+	int y = 100;
+	swap_by_p(&x, &y);
+	cout << x << " " << y << endl;
+	swap_by_r(x, y);
+	cout << x << " " << y << endl;
+	return 0;
 }
 ```
 :::
@@ -396,7 +396,7 @@ puts them into different files below. The main function is in the main.cpp.
 #include "student.h"
 
 class ECE{
-    ...
+	...
 };
 
 #endif
@@ -408,7 +408,7 @@ class ECE{
 #include "ECE.h"
 
 ECE::ECE() {
-    ...
+	...
 }
 ```
 
@@ -418,7 +418,7 @@ ECE::ECE() {
 #include <string>
 
 class Student {
-    ...
+	...
 };
 ```
 
@@ -428,7 +428,7 @@ class Student {
 #include "student.h"
 
 Student::Student() {
-    ...
+	...
 }
 ```
 
@@ -439,7 +439,7 @@ Student::Student() {
 #include "student.h"
 
 int main() {
-    ...
+	...
 }
 ```
 
@@ -485,7 +485,7 @@ The solution is to add a header guard to `student.h`.
 #include <string>
 
 class Student {
-    ...
+	...
 };
 ```
 
@@ -529,7 +529,7 @@ definition/implementation files are error-free.
 #define FIRST_H
 
 class First {
-    ...
+	...
 };
 #endif
 ```
@@ -540,7 +540,7 @@ class First {
 #include “First.h”
 
 First::First() {
-    ...
+	...
 }
 ```
 

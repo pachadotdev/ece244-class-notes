@@ -25,10 +25,10 @@ Using `cout` and `cin` from `iostream`.
 using namespace std;
 
 int main() {
-    int x;
-    cout << "Hello world" << endl;
-    cin >> x;
-    return 0;
+  int x;
+  cout << "Hello world" << endl;
+  cin >> x;
+  return 0;
 }
 ```
 
@@ -44,10 +44,10 @@ Using `ifstream` and `ofstream` from `fstream`.
 using namespace std;
 
 int main() {
-    ofstream outFile("output.txt");
-    string name = "We are engineers!";
-    outFile << name;
-    outFile.close();
+  ofstream outFile("output.txt");
+  string name = "We are engineers!";
+  outFile << name;
+  outFile.close();
 }
 ```
 
@@ -64,20 +64,20 @@ To append to a file, use `outFile.open("output.txt", ios::app)`.
 using namespace std;
 
 int main() {
-    ifstream inputFile;
-    inputFile.open("myFile.txt");
+  ifstream inputFile;
+  inputFile.open("myFile.txt");
 
-    // or ifstream inputFile("myFile.txt");
-    // to replace the two lines above
+  // or ifstream inputFile("myFile.txt");
+  // to replace the two lines above
 
-    int num1, num2, num3;
+  int num1, num2, num3;
 
-    // input from file
-    inputFile >> num1 >> num2 >> num3;
+  // input from file
+  inputFile >> num1 >> num2 >> num3;
 
-    inputFile.close();
+  inputFile.close();
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -149,10 +149,10 @@ What should you do?
 #include <fstream>
 
 int main() {
-    ifstream inputFile("myFile.txt"); // error 1
-    int a,b;
-    inputFile >> a >> b; // error 2 and 3
-    return 0;
+  ifstream inputFile("myFile.txt"); // error 1
+  int a,b;
+  inputFile >> a >> b; // error 2 and 3
+  return 0;
 }
 ```
 
@@ -162,9 +162,9 @@ int main() {
 #include <iostream>
 
 int main() {
-    int a;
-    cin >> a; // error 2 and 3
-    return 0;
+  int a;
+  cin >> a; // error 2 and 3
+  return 0;
 }
 ```
 
@@ -198,8 +198,8 @@ Detecting a failure
 // after ifstream inputFile("myFile.txt"); ...
 
 if (inputFile.fail()) {
-    cerr << "Cannot open file" << endl;
-    return 1;
+  cerr << "Cannot open file" << endl;
+  return 1;
 }
 ```
 :::

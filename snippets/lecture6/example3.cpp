@@ -3,18 +3,18 @@
 using namespace std;
 
 int main() {
-    ifstream inputFile;
-    inputFile.open("myFile.txt");
+  ifstream inputFile;
+  inputFile.open("myFile.txt");
 
-    // or ifstream inputFile("myFile.txt");
-    // to replace the two lines above
+  // or ifstream inputFile("myFile.txt");
+  // to replace the two lines above
 
-    int num1, num2, num3;
+  int num1, num2, num3;
 
-    // input from file
-    inputFile >> num1 >> num2 >> num3;
+  // input from file
+  inputFile >> num1 >> num2 >> num3;
 
-    inputFile.close();
+  inputFile.close();
 
-    return 0;
+  return 0;
 }

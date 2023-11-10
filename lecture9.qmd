@@ -39,23 +39,23 @@ I also added `endl` after `cout` for the same reason as in lecture 8.
 using namespace std;
 
 int main() {
-    int ID;
-    string name, inputLine;
-    getline (cin, inputLine);
+	int ID;
+	string name, inputLine;
+	getline (cin, inputLine);
 
-    stringstream ss;
-    // write into ss
-    ss << inputLine;
+	stringstream ss;
+	// write into ss
+	ss << inputLine;
 
-    // or stringstream ss(inputLine);
+	// or stringstream ss(inputLine);
 
-    // read from ss
-    ss >> ID; // ID reads 1001
-    ss >> name; // name reads Joe
+	// read from ss
+	ss >> ID; // ID reads 1001
+	ss >> name; // name reads Joe
 
-    cout << ss.str() << endl; // ss still has content written to it "1001 Joe"
+	cout << ss.str() << endl; // ss still has content written to it "1001 Joe"
 
-    return 0;
+	return 0;
 }
 ```
 
@@ -77,8 +77,8 @@ variable name.
 
 ```c
 struct Student {
-    string name;
-    int ID;
+	string name;
+	int ID;
 }
 
 struct Student x;
@@ -111,14 +111,14 @@ The definition of a class goes to a header file (e.g. `Student.h`).
 
 ```cpp
 class Student {
-    private:
-        int ID;
-        string name;
+	private:
+		int ID;
+		string name;
 
-    public:
-        void setName(string name);
-        void getName();
-        void print();
+	public:
+		void setName(string name);
+		void getName();
+		void print();
 };
 ```
 
@@ -162,20 +162,20 @@ I also think that `Student.cpp` starts with `#include "Student.h"` instead of
 // scope operator: ::
 // function name: setName
 void Student::setName(string n) {
-    // private member of Student class can be accessed
-    // inside the class implementation
-    name = n;
+	// private member of Student class can be accessed
+	// inside the class implementation
+	name = n;
 }
 
 // Getter or accessor function
 
 string Student::getName() {
-    return name;
+	return name;
 }
 
 void Student::print() {
-    cout << "Student name: " << name << endl;
-    cout << "Student ID: " << ID << endl;
+	cout << "Student name: " << name << endl;
+	cout << "Student ID: " << ID << endl;
 }
 ```
 
@@ -187,19 +187,19 @@ Instatiating and using objects here.
 #include "Student.h"
 
 int main() {
-    // declare 2 objects and allocate memory for them
-    Student x,y;
+	// declare 2 objects and allocate memory for them
+	Student x,y;
 
-    x.setName("Kenya");
-    y.setName("Christina");
+	x.setName("Kenya");
+	y.setName("Christina");
 
-    // x.ID = 2730; gives an error because we cannot access a private member
+	// x.ID = 2730; gives an error because we cannot access a private member
 
-    // y.name = "Salma" same error
+	// y.name = "Salma" same error
 
-    y.print(); // wait! what is the value of ID in Student y?
+	y.print(); // wait! what is the value of ID in Student y?
 
-    return 0;
+	return 0;
 }
 ```
 
@@ -211,13 +211,13 @@ The solution is to define a constructor.
 
 ```cpp
 class Student {
-    private:
-        int ID;
-        string name;
-    
-    public:
-        Student(); // constructor
-        void setName(string name);
-        ...
+	private:
+		int ID;
+		string name;
+	
+	public:
+		Student(); // constructor
+		void setName(string name);
+		...
 }
 ```

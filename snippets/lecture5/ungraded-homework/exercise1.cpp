@@ -2,7 +2,7 @@
 using namespace std;
 
 // Forward function
-void hello(int i);  
+void hello(int i);
 
 int main() {
   hello(1);
@@ -11,6 +11,6 @@ int main() {
 
 // Function definition
 void hello(int i) {
-    cout << "Hello !" << i << endl;
-    return;
+  cout << "Hello !" << i << endl;
+  return;
 }
