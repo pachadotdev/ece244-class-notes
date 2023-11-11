@@ -227,6 +227,8 @@ Solve the exercises of [Chapter 1: Programming Basics](https://learningcpp.org/c
 ::: {.callout-note icon=false}
 ## Exercise 1
 
+Question 2 in Fall 2022 Midterm Exam [Easy]
+
 When you compile the following program, what happens? If there is an error,
 explain what the error is (one sentence max).
 
@@ -276,6 +278,8 @@ void hello(int i) {
 ::: {.callout-note icon=false}
 ## Exercise 2
 
+Question 4 in Fall 2022 Midterm Exam [Easy]
+
 Which is the output of the following program?
 
 ```cpp
@@ -317,6 +321,8 @@ original value.
 
 ::: {.callout-note icon=false}
 ## Exercise 3
+
+Question 6 in Fall 2022 Midterm Exam [Easy]:
 
 Compared to C, passing by reference is introduced in C++. Both of the following
 two functions can be used to swap the value of two integers:
@@ -382,6 +388,8 @@ int main() {
 
 ::: {.callout-note icon=false}
 ## Exercise 4
+
+Question 7 in Fall 2022 Midterm Exam [Easy]
 
 Ellie writes a program to make a simple database for ECE students who like
 drinking soy milk from 2T2 to 2T6. She designs two classes: student and ECE, and
@@ -511,6 +519,8 @@ g++ student.o ECE.o main.o -o small_database
 
 ::: {.callout-note icon=false collapse="true"}
 ## Exercise 5
+
+Question 2 Fall 2018 Midterm Exam
 
 You are given a program that has a main function and 3 classes: First, Second
 and Third. For each of these classes, you have a definition file and an

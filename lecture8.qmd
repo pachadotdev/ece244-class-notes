@@ -275,10 +275,12 @@ in the next lecture.
 
 ## Ungraded homework
 
-Solve the exercises of [Chapter 1: C++ I/O](https://learningcpp.org/chapters/chapter02-io/exercises)
+Solve the exercises of [Chapter 2: C++ I/O](https://learningcpp.org/chapters/chapter02-io/exercises)
 
 ::: {.callout-note icon=false}
 ## Exercise 1
+
+Question 5 in Fall 2022 Midterm Exam [Easy]
 
 Consider the following program.
 
@@ -452,6 +454,8 @@ Explanation:
 ::: {.callout-note icon=false}
 ## Exercise 3
 
+Question 2 in Fall 2021 Final Exam [Intermediate]
+
 Write a C++ function `void readInts()` that repeatedly reads integers from the
 standard input (using `cin`) and then immediately outputs the input integer
 (using `cout`), one integer per line. When a `'.'` character is encountered, the
@@ -519,6 +523,8 @@ int main() {
 
 ::: {.callout-note icon=false}
 ## Exercise 4
+
+Question 3 in Fall 2018 Midterm Exam [Intermediate]
 
 Consider the following program that uses `stringstreams` to read a command. The
 command has the following format:
@@ -665,6 +671,8 @@ bool handle_count(stringstream& line, int& intArg) {
 ::: {.callout-note icon=false}
 ## Exercise 5
 
+Question 6 in Fall 2019 Midterm Exam [Intermediate]
+
 For each of the following main functions, indicate the output produced in 
 response to the user entering `1 2 3 4 five` on the keyboard followed by the
 Enter key. Choose only one answer.
@@ -733,6 +741,8 @@ Result: 10. `more` will be set to `false` after the first non-integer input.
 
 ::: {.callout-note icon=false}
 ## Exercise 6
+
+Question 7 in Fall 2019 Midterm Exam [Intermediate]
 
 Write a C++ function `void readInts()` that repeatedly reads integers from the
 standard input (using `cin`) and then immediately outputs the input integer 

@@ -167,3 +167,574 @@ Complex Complex::operator+(const Complex& rhs) const {
 	return Complex(real + rhs.real, img + rhs.img);
 }
 ```
+
+## Ungraded homework
+
+Solve the exercises of [Chapter 4: Pointers](https://learningcpp.org/chapters/chapter04-pointers/exercises)
+and [Chapter 5: Dynamic Memory Allocation](https://learningcpp.org/chapters/chapter05-dynamic-mem-alloc/exercises).
+
+### Chapter 4
+
+::: {.callout-note icon=false}
+## Exercise 1
+
+Question 9 in Fall 2022 Midterm Exam [Intermediate]
+
+Write down the standard output of the following program. Remember to write two 
+“Check Point”, since partial marks are given based on these “stop points”. You
+might find it helpful to write down the memory layout.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int i[5] = {0, 2, 4, 6, 8};
+int* p;
+
+void foo() {
+  cout << *p << endl;
+  ++(*p);
+  ++p;
+}
+
+void bar() {
+  for (int i = 0; i < 3; ++i) {
+    foo();
+  }
+}
+
+int main() {
+  p = i;
+  bar();
+  cout << "Check Point 1" << endl;
+  p = i;
+  foo();
+  cout << "Check Point 2" << endl;
+  return 0;
+}
+```
+:::
+
+::: {.callout-note icon=false collapse="true"}
+## Solution
+
+In `main()`, `bar()` calls `foo()`.
+
+In `foo()`:
+
+* `cout << *p << endl` is used to output the value pointed to by `p`.
+The `*` operator is used to dereference the pointer, i.e., to get the value that
+`p` is pointing to.
+* Next, `++(*p)` is executed. This line increments the value pointed to by `p`.
+The parentheses are necessary because the `++` operator has a higher priority
+than the `*` operator. Without the parentheses, `p` would be incremented before
+its value is retrieved.
+* Finally, `++p` increments the pointer `p` itself, not the value it points to,
+and `p` now points to the next memory location.
+* This will print `0 2 4` before the first checkpoint.
+
+In `main()`, `foo()` will print `i[0]`, which was incremented to `1`, before the
+second checkpoint.
+
+The output is:
+
+```
+0
+2
+4
+Check Point 1
+1
+Check Point 2
+```
+:::
+
+::: {.callout-note icon=false}
+## Exercise 2
+
+Question 3 in Fall 2021 Final Exam [Intermediate]
+
+Consider the following code snippet that manipulates pointers in a main function of a C++ program.
+
+```cpp
+int* p = nullptr;
+int* q = nullptr;
+int* r = nullptr;
+int** t = &p;
+int** s = &q;
+r = p;
+p = new int;
+q = new int;
+*p = 5;
+*q = 2;
+**s = *p + **t;
+```
+
+Which of the following statements (that come after the above snippets executes) prints 5 to the standard output? You may assume iostream is included and the std namespace is used. Choose all correct answers.
+
+```cpp
+cout << r;
+cout << *t;
+cout << *q;
+cout << *p;
+cout << **t;
+cout << *r;
+cout << *s;
+cout << (**s) / 2;
+```
+:::
+
+::: {.callout-note icon=false collapse="true"}
+## Solution
+
+`t` and `s` are pointers to pointers.
+
+`r` is a `nullptr`.
+
+`p` and `q` point to memory for integers on the heap, these values are set to
+`5` and `2`.
+
+`**s` is equal to `10`, it adds the values pointed by `p` and `t` (`t` is equal
+to `p`).
+
+`**s` points to the memory location pointed by `q`.
+
+We can pass the snippet to a function:
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+  int* p = nullptr;
+  int* q = nullptr;
+  int* r = nullptr;
+  int** t = &p;
+  int** s = &q;
+  r = p;
+  p = new int;
+  q = new int;
+  *p = 5;
+  *q = 2;
+  **s = *p + **t;
+
+  cout << "r " << r << endl;
+  cout << "*t " << *t << endl;
+  cout << "*q " << *q << endl;
+  cout << "*p " << *p << endl;
+  cout << "**t " << **t << endl;
+  // cout << "*r " << *r << endl; // segmentation fault
+  cout << "*s " << *s << endl;
+  cout << "(**s) / 2 " << (**s) / 2 << endl;
+
+  return 0;
+}
+```
+
+The output is:
+
+```
+r 0
+*t 0x55e631f6ceb0
+*q 10
+*p 5
+**t 5
+*s 0x55e631f6ced0
+```
+
+The statements that print `5` are:
+```cpp
+cout << *p;
+cout << **t;
+cout << (**s) / 2;
+```
+:::
+
+::: {.callout-note icon=false}
+## Exercise 3
+
+Question 4 in Fall 2018 Midterm Exam [Intermediate]
+
+Consider the following `main` function. The line numbers to the left are for
+reference and are not part of the code.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+  int* first_ptr;
+  int* second_ptr;
+  int** p_ptr;
+  first_ptr = new int;
+  second_ptr = new int;
+  p_ptr = &first_ptr;
+  *first_ptr = 4;
+  *second_ptr = 8;
+  second_ptr = *p_ptr;
+  cout << *first_ptr << " " << *second_ptr << endl;
+  delete first_ptr;
+  delete second_ptr;
+  delete *p_ptr;
+  return (0);
+}
+```
+
+1. What is the output produced by `cout` on line 14 of the code.
+2. The program may have a problem with it. What is the problem, if any? Circle only one answer.
+  1. The program has no problem with it.
+	2. The program has a memory leak.
+	3. The delete on line 17 should not dereference p_ptr, but use it directly.
+	4. The program deletes the same region of memory more than once.
+	5. 2 and 3.
+	6. 2 and 4.
+	7. 2, 3 and 4.
+:::
+
+::: {.callout-note icon=false collapse="true"}
+## Solution
+
+1. The output is `4 4`.
+2. There is a memory leak, `second_ptr = *p_ptr` was called without freeing
+ the memory it was pointing to. `first_ptr` and `second_ptr` point to the same
+ memory location, so `delete first_ptr` and `delete second_ptr` are equivalent.
+ `delete *p_ptr` is equivalent to `delete first_ptr` and `delete second_ptr`.
+ Therefore, 2, 3 and 4 are correct.
+
+The correct code would be:
+
+```cpp
+int main() {
+  ...
+  delete first_ptr;
+  first_ptr = nullptr;
+	second_ptr = nullptr;
+  return 0;
+}
+```
+:::
+
+::: {.callout-note icon=false}
+## Exercise 4
+
+Question 2 in Fall 2017 Midterm Exam [Intermediate]
+
+Consider the following program.
+
+```cpp
+class Point {
+  int x;
+  int y;
+
+ public:
+  Point(int i, int j);
+  Point increment_x();
+  Point increment_y();
+  void print() const;
+};
+
+Point::Point(int i, int j) {
+  x = i;
+  y = j;
+}
+
+Point Point::increment_x() {
+  ++x;
+  return *this;
+}
+
+Point Point::increment_y() {
+  ++y;
+  return *this;
+}
+
+void Point::print() const {
+  cout << "(" << x << "," << y << ")" << endl;
+}
+
+int main() {
+  Point a(2, 3);
+  // Evaluation is done left to right
+  a.increment_x().increment_y().print();
+  a.print();
+  return 0;
+}
+```
+
+Assuming the C++ compiler does not optimize away copying of objects. Write the
+output produced by the program.
+:::
+
+::: {.callout-note icon=false collapse="true"}
+## Solution
+
+`this` is a pointer to the object itself.
+
+`increment_x()` would increase the value of `x` by 1 and return a copy of the
+original object.
+
+`increment_y()` would increase the value of `y` by 1 on the copy of the object
+returned by `increment_x()`.
+
+`a.increment_x().increment_y().print()` returns `(3, 4)` and only the change
+to `x` was permanent.
+
+`a.print()` returns `(3, 3)`.
+:::
+
+### Chapter 5
+
+::: {.callout-note icon=false}
+## Exercise 1
+
+Question 3 in Fall 2022 Midterm Exam [Easy]
+
+Consider the following C++ function:
+
+```cpp
+void AvadaKedavra(int n) {
+  int size = n + 1;
+  int* q = NULL;
+  for (int i = 0; i < 3; ++i) {
+    q = new int[size];
+  }
+}
+```
+
+If somewhere in your main function you call `AvadaKedavra(1)`. Based on the
+memory layout discussed during the lecture, answer this question: from the time
+this function starts to execute to the time right before it returns, how many
+bytes are newly allocated on the stack and the heap, respectively?
+
+You may assume:
+
+1. All variables are put in the main memory.
+2. An int takes 4 bytes.
+3. We have a 32-bit machine.
+:::
+
+::: {.callout-note icon=false collapse="true"}
+## Solution
+
+**Stack** 4 bytes for `n`, 4 bytes for `size`, 4 bytes for `q`, 4 bytes for `i`.
+Total: 16 bytes.
+
+**Heap** 4 bytes for each `q`, 3 times, and each `q` consists in 2 integers.
+Total: 24 bytes.
+:::
+
+::: {.callout-note icon=false}
+## Exercise 2
+
+Question 9 in Fall 2021 Midterm Exam [Intermediate]
+
+Consider the code shown below. You can assume it compiles with no errors and runs.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int a = 0;
+int* b = &a;
+int** c = &b;
+
+int* foo(int** d) {
+  (**d)++;
+  b = *d;
+  int* e = new int;
+  *e = 10;
+  return e;
+}
+
+int main() {
+  int* g = nullptr;
+  int* f = new int;
+  *f = 5;
+  a++;
+
+  // Point 1
+
+  g = foo(&f);
+  a++;
+  (*g)++;
+
+  // Point 2
+
+  return 0;
+}
+```
+
+In the table below, give the values of the variables indicated in the table
+columns when program execution reaches each of the two points, Point 1 and Point
+2. If a value cannot be obtained due to dereferencing a nullptr pointer, write
+nullptr (but assume the program does not stop).
+```
+
+|         | a | *b | **c | *g | *f |
+|---------|---|----|-----|----|----|
+| Point 1 |   |    |     |    |    |
+| Point 2 |   |    |     |    |    |
+:::
+
+::: {.callout-note icon=false collapse="true"}
+## Solution
+
+|         | a | *b | **c | *g      | *f |
+|---------|---|----|-----|---------|----|
+| Point 1 | 1 | 1  | 1   | nullptr | 5  |
+| Point 2 | 2 | 6  | 6   | 11      | 6  |
+:::
+
+::: {.callout-note icon=false}
+## Exercise 3
+
+Question 10 in Fall 2022 Midterm Exam [Challenging]
+
+A Vtuber is an online entertainer who posts videos on Vtube. A Vtuber will have
+followers on Vtube. As a programmer from Vtube, you are asked to implement a
+class for Vtuber. The class definition and description are described below.
+
+```cpp
+#include <string>
+using namespace std;
+
+class Follower {
+ private:
+  string name;
+  int age;
+
+ public:
+  Follower(const string& _name, int _age) {
+    name = name_;
+    age = age_;
+  }
+  string get_name() const { return name; }
+  int get_age() const { return age; }
+};
+
+class Vtuber {
+ private:
+  // Vtuber Name
+  string name;
+  // Follower array with a variable size, each element should be a dynamically
+  // allocated object of class Follower.
+  Follower** followers;
+  // The size of follower array.
+  int follower_max;
+  // Number of followers
+  int follower_num;
+
+ public:
+  Vtuber(const string& _name);
+  ~Vtuber();
+  void insert_follower(const string& follower_name, int follower_age);
+  void remove_follower(const string& follower_name);
+};
+```
+
+Specifically, Vtuber’s followers member variable is an array of pointers, each
+pointer pointing to a Follower object. The following graph illustrates it.
+
+<img src="diagrams/lecture14-diagram1.png" alt="diagrams/lecture14-diagram1.png">
+
+**Part 1**
+
+Implement the constructor for Vtuber. Vtuber name should be initialized by 
+`_name`, and `follower_max` should be initialized to 2. In addition, you should
+allocate an array called `followers` using `new`, with an initial size of 2 (the
+value of `follower_max`). Every element in this array should be a pointer to an
+object of class `Follower` and initialize all these pointers to `NULL`.
+
+**Part 2**
+
+Every Vtuber in `Vtube` can get new followers or lose their current followers.
+This is implemented by two methods: `insert_follower` and `remove_follower`. Now
+you are asked to implement these two methods:
+
+1. For `remove_follower`, a follower name is given. If there is any follower in
+the array matching the name, you should remove it and free its memory using
+`delete`. You can assume the follower names are all unique.
+2. For `remove_follower`, a follower name is given. If there is any follower in
+the array matching the name, you should remove it and free its memory using
+`delete`. You can assume the follower names are all unique.
+
+**Part 3**
+
+Implement the destructor for the `Vtuber` class. You should free all the
+dynamically allocated objects using delete. Remember to be consistent with your
+previous implementation, as the entire program should not trigger any
+segmentation fault.
+:::
+
+::: {.callout-note icon=false collapse="true"}
+## Solution
+
+**Part 1**
+
+```cpp
+Vtuber::Vtuber (const string& _name) {
+  name = _name;
+  follower_max = 2;
+  followers = new Follower* [follower_max];
+  for (int i = 0; i < follower_max; ++i) {
+    followers[i] = NULL;
+  }
+}
+```
+
+**Part 2**
+
+```cpp
+void Vtuber::insert_follower(const string& follower_name,
+int follower_age) {
+  ++follower_num;
+  for (int i = 0; i < follower_max; ++i) {
+    if (followers[i] == NULL) {
+      followers[i] = new Follower(follower_name, follower_age);
+      return;
+    }
+  }
+  Follower** new_followers = new Follower* [follower_max * 2];
+  for (int i = 0; i < follower_max; ++i) {
+    new_followers[i] = followers[i];
+    new_followers[i + follower_max] = NULL;
+  }
+  new_followers[follower_max] = new Follower(follower_name, follower_age);
+  delete [] followers;
+  followers = new_followers;
+  follower_max *= 2;
+  return;
+}
+```
+
+```cpp
+void Vtuber::remove_follower(const string& follower_name) {
+ for (int i = 0; i < follower_max; ++i) {
+   if (followers[i] == NULL) {
+      continue;
+   }
+   if (followers[i]->get_name() == follower_name) {
+     delete followers[i];
+     followers[i] = NULL;
+     --follower_num;
+     break;
+   }
+  }
+  return;  
+}
+```
+
+**Part 3**
+
+```cpp
+Vtuber::~Vtuber() {
+  for (int i = 0; i < follower_max; ++i) {
+    if (followers[i] != NULL) {
+      delete followers[i];
+      followers[i] = nullptr;
+    }
+  }
+  delete [] followers;
+  followers = nullptr;
+}
+```
+:::
