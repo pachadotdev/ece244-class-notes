@@ -2,13 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="104.09234mm"
-   height="60.16457mm"
-   viewBox="0 0 104.09234 60.164569"
+   width="89.720947mm"
+   height="54.649902mm"
+   viewBox="0 0 89.720948 54.649902"
    version="1.1"
    id="svg4467"
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
-   sodipodi:docname="lecture11-diagram2.svg"
+   sodipodi:docname="lecture13-diagram10.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,9 +25,9 @@
      inkscape:document-units="mm"
      showgrid="false"
      showguides="true"
-     inkscape:zoom="3.3638608"
-     inkscape:cx="155.47611"
-     inkscape:cy="127.53203"
+     inkscape:zoom="2.3786088"
+     inkscape:cx="176.5738"
+     inkscape:cy="134.11201"
      inkscape:window-width="1904"
      inkscape:window-height="1003"
      inkscape:window-x="1928"
@@ -35,58 +35,62 @@
      inkscape:window-maximized="0"
      inkscape:current-layer="g465"
      inkscape:pageshadow="2"
-     inkscape:guide-bbox="true">
+     inkscape:guide-bbox="true"
+     fit-margin-top="3"
+     fit-margin-left="3"
+     fit-margin-right="3"
+     fit-margin-bottom="3">
     <sodipodi:guide
-       position="13.268022,53.543722"
+       position="14.374236,55.261335"
        orientation="1,0"
        id="guide5652"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="15.925167,42.192322"
+       position="17.031381,43.909935"
        orientation="1,0"
        id="guide5722"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="35.067601,39.643162"
+       position="36.173815,41.360775"
        orientation="1,0"
        id="guide5724"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="39.699901,31.377493"
+       position="40.806115,33.095106"
        orientation="1,0"
        id="guide5812"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="37.51714,28.844073"
+       position="38.623354,30.561686"
        orientation="1,0"
        id="guide5814"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="46.207144,35.793464"
+       position="47.313358,37.511077"
        orientation="0,-1"
        id="guide1787" />
     <sodipodi:guide
-       position="46.231983,29.037635"
+       position="47.338197,30.755248"
        orientation="0,-1"
        id="guide1789" />
     <sodipodi:guide
-       position="46.182304,42.549293"
+       position="47.288518,44.266906"
        orientation="0,-1"
        id="guide1793" />
     <sodipodi:guide
-       position="20.758371,8.7701485"
+       position="21.864585,10.487762"
        orientation="1,0"
        id="guide2275" />
     <sodipodi:guide
-       position="46.2568,8.7701485"
+       position="47.363014,10.487762"
        orientation="1,0"
        id="guide2277" />
     <sodipodi:guide
-       position="46.2568,8.7701484"
+       position="47.363014,10.487762"
        orientation="0,-1"
        id="guide2416" />
     <sodipodi:guide
-       position="46.2568,15.525978"
+       position="47.363014,17.243591"
        orientation="0,-1"
        id="guide2882" />
   </sodipodi:namedview>
@@ -95,15 +99,15 @@
     <marker
        style="overflow:visible"
        id="TriangleOutM"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="TriangleOutM"
        inkscape:isstock="true">
       <path
          transform="scale(0.4)"
-         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
-         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
          id="path25813" />
     </marker>
   </defs>
@@ -111,7 +115,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-16.765289,-30.055964)">
+     transform="translate(-15.659075,-37.288245)">
     <g
        id="g465"
        transform="matrix(1.3333333,0,0,1.3333333,-6.0884303,-10.518655)">
@@ -119,13 +123,13 @@
          xml:space="preserve"
          style="font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#cd8282;stroke:#000000;stroke-width:0.3;stroke-dasharray:none"
          x="38.256413"
-         y="40.17289"
+         y="40.569763"
          id="text5590"><tspan
            sodipodi:role="line"
            id="tspan5588"
            style="fill:#000000;stroke:none;stroke-width:0.3"
            x="38.256413"
-           y="40.17289">Heap</tspan></text>
+           y="40.569763">Heap</tspan></text>
       <path
          style="fill:none;stroke:#000000;stroke-width:0.3;stroke-dasharray:0.9, 0.9;stroke-dashoffset:0"
          d="M 32.690456,58.843039 H 51.83289"
@@ -142,12 +146,12 @@
            x="38.250053"
            y="74.397644">Stack</tspan></text>
       <path
-         style="fill:none;stroke:#000000;stroke-width:0.22500001;stroke-miterlimit:4;stroke-dasharray:none"
+         style="fill:none;stroke:#000000;stroke-width:0.225;stroke-miterlimit:4;stroke-dasharray:none"
          d="M 32.709068,43.642423 V 68.976781 H 51.83289 V 43.642423 Z"
          id="path2649" />
       <path
          style="fill:#1b248f;stroke:#000000;stroke-width:0.225;stroke-miterlimit:4;stroke-dasharray:none"
-         d="m 32.709068,43.642423 v 5.066872 H 51.83289 v -5.066872 z"
+         d="m 32.709067,43.642423 v 5.066872 h 19.123822 v -5.066872 z"
          id="path3389" />
       <path
          style="fill:#3e3c5f;stroke:#000000;stroke-width:0.225;stroke-miterlimit:4;stroke-dasharray:none"
@@ -198,14 +202,18 @@
       <text
          xml:space="preserve"
          style="font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;stroke:none;stroke-width:0.225;stroke-miterlimit:4;stroke-dasharray:none"
-         x="19.799452"
-         y="46.984028"
+         x="18.261423"
+         y="47.359509"
          id="text26406"><tspan
            sodipodi:role="line"
            id="tspan26404"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#000000;stroke:none;stroke-width:0.225"
-           x="19.799452"
-           y="46.984028">lost</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;stroke:none;stroke-width:0.225"
+           x="18.261423"
+           y="47.359509">lost</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.225;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#TriangleOutM)"
+         d="m 25.588506,46.175859 h 4.689503"
+         id="path29630" />
     </g>
   </g>
 </svg>

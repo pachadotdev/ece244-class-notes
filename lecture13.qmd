@@ -215,3 +215,86 @@ int main() {
 	arr2p = NULL;
 }
 ```
+
+## Read at home: Recap on Memory Management Issues
+
+### Losing access to a dynamically allocated space
+
+```cpp
+int *p = new int;
+*p = 100;
+p = new int; // memory leak
+```
+
+<img src="diagrams/lecture13-diagram10.svg" alt="diagrams/lecture13-diagram10.svg">
+
+Solution: Have a `delete` before making `p` point to a new memory space.
+
+```cpp
+int *p = new int;
+*p = 100;
+delete p;
+p = new int;
+```
+
+### Access a freed memory space
+
+```cpp
+int *p = new int;
+*p = 100;
+delete p;
+*p = 3; // challenging to debug
+```
+
+Solution: It is a good practice to set the pointer to `NULL` or `nullptr` after
+`delete`.
+
+### Dereference an undefined pointer
+
+```cpp
+int *p;
+int y;
+y = *p; // p has garbage address
+				// defeferencing will access a garbage address
+```
+
+### Double free
+
+```cpp
+int *p = new int;
+delete p;
+...
+delete p; // double free
+```
+
+### Delete a variable stored on the stack
+
+```cpp
+int x = 4;
+int *p;
+p = &x;
+delete p; // x is on stack, you can't delete it
+```
+
+### Type mismatch assignment
+
+```
+int** <- int*,
+int* <- int**,
+int** <- int,
+int* <- int
+```
+
+```cpp
+int *p, *q;
+int **pp;
+
+// pp: int**
+// p: int*
+pp = p; // type mismatch int** <- int*
+
+// *p: p
+pp = *p; // type mismatch int** <- int
+
+p = pp; // type mismatch int* <- int**
+```

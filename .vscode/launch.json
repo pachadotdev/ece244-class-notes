@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/pacha/github/ece244-class-notes/snippets/lecture8/ungraded-homework",
-      "program": "/home/pacha/github/ece244-class-notes/snippets/lecture8/ungraded-homework/build/Debug/outDebug",
+      "cwd": "/home/pacha/github/ece244-class-notes/snippets/lecture12",
+      "program": "/home/pacha/github/ece244-class-notes/snippets/lecture12/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
