@@ -551,5 +551,40 @@
     "title": "Lecture 13 - Oct 5, 2023",
     "section": "Read at home: Recap on Memory Management Issues",
     "text": "Read at home: Recap on Memory Management Issues\n\nLosing access to a dynamically allocated space\nint *p = new int;\n*p = 100;\np = new int; // memory leak\n\nSolution: Have a delete before making p point to a new memory space.\nint *p = new int;\n*p = 100;\ndelete p;\np = new int;\n\n\nAccess a freed memory space\nint *p = new int;\n*p = 100;\ndelete p;\n*p = 3; // challenging to debug\nSolution: It is a good practice to set the pointer to NULL or nullptr after delete.\n\n\nDereference an undefined pointer\nint *p;\nint y;\ny = *p; // p has garbage address\n                // defeferencing will access a garbage address\n\n\nDouble free\nint *p = new int;\ndelete p;\n...\ndelete p; // double free\n\n\nDelete a variable stored on the stack\nint x = 4;\nint *p;\np = &x;\ndelete p; // x is on stack, you can't delete it\n\n\nType mismatch assignment\nint** &lt;- int*,\nint* &lt;- int**,\nint** &lt;- int,\nint* &lt;- int\nint *p, *q;\nint **pp;\n\n// pp: int**\n// p: int*\npp = p; // type mismatch int** &lt;- int*\n\n// *p: p\npp = *p; // type mismatch int** &lt;- int\n\np = pp; // type mismatch int* &lt;- int**"
+  },
+  {
+    "objectID": "lecture14.html#summary",
+    "href": "lecture14.html#summary",
+    "title": "Lecture 14 - Oct 6, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we continue on our discussion of dynamic memory allocation of arrays of objects. We also introduce the concept of operator overloading."
+  },
+  {
+    "objectID": "lecture14.html#last-lecture",
+    "href": "lecture14.html#last-lecture",
+    "title": "Lecture 14 - Oct 6, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nDynamic memory allocation of arrays."
+  },
+  {
+    "objectID": "lecture14.html#today",
+    "href": "lecture14.html#today",
+    "title": "Lecture 14 - Oct 6, 2023",
+    "section": "Today",
+    "text": "Today\nContinue dynamic memory allocation of objects and operator overloading."
+  },
+  {
+    "objectID": "lecture14.html#dynamic-allocation",
+    "href": "lecture14.html#dynamic-allocation",
+    "title": "Lecture 14 - Oct 6, 2023",
+    "section": "Dynamic allocation",
+    "text": "Dynamic allocation\nCan we dynamically allocate an array of objects? Yes\nclass Student {\n    public:\n        string name;\n        int ID;\n        Student() { ID = 0; name = \"\"; }\n        ~Student() { cout &lt;&lt; \"Destructor\" &lt;&lt; endl; }\n};\n\nint main() {\n    Student *arr = new Student[3]; // default constructor called 3 times\n    delete [] arr; // destructor called 3 times\n    return 0; // no destructor will be called without delete\n}\nCan I have an array of pointers to objects? Yes\n\nint main() {\n    // no constructors called\n    Student** arr2p = new Student* [3];\n\n...\n\n...\n\nfor (int i = 0, i &lt; 3; i++) {\n    arr2p[i] = new Student;\n}\n\n...\n\n...\n\nfor (int i = 0, i &lt; 3; i++) {\n    arr2p[i]-&gt;ID = i + 1;\n}\n\n...\n\n...\n\nfor (int i = 0, i &lt; 3; i++) {\n    delete arr2p[i];\n}\n\n...\n\n...\n\ndelete [] arr2p;\narr2p = NULL;"
+  },
+  {
+    "objectID": "lecture14.html#overloading-operators--",
+    "href": "lecture14.html#overloading-operators--",
+    "title": "Lecture 14 - Oct 6, 2023",
+    "section": "Overloading operators (+, -, *, /)",
+    "text": "Overloading operators (+, -, *, /)\nConsider this class\nclass Complex {\n    private:\n        double real;\n        double img;\n    public:\n        Complex() { real = 0.0; img = 0.0; }\n        Complex(double r, double i) { real = r; img = i; }\n};\n\nint main() {\n    Complex x(3,4);\n    Complex y(5,6);\n    Complex z;\n    z = x + y; // I can't do this now\n    return 0;\n}\nOperator overloading allows for z = x + y.\nThere are two operators: = and +.\nLet’s implement a function that does an addition.\nx + y is also equivalent to x.operator+(y).\n// return type: Complex\n// function name: operator+\nComplex Complex::operator+(Complex &rhs) {\n    return Complex(real + rhs.real, img + rhs.img);\n}\n\nclass Complex P{\n    private:\n        double real;\n        double img;\n    public:\n        Complex() { real = 0.0; img = 0.0; }\n        Complex(double r, double i) { real = r; img = i; }\n        // pass by reference: Complex&\n        Complex operator+(Complex& rhs);\n}\nPassing by value will create a copy of the rhs.\nThis is memory inefficient if the object has many data members.\nPass by value will not create a copy, so it is memory efficient.\n\nGood practices for safety\n\nPass the object as a constant object\nComplex Complex::operator+(const Complex& rhs) {\n    rhs.real = 0; // compile-time error!\n    return Complex(real + rhs.real, img + rhs.img);\n}\n\n\nOperator+ does not change members of the object\nUse const modifier to prevent changes to members of the object.\nComplex Complex::operator+(const Complex& rhs) const {\n    real = 0; // compile-time error!\n    return Complex(real + rhs.real, img + rhs.img);\n}"
   }
 ]

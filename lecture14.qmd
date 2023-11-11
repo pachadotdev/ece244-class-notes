@@ -1,0 +1,169 @@
+# Lecture 14 - Oct 6, 2023
+
+## Summary
+
+In this lecture, we continue on our discussion of dynamic memory allocation of
+arrays of objects. We also introduce the concept of operator overloading.
+
+## Last lecture
+
+Dynamic memory allocation of arrays.
+
+## Today
+
+Continue dynamic memory allocation of objects and operator overloading.
+
+## Dynamic allocation
+
+Can we dynamically allocate an array of objects? Yes
+
+```cpp
+class Student {
+	public:
+		string name;
+		int ID;
+		Student() { ID = 0; name = ""; }
+		~Student() { cout << "Destructor" << endl; }
+};
+
+int main() {
+	Student *arr = new Student[3]; // default constructor called 3 times
+	delete [] arr; // destructor called 3 times
+	return 0; // no destructor will be called without delete
+}
+```
+
+Can I have an array of pointers to objects? Yes
+
+<img src="diagrams/lecture13-diagram6.svg" alt="diagrams/lecture13-diagram6.svg">
+
+```cpp
+int main() {
+	// no constructors called
+	Student** arr2p = new Student* [3];
+
+...
+```
+
+<img src="diagrams/lecture13-diagram7.svg" alt="diagrams/lecture13-diagram7.svg">
+
+```cpp
+...
+
+for (int i = 0, i < 3; i++) {
+	arr2p[i] = new Student;
+}
+
+...
+```
+
+<img src="diagrams/lecture13-diagram8.svg" alt="diagrams/lecture13-diagram8.svg">
+
+```cpp
+...
+
+for (int i = 0, i < 3; i++) {
+	arr2p[i]->ID = i + 1;
+}
+
+...
+```
+
+<img src="diagrams/lecture13-diagram9.svg" alt="diagrams/lecture13-diagram9.svg">
+
+```cpp
+...
+
+for (int i = 0, i < 3; i++) {
+	delete arr2p[i];
+}
+
+...
+```
+
+<img src="diagrams/lecture13-diagram10.svg" alt="diagrams/lecture13-diagram10.svg">
+
+```cpp
+...
+
+delete [] arr2p;
+arr2p = NULL;
+```
+
+## Overloading operators (+, -, *, /)
+
+Consider this class
+
+```cpp
+class Complex {
+	private:
+		double real;
+		double img;
+	public:
+		Complex() { real = 0.0; img = 0.0; }
+		Complex(double r, double i) { real = r; img = i; }
+};
+
+int main() {
+	Complex x(3,4);
+	Complex y(5,6);
+	Complex z;
+	z = x + y; // I can't do this now
+	return 0;
+}
+```
+
+Operator overloading allows for `z = x + y`.
+
+There are two operators: `=` and `+`.
+
+Let's implement a function that does an addition.
+
+`x + y` is also equivalent to `x.operator+(y)`.
+
+```cpp
+// return type: Complex
+// function name: operator+
+Complex Complex::operator+(Complex &rhs) {
+	return Complex(real + rhs.real, img + rhs.img);
+}
+
+class Complex P{
+	private:
+		double real;
+		double img;
+	public:
+		Complex() { real = 0.0; img = 0.0; }
+		Complex(double r, double i) { real = r; img = i; }
+		// pass by reference: Complex&
+		Complex operator+(Complex& rhs);
+}
+```
+
+Passing by value will create a copy of the rhs.
+
+This is memory inefficient if the object has many data members.
+
+Pass by value will not create a copy, so it is memory efficient.
+
+### Good practices for safety
+
+#### Pass the object as a constant object
+
+```cpp
+Complex Complex::operator+(const Complex& rhs) {
+	rhs.real = 0; // compile-time error!
+	return Complex(real + rhs.real, img + rhs.img);
+}
+```
+
+#### Operator+ does not change members of the object
+
+Use `const` modifier to prevent changes to members of the object.
+
+```cpp
+Complex Complex::operator+(const Complex& rhs) const {
+	real = 0; // compile-time error!
+	return Complex(real + rhs.real, img + rhs.img);
+}
+```
