@@ -1,0 +1,180 @@
+# Lecture 15 - Oct 10, 2023
+
+## Summary
+
+In this lecture, we continue our discussion on operator overloading. We also
+discuss when we need friend functions. 
+
+## Last lecture
+
+Dynamic memory allocation and operator overloading.
+
+## Today
+
+`operator=` and `operator<<`.
+
+## Operator overloading
+
+Recall `operator+`: `x + y <=> x.operator+(y)`.
+
+```cpp
+class Complex {
+  private:
+    double real;
+    double img;
+  public:
+    Complex() { real = 0.0; img = 0.0; }
+    Complex(double r, double i) { real = r; img = i; }
+
+    // pass by reference to avoid copying
+    // memory efficient
+    Complex operator+(const Complex& c) const {
+      return Complex(real + c.real, img + c.img);
+    }
+}
+```
+
+Passing by value will create a copy of rhs.
+
+This is memory inefficient if the object has many data members.
+
+Pass by reference will not create a copy, so it is memory efficient.
+
+## Good practice for safety
+
+### Pass the object as a const object
+
+```cpp
+Complex Complex::operator+(const Complex& rhs) {
+  rhs.real = 0; // compile-time error!
+  return Complex(real + rhs.real, img + rhs.img);
+}
+```
+
+::: {.callout-note icon=false}
+## Pacha's note
+
+Inside the function, the line `rhs.real = 0;` attempts to modify the `real`
+member of `rhs`. Because `rhs` is a constant reference, it cannot be modified.
+This is why the comment indicates a compile-time error. The compiler will not 
+allow this code to compile because it violates the const-correctness rule.
+:::
+
+### Operator plus does not change members of the object
+
+Use `const` modifier to prevent changes to members of the object.
+
+```cpp
+Complex Complex::operator+(const Complex& rhs) const {
+  real = 0; // compile-time error!
+  return Complex(real + rhs.real, img + rhs.img);
+}
+
+int main() {
+  Complex x(3,5), y(4,6), z;
+  z = x + y; // now we have operator=
+}
+```
+
+## Overloading operator equal
+
+By default, `operator=` is there. It sets all the data members in the object to
+the data members of the right hand side object.
+
+How does the default assignment `operator=` look like?
+
+`z = x` (left hand side = right hand side) is equivalent to `z.operator=(x)`.
+
+How to allow chain assignments?
+
+`y = (z = x)` should return object `z`.
+
+This is a **keyword** and a pointer pointing to the object on which the function
+was invoked (i.e., `z` in `z = x`).
+
+```cpp
+// Return by reference: Complex&, which is the object itself
+Complex& Complex::operator=(const Complex& rhs) {
+  real = rhs.real;
+  img = rhs.img;
+  return *this; // returns object z
+}
+```
+
+::: {.callout-note icon=false}
+## Pacha's note
+
+`this` is a pointer to the object on which the function was invoked. In this
+case, it is a pointer to `z`. `*this` is the object itself.
+:::
+
+## Overloading operator insertion
+
+```cpp
+Complex z(3,4);
+
+// with standard operator <<
+// RHS: Complex
+// LHS: ostream (not Complex)
+cout << z;
+```
+
+`cout` is an object of `ostream` class.
+
+`operator<<` cannot be a member function of complex, since LHS is of type
+`ostream`.
+
+`operator<<` cannot be a non-member function as it has to access private members
+of `Complex`.
+
+Solution: `operator<<` can be a `friend` function.
+
+A `friend` function can access private members of an object, and `LHS` can be a
+non-complex type.
+
+```cpp
+class Complex {
+  ...
+
+  public:
+    friend ostream& operator<<(ostream& os, const Complex& x);
+};
+
+ostream& operator<<(ostream& os, const Complex& x) {
+  os << "(" << x.real << "," << x.img << ")";
+  return os;
+}
+```
+
+Remember that `operator<<` is not a member, so there is no need for `Complex::`.
+
+```cpp
+int main() {
+  Complex z(3,4);
+  cout << "z = "<< z << endl;
+}
+```
+
+<img src="diagrams/lecture15-diagram1.svg" alt="diagrams/lecture15-diagram1.svg">
+
+`cout` is returned to allow chained `cout`.
+
+`cout` (and all other streams) cannot be passed or returned by value. Only by
+reference, as their copy constructor is deleted.
+
+## Exercise
+
+Implement `operator==`.
+
+```cpp
+class Complex {
+  ...
+
+  public:
+    ...
+    
+    bool operator==(const Complex& rhs) const {
+      return (real == rhs.real) && (img == rhs.img);
+    }
+};
+```

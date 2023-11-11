@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="76.180534mm"
+   height="33.644768mm"
+   viewBox="0 0 76.180534 33.644769"
+   version="1.1"
+   id="svg34701"
+   sodipodi:docname="lecture15-diagram1.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview34703"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     fit-margin-top="3"
+     fit-margin-left="3"
+     fit-margin-right="3"
+     fit-margin-bottom="3"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="126.92567"
+     inkscape:cy="17.324116"
+     inkscape:window-width="1920"
+     inkscape:window-height="1043"
+     inkscape:window-x="1920"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1866"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1">
+    <sodipodi:guide
+       position="39.530208,25.828775"
+       orientation="0,-1"
+       id="guide76004" />
+    <sodipodi:guide
+       position="3.1499983,33.303255"
+       orientation="1,0"
+       id="guide77654" />
+    <sodipodi:guide
+       position="37.810416,32.311067"
+       orientation="1,0"
+       id="guide79152" />
+    <sodipodi:guide
+       position="50.841145,20.470963"
+       orientation="1,0"
+       id="guide89144" />
+  </sodipodi:namedview>
+  <defs
+     id="defs34698">
+    <marker
+       style="overflow:visible"
+       id="TriangleOutM"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path23811" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Send"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Send"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.3,0,0,-0.3,0.69,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
+         id="path23699" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-137.36243,-93.948981)">
+    <g
+       id="g1866">
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;stroke-width:0.264583"
+         x="140.17006"
+         y="100.18806"
+         id="text57380"><tspan
+           sodipodi:role="line"
+           id="tspan57378"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+           x="140.17006"
+           y="100.18806"><tspan
+   style="fill:#181c57"
+   id="tspan17956">cout &lt;&lt; &quot;z = &quot;</tspan> &lt;&lt; z &lt;&lt; endl;</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;stroke-width:0.264583"
+         x="140.17006"
+         y="112.09428"
+         id="text4206"><tspan
+           sodipodi:role="line"
+           id="tspan4204"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+           x="140.17006"
+           y="112.09428"><tspan
+   style="fill:#181c57"
+   id="tspan46990">cout           &lt;&lt; z</tspan> &lt;&lt; endl;</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;stroke-width:0.264583"
+         x="140.17006"
+         y="124.0005"
+         id="text4210"><tspan
+           sodipodi:role="line"
+           id="tspan4208"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+           x="140.17006"
+           y="124.0005"><tspan
+   style="fill:#181c57"
+   id="tspan95054">cout</tspan>                &lt;&lt; endl;</tspan></text>
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3"
+         d="m 140.51243,101.76497 h 34.66041"
+         id="path84129" />
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;marker-end:url(#TriangleOutM)"
+         d="m 142.49671,102.303 c 0,2.79175 0,4.17825 0,4.17825"
+         id="path84378" />
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 140.51243,113.82595 h 47.69114"
+         id="path84518" />
+      <path
+         style="fill:#181c57;stroke:#181c57;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 140.51243,101.76497 v -0.81315"
+         id="path97307" />
+      <path
+         style="fill:#181c57;stroke:#181c57;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 175.17284,101.76497 v -0.81315"
+         id="path97389" />
+      <path
+         style="fill:#181c57;stroke:#181c57;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="M 140.51243,113.82595 V 113.0128"
+         id="path97391" />
+      <path
+         style="fill:#181c57;stroke:#181c57;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+         d="M 188.20357,113.82595 V 113.0128"
+         id="path97393" />
+      <path
+         style="fill:none;stroke:#181c57;stroke-width:0.3;marker-end:url(#TriangleOutM)"
+         d="m 142.49671,114.20922 c 0,2.79175 0,4.17825 0,4.17825"
+         id="path97608" />
+    </g>
+  </g>
+</svg>

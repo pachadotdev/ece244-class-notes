@@ -157,6 +157,15 @@ Complex Complex::operator+(const Complex& rhs) {
 }
 ```
 
+::: {.callout-note icon=false}
+## Pacha's note
+
+Inside the function, the line `rhs.real = 0;` attempts to modify the `real`
+member of `rhs`. Because `rhs` is a constant reference, it cannot be modified.
+This is why the comment indicates a compile-time error. The compiler will not 
+allow this code to compile because it violates the const-correctness rule.
+:::
+
 #### Operator+ does not change members of the object
 
 Use `const` modifier to prevent changes to members of the object.
