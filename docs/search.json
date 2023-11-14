@@ -971,5 +971,117 @@
     "title": "Lecture 21 - Oct 24, 2023",
     "section": "Past exam questions",
     "text": "Past exam questions\n\nFall 2019 - Q14\nThe following class is used to create objects that represent ordinary fractions n/d, consisting of a numerator n and a denominator d.\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nclass Fraction {\n  private:\n    int numerator;\n    int denominator;\n\n  public:\n    Fraction(int num, int denm);\n    int getNumerator();\n    int getDenominator();\n    void setNumerator(int num);\n    void setDenominator(int denm);\n    void print();\n};\n\nFraction::Fraction(int num, int denm) {\n  numerator = num;\n\n  // should check that denm is not 0, but ignore for now\n  denominator = denm;\n}\n\nint Fraction::getNumerator() {\n  return numerator;\n}\n\nint Fraction::getDenominator() {\n  return denominator;\n}\n\nvoid Fraction::setNumerator(int num) {\n  numerator = num;\n}\n\nvoid Fraction::setDenominator(int denm) {\n  // should check that denm is not 0, but ignore for now\n  denominator = denm;\n}\n\nvoid Fraction::print() {\n  cout &lt;&lt; numerator &lt;&lt; \"/\" &lt;&lt; denominator &lt;&lt; endl;\n}\nDefine the operator overloads for the operation:\nFraction X(1,5);\nFraction Y(4,6);\n...\n\n___ = X * Y; // the first multiply operation\n___ = X * 2; // the second multiply operation\nThe first operator is:\nFraction::Fraction operator*(Fraction& rhs) {\n  Fraction w(numerator * rhs.numerator, denominator * rhs.denominator);\n  return w;\n}\nThe second operator is:\nFraction::Fraction operator*(int x) {\n  Fraction w(x * rhs.numerator, denominator);\n  return w;\n}\n\n\nFall 2018 - Q7\nThe following is the definition/implementation of a class called Foo.\nclass Foo {\n  private:\n    int priv;\n\n  public:\n    Foo(int pv) { priv = pv; }\n    \n    Foo(const Foo src) { priv = src.priv; }\n    \n    Foo& operator=(Foo& rhs) {\n      priv = src.priv;\n      return this;\n    }\n\n    int getPriv() { return priv; }\n\n    void setPriv(int pv) { priv = pv; }\n};\nCompiling the above definition/implementation results in one or more errors. Re-write the class so it is error-free. Write your answer (the entire definition/implementation).\nThe code requires the following corrections:\n// Foo(const Foo src) { priv = src.priv; }\nFoo(const Foo& src) { priv = src.priv; }\n    \nFoo& operator=(Foo& rhs) {\n  priv = src.priv;\n  // return this;\n  return *this;\n}\nI cannot return a local variable by reference.\n\n\nFall 2021 Final - Q7\nIt is desired to implement an efficient deletion function in a linked list. You are given a linked list pointed to by head and a pointer node to a node in a linked list, which is guaranteed not to be the last node in the list (i.e., not the tail node). Write a function removeNode that removed this node from the list. You should not iterathe the nodes in the list.\nYou may assume the following is the definition of the class, ListNode. The head node of the linked list is pointed to by head.\nclass ListNode {\n  public:\n    int key;\n    ListNode *next;\n};\n\nListNode* head;\nYou are not allowed to change the function’s argument or return type.\nvoid removeNode(ListNode *node) {\n  ...\n}\nThe solution is to copy the data from the next node into the current node, and then delete the next node.\nvoid removeNode(ListNode *node) {\n  ListNode *n = node-&gt;next;\n  node-&gt;key = n-&gt;key;\n  node-&gt;next = n-&gt;next;\n  delete n;\n}"
+  },
+  {
+    "objectID": "lecture22.html#today",
+    "href": "lecture22.html#today",
+    "title": "Lecture 22 - Oct 26, 2023",
+    "section": "Today",
+    "text": "Today\nMidterm.\nHere is some music for coding."
+  },
+  {
+    "objectID": "lecture23.html#summary",
+    "href": "lecture23.html#summary",
+    "title": "Lecture 23 - Oct 23, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we introduce recursion, and we discuss how to think recursively."
+  },
+  {
+    "objectID": "lecture23.html#last-lecture",
+    "href": "lecture23.html#last-lecture",
+    "title": "Lecture 23 - Oct 23, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nMidterm revision."
+  },
+  {
+    "objectID": "lecture23.html#today",
+    "href": "lecture23.html#today",
+    "title": "Lecture 23 - Oct 23, 2023",
+    "section": "Today",
+    "text": "Today\nRecursion."
+  },
+  {
+    "objectID": "lecture23.html#recursion",
+    "href": "lecture23.html#recursion",
+    "title": "Lecture 23 - Oct 23, 2023",
+    "section": "Recursion",
+    "text": "Recursion\nRecursion is a programming technique that involves solving a problem by breaking it into a smaller problem repeatedly until it is small enough to be solved easily. Solutions of smaller problems can then be combined to form the solution of the original bigger problem.\n\n\n\n\n\n\nExample\n\n\n\nWrite a function that gets the factorial of n recursively.\n\\[\\begin{eqnarray*}\nn! &= n \\times (n - 1) \\times (n - 2) \\times \\cdots \\times 3 \\times 2 \\times 1 \\\\\nn! &= n \\times (n - 1)! \\\\\n4! &= 4 \\times 3! = 3 \\times 2! = 2 \\times 1! = 2\n\\end{eqnarray*}\\]\n\nRecursively get the factorial of a smaller number.\nRepeat until we reach the terminating case.\nCombine the solutions to get the bigger problem’s solutions.\n\nint factorial(int n) {\n  if (n == 1 || n == 0) {\n    return 1; // base case\n  } else {\n    return n * factorial(n - 1); // recursive case\n  }\n}\n\nint main() {\n  int f = factorial(3); // f = 6\n  return 0;\n}\nThe call to factorial(3) would create recursive function calls.\nint factorial(int 3) {\n  if (3 == 1 || 3 == 0) {\n    return 1; // base case\n  } else {\n    return 3 * factorial(3 - 1); // recursive case\n  }\n}\n\n  int factorial(int 2) {\n    if (2 == 1 || 2 == 0) {\n      return 1; // base case\n    } else {\n      return 2 * factorial(2 - 1); // recursive case\n    }\n  }\n\n    int factorial(int 1) {\n      if (1 == 1 || 1 == 0) {\n        return 1; // base case\n      } else {\n        return 1 * factorial(1 - 1); // recursive case\n      }\n    }\n\n\n\n\n\n\n\n\n\nExample\n\n\n\nGiven an array of n integers, sum the elements of the array.\nsumOfArray(0-&gt;4) = array[0] + sumOfArray(1-&gt;4)\nsumOfArray(1-&gt;4) = array[1] + sumOfArray(2-&gt;4)\n...\n\nint sumOfArray(int a[], int left, int right) {\n  if (left == right) {\n    return a[left];\n  } else {\n    return a[left] + sumOfArray(a, left + 1, right);\n  }\n}\n\nWe need to communicate to the next recursive function call from where should we\nstart adding and until where (e.g. `left` and `right`).\n:::\n\n::: {.callout-note icon=false}\n## Example\n\nPrint nodes in a linked list recursively.\n\n&lt;img src=\"diagrams/lecture18-diagram1.svg\" alt=\"diagrams/lecture18-diagram1.svg\"&gt;\n\n```cpp\nclass Node {\n  public:\n    int data;\n    Node* head;\n};\n\nvoid rprint(Node* p) {\n  if (p == NULL) {\n    return; // base case\n  } else {\n    cout &lt;&lt; p-&gt;data;\n    rprint(p-&gt;next); // recursive case\n  }\n}\n\nint main() {\n  List L;\n  ...\n\n  rprint(L-&gt;getHead()); // L-&gt;getHead() = Node*\n  ...\n  \n}"
+  },
+  {
+    "objectID": "lecture26.html#today",
+    "href": "lecture26.html#today",
+    "title": "Lecture 26 - Nov 14, 2023",
+    "section": "Today",
+    "text": "Today\nInheritance is a oillar of object-oriented programming.\nInheriting/acquiring all properties and behaviours of a parent class.\nIn Person.h:\nclass Person {\n  private:\n    string name;\n    int age;\n\n  public:\n    Person() { name = \"\"; age = 0; }\n    Person(string n, int a) { name = n; age = a; }\n    void setName(string n) { name = n; }\n    void print() {\n      cout &lt;&lt; \"Name: \" &lt;&lt; name &lt;&lt; endl;\n      cout &lt;&lt; \"Age: \" &lt;&lt; age &lt;&lt; endl;\n    }\n};\nI want to create a class Student. The data for this class should be: name, age, and ID. The functions should be: setName(), print(), and setNameID().\nI can reuse some of the code.\nOption 1: From scratch.\nOption 2: Copy and paste code from Person class and add setNameID(). The issues are:\n\nUnderstand all details of Person.\nIf you change Person, no changes will be reflected to Student.\n\nOption 3: Inherit from Person. The benefits are:\n\nRe-use code.\nNeed to understand what Person does.\n\nPerson is a base class.\nStudent is a derived class.\nIn Student.h:\nclass Student : public Person {\n  private:\n    int id;\n\n  // age and name are innaccessible\n\n  // we don't inherit constructors of Person\n\n  public:\n    Student() : Person() { id = 0; }\n\n    // setName is inherited\n    void setNameID(string n, int d) {\n      Person::setName(n);\n      id = d;\n    }\n\n    // method overriding: replace/redefine the inherited print() from Person\n    // we define our own version for Student\n    void print() {\n      cout &lt;&lt; \"ID: \" &lt;&lt; id &lt;&lt; endl;\n\n      // I can't access age and name\n      Person::print();\n    }\n};\nIn main.cpp:\n#include \"Person.h\"\n#include \"Student.h\"\n\nusing namespace std;\n\nint main() {\n  Person p(\"Joe\", 23);\n\n  // name and age are inaccessible\n  Student s;\n\n  // 1. we construct Person object\n  // 2. On top of it, we construct Student object\n\n  // setName is inherited from Person, so we can call it on Student\n  s.setName(\"Ryan\");\n\n  s.setNameID(\"Marina\", 125);\n}"
+  },
+  {
+    "objectID": "lecture26.html#summary",
+    "href": "lecture26.html#summary",
+    "title": "Lecture 26 - Nov 14, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we continue our discussion on complexity analysis, and how we get evaluate the big-O of recursive functions."
+  },
+  {
+    "objectID": "lecture24.html#summary",
+    "href": "lecture24.html#summary",
+    "title": "Lecture 24 - Oct 23, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we discuss backtracking in recursion through solving a maze."
+  },
+  {
+    "objectID": "lecture24.html#last-lecture",
+    "href": "lecture24.html#last-lecture",
+    "title": "Lecture 24 - Oct 23, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nRecursion."
+  },
+  {
+    "objectID": "lecture24.html#today",
+    "href": "lecture24.html#today",
+    "title": "Lecture 24 - Oct 23, 2023",
+    "section": "Today",
+    "text": "Today\nBacktracking."
+  },
+  {
+    "objectID": "lecture24.html#backtracking",
+    "href": "lecture24.html#backtracking",
+    "title": "Lecture 24 - Oct 23, 2023",
+    "section": "Backtracking",
+    "text": "Backtracking\nWe have 2D array called Maze, which has the map of the maze, as in the next diagram.\n\nBlank spaces means there is a path.\nColoured spaces means there is a wall.\nWe want to leave a trail of * showing a path from “Duck” to “E”.\nIdea. If maze[i][j] is a valid step to E, then one of maze[i+1][j], maze[i-1][j], maze[i][j+1], or maze[i][j-1] is also a step to E.\n\nWe starrt with the location of “Duck”: maze[i][j].\nIs 0 &lt;= i &lt;= 4 and 0 &lt;= j &lt;= 4?\nIf yes, check if maze[i+1][j] is a valid step to E.\nOr if maze[i-1][j] is a valid step to E.\nOr if maze[i][j+1] is a valid step to E.\nOr if maze[i][j-1] is a valid step to E.\nIf yes, maze[i][j] == '*'.\nIf no, nothing changes.\n\nbool solveMaze(int row, int col) {\n  // return false if maze[row][col] is not a valid step to E\n  // true otherwise\n\n  if (row &lt; 0 || row &gt;= height) || col &lt; 0 || col &gt;= width) {\n    // outside bounds of array\n    return false;\n  }\n\n  if (maze[row][col] == \"E\") {\n    // reached exit\n    return true;\n  }\n\n  if (maze[row][col] != \"\") {\n    // reached a wall or path again '*'\n    return false;\n  }\n\n  maze[row][col] = \"*\";\n\n  if (solveMaze(row + 1, col)) {\n    return true;\n  }\n\n  if (solveMaze(row - 1, col)) {\n    return true;\n  }\n\n  if (solveMaze(row, col + 1)) {\n    return true;\n  }\n\n  if (solveMaze(row, col - 1)) {\n    return true;\n  }\n\n  // if we get here then none of the 4 directions was a valid step to \"E\"\n\n  maze[row][col] = \"\";\n  return false;\n}\nConsider the next diagram.\n\nThe code to solve the maze is:\nsolveMaze(0, 0);\n |- maze[0][0] = \"*\"\n |- solveMaze(1, 0)\n     |- maze[1][0] = \"*\"\n     |- solveMaze(2,0)\n     |   |- return false: wall\n     |- solveMaze(0, 0)\n     |   |- return false: cycle\n     |- solveMaze(1, 1)\n         |- maze[1][1] = \"*\"\n         |- solveMaze(2, 1)\n             |- maze[2][1] = \"*\"\n             |- solveMaze(3, 1)\n                 |- maze[3][1] = \"*\"\n                 |- solveMaze(4,1)\n                 |   |- maze[4][1] = \"*\"\n                 |   |- return false: outside bounds\n                 |- solveMaze(2, 1)\n                 |   |- return false: cycle\n                 |- solveMaze(3, 2)\n                 |   |- maze[3][2] = \"*\"\n                 |   |- solveMaze(4, 2)\n                 |   |   |- return false: outside bounds\n                 |   |- solveMaze(3, 3)\n                 |   |   |- maze[3][3] = \"*\"\n                 |   |   |- solveMaze(4, 3)\n                 |   |   |   |- return false: outside bounds\n                 |   |   |- solveMaze(2, 3)\n                 |   |   |   |- return false: wall\n                 |   |   |- solveMaze(3, 4)\n                 |   |   |   |- return false: outside bounds\n                 |   |   |- solveMaze(3, 2)\n                 |   |   |   |- return false: wall\n                 |   |   |- maze[3][3] = \"\"\n                 |   |   |- return false\n                 |   |- solveMaze(3,1)\n                 |   |   |- return false: cycle\n                 |   |- maze[3][2] = \"\"\n                 |   |- return false\n                 |- solveMaze(3, 0)\n                     |- maze[3][0] = \"*\"\n                     |- return true\nAt any point in time, the number of “*” was the depth of recursion!"
+  },
+  {
+    "objectID": "lecture25.html#summary",
+    "href": "lecture25.html#summary",
+    "title": "Lecture 25 - Nov 2, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we start discussing how to evaluate the performance of algorithms based on time complexity."
+  },
+  {
+    "objectID": "lecture25.html#last-lecture",
+    "href": "lecture25.html#last-lecture",
+    "title": "Lecture 25 - Nov 2, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nBacktracking."
+  },
+  {
+    "objectID": "lecture25.html#today",
+    "href": "lecture25.html#today",
+    "title": "Lecture 25 - Nov 2, 2023",
+    "section": "Today",
+    "text": "Today\nComplexity analysis - time."
+  },
+  {
+    "objectID": "lecture25.html#algorithm",
+    "href": "lecture25.html#algorithm",
+    "title": "Lecture 25 - Nov 2, 2023",
+    "section": "Algorithm",
+    "text": "Algorithm\nThe set of steps to solve a problem. For example, find a number in a list.\n\nLinear search: Worst case scenario, the number we search for will be the last number. We will need to make \\(n\\) comparisons.\nBinary search: We assume the array is ordered. We start looking in the middle. If the number we are searching for is smaller, look left. Otherwise, look right. With every comparison, you throw 1/2 of the remaining array. Worst case is when you break the array several times until the remaining element is just one. The number of comparisons is given by \\(\\frac{n}{2^x} = 1 \\implies n = 2^x \\implies x = \\log_2(n)\\).\n\nThe time it takes to run a program, depends on your computer power, nature of data, compiler, programming language, and input size.\nHowever, the choice of your algorithm matters! If you get a faster computer for a slow algorithm, as input size grows, computation will take more time than if you have used a quicker algorithm.\n\n\n\n\n\n\nExample\n\n\n\n\n\n\n\n\n\n\n\nInput size (\\(n\\))\nLinear search on fast computer\nBinary search on slow computer\n\n\n\n\n15\n7 ns\n1000 ns\n\n\n1000\n500 ns\n2500 ns\n\n\n16,000,000\n8,000,000 ns\n6000 ns\n\n\n\n\n\nWe are interested in predicting performance as input size grows.\nWe will use complexity analysis (time) to evaluate how fast an algorithm with respect to input size.\n\\(T(n)\\): run time estimate as a function of input size \\(n\\) for one operation. \\(T(n) = 1\\).\n\n\n\n\n\n\nExample\n\n\n\n\n\nCode snippet\nint i = 3;\n\n\n\nRun-time estimate\n\\(T(n) = 1\\)\n\n\n\n\n\n\n\n\n\n\nExample\n\n\n\n\n\nCode snippet\nsum = 0;\nfor (int i = 0; i &lt; n; i++) {\n  sum ++;\n}\n\n\n\nRun-time estimate\n\\(T(n) = 3n + 2\\)\n\\(n\\) times\n\n\\(i &lt; n\\)\n\\(i++\\)\n\\(sum++\\)\n\nPlus sum = 0 and int i = 0.\n\n\n\n\n\n\n\n\n\n\nExample\n\n\n\n\n\nCode snippet\nLinear search for \\(x\\) in an array a\nfor (int i = 0; i &lt; n; i++) {\n  if (a[i] == x) {\n    return true;\n  }\n  return false;\n}\n\n\n\nRun-time estimate\nBest case: \\(T(n) = 4\\).\nWorst case: \\(T(n) = 3n + 2\\). The plus two is because of int i = 0 and return true.\nAverage case: \\(T(n) = \\frac{3n + 2}{2} = 1 + frac{3}{2}n\\).\n\n\n\n\nWhat is a better \\(T(n)\\)? Is it \\(3n + 2\\) or \\(2n + 2\\)?\n\nWe do not care about constants or coefficients. A faster computer can make up this difference.\nWhat truly makes a difference is the highest order term, as it dominates when \\(n\\) is large.\nWe use Big-O notation to represent \\(T(n)\\).\n\\(T(n) = O(g(n))\\) if \\(T(n)\\)’s highest order term is \\(g(n)\\) - disregarding coefficients and constant.\n\\(O(g(n))\\) is the upper bound on \\(T(n)\\).\n\n\n\n\n\n\n\n\nExamples\n\n\n\n\\(T(n) = 1 = O(1)\\)\n\\(T(n) = 3n + 2 = O(n)\\)\n\\(T(n) = 3n^2 + n + 1 = O(n^2)\\)\n\\(T(n) = 10,000n^2 + 2 n \\log(n) + n^3 = O(n^3)\\)\n\n\nWhich term is more dominant?\n\nlibrary(ggplot2)\nlibrary(tidyr)\n\n# plot log(n) vs n vs nlog(n) bs 2^n vs n^2\nn &lt;- seq(1, 10, 0.1)\n\ndf &lt;- data.frame(\n  log_n = log(n),\n  n = n,\n  n_times_log_n = n * log(n),\n  n_pow_2 = n^2,\n  two_pow_n = 2^n\n)\n\ndf &lt;- df %&gt;% gather(fun, time, -n)\n\nggplot(df, aes(x = n, y = time, color = fun)) +\n  geom_line() +\n  theme_minimal() +\n  theme(legend.position = \"top\")\n\n\n\n\n\\[\n\\log(n) &lt; n &lt; n \\log(n) &lt; n^2 &lt; n^3 &lt; 2^n\n\\]\n\n\n\n\n\n\nExample\n\n\n\nMatrix addition\nint n = 7;\nint A[n][n] = { ... };\nint B[n][n] = { ... };\nint C[n][n];\n\nfor (int i = 0; i &lt; n; i++) {\n  for (int j = 0; i &lt; n; i++) {\n    C[i][j] = A[i][j] + B[i][j];\n  }\n}\nEach loop runs \\(n\\) times.\nInner loop:\nint j = 0 &lt;- once\ntakes C1\n\nj &lt; n, j++, C[i][j] = ... &lt;- n times\ntakes C2\n\\(T(n) = C_1 + C_2 n = O(n)\\).\nOuter loop:\nint i = 0 &lt;- once\ntakes C3\n\ni &lt; n, i++, for loop { ... } &lt;- n times\ntakes C4    complexity O(n)\n\\(T(n) = (C_4 + O(n))n + C_3 = O(n^2)\\).\n\\(T(n)\\) for matrix addition is \\(O(n^2)\\)."
+  },
+  {
+    "objectID": "lecture26.html#last-lecture",
+    "href": "lecture26.html#last-lecture",
+    "title": "Lecture 26 - Nov 14, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nComplexity analysis."
   }
 ]

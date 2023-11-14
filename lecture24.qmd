@@ -1,0 +1,136 @@
+# Lecture 24 - Oct 23, 2023
+
+## Summary
+
+In this lecture, we discuss backtracking in recursion through solving a maze.
+
+## Last lecture
+
+Recursion.
+
+## Today
+
+Backtracking.
+
+## Backtracking
+
+We have 2D array called Maze, which has the map of the maze, as in the next 
+diagram.
+
+<img src="diagrams/lecture24-diagram1.svg" alt="diagrams/lecture24-diagram1.svg">
+
+Blank spaces means there is a path.
+
+Coloured spaces means there is a wall.
+
+We want to leave a trail of `*` showing a path from "Duck" to "E".
+
+**Idea**. If `maze[i][j]` is a valid step to `E`, then one of `maze[i+1][j]`,
+`maze[i-1][j]`, `maze[i][j+1]`, or `maze[i][j-1]` is also a step to `E`.
+
+1. We starrt with the location of "Duck": `maze[i][j]`.
+2. Is `0 <= i <= 4` and `0 <= j <= 4`?
+3. If yes, check if `maze[i+1][j]` is a valid step to `E`.
+4. Or if `maze[i-1][j]` is a valid step to `E`.
+5. Or if `maze[i][j+1]` is a valid step to `E`.
+6. Or if `maze[i][j-1]` is a valid step to `E`.
+7. If yes, `maze[i][j] == '*'`.
+8. If no, nothing changes.
+
+```cpp
+bool solveMaze(int row, int col) {
+  // return false if maze[row][col] is not a valid step to E
+  // true otherwise
+
+  if (row < 0 || row >= height) || col < 0 || col >= width) {
+    // outside bounds of array
+    return false;
+  }
+
+  if (maze[row][col] == "E") {
+    // reached exit
+    return true;
+  }
+
+  if (maze[row][col] != "") {
+    // reached a wall or path again '*'
+    return false;
+  }
+
+  maze[row][col] = "*";
+
+  if (solveMaze(row + 1, col)) {
+    return true;
+  }
+
+  if (solveMaze(row - 1, col)) {
+    return true;
+  }
+
+  if (solveMaze(row, col + 1)) {
+    return true;
+  }
+
+  if (solveMaze(row, col - 1)) {
+    return true;
+  }
+
+  // if we get here then none of the 4 directions was a valid step to "E"
+
+  maze[row][col] = "";
+  return false;
+}
+```
+
+Consider the next diagram.
+
+<img src="diagrams/lecture24-diagram2.svg" alt="diagrams/lecture24-diagram2.svg">
+
+The code to solve the maze is:
+
+```
+solveMaze(0, 0);
+ |- maze[0][0] = "*"
+ |- solveMaze(1, 0)
+     |- maze[1][0] = "*"
+     |- solveMaze(2,0)
+     |   |- return false: wall
+     |- solveMaze(0, 0)
+     |   |- return false: cycle
+     |- solveMaze(1, 1)
+         |- maze[1][1] = "*"
+         |- solveMaze(2, 1)
+             |- maze[2][1] = "*"
+             |- solveMaze(3, 1)
+                 |- maze[3][1] = "*"
+                 |- solveMaze(4,1)
+                 |   |- maze[4][1] = "*"
+                 |   |- return false: outside bounds
+                 |- solveMaze(2, 1)
+                 |   |- return false: cycle
+                 |- solveMaze(3, 2)
+                 |   |- maze[3][2] = "*"
+                 |   |- solveMaze(4, 2)
+                 |   |   |- return false: outside bounds
+                 |   |- solveMaze(3, 3)
+                 |   |   |- maze[3][3] = "*"
+                 |   |   |- solveMaze(4, 3)
+                 |   |   |   |- return false: outside bounds
+                 |   |   |- solveMaze(2, 3)
+                 |   |   |   |- return false: wall
+                 |   |   |- solveMaze(3, 4)
+                 |   |   |   |- return false: outside bounds
+                 |   |   |- solveMaze(3, 2)
+                 |   |   |   |- return false: wall
+                 |   |   |- maze[3][3] = ""
+                 |   |   |- return false
+                 |   |- solveMaze(3,1)
+                 |   |   |- return false: cycle
+                 |   |- maze[3][2] = ""
+                 |   |- return false
+                 |- solveMaze(3, 0)
+                     |- maze[3][0] = "*"
+                     |- return true
+```
+
+At any point in time, the number of "*" was the depth of recursion!

@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="87.94603mm"
-   height="40.255775mm"
-   viewBox="0 0 87.946031 40.255775"
+   width="95.327728mm"
+   height="43.155769mm"
+   viewBox="0 0 95.32773 43.155769"
    version="1.1"
    id="svg1035"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    sodipodi:docname="lecture10-diagram1.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -25,38 +25,39 @@
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     fit-margin-top="5"
-     fit-margin-left="5"
-     fit-margin-right="5"
-     fit-margin-bottom="5"
-     inkscape:zoom="4"
-     inkscape:cx="102"
-     inkscape:cy="111.5"
+     fit-margin-top="3"
+     fit-margin-left="3"
+     fit-margin-right="3"
+     fit-margin-bottom="3"
+     inkscape:zoom="22.627417"
+     inkscape:cx="8.0875338"
+     inkscape:cy="13.390835"
      inkscape:window-width="1920"
      inkscape:window-height="1043"
-     inkscape:window-x="0"
+     inkscape:window-x="1920"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      inkscape:showpageshadow="2"
-     inkscape:deskcolor="#d1d1d1">
+     inkscape:deskcolor="#d1d1d1"
+     lock-margins="true">
     <inkscape:grid
        type="xygrid"
        id="grid313"
-       originx="-23.948101"
-       originy="-11.862984" />
+       originx="-22.548111"
+       originy="-10.462984" />
     <sodipodi:guide
-       position="1.4999997,38.755774"
+       position="2.9000006,40.255775"
        orientation="1,0"
        id="guide1068"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="1.4999997,38.755774"
+       position="2.9000006,40.255775"
        orientation="0,-1"
        id="guide1070"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="18.715963,29.041824"
+       position="20.115963,30.541827"
        orientation="1,0"
        id="guide1232"
        inkscape:locked="false" />
@@ -101,7 +102,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(24.284658,-118.86628)">
+     transform="translate(25.684659,-117.46629)">
     <path
        style="fill:#ffffff;stroke:#000000;stroke-width:0.3;stroke-dasharray:none"
        d="m -22.534659,120.61629 v 36.85577 H -2.7018927 V 120.61629 H -22.534659"
@@ -109,46 +110,46 @@
     <text
        xml:space="preserve"
        style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#000000;stroke-width:0.264583"
-       x="-17.95862"
+       x="-18.244801"
        y="126.22655"
        id="text30417"><tspan
          sodipodi:role="line"
          id="tspan30415"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;stroke-width:0.264583"
-         x="-17.95862"
+         x="-18.244801"
          y="126.22655">Heap</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#000000;stroke-width:0.264583"
-       x="-17.967089"
+       x="-18.611704"
        y="136.0247"
        id="text1062"><tspan
          sodipodi:role="line"
          id="tspan1060"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;stroke-width:0.264583"
-         x="-17.967089"
+         x="-18.611704"
          y="136.0247">Stack</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#000000;stroke-width:0.264583"
-       x="-17.336323"
+       x="-17.687729"
        y="145.14128"
        id="text1137"><tspan
          sodipodi:role="line"
          id="tspan1135"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;stroke-width:0.264583"
-         x="-17.336323"
+         x="-17.687729"
          y="145.14128">Data</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;fill:#000000;stroke-width:0.264583"
-       x="-17.753304"
+       x="-18.043262"
        y="154.45259"
        id="text1143"><tspan
          sodipodi:role="line"
          id="tspan1141"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;stroke-width:0.264583"
-         x="-17.753304"
+         x="-18.043262"
          y="154.45259">Code</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.3;stroke-dasharray:1.2, 1.2;stroke-dashoffset:0"

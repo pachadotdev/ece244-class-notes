@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="59.707664mm"
-   height="54.042229mm"
-   viewBox="0 0 59.707664 54.042227"
+   width="62.707664mm"
+   height="57.059845mm"
+   viewBox="0 0 62.707664 57.059843"
    version="1.1"
    id="svg5"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    sodipodi:docname="lecture11-diagram3.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -26,36 +26,42 @@
      showgrid="false"
      showguides="true"
      inkscape:zoom="1.4142136"
-     inkscape:cx="35.708892"
-     inkscape:cy="91.923881"
+     inkscape:cx="41.012192"
+     inkscape:cy="97.580733"
      inkscape:window-width="1920"
      inkscape:window-height="1043"
-     inkscape:window-x="0"
+     inkscape:window-x="1920"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1">
+     inkscape:current-layer="layer1"
+     inkscape:pageshadow="2"
+     lock-margins="true"
+     fit-margin-top="3"
+     fit-margin-left="3"
+     fit-margin-right="3"
+     fit-margin-bottom="3">
     <sodipodi:guide
-       position="11.004481,25.236364"
+       position="12.504481,26.75397"
        orientation="0,-1"
        id="guide274"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="45.05605,16.361964"
+       position="46.55605,17.87957"
        orientation="0,-1"
        id="guide276"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="34.078892,7.6375655"
+       position="35.578892,9.1551718"
        orientation="0,-1"
        id="guide386"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="11.004481,16.511964"
+       position="12.504481,18.02957"
        orientation="1,0"
        id="guide442"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="43.292519,16.511964"
+       position="44.792519,18.02957"
        orientation="1,0"
        id="guide444"
        inkscape:locked="false" />
@@ -78,7 +84,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-1.6114986,-157.35825)">
+     transform="translate(-0.11149853,-155.85824)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:monospace;-inkscape-font-specification:monospace;fill:#000000;stroke:none;stroke-width:4"

@@ -2,13 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="127.95472mm"
-   height="50.075237mm"
-   viewBox="0 0 127.95472 50.075236"
+   width="130.95471mm"
+   height="53.075241mm"
+   viewBox="0 0 130.95471 53.07524"
    version="1.1"
    id="svg34701"
    sodipodi:docname="lecture5-diagram3.svg"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,28 +25,29 @@
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     fit-margin-top="5"
-     fit-margin-left="5"
-     fit-margin-right="5"
-     fit-margin-bottom="5"
+     fit-margin-top="3"
+     fit-margin-left="3"
+     fit-margin-right="3"
+     fit-margin-bottom="3"
      inkscape:zoom="1.622695"
-     inkscape:cx="285.32781"
-     inkscape:cy="72.718535"
+     inkscape:cx="290.87413"
+     inkscape:cy="78.264862"
      inkscape:window-width="1920"
      inkscape:window-height="1043"
-     inkscape:window-x="0"
+     inkscape:window-x="1920"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      inkscape:showpageshadow="2"
-     inkscape:deskcolor="#d1d1d1">
+     inkscape:deskcolor="#d1d1d1"
+     lock-margins="true">
     <sodipodi:guide
-       position="120.44515,46.76999"
+       position="121.94516,48.269994"
        orientation="0,-1"
        id="guide54134"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="53.37401,43.777247"
+       position="54.874013,45.277251"
        orientation="0,-1"
        id="guide23522"
        inkscape:locked="false" />
@@ -86,7 +87,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-89.289925,-91.423271)">
+     transform="translate(-87.789923,-89.92327)">
     <text
        xml:space="preserve"
        style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;stroke-width:0.264583"
@@ -101,7 +102,7 @@
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
          x="90.506737"
-         y="101.5603"
+         y="101.45401"
          id="tspan36834">outFile &lt;&lt; &quot;People&quot;;</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#TriangleOutM)"

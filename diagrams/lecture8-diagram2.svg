@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="153.92923mm"
-   height="66.515274mm"
-   viewBox="0 0 153.92923 66.515274"
+   width="159.97237mm"
+   height="68.536438mm"
+   viewBox="0 0 159.97237 68.536438"
    version="1.1"
    id="svg1035"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    sodipodi:docname="lecture8-diagram2.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -25,78 +25,79 @@
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     fit-margin-top="5"
-     fit-margin-left="5"
-     fit-margin-right="5"
-     fit-margin-bottom="5"
+     fit-margin-top="3"
+     fit-margin-left="3"
+     fit-margin-right="3"
+     fit-margin-bottom="3"
      inkscape:zoom="1.2810465"
-     inkscape:cx="220.91314"
-     inkscape:cy="138.9489"
+     inkscape:cx="226.37742"
+     inkscape:cy="144.41318"
      inkscape:window-width="1920"
      inkscape:window-height="1043"
-     inkscape:window-x="0"
+     inkscape:window-x="1920"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      inkscape:showpageshadow="2"
-     inkscape:deskcolor="#d1d1d1">
+     inkscape:deskcolor="#d1d1d1"
+     lock-margins="true">
     <sodipodi:guide
-       position="64.922857,49.794617"
+       position="66.443376,50.337938"
        orientation="0,-1"
        id="guide45203"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="52.823911,28.46888"
+       position="54.344431,29.012202"
        orientation="0,-1"
        id="guide45273"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="105.76793,24.36961"
+       position="107.28845,24.912932"
        orientation="1,0"
        id="guide45355"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="45.582617,49.794617"
+       position="47.103137,50.337938"
        orientation="1,0"
        id="guide45390"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="32.331182,58.253346"
+       position="33.851702,58.796667"
        orientation="0,-1"
        id="guide49385"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="35.782516,45.546138"
+       position="37.303036,46.089459"
        orientation="0,-1"
        id="guide49387"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="60.49697,38.003219"
+       position="62.01749,38.546541"
        orientation="0,-1"
        id="guide49389"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="65.547712,38.003219"
+       position="67.068231,38.546541"
        orientation="1,0"
        id="guide49908"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="67.974519,38.003219"
+       position="69.495038,38.546541"
        orientation="1,0"
        id="guide49910"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="43.117782,11.38677"
+       position="44.638302,11.930092"
        orientation="0,-1"
        id="guide56560"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="26.012425,50.873307"
+       position="27.532945,51.416628"
        orientation="0,-1"
        id="guide56562"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="92.949885,24.28795"
+       position="94.470404,24.831272"
        orientation="0,-1"
        id="guide58770"
        inkscape:locked="false" />
@@ -122,7 +123,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(40.900536,-113.65782)">
+     transform="translate(42.421056,-112.17998)">
     <text
        xml:space="preserve"
        style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;stroke-width:0.264583"
@@ -139,51 +140,51 @@
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
          x="-23.659853"
-         y="134.79903"
+         y="134.69272"
          id="tspan14326">    <tspan
    style="fill:#a51d1e"
    id="tspan33949">private</tspan>:</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
          x="-23.659853"
-         y="140.19698"
+         y="139.98439"
          id="tspan14328">        int ID;</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
          x="-23.659853"
-         y="145.59494"
+         y="145.27605"
          id="tspan14330">        string name;</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
          x="-23.659853"
-         y="150.9929"
+         y="150.56772"
          id="tspan14332" /><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
          x="-23.659853"
-         y="156.39085"
+         y="155.85938"
          id="tspan14334">    <tspan
    style="fill:#a51d1e"
    id="tspan36699">public</tspan>:</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
          x="-23.659853"
-         y="161.78882"
+         y="161.15103"
          id="tspan14336">        void setName(string name);</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
          x="-23.659853"
-         y="167.18678"
+         y="166.4427"
          id="tspan14338">        void getName();</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
          x="-23.659853"
-         y="172.58473"
+         y="171.73436"
          id="tspan14340">        void print();</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
          x="-23.659853"
-         y="177.9827"
+         y="177.02602"
          id="tspan14342">};</tspan></text>
     <path
        style="fill:none;stroke:#181c57;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"

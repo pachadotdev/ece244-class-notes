@@ -1,0 +1,112 @@
+# Lecture 26 - Nov 14, 2023
+
+## Summary
+
+In this lecture, we continue our discussion on complexity analysis, and how we
+get evaluate the big-O of recursive functions.
+
+## Last lecture
+
+Complexity analysis.
+
+## Today
+
+Inheritance is a oillar of object-oriented programming.
+
+Inheriting/acquiring **all** properties and behaviours of a parent class.
+
+In `Person.h`:
+
+```cpp
+class Person {
+  private:
+    string name;
+    int age;
+
+  public:
+    Person() { name = ""; age = 0; }
+    Person(string n, int a) { name = n; age = a; }
+    void setName(string n) { name = n; }
+    void print() {
+      cout << "Name: " << name << endl;
+      cout << "Age: " << age << endl;
+    }
+};
+```
+
+I want to create a class `Student`. The data for this class should be: name,
+age, and ID. The functions should be: `setName()`, `print()`, and `setNameID()`.
+
+I can reuse some of the code.
+
+Option 1: From scratch.
+
+Option 2: Copy and paste code from `Person` class and add `setNameID()`. The
+issues are:
+
+1. Understand all details of `Person`.
+2. If you change `Person`, no changes will be reflected to `Student`.
+
+Option 3: Inherit from `Person`. The benefits are:
+
+1. Re-use code.
+2. Need to understand what `Person` does.
+
+`Person` is a **base** class.
+
+`Student` is a **derived** class.
+
+In `Student.h`:
+
+```cpp
+class Student : public Person {
+  private:
+    int id;
+
+  // age and name are innaccessible
+
+  // we don't inherit constructors of Person
+
+  public:
+    Student() : Person() { id = 0; }
+
+    // setName is inherited
+    void setNameID(string n, int d) {
+      Person::setName(n);
+      id = d;
+    }
+
+    // method overriding: replace/redefine the inherited print() from Person
+    // we define our own version for Student
+    void print() {
+      cout << "ID: " << id << endl;
+
+      // I can't access age and name
+      Person::print();
+    }
+};
+```
+
+In `main.cpp`:
+
+```cpp
+#include "Person.h"
+#include "Student.h"
+
+using namespace std;
+
+int main() {
+  Person p("Joe", 23);
+
+  // name and age are inaccessible
+  Student s;
+
+  // 1. we construct Person object
+  // 2. On top of it, we construct Student object
+
+  // setName is inherited from Person, so we can call it on Student
+  s.setName("Ryan");
+
+  s.setNameID("Marina", 125);
+}
+```

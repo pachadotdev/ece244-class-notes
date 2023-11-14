@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="104.09234mm"
-   height="60.16457mm"
-   viewBox="0 0 104.09234 60.164569"
+   width="87.738457mm"
+   height="55.179066mm"
+   viewBox="0 0 87.738458 55.179065"
    version="1.1"
    id="svg4467"
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
@@ -25,68 +25,73 @@
      inkscape:document-units="mm"
      showgrid="false"
      showguides="true"
-     inkscape:zoom="3.3638608"
-     inkscape:cx="155.47611"
-     inkscape:cy="127.53203"
-     inkscape:window-width="1904"
-     inkscape:window-height="1003"
-     inkscape:window-x="1928"
-     inkscape:window-y="32"
-     inkscape:window-maximized="0"
+     inkscape:zoom="0.8409652"
+     inkscape:cx="315.11411"
+     inkscape:cy="336.51809"
+     inkscape:window-width="1920"
+     inkscape:window-height="1043"
+     inkscape:window-x="1920"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
      inkscape:current-layer="g465"
      inkscape:pageshadow="2"
-     inkscape:guide-bbox="true">
+     inkscape:guide-bbox="true"
+     lock-margins="true"
+     fit-margin-top="3"
+     fit-margin-left="3"
+     fit-margin-right="3"
+     fit-margin-bottom="3">
     <sodipodi:guide
-       position="13.268022,53.543722"
+       position="12.391744,55.261333"
        orientation="1,0"
        id="guide5652"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="15.925167,42.192322"
+       position="15.048888,43.909933"
        orientation="1,0"
        id="guide5722"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="35.067601,39.643162"
+       position="34.191322,41.360773"
        orientation="1,0"
        id="guide5724"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="39.699901,31.377493"
+       position="38.823622,33.095105"
        orientation="1,0"
        id="guide5812"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="37.51714,28.844073"
+       position="36.640861,30.561685"
        orientation="1,0"
        id="guide5814"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="46.207144,35.793464"
+       position="45.330865,37.511075"
        orientation="0,-1"
        id="guide1787" />
     <sodipodi:guide
-       position="46.231983,29.037635"
+       position="45.355704,30.755247"
        orientation="0,-1"
        id="guide1789" />
     <sodipodi:guide
-       position="46.182304,42.549293"
+       position="45.306025,44.266904"
        orientation="0,-1"
        id="guide1793" />
     <sodipodi:guide
-       position="20.758371,8.7701485"
+       position="19.882092,10.48776"
        orientation="1,0"
        id="guide2275" />
     <sodipodi:guide
-       position="46.2568,8.7701485"
+       position="45.380521,10.48776"
        orientation="1,0"
        id="guide2277" />
     <sodipodi:guide
-       position="46.2568,8.7701484"
+       position="45.380521,10.48776"
        orientation="0,-1"
        id="guide2416" />
     <sodipodi:guide
-       position="46.2568,15.525978"
+       position="45.380521,17.24359"
        orientation="0,-1"
        id="guide2882" />
   </sodipodi:namedview>
@@ -95,15 +100,15 @@
     <marker
        style="overflow:visible"
        id="TriangleOutM"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="TriangleOutM"
        inkscape:isstock="true">
       <path
          transform="scale(0.4)"
-         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
-         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
          id="path25813" />
     </marker>
   </defs>
@@ -111,7 +116,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-16.765289,-30.055964)">
+     transform="translate(-17.641567,-36.75908)">
     <g
        id="g465"
        transform="matrix(1.3333333,0,0,1.3333333,-6.0884303,-10.518655)">
@@ -142,7 +147,7 @@
            x="38.250053"
            y="74.397644">Stack</tspan></text>
       <path
-         style="fill:none;stroke:#000000;stroke-width:0.22500001;stroke-miterlimit:4;stroke-dasharray:none"
+         style="fill:none;stroke:#000000;stroke-width:0.225;stroke-miterlimit:4;stroke-dasharray:none"
          d="M 32.709068,43.642423 V 68.976781 H 51.83289 V 43.642423 Z"
          id="path2649" />
       <path

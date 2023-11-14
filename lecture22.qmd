@@ -1,0 +1,9 @@
+# Lecture 22 - Oct 26, 2023
+
+## Today
+
+Midterm.
+
+Here is some music for coding.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/f02mOEt11OQ?si=JscvnYplUbJDtFLU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
