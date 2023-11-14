@@ -26,6 +26,12 @@ book:
     - lecture13.qmd
     - lecture14.qmd
     - lecture15.qmd
+    - lecture16.qmd
+    - lecture17.qmd
+    - lecture18.qmd
+    - lecture19.qmd
+    - lecture20.qmd
+    - lecture21.qmd
 
 format:
   html:

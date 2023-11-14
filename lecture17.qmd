@@ -1,0 +1,186 @@
+# Lecture 17 - Oct 13, 2023
+
+## Summary
+
+In this lecture, we introduce how can we solve the issue of shallow copy
+constructors. We discuss when we need to write our own destructors, copy 
+constructor and `operator=`. 
+
+## Last lecture
+
+Copy constructor.
+
+## Today
+
+Deep versus shallow constructors.
+
+## Recap default copy constructor
+
+The default copy constructor copies all data members of an existing object.
+
+In what cases do we need to implement our own copy constructor?
+
+**Problem**. What happens when data members are pointers?
+
+```cpp
+class MyString {
+  private:
+    int len;
+    char* buf;
+
+  public:
+    MyString() { len = 0; buf = nullptr; }
+    
+    MyString(char* src) {
+      buf = new chat[strlen(src) + 1];
+      strcpy(buf, src);
+      len = strlen(src);
+    }
+
+    void setString(char* src) {
+      if (buf != NULL) {
+        delete[] buf;
+        buf = new char[strlen(src) + 1];
+        strcpy(buf, src);
+        len = strlen(src);
+      }
+    }
+
+    // shallow copy
+    MyString(const MyString& x) {
+      len = x.len;
+      buf = x.buf;
+    }
+};
+```
+
+Recall the diagram from lecture 16.
+
+<img src="diagrams/lecture16-diagram1.svg" alt="diagrams/lecture16-diagram1.svg">
+
+**Solution**. Deep copy.
+
+```cpp
+MyString::MyString(const MyString& src) {
+  buf = new char[strlen(src.buf) + 1];
+  strcpy(buf, src.buf);
+  len = src.len;
+}
+
+int main() {
+  MyString a("Hello");
+  MyString b(a);
+  b.setString("Oops"); // we change the string in a and b
+  return 0;
+}
+```
+
+<img src="diagrams/lecture16-diagram2.svg" alt="diagrams/lecture16-diagram2.svg">
+
+## Rule of three
+
+If a class requires one of the following, then it almost certainly needs all
+three.
+
+1. User-defined destructor.
+2. User-defined copy constructor.
+3. User-defined assignment operator `operator=`.
+
+1-3 are given by default.
+
+A deep destructor is needed for `MyString`.
+
+```cpp
+MyString::~MyString() {
+  if (buf != nullptr) {
+    delete[] buf;
+    buf = nullptr;
+  }
+}
+```
+
+Deep assignment is needed for `MyString`.
+
+```cpp
+MyString& MyString::operator=(const MyString& src) {
+  // if you do the operator= on the same object
+  if (this == &src) {
+    return *this;
+  }
+
+  delete[] buf;
+  buf = new char[strlen(src.buf) + 1];
+  strcpy(buf, src.buf);
+  len = src.len;
+  return *this;
+}
+```
+
+## Additional exercises
+
+What if I want to compare two objects?
+
+```cpp
+MyString a("Hello");
+MyString b("world");
+
+if (a == b) {
+  cout << "Strings are the same" << endl;
+}
+
+bool MyString::operator==(const MyString& rhs) {
+  return (strcmp(buf, rhs.buf) == 0);
+}
+```
+
+How about `("hi" == a)`?
+
+```cpp
+// define this as a friend function
+bool operator==(char* lhs, const MyString& rhs) {
+  return (strcmp(lhs, rhs.buf) == 0);
+}
+```
+
+
+## Notes on confusing points
+
+Similarities and differences between copy constructor and `operator=`.
+
+
+:::: {.columns}
+
+::: {.column width="47.5%"}
+### Copy constructor
+
+* Usage
+  ```cpp
+  Student x(y);
+  Student x = y;
+  Student* p = new Student(y);
+  ```
+* Must pass by reference. If not, compile-time error.
+* Argument better passed as `const` to safeguard against changes.
+* Default is given.
+* Does not return anything.
+:::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="47.5%"}
+### Operator equal
+
+* Usage
+  ```cpp
+  x=y;
+  x.operator=(y);
+  ```
+* Better pass by reference to avoid calling copy constructor.
+* Same.
+* Same.
+* Return by reference returns `*this`, to allow chained assignment.
+:::
+
+:::

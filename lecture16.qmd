@@ -1,0 +1,192 @@
+# Lecture 16 - Oct 12, 2023
+
+## Summary
+
+In this lecture, we conclude our discussion on operator overloading. We
+introduce copy constructors and how shallow the default copy constructors are.
+
+## Last lecture
+
+Operator overloading: `operator+`, `operator<<`.
+
+## Today
+
+Copy constructor.
+
+## Recap shift operator
+
+```cpp
+Complex z(3,4);
+cout << z;
+```
+
+For the `operator<<`, the rhs is `Complex` and the lhS I `ostream` (not
+`Complex`).
+
+`cout` is an object of `ostream` class.
+
+`operator<<` cannot be a member function of `Complex`, since the lhs is of type
+`ostream`.
+
+`operator<<` cannot be a non-mmember function as it has to access private
+members of `Complex`.
+
+**Solution**. `operator<<` can be a friend function.
+
+A friend function can access private members of an object, and lhs can be a
+non-complex type.
+
+```cpp
+class Complex
+  ...
+
+  public:
+    ...
+
+    friend ostream& operator<<(ostream&os, const Complex& x);
+;}
+
+// not ostream& Complex::operator<<
+ostream& operator<<(ostream&os, const Complex& x) {
+  os << x.real << " + " << x.img << "i";
+  return os;
+}
+```
+
+Remember that `operator<<` is not a member, so there is no need for `Complex::`.
+
+```cpp
+int main() {
+  Complex z(3,4);
+  cout << "z =" << z << endl;
+}
+```
+
+Recall the diagram from lecture 15.
+
+<img src="diagrams/lecture15-diagram1.svg" alt="diagrams/lecture15-diagram1.svg">
+
+`cout` is returned to allow chained cout.
+
+`cout` (and all other streams) cannot be parsed or returned by value. Only
+by reference, as their **copy constructor** is deleted.
+
+## Copy constructor
+
+**Copy constructor** is a constructor used to create a copy of an existing
+object. When is the copy constructor called?
+
+1. `Student a(b);`, `b` is an object of student.
+2. `Student a = b;`, create and initialize on the same line.
+  Common confusion
+
+  ```cpp
+  Student a;
+  a = b; // here a.operator=(b) is invoked
+  ```
+
+3. Passing an object by value to a function.
+4. Return an object by value from a function.
+
+By default, every class has a copy constructor that copies all data members.
+
+
+::: {.callout-note icon=false}
+## Pacha's note
+
+I added the `public:` to the first class and already sent an email asking
+about it.
+:::
+
+
+```cpp
+class Student {
+  public:
+    string name;
+    int ID;
+
+  public:
+    // copy constructor
+    Student(const Student& other) {
+      name = other.name;
+      ID = other.ID;
+    }
+};
+```
+
+We have to pass by reference, or else there will be a compile-time error. If
+passed by value, the copy constructor will be called again, leading to an
+infinite recursion.
+
+Constructors has no returns.
+
+**Problem**. What happens when data members are pointers?
+
+```cpp
+class MyString {
+  private:
+    int len;
+    char* buf;
+
+  public:
+    MyString() { len = 0; buf = nullptr; }
+    
+    Mystring(char* src) { 
+      buf = new chat[srtlen(src) + 1];
+      strcpy(buf, src);
+      len = strlen(src);
+    }
+
+    void setString(char* src) {
+      if (!buf = NULL) {
+        delete[] buf;
+        buf = new char[strlen(src) + 1];
+        strcpy(buf, src);
+        len = strlen(src);
+      }
+    }
+
+    // shallow copy!
+    MyString(const MyString&x) {
+      len = x.len;
+      buf = x.buf;
+    }
+};
+
+int main() {
+  MyString a("Hello");
+  MyString b(a);
+  b.setString("Oops"); // we change the string in a and b
+  return 0;
+}
+```
+
+<img src="diagrams/lecture16-diagram1.svg" alt="diagrams/lecture16-diagram1.svg">
+
+**Solution**. Deep copy
+
+```cpp
+MyString::MyString(const MyString& src) {
+  buf = new char[strlen(src) + 1];
+  strcpy(buf, src.buf);
+  len = src.len;
+}
+
+int main() {
+  MyString a("Hello");
+  MyString b(a);
+  b.setString("Oops"); // we change the string in a and b
+  return 0;
+}
+```
+
+<img src="diagrams/lecture16-diagram2.svg" alt="diagrams/lecture16-diagram2.svg">
+
+## Rule of three
+
+If a class requires one of the following, then it almost certainly needs all
+three.
+
+1. User-defined destructor.
+2. User-defined copy constructor.
+3. User-defined assignment operator `operator=`.

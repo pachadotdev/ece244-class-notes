@@ -1,0 +1,182 @@
+# Lecture 20 - Oct 20, 2023
+
+## Summary
+
+In this lecture, we continue our discussion on ordered linked lists. We discuss 
+operations like searching, inserting, deleting nodes in a linked list.
+
+## Last lecture
+
+Queues and introduced ordered linked lists.
+
+## Today
+
+Search, insert, delete.
+
+## Recap on ordered lik 
+
+Four basic operations: insert in sorted order, search delete, and copy.
+
+In `List.h`:
+
+```cpp
+#include "Node.h"
+
+class List {
+  private:
+    Node* head;
+
+  public:
+    List() { head = NULL; }
+    ~List() { delete head; }
+    void insertData(int d);
+    bool dataExists(int d);
+    bool deleteData(int d);
+    List(const List&); // copy constructor
+    List& operator=(const List&);
+};
+```
+
+## Search linked list
+
+```cpp
+bool dataExists(int d) {
+  Node* p = head;
+  
+  // the 2nd condition is because, otherwise, d won't be after that if
+  // the linked list is sorted
+  while (p != NULL && p->getData() < d) {
+    if (p->getData() == d) {
+      return true;
+    } else {
+      p = p->getNext();
+    }
+  }
+
+  return false;
+}
+```
+
+## Insert into list (general case)
+
+Recall the diagram from lecture 19.
+
+<img src="diagrams/lecture19-diagram1.svg" alt="diagrams/lecture19-diagram1.svg">
+
+Search for the first node with data greater than the data we want to insert.
+
+Insert the new data before that node.
+
+```cpp
+// d = 3
+bool List::insertData(int d) {
+  Node* n = new Node(d);
+  Node* p = head, *prev = NULL;
+  
+  // list is empty
+  if(p == NULL) {
+    head = n;
+  }
+
+  while(p != NULL && p_>getData() < d) {
+    prev = p;
+    p = p->getNext();
+  }
+
+  // either p->getData < d or p == NULL
+  n->setNext(p); // case 1
+
+  if(prev == NULL) {
+    head = n; // case 2
+  } else {
+    prev->setNext(n); // case 3
+  }
+}
+```
+
+Cases 1, 2, 3 are shown in the diagram below.
+
+<img src="diagrams/lecture19-diagram2.svg" alt="diagrams/lecture19-diagram2.svg">
+
+Special cases:
+
+* If list is empty.
+* If list has one node.
+* If we insert at head.
+* If we insert at tail.
+
+## Delete data (general case)
+
+<img src="diagrams/lecture20-diagram1.svg" alt="diagrams/lecture20-diagram1.svg">
+
+```cpp
+bool List::deleteData(int d) {
+  Node* p = head, *prev = NULL;
+
+  while(p != NULL && p->getData() < d) {
+    if(p->getData() == d) {
+      return false;
+    } else {
+      prev = p;
+      p = p->getNext();
+    }
+  }
+
+  // p is NULL or p->getData() == d
+  if(p == NULL) {
+    return false; // not found
+  }
+
+  // delete at front
+  if(prev == NULL) {
+    head = p->getNext();
+  } else {
+    // delete at middle or tail
+    prev->setNext(p->getNext());
+  }
+
+  // delete p
+  p->setNext(NULL);
+  delete p;
+}
+```
+
+## Destructor
+
+```cpp
+List::~List() {
+  delete head;
+}
+```
+
+## Copy constructor
+
+The copy constructor creates an object from an existing one.
+
+The default copy constructor does a shallow copy.
+
+We need to do a deep copy:
+
+* Copy one node at a time.
+* `p` to iterate original list, `np` to build new list.
+
+
+```cpp
+List::List(const List& original) {
+  Node *p = original.head;
+  Node *np = NULL;
+  head = NULL;
+
+  while (p != NULL) {
+    Node *n = new Node(p->getData(), NULL);
+    if (np == NULL) {
+      head = n;
+    } else {
+      np->setNext(n);
+    }
+    
+    p = p->getNext();
+    np = n;
+  }
+}
+```

@@ -340,7 +340,7 @@
     "href": "index.html#introduction",
     "title": "Hiram: ECE244 Tidy Notes",
     "section": "Introduction",
-    "text": "Introduction\n\nWhy Hiram?\nHiram was an arquitect from Tyre (Lebanon), one of the finest back in the day, and who learned how to work the stone from a long tradition of stonecutters’ unions created by skilled workers and led by craftmasters from Egypt.\nBecause Professor Emara titled her notes Snefru and Khufu (C and C++, respectively), I am not at the same height to have used Solomon (Hiram’s boss) as the name of these notes. Also, I am like Hiram, and in this class I am learning from a craftmaster from Egypt.\n\n\nAbout ECE244 - Programming Fundamentals\nThis course provides a foundation in programming using an object-oriented programming language. Topics include classes and objects, inheritance, basic data structures (lists, tree, hash tables, etc.), Big-O complexity analysis, and testing and debugging. The laboratory assignments emphasize the use of object-oriented programming constructs in the design and implementation of reasonably large programs.\n\n\nPacha’s notes\n\nThe notes are 100% adjusted to the class.\nIn the snippets folder, I have included some (unofficial) code snippets with the same examples from the notes, that I use to check if the code compiles.\nSome of the examples in the notes have small additions, such as using namespace std; or #include &lt;iostream&gt;, to make them compile.\nThe diagrams are kinda ugly, my apologies! I’m not a graphic designer."
+    "text": "Introduction\n\nWhy Hiram?\nProfessor Emara is from Egypt and she is also a master programmer. She titled her notes Snefru and Khufu (C and C++, respectively).\nBecause I am learning from her and I come from Political Science, I am like Hiram, a blacksmith from Tyre (today’s Lebanon) who learned stone masonry from master craftsmen from Egypt.\n\n\nAbout ECE244 - Programming Fundamentals\nThis course provides a foundation in programming using an object-oriented programming language. Topics include classes and objects, inheritance, basic data structures (lists, tree, hash tables, etc.), Big-O complexity analysis, and testing and debugging. The laboratory assignments emphasize the use of object-oriented programming constructs in the design and implementation of reasonably large programs.\n\n\nIn memoriam\nWhile tidying these notes, it was impossible not to go back to the many talks about mathematics with Prof. Luis Armando Dissett Vélez (1963-2021), who always answered my questions about convex separation properties, and I always ended up knowing more than I wanted to know about different theorems of the alternative and connections from calculus to statistics to graph theory. I will always remember him as a great teacher and a great person that truly represented the values of the Pontificia Universidad Católica de Chile.\n\n\nPacha’s notes\n\nThe notes are 100% adjusted to the class.\nIn the snippets folder, I have included some (unofficial) code snippets with the same examples from the notes, that I use to check if the code compiles.\nSome of the examples in the notes have small additions, such as using namespace std; or #include &lt;iostream&gt;, to make them compile.\nThe diagrams are kinda ugly, my apologies! I’m not a graphic designer."
   },
   {
     "objectID": "lecture9.html#summary",
@@ -649,5 +649,327 @@
     "title": "Lecture 15 - Oct 10, 2023",
     "section": "Exercise",
     "text": "Exercise\nImplement operator==.\nclass Complex {\n  ...\n\n  public:\n    ...\n    \n    bool operator==(const Complex& rhs) const {\n      return (real == rhs.real) && (img == rhs.img);\n    }\n};"
+  },
+  {
+    "objectID": "lecture16.html#summary",
+    "href": "lecture16.html#summary",
+    "title": "Lecture 16 - Oct 12, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we conclude our discussion on operator overloading. We introduce copy constructors and how shallow the default copy constructors are."
+  },
+  {
+    "objectID": "lecture16.html#last-lecture",
+    "href": "lecture16.html#last-lecture",
+    "title": "Lecture 16 - Oct 12, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nOperator overloading: operator+, operator&lt;&lt;."
+  },
+  {
+    "objectID": "lecture16.html#today",
+    "href": "lecture16.html#today",
+    "title": "Lecture 16 - Oct 12, 2023",
+    "section": "Today",
+    "text": "Today\nCopy constructor."
+  },
+  {
+    "objectID": "lecture16.html#recap-shift-operator",
+    "href": "lecture16.html#recap-shift-operator",
+    "title": "Lecture 16 - Oct 12, 2023",
+    "section": "Recap shift operator",
+    "text": "Recap shift operator\nComplex z(3,4);\ncout &lt;&lt; z;\nFor the operator&lt;&lt;, the rhs is Complex and the lhS I ostream (not Complex).\ncout is an object of ostream class.\noperator&lt;&lt; cannot be a member function of Complex, since the lhs is of type ostream.\noperator&lt;&lt; cannot be a non-mmember function as it has to access private members of Complex.\nSolution. operator&lt;&lt; can be a friend function.\nA friend function can access private members of an object, and lhs can be a non-complex type.\nclass Complex\n  ...\n\n  public:\n    ...\n\n    friend ostream& operator&lt;&lt;(ostream&os, const Complex& x);\n;}\n\n// not ostream& Complex::operator&lt;&lt;\nostream& operator&lt;&lt;(ostream&os, const Complex& x) {\n  os &lt;&lt; x.real &lt;&lt; \" + \" &lt;&lt; x.img &lt;&lt; \"i\";\n  return os;\n}\nRemember that operator&lt;&lt; is not a member, so there is no need for Complex::.\nint main() {\n  Complex z(3,4);\n  cout &lt;&lt; \"z =\" &lt;&lt; z &lt;&lt; endl;\n}\nRecall the diagram from lecture 15.\n\ncout is returned to allow chained cout.\ncout (and all other streams) cannot be parsed or returned by value. Only by reference, as their copy constructor is deleted."
+  },
+  {
+    "objectID": "lecture16.html#copy-constructor",
+    "href": "lecture16.html#copy-constructor",
+    "title": "Lecture 16 - Oct 12, 2023",
+    "section": "Copy constructor",
+    "text": "Copy constructor\nCopy constructor is a constructor used to create a copy of an existing object. When is the copy constructor called?\n\nStudent a(b);, b is an object of student.\nStudent a = b;, create and initialize on the same line. Common confusion\n\nStudent a;\na = b; // here a.operator=(b) is invoked\n\nPassing an object by value to a function.\nReturn an object by value from a function.\n\nBy default, every class has a copy constructor that copies all data members.\n\n\n\n\n\n\nPacha’s note\n\n\n\nI added the public: to the first class and already sent an email asking about it.\n\n\nclass Student {\n  public:\n    string name;\n    int ID;\n\n  public:\n    // copy constructor\n    Student(const Student& other) {\n      name = other.name;\n      ID = other.ID;\n    }\n};\nWe have to pass by reference, or else there will be a compile-time error. If passed by value, the copy constructor will be called again, leading to an infinite recursion.\nConstructors has no returns.\nProblem. What happens when data members are pointers?\nclass MyString {\n  private:\n    int len;\n    char* buf;\n\n  public:\n    MyString() { len = 0; buf = nullptr; }\n    \n    Mystring(char* src) { \n      buf = new chat[srtlen(src) + 1];\n      strcpy(buf, src);\n      len = strlen(src);\n    }\n\n    void setString(char* src) {\n      if (!buf = NULL) {\n        delete[] buf;\n        buf = new char[strlen(src) + 1];\n        strcpy(buf, src);\n        len = strlen(src);\n      }\n    }\n\n    // shallow copy!\n    MyString(const MyString&x) {\n      len = x.len;\n      buf = x.buf;\n    }\n};\n\nint main() {\n  MyString a(\"Hello\");\n  MyString b(a);\n  b.setString(\"Oops\"); // we change the string in a and b\n  return 0;\n}\n\nSolution. Deep copy\nMyString::MyString(const MyString& src) {\n  buf = new char[strlen(src) + 1];\n  strcpy(buf, src.buf);\n  len = src.len;\n}\n\nint main() {\n  MyString a(\"Hello\");\n  MyString b(a);\n  b.setString(\"Oops\"); // we change the string in a and b\n  return 0;\n}"
+  },
+  {
+    "objectID": "lecture16.html#rule-of-three",
+    "href": "lecture16.html#rule-of-three",
+    "title": "Lecture 16 - Oct 12, 2023",
+    "section": "Rule of three",
+    "text": "Rule of three\nIf a class requires one of the following, then it almost certainly needs all three.\n\nUser-defined destructor.\nUser-defined copy constructor.\nUser-defined assignment operator operator=."
+  },
+  {
+    "objectID": "lecture17.html#summary",
+    "href": "lecture17.html#summary",
+    "title": "Lecture 17 - Oct 13, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we introduce how can we solve the issue of shallow copy constructors. We discuss when we need to write our own destructors, copy constructor and operator=."
+  },
+  {
+    "objectID": "lecture17.html#last-lecture",
+    "href": "lecture17.html#last-lecture",
+    "title": "Lecture 17 - Oct 13, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nCopy constructor."
+  },
+  {
+    "objectID": "lecture17.html#today",
+    "href": "lecture17.html#today",
+    "title": "Lecture 17 - Oct 13, 2023",
+    "section": "Today",
+    "text": "Today\nDeep versus shallow constructors."
+  },
+  {
+    "objectID": "lecture17.html#recap-default-copy-constructor",
+    "href": "lecture17.html#recap-default-copy-constructor",
+    "title": "Lecture 17 - Oct 13, 2023",
+    "section": "Recap default copy constructor",
+    "text": "Recap default copy constructor\nThe default copy constructor copies all data members of an existing object.\nIn what cases do we need to implement our own copy constructor?\nProblem. What happens when data members are pointers?\nclass MyString {\n  private:\n    int len;\n    char* buf;\n\n  public:\n    MyString() { len = 0; buf = nullptr; }\n    \n    MyString(char* src) {\n      buf = new chat[strlen(src) + 1];\n      strcpy(buf, src);\n      len = strlen(src);\n    }\n\n    void setString(char* src) {\n      if (buf != NULL) {\n        delete[] buf;\n        buf = new char[strlen(src) + 1];\n        strcpy(buf, src);\n        len = strlen(src);\n      }\n    }\n\n    // shallow copy\n    MyString(const MyString& x) {\n      len = x.len;\n      buf = x.buf;\n    }\n};\nRecall the diagram from lecture 16.\n\nSolution. Deep copy.\nMyString::MyString(const MyString& src) {\n  buf = new char[strlen(src.buf) + 1];\n  strcpy(buf, src.buf);\n  len = src.len;\n}\n\nint main() {\n  MyString a(\"Hello\");\n  MyString b(a);\n  b.setString(\"Oops\"); // we change the string in a and b\n  return 0;\n}"
+  },
+  {
+    "objectID": "lecture17.html#rule-of-three",
+    "href": "lecture17.html#rule-of-three",
+    "title": "Lecture 17 - Oct 13, 2023",
+    "section": "Rule of three",
+    "text": "Rule of three\nIf a class requires one of the following, then it almost certainly needs all three.\n\nUser-defined destructor.\nUser-defined copy constructor.\nUser-defined assignment operator operator=.\n\n1-3 are given by default.\nA deep destructor is needed for MyString.\nMyString::~MyString() {\n  if (buf != nullptr) {\n    delete[] buf;\n    buf = nullptr;\n  }\n}\nDeep assignment is needed for MyString.\nMyString& MyString::operator=(const MyString& src) {\n  // if you do the operator= on the same object\n  if (this == &src) {\n    return *this;\n  }\n\n  delete[] buf;\n  buf = new char[strlen(src.buf) + 1];\n  strcpy(buf, src.buf);\n  len = src.len;\n  return *this;\n}"
+  },
+  {
+    "objectID": "lecture17.html#additional-exercises",
+    "href": "lecture17.html#additional-exercises",
+    "title": "Lecture 17 - Oct 13, 2023",
+    "section": "Additional exercises",
+    "text": "Additional exercises\nWhat if I want to compare two objects?\nMyString a(\"Hello\");\nMyString b(\"world\");\n\nif (a == b) {\n  cout &lt;&lt; \"Strings are the same\" &lt;&lt; endl;\n}\n\nbool MyString::operator==(const MyString& rhs) {\n  return (strcmp(buf, rhs.buf) == 0);\n}\nHow about (\"hi\" == a)?\n// define this as a friend function\nbool operator==(char* lhs, const MyString& rhs) {\n  return (strcmp(lhs, rhs.buf) == 0);\n}"
+  },
+  {
+    "objectID": "lecture17.html#notes-on-confusing-points",
+    "href": "lecture17.html#notes-on-confusing-points",
+    "title": "Lecture 17 - Oct 13, 2023",
+    "section": "Notes on confusing points",
+    "text": "Notes on confusing points\nSimilarities and differences between copy constructor and operator=.\n\n\n\nCopy constructor\n\nUsage\nStudent x(y);\nStudent x = y;\nStudent* p = new Student(y);\nMust pass by reference. If not, compile-time error.\nArgument better passed as const to safeguard against changes.\nDefault is given.\nDoes not return anything.\n\n\n\n\n\n\nOperator equal\n\nUsage\nx=y;\nx.operator=(y);\nBetter pass by reference to avoid calling copy constructor.\nSame.\nSame.\nReturn by reference returns *this, to allow chained assignment."
+  },
+  {
+    "objectID": "lecture18.html#summary",
+    "href": "lecture18.html#summary",
+    "title": "Lecture 18 - Oct 17, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we start discussing linked lists variants: stacks and queues, and where they are used."
+  },
+  {
+    "objectID": "lecture18.html#last-lecture",
+    "href": "lecture18.html#last-lecture",
+    "title": "Lecture 18 - Oct 17, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nDeep copy in copy constructors."
+  },
+  {
+    "objectID": "lecture18.html#today",
+    "href": "lecture18.html#today",
+    "title": "Lecture 18 - Oct 17, 2023",
+    "section": "Today",
+    "text": "Today\nData structures: Stacks and queues."
+  },
+  {
+    "objectID": "lecture18.html#recap-on-arrays",
+    "href": "lecture18.html#recap-on-arrays",
+    "title": "Lecture 18 - Oct 17, 2023",
+    "section": "Recap on arrays",
+    "text": "Recap on arrays\nTo store and organize data of same type, we used arrays.\nint arr[3] = {1,2,3};\nAn issue with arrays is that they are not flexible. If you need more space, you need to allocate new memory with more space and copy data to this space.\nThis is where liked lists are helpful."
+  },
+  {
+    "objectID": "lecture18.html#linked-lists",
+    "href": "lecture18.html#linked-lists",
+    "title": "Lecture 18 - Oct 17, 2023",
+    "section": "Linked lists",
+    "text": "Linked lists\nA linked list is a collection of nodes that are linked together via pointers. They are easily extendable, shrinkable and flexible.\n\nIn C, each node and the linked list were a data structure. There were some functions/operations like insert and delete.\nIn C++, we can bundle operations and data into an object.\nThere are variants or linked lists: stacks, queues, doubly linked lists, etc."
+  },
+  {
+    "objectID": "lecture18.html#class-definition-of-a-node",
+    "href": "lecture18.html#class-definition-of-a-node",
+    "title": "Lecture 18 - Oct 17, 2023",
+    "section": "Class definition of a Node",
+    "text": "Class definition of a Node\nClass definition of a Node in all linked list variants.\nIn Node.h:\nclass Node {\n  private:\n    int data;\n    Node* next;\n\n  private:\n    Node() { data = 0; next = NULL; }\n    Node(int d) { data = d; next = NULL; }\n    Node(int d, Node* n) { data = d; next = n; }\n    ~Node() { delete next; }\n    int getData() { return data; }\n    Node* getNext() { return next; }\n    void setData(int d) { data = d; }\n    void setNext(Node* n) { next = n; }\n}"
+  },
+  {
+    "objectID": "lecture18.html#stacks",
+    "href": "lecture18.html#stacks",
+    "title": "Lecture 18 - Oct 17, 2023",
+    "section": "Stacks",
+    "text": "Stacks\nTwo operations: pop() and push().\nPutting a node or removing a node happens with LIFO (last-in first-out).\npop(): Remove the node that was most recently inserted.\npush(): Insert a node at the head only as pop() would remove a node from head."
+  },
+  {
+    "objectID": "lecture18.html#class-definition-of-a-stack",
+    "href": "lecture18.html#class-definition-of-a-stack",
+    "title": "Lecture 18 - Oct 17, 2023",
+    "section": "Class definition of a Stack",
+    "text": "Class definition of a Stack\nclass Stack {\n  private:\n    Node* head;\n\n  public:\n    Stack() { head = NULL; }\n    ~Stack() { delete head; }\n    void push(int d) {\n      // if stack is empty, next of new node is NULL\n      // if stack has nodes, next of new node is old head\n      Node* p = new Node(d, head);\n\n      // make new node the head\n      head = p;\n    }\n}\n\n\n\n\n\n\nstack s;\n\ns.push(3);\ns.push(2);\ns.push(1);\ns.push(0);\n\n\nint pop() {\n  // if stack is empty\n  if (head == NULL) {\n    return -1;\n  }\n\n  Node* p = head;\n  int d = p-&gt;getData(); // data is private to Node\n  head = p-&gt;getNext(); // head is private to Stack\n  p-&gt;setNext(NULL); // very important!\n  delete p;\n  return d;\n};\n\n// for the 1st pop, the most recently pushed node is 0\n// output is 0123\ncout &lt;&lt; s.pop() &lt;&lt; s.pop() &lt;&lt; s.pop() &lt;&lt; endl;\nAlways think of special cases:\n\nDoes it work if the stack is empty?\nDoes it work if the stack has only one node?"
+  },
+  {
+    "objectID": "lecture18.html#queues",
+    "href": "lecture18.html#queues",
+    "title": "Lecture 18 - Oct 17, 2023",
+    "section": "Queues",
+    "text": "Queues\nTwo operations: enqueue() and dequeue().\nPutting a node or removing a node happens with FIFO (first-in first-out).\ndequeue(): Remove the node that was first put in the list.\nenqueue(): Put a node at the end of the list."
+  },
+  {
+    "objectID": "lecture18.html#class-implementation-of-a-queue",
+    "href": "lecture18.html#class-implementation-of-a-queue",
+    "title": "Lecture 18 - Oct 17, 2023",
+    "section": "Class implementation of a Queue",
+    "text": "Class implementation of a Queue\nclass Queue {\n  private:\n    Node* head;\n\n    // point to the end of the queue to facilitate dequeue of nodes\n    Node* tail;\n\n  public:\n    Queue() {\n      head = NULL;\n      tail = NULL;\n    }\n\n    ~Queue() { \n      // enough to free up all nodes in linked list\n      delete head;\n    }\n\n    void enqueue(int d) {\n      Node* p = new Node(d, NULL);\n      tail-&gt;setNext(p);\n      tail = p;\n      if (head == NULL) {\n        head = p;\n      }\n    }\n\n    int dequeue() {\n      if (head == NULL) {\n        return -1;\n      }\n\n      Node* p = head;\n      head = p-&gt;getNext();\n      int d = p-&gt;getData();\n      p-&gt;setNext(NULL); // very important!\n      delete p;\n      return d;\n    }\n};\n\nQueue q;\nq.enqueue(1);\nq.enqueue(2);\nq.enqueue(3);\n\n// output 123\ncout &lt;&lt; q.dequeue() &lt;&lt; q.dequeue() &lt;&lt; q.dequeue() &lt;&lt; endl;"
+  },
+  {
+    "objectID": "lecture19.html#summary",
+    "href": "lecture19.html#summary",
+    "title": "Lecture 19 - Oct 19, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we discuss queues, and start discussing ordered linked lists."
+  },
+  {
+    "objectID": "lecture19.html#last-lecture",
+    "href": "lecture19.html#last-lecture",
+    "title": "Lecture 19 - Oct 19, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nStacks."
+  },
+  {
+    "objectID": "lecture19.html#today",
+    "href": "lecture19.html#today",
+    "title": "Lecture 19 - Oct 19, 2023",
+    "section": "Today",
+    "text": "Today\nQueues and general linked lists."
+  },
+  {
+    "objectID": "lecture19.html#recap-on-queues",
+    "href": "lecture19.html#recap-on-queues",
+    "title": "Lecture 19 - Oct 19, 2023",
+    "section": "Recap on queues",
+    "text": "Recap on queues\nTwo operations: enqueue and dequeue.\nPutting a node or removing a node happens with FIFO (first-in-first-out).\ndequeue(): Removes the node that was first put in a list.\nenqueue(): Puts a node at the end of the list."
+  },
+  {
+    "objectID": "lecture19.html#class-implementation-of-a-queue",
+    "href": "lecture19.html#class-implementation-of-a-queue",
+    "title": "Lecture 19 - Oct 19, 2023",
+    "section": "Class implementation of a Queue",
+    "text": "Class implementation of a Queue\nclass Queue {\n  private:\n    Node* head;\n\n    // point to end of the queue to facilitate dequeue of nodes\n    Node* tail;\n\n  public:\n    Queue() {\n      head = NULL;\n      tail = NULL;\n    }\n\n    ~Queue() {\n      // enough to free up all nodes in linked list\n      delete head;\n    }\n\n    void enqueue(int d) {\n      Node* p = new Node(d, NULL);\n      tail-&gt;setNext(p);\n      tail=p;\n      if (head == NULL) {\n        head = p;\n      }\n    }\n\n    int dequeue() {\n      if (head == NULL) {\n        return -1;\n      }\n\n      Node* p = head;\n      head = p-&gt;getNext();\n      int d = p-&gt;getData();\n      p-&gt;setNext(NULL); // very important\n      delete p;\n      return d;\n    }\n};\n\nQueue q;\nq.enqueue(1);\nq.enqueue(2);\nq.enqueue(3);\n\n// output 123\ncout &lt;&lt; q.dequeue() &lt;&lt; q.dequeue() &lt;&lt; endl;\nRecall the diagram from lecture 18."
+  },
+  {
+    "objectID": "lecture19.html#ordered-linked-lists",
+    "href": "lecture19.html#ordered-linked-lists",
+    "title": "Lecture 19 - Oct 19, 2023",
+    "section": "Ordered linked lists",
+    "text": "Ordered linked lists\nFour basic operations\n\nInsert in sorted order\nSearch\nDelete\nCopy\n\nIn List.h:\n#include \"Node.h\"\n\nclass List {\n  private:\n    Node* head;\n    \n  public:\n    List() { head = NULL; }\n    ~List() { delete head; }\n    void insertData(int d);\n    bool dataExists(int d);\n    bool deleteData(int d);\n    List(const List&); // copy constructor\n    List& operator=(const List&);\n};"
+  },
+  {
+    "objectID": "lecture19.html#search-linked-list",
+    "href": "lecture19.html#search-linked-list",
+    "title": "Lecture 19 - Oct 19, 2023",
+    "section": "Search linked list",
+    "text": "Search linked list\nbool dataExists(int d) {\n  Node* p = head;\n  // the 2nd condition is because, otherwise, d won't be after that if\n  // linked list is sorted\n  while(p != NULL && p-&gt;getData() != d) {\n    if(p-&gt;getData() == d) {\n      return true;\n    } else {\n      p = p-&gt;getNext();\n    }\n  }\n\n  return false;\n}"
+  },
+  {
+    "objectID": "lecture19.html#insert-into-list-general-case",
+    "href": "lecture19.html#insert-into-list-general-case",
+    "title": "Lecture 19 - Oct 19, 2023",
+    "section": "Insert into list (general case)",
+    "text": "Insert into list (general case)\n\nSearch for the first node with data greater than the data we want to insert.\nInsert the new data before that node.\n// d = 3\nbool List::insertData(int d) {\n  Node* n = new Node(d);\n  Node* p = head, *prev = NULL;\n\n  // list is empty\n  if (p == NULL) {\n    head = n;\n  }\n\n  while(p != NULL && p-&gt;getData() &lt; d) {\n    prev = p;\n    p = p-&gt;getNext();\n  }\n\n  // either p-&gt;getData() &gt; c or p == NULL\n  n-&gt;setNext(p); // case 1\n\n  if (prev == NULL) {\n    head = n; // case 2\n  } else {\n    prev-&gt;setNext(n); // case 3\n  }\n}\nCases 1, 2, 3 are shown in the diagram below.\n\nSpecial cases:\n\nIf list is empty.\nIf list has one node.\nIf we insert at head.\nIf we insert at tail.\n\nNext lecture: delete data, “copy” constructor, operator=."
+  },
+  {
+    "objectID": "lecture20.html#summary",
+    "href": "lecture20.html#summary",
+    "title": "Lecture 20 - Oct 20, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we continue our discussion on ordered linked lists. We discuss operations like searching, inserting, deleting nodes in a linked list."
+  },
+  {
+    "objectID": "lecture20.html#last-lecture",
+    "href": "lecture20.html#last-lecture",
+    "title": "Lecture 20 - Oct 20, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nQueues and introduced ordered linked lists."
+  },
+  {
+    "objectID": "lecture20.html#today",
+    "href": "lecture20.html#today",
+    "title": "Lecture 20 - Oct 20, 2023",
+    "section": "Today",
+    "text": "Today\nSearch, insert, delete."
+  },
+  {
+    "objectID": "lecture20.html#recap-on-ordered-lik",
+    "href": "lecture20.html#recap-on-ordered-lik",
+    "title": "Lecture 20 - Oct 20, 2023",
+    "section": "Recap on ordered lik",
+    "text": "Recap on ordered lik\nFour basic operations: insert in sorted order, search delete, and copy.\nIn List.h:\n#include \"Node.h\"\n\nclass List {\n  private:\n    Node* head;\n\n  public:\n    List() { head = NULL; }\n    ~List() { delete head; }\n    void insertData(int d);\n    bool dataExists(int d);\n    bool deleteData(int d);\n    List(const List&); // copy constructor\n    List& operator=(const List&);\n};"
+  },
+  {
+    "objectID": "lecture20.html#search-linked-list",
+    "href": "lecture20.html#search-linked-list",
+    "title": "Lecture 20 - Oct 20, 2023",
+    "section": "Search linked list",
+    "text": "Search linked list\nbool dataExists(int d) {\n  Node* p = head;\n  \n  // the 2nd condition is because, otherwise, d won't be after that if\n  // the linked list is sorted\n  while (p != NULL && p-&gt;getData() &lt; d) {\n    if (p-&gt;getData() == d) {\n      return true;\n    } else {\n      p = p-&gt;getNext();\n    }\n  }\n\n  return false;\n}"
+  },
+  {
+    "objectID": "lecture20.html#insert-into-list-general-case",
+    "href": "lecture20.html#insert-into-list-general-case",
+    "title": "Lecture 20 - Oct 20, 2023",
+    "section": "Insert into list (general case)",
+    "text": "Insert into list (general case)\nRecall the diagram from lecture 19.\n\nSearch for the first node with data greater than the data we want to insert.\nInsert the new data before that node.\n// d = 3\nbool List::insertData(int d) {\n  Node* n = new Node(d);\n  Node* p = head, *prev = NULL;\n  \n  // list is empty\n  if(p == NULL) {\n    head = n;\n  }\n\n  while(p != NULL && p_&gt;getData() &lt; d) {\n    prev = p;\n    p = p-&gt;getNext();\n  }\n\n  // either p-&gt;getData &lt; d or p == NULL\n  n-&gt;setNext(p); // case 1\n\n  if(prev == NULL) {\n    head = n; // case 2\n  } else {\n    prev-&gt;setNext(n); // case 3\n  }\n}\nCases 1, 2, 3 are shown in the diagram below.\n\nSpecial cases:\n\nIf list is empty.\nIf list has one node.\nIf we insert at head.\nIf we insert at tail."
+  },
+  {
+    "objectID": "lecture20.html#delete-data-general-case",
+    "href": "lecture20.html#delete-data-general-case",
+    "title": "Lecture 20 - Oct 20, 2023",
+    "section": "Delete data (general case)",
+    "text": "Delete data (general case)\n\nbool List::deleteData(int d) {\n  Node* p = head, *prev = NULL;\n\n  while(p != NULL && p-&gt;getData() &lt; d) {\n    if(p-&gt;getData() == d) {\n      return false;\n    } else {\n      prev = p;\n      p = p-&gt;getNext();\n    }\n  }\n\n  // p is NULL or p-&gt;getData() == d\n  if(p == NULL) {\n    return false; // not found\n  }\n\n  // delete at front\n  if(prev == NULL) {\n    head = p-&gt;getNext();\n  } else {\n    // delete at middle or tail\n    prev-&gt;setNext(p-&gt;getNext());\n  }\n\n  // delete p\n  p-&gt;setNext(NULL);\n  delete p;\n}"
+  },
+  {
+    "objectID": "lecture20.html#destructor",
+    "href": "lecture20.html#destructor",
+    "title": "Lecture 20 - Oct 20, 2023",
+    "section": "Destructor",
+    "text": "Destructor\nList::~List() {\n  delete head;\n}"
+  },
+  {
+    "objectID": "lecture20.html#copy-constructor",
+    "href": "lecture20.html#copy-constructor",
+    "title": "Lecture 20 - Oct 20, 2023",
+    "section": "Copy constructor",
+    "text": "Copy constructor\nThe copy constructor creates an object from an existing one.\nThe default copy constructor does a shallow copy.\nWe need to do a deep copy:\n\nCopy one node at a time.\np to iterate original list, np to build new list.\n\nList::List(const List& original) {\n  Node *p = original.head;\n  Node *np = NULL;\n  head = NULL;\n\n  while (p != NULL) {\n    Node *n = new Node(p-&gt;getData(), NULL);\n    if (np == NULL) {\n      head = n;\n    } else {\n      np-&gt;setNext(n);\n    }\n    \n    p = p-&gt;getNext();\n    np = n;\n  }\n}"
+  },
+  {
+    "objectID": "lecture21.html#summary",
+    "href": "lecture21.html#summary",
+    "title": "Lecture 21 - Oct 24, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we discuss copy constructor and operator= of linked lists. We also review the material for the midterm."
+  },
+  {
+    "objectID": "lecture21.html#today",
+    "href": "lecture21.html#today",
+    "title": "Lecture 21 - Oct 24, 2023",
+    "section": "Today",
+    "text": "Today\nCopy constructor, operator=, and midterm revision."
+  },
+  {
+    "objectID": "lecture21.html#recap-on-copy-constructor",
+    "href": "lecture21.html#recap-on-copy-constructor",
+    "title": "Lecture 21 - Oct 24, 2023",
+    "section": "Recap on copy constructor",
+    "text": "Recap on copy constructor\nCreates an object from an existing one.\nThe default copy constructor does a shallow copy.\nWe need to do a deep copy:\n\nCopy one node at a time.\np to iterate original list, np to build new list.\n\nList::List(const List& original) {\n  Node *p = original.head;\n  Node *np = NULL;\n  head = NULL;\n\n  while (p != NULL) {\n    Node *n = new Node(p-&gt;getData(), NULL);\n\n    if (np == NULL) {\n      head = n;\n    } else {\n      np-&gt;setNext(n);\n    }\n\n    p = p-&gt;getNext();\n    np = n;\n  }\n}"
+  },
+  {
+    "objectID": "lecture21.html#recap-on-operator-equals",
+    "href": "lecture21.html#recap-on-operator-equals",
+    "title": "Lecture 21 - Oct 24, 2023",
+    "section": "Recap on operator equals",
+    "text": "Recap on operator equals\nThe idea is similar to the copy constructor, except that the lhs may not be empty. We must empty lhs first.\nList& List::operator=(const List& original) {\n  if (&original == this) {\n    return *this;\n  }\n\n  if (head != NULL) {\n    delete head;\n    head = NULL;\n  }\n\n  // same as copy constructor body ----\n  Node *p = original.head;\n  Node *np = NULL;\n  \n  while(p != NULL) {\n    Node *n = new Node(p-&gt;getData(), NULL);\n\n    if (np == NULL) {\n      head = n;\n    } else {\n      np-&gt;setNext(n);\n    }\n\n    p = p-&gt;getNext();\n    np = n;\n  }\n  // ----\n\n  return *this;\n}"
+  },
+  {
+    "objectID": "lecture21.html#recap-on-destructor",
+    "href": "lecture21.html#recap-on-destructor",
+    "title": "Lecture 21 - Oct 24, 2023",
+    "section": "Recap on destructor",
+    "text": "Recap on destructor\nList::~List() {\n  delete head;\n}"
+  },
+  {
+    "objectID": "lecture21.html#past-exam-questions",
+    "href": "lecture21.html#past-exam-questions",
+    "title": "Lecture 21 - Oct 24, 2023",
+    "section": "Past exam questions",
+    "text": "Past exam questions\n\nFall 2019 - Q14\nThe following class is used to create objects that represent ordinary fractions n/d, consisting of a numerator n and a denominator d.\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nclass Fraction {\n  private:\n    int numerator;\n    int denominator;\n\n  public:\n    Fraction(int num, int denm);\n    int getNumerator();\n    int getDenominator();\n    void setNumerator(int num);\n    void setDenominator(int denm);\n    void print();\n};\n\nFraction::Fraction(int num, int denm) {\n  numerator = num;\n\n  // should check that denm is not 0, but ignore for now\n  denominator = denm;\n}\n\nint Fraction::getNumerator() {\n  return numerator;\n}\n\nint Fraction::getDenominator() {\n  return denominator;\n}\n\nvoid Fraction::setNumerator(int num) {\n  numerator = num;\n}\n\nvoid Fraction::setDenominator(int denm) {\n  // should check that denm is not 0, but ignore for now\n  denominator = denm;\n}\n\nvoid Fraction::print() {\n  cout &lt;&lt; numerator &lt;&lt; \"/\" &lt;&lt; denominator &lt;&lt; endl;\n}\nDefine the operator overloads for the operation:\nFraction X(1,5);\nFraction Y(4,6);\n...\n\n___ = X * Y; // the first multiply operation\n___ = X * 2; // the second multiply operation\nThe first operator is:\nFraction::Fraction operator*(Fraction& rhs) {\n  Fraction w(numerator * rhs.numerator, denominator * rhs.denominator);\n  return w;\n}\nThe second operator is:\nFraction::Fraction operator*(int x) {\n  Fraction w(x * rhs.numerator, denominator);\n  return w;\n}\n\n\nFall 2018 - Q7\nThe following is the definition/implementation of a class called Foo.\nclass Foo {\n  private:\n    int priv;\n\n  public:\n    Foo(int pv) { priv = pv; }\n    \n    Foo(const Foo src) { priv = src.priv; }\n    \n    Foo& operator=(Foo& rhs) {\n      priv = src.priv;\n      return this;\n    }\n\n    int getPriv() { return priv; }\n\n    void setPriv(int pv) { priv = pv; }\n};\nCompiling the above definition/implementation results in one or more errors. Re-write the class so it is error-free. Write your answer (the entire definition/implementation).\nThe code requires the following corrections:\n// Foo(const Foo src) { priv = src.priv; }\nFoo(const Foo& src) { priv = src.priv; }\n    \nFoo& operator=(Foo& rhs) {\n  priv = src.priv;\n  // return this;\n  return *this;\n}\nI cannot return a local variable by reference.\n\n\nFall 2021 Final - Q7\nIt is desired to implement an efficient deletion function in a linked list. You are given a linked list pointed to by head and a pointer node to a node in a linked list, which is guaranteed not to be the last node in the list (i.e., not the tail node). Write a function removeNode that removed this node from the list. You should not iterathe the nodes in the list.\nYou may assume the following is the definition of the class, ListNode. The head node of the linked list is pointed to by head.\nclass ListNode {\n  public:\n    int key;\n    ListNode *next;\n};\n\nListNode* head;\nYou are not allowed to change the function’s argument or return type.\nvoid removeNode(ListNode *node) {\n  ...\n}\nThe solution is to copy the data from the next node into the current node, and then delete the next node.\nvoid removeNode(ListNode *node) {\n  ListNode *n = node-&gt;next;\n  node-&gt;key = n-&gt;key;\n  node-&gt;next = n-&gt;next;\n  delete n;\n}"
   }
 ]

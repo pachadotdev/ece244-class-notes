@@ -1,0 +1,210 @@
+# Lecture 18 - Oct 17, 2023
+
+## Summary
+
+In this lecture, we start discussing linked lists variants: stacks and queues,
+and where they are used. 
+
+## Last lecture
+
+Deep copy in copy constructors.
+
+## Today
+
+Data structures: Stacks and queues.
+
+## Recap on arrays
+
+To store and organize data of same type, we used arrays.
+
+```cpp
+int arr[3] = {1,2,3};
+```
+
+An issue with arrays is that they are not flexible. If you need more space, you
+need to allocate new memory with more space and copy data to this space.
+
+This is where liked lists are helpful.
+
+## Linked lists
+
+A linked list is a collection of nodes that are linked together via pointers.
+They are easily extendable, shrinkable and flexible.
+
+<img src="diagrams/lecture18-diagram1.svg" alt="diagrams/lecture18-diagram1.svg">
+
+In C, each node and the linked list were a **data structure**. There were some
+functions/operations like `insert` and `delete`.
+
+In C++, we can bundle operations and data into an object.
+
+There are variants or linked lists: stacks, queues, doubly linked lists, etc.
+
+## Class definition of a Node
+
+Class definition of a `Node` in all linked list variants.
+
+In `Node.h`:
+
+```cpp
+class Node {
+  private:
+    int data;
+    Node* next;
+
+  private:
+    Node() { data = 0; next = NULL; }
+    Node(int d) { data = d; next = NULL; }
+    Node(int d, Node* n) { data = d; next = n; }
+    ~Node() { delete next; }
+    int getData() { return data; }
+    Node* getNext() { return next; }
+    void setData(int d) { data = d; }
+    void setNext(Node* n) { next = n; }
+}
+```
+
+## Stacks
+
+Two operations: `pop()` and `push()`.
+
+Putting a node or removing a node happens with LIFO (last-in first-out).
+
+`pop()`: Remove the node that was most recently inserted.
+
+`push()`: Insert a node at the head only as `pop()` would remove a node from
+head.
+
+## Class definition of a Stack
+
+```cpp
+class Stack {
+  private:
+    Node* head;
+
+  public:
+    Stack() { head = NULL; }
+    ~Stack() { delete head; }
+    void push(int d) {
+      // if stack is empty, next of new node is NULL
+      // if stack has nodes, next of new node is old head
+      Node* p = new Node(d, head);
+
+      // make new node the head
+      head = p;
+    }
+}
+```
+
+::: {.columns}
+
+::: {.column width="47.5%"}
+<img src="diagrams/lecture18-diagram2.svg" alt="diagrams/lecture18-diagram2.svg">
+:::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="47.5%"}
+```cpp
+stack s;
+
+s.push(3);
+s.push(2);
+s.push(1);
+s.push(0);
+```
+:::
+
+:::
+
+```cpp
+int pop() {
+  // if stack is empty
+  if (head == NULL) {
+    return -1;
+  }
+
+  Node* p = head;
+  int d = p->getData(); // data is private to Node
+  head = p->getNext(); // head is private to Stack
+  p->setNext(NULL); // very important!
+  delete p;
+  return d;
+};
+
+// for the 1st pop, the most recently pushed node is 0
+// output is 0123
+cout << s.pop() << s.pop() << s.pop() << endl;
+```
+
+Always think of special cases:
+
+1. Does it work if the stack is empty?
+2. Does it work if the stack has only one node?
+
+## Queues
+
+Two operations: `enqueue()` and `dequeue()`.
+
+Putting a node or removing a node happens with FIFO (first-in first-out).
+
+`dequeue()`: Remove the node that was first put in the list.
+
+`enqueue()`: Put a node at the end of the list.
+
+## Class implementation of a Queue
+
+```cpp
+class Queue {
+  private:
+    Node* head;
+
+    // point to the end of the queue to facilitate dequeue of nodes
+    Node* tail;
+
+  public:
+    Queue() {
+      head = NULL;
+      tail = NULL;
+    }
+
+    ~Queue() { 
+      // enough to free up all nodes in linked list
+      delete head;
+    }
+
+    void enqueue(int d) {
+      Node* p = new Node(d, NULL);
+      tail->setNext(p);
+      tail = p;
+      if (head == NULL) {
+        head = p;
+      }
+    }
+
+    int dequeue() {
+      if (head == NULL) {
+        return -1;
+      }
+
+      Node* p = head;
+      head = p->getNext();
+      int d = p->getData();
+      p->setNext(NULL); // very important!
+      delete p;
+      return d;
+    }
+};
+
+Queue q;
+q.enqueue(1);
+q.enqueue(2);
+q.enqueue(3);
+
+// output 123
+cout << q.dequeue() << q.dequeue() << q.dequeue() << endl;
+```
+
+<img src="diagrams/lecture18-diagram3.svg" alt="diagrams/lecture18-diagram3.svg">

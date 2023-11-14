@@ -1,0 +1,178 @@
+# Lecture 19 - Oct 19, 2023
+
+## Summary
+
+In this lecture, we discuss queues, and start discussing ordered linked lists. 
+
+## Last lecture
+
+Stacks.
+
+## Today
+
+Queues and general linked lists.
+
+## Recap on queues
+
+Two operations: `enqueue` and `dequeue`.
+
+Putting a node or removing a node happens with FIFO (first-in-first-out).
+
+`dequeue()`: Removes the node that was first put in a list.
+
+`enqueue()`: Puts a node at the end of the list.
+
+## Class implementation of a Queue
+
+```cpp
+class Queue {
+  private:
+    Node* head;
+
+    // point to end of the queue to facilitate dequeue of nodes
+    Node* tail;
+
+  public:
+    Queue() {
+      head = NULL;
+      tail = NULL;
+    }
+
+    ~Queue() {
+      // enough to free up all nodes in linked list
+      delete head;
+    }
+
+    void enqueue(int d) {
+      Node* p = new Node(d, NULL);
+      tail->setNext(p);
+      tail=p;
+      if (head == NULL) {
+        head = p;
+      }
+    }
+
+    int dequeue() {
+      if (head == NULL) {
+        return -1;
+      }
+
+      Node* p = head;
+      head = p->getNext();
+      int d = p->getData();
+      p->setNext(NULL); // very important
+      delete p;
+      return d;
+    }
+};
+
+Queue q;
+q.enqueue(1);
+q.enqueue(2);
+q.enqueue(3);
+
+// output 123
+cout << q.dequeue() << q.dequeue() << endl;
+```
+
+Recall the diagram from lecture 18.
+
+<img src="diagrams/lecture18-diagram3.svg" alt="diagrams/lecture18-diagram3.svg">
+
+## Ordered linked lists
+
+Four basic operations
+
+* Insert in sorted order
+* Search
+* Delete
+* Copy
+
+
+In `List.h`:
+
+```cpp
+#include "Node.h"
+
+class List {
+  private:
+    Node* head;
+    
+  public:
+    List() { head = NULL; }
+    ~List() { delete head; }
+    void insertData(int d);
+    bool dataExists(int d);
+    bool deleteData(int d);
+    List(const List&); // copy constructor
+    List& operator=(const List&);
+};
+```
+
+## Search linked list
+
+```cpp
+bool dataExists(int d) {
+  Node* p = head;
+  // the 2nd condition is because, otherwise, d won't be after that if
+  // linked list is sorted
+  while(p != NULL && p->getData() != d) {
+    if(p->getData() == d) {
+      return true;
+    } else {
+      p = p->getNext();
+    }
+  }
+
+  return false;
+}
+```
+
+
+## Insert into list (general case)
+
+<img src="diagrams/lecture19-diagram1.svg" alt="diagrams/lecture19-diagram1.svg">
+
+Search for the first node with data greater than the data we want to insert.
+
+Insert the new data before that node.
+
+```cpp
+// d = 3
+bool List::insertData(int d) {
+  Node* n = new Node(d);
+  Node* p = head, *prev = NULL;
+
+  // list is empty
+  if (p == NULL) {
+    head = n;
+  }
+
+  while(p != NULL && p->getData() < d) {
+    prev = p;
+    p = p->getNext();
+  }
+
+  // either p->getData() > c or p == NULL
+  n->setNext(p); // case 1
+
+  if (prev == NULL) {
+    head = n; // case 2
+  } else {
+    prev->setNext(n); // case 3
+  }
+}
+```
+
+Cases 1, 2, 3 are shown in the diagram below.
+
+<img src="diagrams/lecture19-diagram2.svg" alt="diagrams/lecture19-diagram2.svg">
+
+Special cases:
+
+* If list is empty.
+* If list has one node.
+* If we insert at head.
+* If we insert at tail.
+
+Next lecture: delete data, "copy" constructor, `operator=`.
