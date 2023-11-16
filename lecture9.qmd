@@ -145,9 +145,6 @@ The class implementation goes in a source file and it has function definitions.
 ## Pacha's note
 
 I added `endl` after the `cout` statements for the same reason as above.
-
-I also think that `Student.cpp` starts with `#include "Student.h"` instead of
-`#include "Student.cpp"` - EMAIL SENT, WAITING FOR CONFIRMATION
 :::
 
 #### Student.cpp

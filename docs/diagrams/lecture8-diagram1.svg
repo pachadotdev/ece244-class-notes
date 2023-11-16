@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="90.723396mm"
-   height="35.19836mm"
-   viewBox="0 0 90.723396 35.198361"
+   width="93.723404mm"
+   height="38.215973mm"
+   viewBox="0 0 93.723404 38.215974"
    version="1.1"
    id="svg1035"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    sodipodi:docname="lecture8-diagram1.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -25,21 +25,22 @@
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     fit-margin-top="5"
-     fit-margin-left="5"
-     fit-margin-right="5"
-     fit-margin-bottom="5"
+     fit-margin-top="3"
+     fit-margin-left="3"
+     fit-margin-right="3"
+     fit-margin-bottom="3"
      inkscape:zoom="1.8116734"
-     inkscape:cx="252.25297"
-     inkscape:cy="141.30582"
+     inkscape:cx="101.01158"
+     inkscape:cy="151.24139"
      inkscape:window-width="1920"
      inkscape:window-height="1043"
-     inkscape:window-x="0"
+     inkscape:window-x="1920"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      inkscape:showpageshadow="2"
-     inkscape:deskcolor="#d1d1d1" />
+     inkscape:deskcolor="#d1d1d1"
+     lock-margins="true" />
   <defs
      id="defs1032">
     <marker
@@ -61,7 +62,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-12.498745,-50.951069)">
+     transform="translate(-10.998745,-49.451067)">
     <text
        xml:space="preserve"
        style="font-size:4.23333px;line-height:1.25;font-family:mo;-inkscape-font-specification:mo;stroke-width:0.264583"

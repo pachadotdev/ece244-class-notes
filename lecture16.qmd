@@ -94,14 +94,13 @@ By default, every class has a copy constructor that copies all data members.
 ::: {.callout-note icon=false}
 ## Pacha's note
 
-I added the `public:` to the first class and already sent an email asking
-about it.
+I added the `private:` to the first class. Prof. Emara confirmed that we can exclude that and `name` and `ID` will be private by default.
 :::
 
 
 ```cpp
 class Student {
-  public:
+  private:
     string name;
     int ID;
 

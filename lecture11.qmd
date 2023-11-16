@@ -47,7 +47,7 @@ cout << *p;; // print 7
 // dereference p / value at address in p
 cout << p; // prints 0x124
 
-*p = 5; // change the value of p to 5
+*p = 5; // change the value of x to 5
 
 p = new int; // change address stored in p to a newely allocated memory space
 
@@ -97,7 +97,7 @@ With a class
 ```cpp
 class Student {
 	private:
-        int *grades; string name;
+    int *grades; string name;
 	public:
 		Student();
 		Student(int);
