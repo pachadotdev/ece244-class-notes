@@ -326,7 +326,7 @@
     "href": "lecture8.html#class-implementation",
     "title": "Lecture 8 - Sept 22, 2023",
     "section": "Class implementation",
-    "text": "Class implementation\nThe class implementation goes in a source file and it has function definitions.\n\n\n\n\n\n\nPacha’s note\n\n\n\nI added endl after the cout statements for the same reason as above.\nI also think that Student.cpp starts with #include \"Student.h\" instead of #include \"Student.cpp\" - EMAIL SENT, WAITING FOR CONFIRMATION\n\n\n\nStudent.cpp\n#include \"Student.h\"\n#include &lt;iostream&gt;\n\n// Setter or mutator function\n\n// class name: Student\n// scope operator: ::\n// function name: setName\nvoid Student::setName(string n) {\n        // private member of Student class can be accessed\n        // inside the class implementation\n        name = n;\n}\n\n// Getter or accessor function\n\nstring Student::getName() {\n        return name;\n}\n\nvoid Student::print() {\n        cout &lt;&lt; \"Student name: \" &lt;&lt; name &lt;&lt; endl;\n        cout &lt;&lt; \"Student ID: \" &lt;&lt; ID &lt;&lt; endl;\n}\n\n\nmain.cpp\nInstatiating and using objects here.\n#include \"Student.h\"\n\nint main() {\n        // declare 2 objects and allocate memory for them\n        Student x,y;\n\n        x.setName(\"Kenya\");\n        y.setName(\"Christina\");\n\n        // x.ID = 2730; gives an error because we cannot access a private member\n\n        // y.name = \"Salma\" same error\n\n        y.print(); // wait! what is the value of ID in Student y?\n\n        return 0;\n}\nID in x and y are not initialized. The solution is defining constructors in the next lecture."
+    "text": "Class implementation\nThe class implementation goes in a source file and it has function definitions.\n\n\n\n\n\n\nPacha’s note\n\n\n\nI added endl after the cout statements for the same reason as above.\n\n\n\nStudent.cpp\n#include \"Student.h\"\n#include &lt;iostream&gt;\n\n// Setter or mutator function\n\n// class name: Student\n// scope operator: ::\n// function name: setName\nvoid Student::setName(string n) {\n        // private member of Student class can be accessed\n        // inside the class implementation\n        name = n;\n}\n\n// Getter or accessor function\n\nstring Student::getName() {\n        return name;\n}\n\nvoid Student::print() {\n        cout &lt;&lt; \"Student name: \" &lt;&lt; name &lt;&lt; endl;\n        cout &lt;&lt; \"Student ID: \" &lt;&lt; ID &lt;&lt; endl;\n}\n\n\nmain.cpp\nInstatiating and using objects here.\n#include \"Student.h\"\n\nint main() {\n        // declare 2 objects and allocate memory for them\n        Student x,y;\n\n        x.setName(\"Kenya\");\n        y.setName(\"Christina\");\n\n        // x.ID = 2730; gives an error because we cannot access a private member\n\n        // y.name = \"Salma\" same error\n\n        y.print(); // wait! what is the value of ID in Student y?\n\n        return 0;\n}\nID in x and y are not initialized. The solution is defining constructors in the next lecture."
   },
   {
     "objectID": "index.html#why-hiram",
@@ -382,7 +382,7 @@
     "href": "lecture9.html#class-implementation",
     "title": "Lecture 9 - Sept 26, 2023",
     "section": "Class implementation",
-    "text": "Class implementation\nThe class implementation goes in a source file and it has function definitions.\n\n\n\n\n\n\nPacha’s note\n\n\n\nI added endl after the cout statements for the same reason as above.\nI also think that Student.cpp starts with #include \"Student.h\" instead of #include \"Student.cpp\" - EMAIL SENT, WAITING FOR CONFIRMATION\n\n\n\nStudent.cpp\n#include \"Student.h\"\n#include &lt;iostream&gt;\n\n// Setter or mutator function\n\n// class name: Student\n// scope operator: ::\n// function name: setName\nvoid Student::setName(string n) {\n    // private member of Student class can be accessed\n    // inside the class implementation\n    name = n;\n}\n\n// Getter or accessor function\n\nstring Student::getName() {\n    return name;\n}\n\nvoid Student::print() {\n    cout &lt;&lt; \"Student name: \" &lt;&lt; name &lt;&lt; endl;\n    cout &lt;&lt; \"Student ID: \" &lt;&lt; ID &lt;&lt; endl;\n}\n\n\nmain.cpp\nInstatiating and using objects here.\n#include \"Student.h\"\n\nint main() {\n    // declare 2 objects and allocate memory for them\n    Student x,y;\n\n    x.setName(\"Kenya\");\n    y.setName(\"Christina\");\n\n    // x.ID = 2730; gives an error because we cannot access a private member\n\n    // y.name = \"Salma\" same error\n\n    y.print(); // wait! what is the value of ID in Student y?\n\n    return 0;\n}\nIn the line that reads Student x,y, ID in x and y are not initialized.\nThe solution is to define a constructor.\n\n\nStudent.h\nclass Student {\n    private:\n        int ID;\n        string name;\n    \n    public:\n        Student(); // constructor\n        void setName(string name);\n        ...\n}"
+    "text": "Class implementation\nThe class implementation goes in a source file and it has function definitions.\n\n\n\n\n\n\nPacha’s note\n\n\n\nI added endl after the cout statements for the same reason as above.\n\n\n\nStudent.cpp\n#include \"Student.h\"\n#include &lt;iostream&gt;\n\n// Setter or mutator function\n\n// class name: Student\n// scope operator: ::\n// function name: setName\nvoid Student::setName(string n) {\n    // private member of Student class can be accessed\n    // inside the class implementation\n    name = n;\n}\n\n// Getter or accessor function\n\nstring Student::getName() {\n    return name;\n}\n\nvoid Student::print() {\n    cout &lt;&lt; \"Student name: \" &lt;&lt; name &lt;&lt; endl;\n    cout &lt;&lt; \"Student ID: \" &lt;&lt; ID &lt;&lt; endl;\n}\n\n\nmain.cpp\nInstatiating and using objects here.\n#include \"Student.h\"\n\nint main() {\n    // declare 2 objects and allocate memory for them\n    Student x,y;\n\n    x.setName(\"Kenya\");\n    y.setName(\"Christina\");\n\n    // x.ID = 2730; gives an error because we cannot access a private member\n\n    // y.name = \"Salma\" same error\n\n    y.print(); // wait! what is the value of ID in Student y?\n\n    return 0;\n}\nIn the line that reads Student x,y, ID in x and y are not initialized.\nThe solution is to define a constructor.\n\n\nStudent.h\nclass Student {\n    private:\n        int ID;\n        string name;\n    \n    public:\n        Student(); // constructor\n        void setName(string name);\n        ...\n}"
   },
   {
     "objectID": "lecture10.html#summary",
@@ -683,7 +683,7 @@
     "href": "lecture16.html#copy-constructor",
     "title": "Lecture 16 - Oct 12, 2023",
     "section": "Copy constructor",
-    "text": "Copy constructor\nCopy constructor is a constructor used to create a copy of an existing object. When is the copy constructor called?\n\nStudent a(b);, b is an object of student.\nStudent a = b;, create and initialize on the same line. Common confusion\n\nStudent a;\na = b; // here a.operator=(b) is invoked\n\nPassing an object by value to a function.\nReturn an object by value from a function.\n\nBy default, every class has a copy constructor that copies all data members.\n\n\n\n\n\n\nPacha’s note\n\n\n\nI added the public: to the first class and already sent an email asking about it.\n\n\nclass Student {\n  private:\n    string name;\n    int ID;\n\n  public:\n    // copy constructor\n    Student(const Student& other) {\n      name = other.name;\n      ID = other.ID;\n    }\n};\nWe have to pass by reference, or else there will be a compile-time error. If passed by value, the copy constructor will be called again, leading to an infinite recursion.\nConstructors has no returns.\nProblem. What happens when data members are pointers?\nclass MyString {\n  private:\n    int len;\n    char* buf;\n\n  public:\n    MyString() { len = 0; buf = nullptr; }\n    \n    Mystring(char* src) { \n      buf = new chat[srtlen(src) + 1];\n      strcpy(buf, src);\n      len = strlen(src);\n    }\n\n    void setString(char* src) {\n      if (!buf = NULL) {\n        delete[] buf;\n        buf = new char[strlen(src) + 1];\n        strcpy(buf, src);\n        len = strlen(src);\n      }\n    }\n\n    // shallow copy!\n    MyString(const MyString&x) {\n      len = x.len;\n      buf = x.buf;\n    }\n};\n\nint main() {\n  MyString a(\"Hello\");\n  MyString b(a);\n  b.setString(\"Oops\"); // we change the string in a and b\n  return 0;\n}\n\nSolution. Deep copy\nMyString::MyString(const MyString& src) {\n  buf = new char[strlen(src) + 1];\n  strcpy(buf, src.buf);\n  len = src.len;\n}\n\nint main() {\n  MyString a(\"Hello\");\n  MyString b(a);\n  b.setString(\"Oops\"); // we change the string in a and b\n  return 0;\n}"
+    "text": "Copy constructor\nCopy constructor is a constructor used to create a copy of an existing object. When is the copy constructor called?\n\nStudent a(b);, b is an object of student.\nStudent a = b;, create and initialize on the same line. Common confusion\n\nStudent a;\na = b; // here a.operator=(b) is invoked\n\nPassing an object by value to a function.\nReturn an object by value from a function.\n\nBy default, every class has a copy constructor that copies all data members.\n\n\n\n\n\n\nPacha’s note\n\n\n\nI added the private: to the first class. Prof. Emara confirmed that we can exclude that and name and ID will be private by default.\n\n\nclass Student {\n  private:\n    string name;\n    int ID;\n\n  public:\n    // copy constructor\n    Student(const Student& other) {\n      name = other.name;\n      ID = other.ID;\n    }\n};\nWe have to pass by reference, or else there will be a compile-time error. If passed by value, the copy constructor will be called again, leading to an infinite recursion.\nConstructors has no returns.\nProblem. What happens when data members are pointers?\nclass MyString {\n  private:\n    int len;\n    char* buf;\n\n  public:\n    MyString() { len = 0; buf = nullptr; }\n    \n    Mystring(char* src) { \n      buf = new chat[srtlen(src) + 1];\n      strcpy(buf, src);\n      len = strlen(src);\n    }\n\n    void setString(char* src) {\n      if (!buf = NULL) {\n        delete[] buf;\n        buf = new char[strlen(src) + 1];\n        strcpy(buf, src);\n        len = strlen(src);\n      }\n    }\n\n    // shallow copy!\n    MyString(const MyString&x) {\n      len = x.len;\n      buf = x.buf;\n    }\n};\n\nint main() {\n  MyString a(\"Hello\");\n  MyString b(a);\n  b.setString(\"Oops\"); // we change the string in a and b\n  return 0;\n}\n\nSolution. Deep copy\nMyString::MyString(const MyString& src) {\n  buf = new char[strlen(src) + 1];\n  strcpy(buf, src.buf);\n  len = src.len;\n}\n\nint main() {\n  MyString a(\"Hello\");\n  MyString b(a);\n  b.setString(\"Oops\"); // we change the string in a and b\n  return 0;\n}"
   },
   {
     "objectID": "lecture16.html#rule-of-three",
@@ -1012,7 +1012,7 @@
     "href": "lecture26.html#today",
     "title": "Lecture 26 - Nov 14, 2023",
     "section": "Today",
-    "text": "Today\nInheritance is a oillar of object-oriented programming.\nInheriting/acquiring all properties and behaviours of a parent class.\nIn Person.h:\nclass Person {\n  private:\n    string name;\n    int age;\n\n  public:\n    Person() { name = \"\"; age = 0; }\n    Person(string n, int a) { name = n; age = a; }\n    void setName(string n) { name = n; }\n    void print() {\n      cout &lt;&lt; \"Name: \" &lt;&lt; name &lt;&lt; endl;\n      cout &lt;&lt; \"Age: \" &lt;&lt; age &lt;&lt; endl;\n    }\n};\nI want to create a class Student. The data for this class should be: name, age, and ID. The functions should be: setName(), print(), and setNameID().\nI can reuse some of the code.\nOption 1: From scratch.\nOption 2: Copy and paste code from Person class and add setNameID(). The issues are:\n\nUnderstand all details of Person.\nIf you change Person, no changes will be reflected to Student.\n\nOption 3: Inherit from Person. The benefits are:\n\nRe-use code.\nNeed to understand what Person does.\n\nPerson is a base class.\nStudent is a derived class.\nIn Student.h:\nclass Student : public Person {\n  private:\n    int id;\n\n  // age and name are innaccessible\n\n  // we don't inherit constructors of Person\n\n  public:\n    Student() : Person() { id = 0; }\n\n    // setName is inherited\n    void setNameID(string n, int d) {\n      Person::setName(n);\n      id = d;\n    }\n\n    // method overriding: replace/redefine the inherited print() from Person\n    // we define our own version for Student\n    void print() {\n      cout &lt;&lt; \"ID: \" &lt;&lt; id &lt;&lt; endl;\n\n      // I can't access age and name\n      Person::print();\n    }\n};\nIn main.cpp:\n#include \"Person.h\"\n#include \"Student.h\"\n\nusing namespace std;\n\nint main() {\n  Person p(\"Joe\", 23);\n\n  // name and age are inaccessible\n  Student s;\n\n  // 1. we construct Person object\n  // 2. On top of it, we construct Student object\n\n  // setName is inherited from Person, so we can call it on Student\n  s.setName(\"Ryan\");\n\n  s.setNameID(\"Marina\", 125);\n}"
+    "text": "Today\nInheritance."
   },
   {
     "objectID": "lecture26.html#summary",
@@ -1083,5 +1083,61 @@
     "title": "Lecture 26 - Nov 14, 2023",
     "section": "Last lecture",
     "text": "Last lecture\nComplexity analysis."
+  },
+  {
+    "objectID": "lecture26.html#inheritance",
+    "href": "lecture26.html#inheritance",
+    "title": "Lecture 26 - Nov 14, 2023",
+    "section": "Inheritance",
+    "text": "Inheritance\nInheritance is a pillar of object-oriented programming.\nInheriting/acquiring all properties and behaviours of a parent class.\nIn Person.h:\nclass Person {\n  private:\n    string name;\n    int age;\n\n  public:\n    Person() { name = \"\"; age = 0; }\n    Person(string n, int a) { name = n; age = a; }\n    void setName(string n) { name = n; }\n    void print() {\n      cout &lt;&lt; \"Name: \" &lt;&lt; name &lt;&lt; endl;\n      cout &lt;&lt; \"Age: \" &lt;&lt; age &lt;&lt; endl;\n    }\n};\nI want to create a class Student. The data for this class should be: name, age, and ID. The functions should be: setName(), print(), and setNameID().\nI can reuse some of the code.\nOption 1: From scratch.\nOption 2: Copy and paste code from Person class and add setNameID(). The issues are:\n\nUnderstand all details of Person.\nIf you change Person, no changes will be reflected to Student.\n\nOption 3: Inherit from Person. The benefits are:\n\nRe-use code.\nNeed to understand what Person does.\n\nPerson is a base class.\nStudent is a derived class.\nIn Student.h:\nclass Student : public Person {\n  private:\n    int ID;\n\n  // age and name are innaccessible\n\n  // we don't inherit constructors of Person\n\n  public:\n    Student() : Person() { ID = 0; }\n\n    // setName is inherited\n    void setNameID(string n, int d) {\n      Person::setName(n);\n      ID = d;\n    }\n\n    // method overriding: replace/redefine the inherited print() from Person\n    // we define our own version for Student\n    void print() {\n      cout &lt;&lt; \"ID: \" &lt;&lt; ID &lt;&lt; endl;\n\n      // I can't access age and name\n      Person::print();\n    }\n};\nIn main.cpp:\n#include \"Person.h\"\n#include \"Student.h\"\n\nusing namespace std;\n\nint main() {\n  Person p(\"Joe\", 23);\n\n  // name and age are inaccessible\n  Student s;\n\n  // 1. we construct Person object\n  // 2. On top of it, we construct Student object\n\n  // setName is inherited from Person, so we can call it on Student\n  s.setName(\"Ryan\");\n\n  s.setNameID(\"Marina\", 125);\n}"
+  },
+  {
+    "objectID": "lecture27.html#summary",
+    "href": "lecture27.html#summary",
+    "title": "Lecture 27 - Nov 16, 2023",
+    "section": "Summary",
+    "text": "Summary\nCOMPLETE"
+  },
+  {
+    "objectID": "lecture27.html#last-lecture",
+    "href": "lecture27.html#last-lecture",
+    "title": "Lecture 27 - Nov 16, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nInheritance."
+  },
+  {
+    "objectID": "lecture27.html#today",
+    "href": "lecture27.html#today",
+    "title": "Lecture 27 - Nov 16, 2023",
+    "section": "Today",
+    "text": "Today\nWe inherit the attributes from Person.\nWe do not inherit constructors.\nIf we create a new setName(), it will overwrite the previous one.\nIn main.cpp:\n#include \"Person.h\"\n#include \"Student.h\"\n\nint main() {\n  Person p(\"Joe\", 23);\n  Student s;  // 2 constructors are called\n  // 1st is Person() default constructor\n  // 2nd is Student() default constructor\n  p.setName(\"Joseph\");\n  p.print();  // print name and age\n\n  s.setNameID(\"Ryan\");  // setNameID is inherited from Person\n  s.print();  // we invoke print on Student object, hence we call print of\n              // Student, not of person\n\n  s.setNameID(\"Marina\", 125);\n  s.print();\n\n  return 0;\n}\nIn Person.h:\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nclass Person {\n private:\n  string name;\n  int age;\n\n public:\n  Person() {\n    name = \"\";\n    age = 0;\n  }\n  Person(string n, int a) {\n    name = n;\n    age = a;\n  }\n  void setName(string n) { name = n; }\n  void print() {\n    cout &lt;&lt; \"Name: \" &lt;&lt; name &lt;&lt; endl;\n    cout &lt;&lt; \"Age: \" &lt;&lt; age &lt;&lt; endl;\n  }\n};\nIn Student.h:\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nclass Student : public Person {\n private:\n  int ID;\n\n  // age and name are innaccessible\n\n  // we don't inherit constructors of Person\n\n public:\n  Student() { ID = 0; }\n  using Person::setName;\n\n  // setName is inherited\n  void setNameID(string n, int d = 0) {\n    Person::setName(n);\n    ID = d;\n  }\n\n  // cancel/overwrite the print function inherited from Person\n  // we write our own\n  void print() {\n    // I can't access age and name\n    Person::print();\n    cout &lt;&lt; \"ID: \" &lt;&lt; ID &lt;&lt; endl;\n  }\n};"
+  },
+  {
+    "objectID": "lecture27.html#inheritance",
+    "href": "lecture27.html#inheritance",
+    "title": "Lecture 27 - Nov 16, 2023",
+    "section": "Inheritance:",
+    "text": "Inheritance:\nclass Person {\n  ...\n\n};\n\nclass Student : public Person {\n  ...\n\n};\n\nStudent s;\ns.SetName();\n\n// s is Student\n// s is Person"
+  },
+  {
+    "objectID": "lecture27.html#membership",
+    "href": "lecture27.html#membership",
+    "title": "Lecture 27 - Nov 16, 2023",
+    "section": "Membership",
+    "text": "Membership\nclass Student {\n  public:\n    Person p;\n};\n\nStudent s;\n\n// s is Student\n// s is NOT person"
+  },
+  {
+    "objectID": "lecture27.html#inheritance-versus-membership",
+    "href": "lecture27.html#inheritance-versus-membership",
+    "title": "Lecture 27 - Nov 16, 2023",
+    "section": "Inheritance versus membership",
+    "text": "Inheritance versus membership\n\nThese are not the same\nInheritance is an “is-a” relationship\nMembership is a “has-a” relationship"
+  },
+  {
+    "objectID": "lecture27.html#access-different-constructors",
+    "href": "lecture27.html#access-different-constructors",
+    "title": "Lecture 27 - Nov 16, 2023",
+    "section": "Access different constructors",
+    "text": "Access different constructors\nWhat if I want to access a different Person constructor (not default)?\nclass Student : public Person {\n  private:\n    int ID;\n\n  public:\n    Student() { ID = 0; }\n    // or\n    // Student() : ID(0);\n\n    // call the 2nd constructor in Person\n    // between fun() and {, the space allows an initializer's list\n    Student(string n, int a, int d) : Person(n,a) {\n      ID = d;\n    }\n};"
   }
 ]

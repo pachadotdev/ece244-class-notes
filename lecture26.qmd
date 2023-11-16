@@ -11,7 +11,11 @@ Complexity analysis.
 
 ## Today
 
-Inheritance is a oillar of object-oriented programming.
+Inheritance.
+
+## Inheritance
+
+Inheritance is a pillar of object-oriented programming.
 
 Inheriting/acquiring **all** properties and behaviours of a parent class.
 
@@ -61,25 +65,25 @@ In `Student.h`:
 ```cpp
 class Student : public Person {
   private:
-    int id;
+    int ID;
 
   // age and name are innaccessible
 
   // we don't inherit constructors of Person
 
   public:
-    Student() : Person() { id = 0; }
+    Student() : Person() { ID = 0; }
 
     // setName is inherited
     void setNameID(string n, int d) {
       Person::setName(n);
-      id = d;
+      ID = d;
     }
 
     // method overriding: replace/redefine the inherited print() from Person
     // we define our own version for Student
     void print() {
-      cout << "ID: " << id << endl;
+      cout << "ID: " << ID << endl;
 
       // I can't access age and name
       Person::print();

@@ -1,0 +1,168 @@
+# Lecture 27 - Nov 16, 2023
+
+## Summary
+
+COMPLETE
+
+## Last lecture
+
+Inheritance.
+
+## Today
+
+We inherit the attributes from `Person`.
+
+We do not inherit constructors.
+
+If we create a new `setName()`, it will overwrite the previous one.
+
+In `main.cpp`:
+
+```cpp
+#include "Person.h"
+#include "Student.h"
+
+int main() {
+  Person p("Joe", 23);
+  Student s;  // 2 constructors are called
+  // 1st is Person() default constructor
+  // 2nd is Student() default constructor
+  p.setName("Joseph");
+  p.print();  // print name and age
+
+  s.setNameID("Ryan");  // setNameID is inherited from Person
+  s.print();  // we invoke print on Student object, hence we call print of
+              // Student, not of person
+
+  s.setNameID("Marina", 125);
+  s.print();
+
+  return 0;
+}
+```
+
+In `Person.h`:
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Person {
+ private:
+  string name;
+  int age;
+
+ public:
+  Person() {
+    name = "";
+    age = 0;
+  }
+  Person(string n, int a) {
+    name = n;
+    age = a;
+  }
+  void setName(string n) { name = n; }
+  void print() {
+    cout << "Name: " << name << endl;
+    cout << "Age: " << age << endl;
+  }
+};
+```
+
+In `Student.h`:
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Student : public Person {
+ private:
+  int ID;
+
+  // age and name are innaccessible
+
+  // we don't inherit constructors of Person
+
+ public:
+  Student() { ID = 0; }
+  using Person::setName;
+
+  // setName is inherited
+  void setNameID(string n, int d = 0) {
+    Person::setName(n);
+    ID = d;
+  }
+
+  // cancel/overwrite the print function inherited from Person
+  // we write our own
+  void print() {
+    // I can't access age and name
+    Person::print();
+    cout << "ID: " << ID << endl;
+  }
+};
+```
+
+## Inheritance:
+
+```cpp
+class Person {
+  ...
+
+};
+
+class Student : public Person {
+  ...
+
+};
+
+Student s;
+s.SetName();
+
+// s is Student
+// s is Person
+```
+
+## Membership
+
+```cpp
+class Student {
+  public:
+    Person p;
+};
+
+Student s;
+
+// s is Student
+// s is NOT person
+```
+
+## Inheritance versus membership
+
+* These are not the same
+* Inheritance is an "is-a" relationship
+* Membership is a "has-a" relationship
+
+## Access different constructors
+
+What if I want to access a different `Person` constructor (not default)?
+
+```cpp
+class Student : public Person {
+  private:
+    int ID;
+
+  public:
+    Student() { ID = 0; }
+    // or
+    // Student() : ID(0);
+
+    // call the 2nd constructor in Person
+    // between fun() and {, the space allows an initializer's list
+    Student(string n, int a, int d) : Person(n,a) {
+      ID = d;
+    }
+};
+```
