@@ -1,0 +1,181 @@
+# Lecture 30 - Nov 21, 2023
+
+## Last lecture
+
+Inheritance continuation
+
+## Today
+
+Dynamic memory allocation and polymorphism
+
+## Pointers to dynamic memory in derived class
+
+When a class has members that point to dynamically allocated memory , we should
+have our own `operator=` and copy constructor.
+
+```cpp
+class Person {
+  private:
+    int age;
+    char* name;
+
+  public:
+    // asume Person() and Person(int, char*) are implemented
+    Person(const Person& original) {
+      name = new char[strlen(original.name) + 1];
+      strcpy(name, original.name);
+      age = original.age;
+    }
+
+    Person& operator=(const Person& rhs) {
+      if (&rhs == this) {
+        return *this;
+      }
+      delete[] name;
+      name = new charr[strlen(rhs.name) + 1];
+      strcpy(name, rhs.name);
+      age = rhs.age;
+      return *this;
+    }
+
+    ~Person() {
+      delete[] name;
+    }
+}
+
+class Student : public Person {
+  private:
+    int ID;
+
+  public:
+    // assume Student() and Student(int, char*, int) are implemented
+    // You have to explicitly call the copy constructor
+    // Otherwise, the default copy constructor will be called
+    Student(const Student& original) : Person(original) {
+      ID = original.ID;
+    }
+
+    Student& operator=(const Student& rhs) {
+      // rhs is also Person we can pass it to operator= of Person
+      Person::operator=(rhs);
+      ID = rhs.ID;
+      return *this;
+    }
+}
+```
+
+## Dynamic versus static binding
+
+```cpp
+class Polygon {
+  protected:
+    int width, height;
+
+  public:
+    void set(int w, int h) {
+      width = w;
+      height = h;
+    }
+};
+
+class Rectangle : public Polygon {
+  public:
+    int area() {
+      return width * height;
+    }
+};
+
+class Triangle : public Polygon {
+  public:
+    int area() {
+      return width * height / 2;
+    }
+};
+
+int main() {
+  Polygon p;
+  Rectangle r;
+
+  p = r; // p.operator = (s)
+         // p = polygon
+         // s = rectangle
+         // ok
+         // Polygon& operator=(Polygon& rhs) { ... }
+
+  r = p; // r.operator = (p)
+         // r = rectangle
+         // p = polygon - not rectangle
+         // error
+
+  // important
+  // rectangle: polygon and rectangle too
+  // polygon: polygon only
+
+  Rectangle* r1;
+  Polygon* p1;
+  pl = &r;
+
+  // p1 pointer can be used to access Polygon members which also exist in rectangle
+
+  p1 <- set(3,4); // calls set of Polygon - ok
+
+  cout << p1 -> area(); // error as area() is a member of Rectangle, not Polygon
+
+  r1 = &p; // error
+
+  // r1 pointer cannot access all Rectangle members as not all of them exist in
+  // Polygon p (base class)
+}
+```
+
+Problem: we cannot access members of a `Derived` object if the pointer pointing
+to it is of `Base*` type.
+
+Solution: virtual functions.
+
+## Virtual functions
+
+If a function is declared as a virtual function in the base class, then redefined
+or overriden in a derived class, a class to that function through a `Base*`
+pointer will invoke the function depending on the type of object (not pointer).
+
+```cpp
+class Polygon {
+  protected:
+    int width, height;
+
+  public:
+    void set(int w, int h) {
+      width = w;
+      height = h;
+    }
+
+    virtual int area() {
+      return 0;
+    }
+};
+
+p1 -> area(); // will invoke the area function of what p1 is pointing to
+              // i.e., Rectangle = 12
+
+// if we remove virtual
+// p1 -> area() and p2 -> area() will both return 0
+```
+
+Non-virtual functions are invoked depending on the type of pointer. This is
+known at compile-time.
+
+Virtual functions are invoked depending on the type the pointer points to. This
+is known at run-time.
+
+A class that inherits a virtual function is called polymorphic class (e.g., 
+`Rectangle` and `Triangle`).
+
+Why is this helpful? We can have an array of `Polygon*` and have different
+shapes on it.
+
+PENDING: INSERT DIAGRAM
+
+```cpp
+cout << a[i] -> area(); // will print out area according to shape
+```

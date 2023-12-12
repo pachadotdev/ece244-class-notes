@@ -1,0 +1,178 @@
+# Lecture 29 - Nov 17, 2023
+
+## Today
+
+Inheritance continuation
+
+## Recap
+
+What of I want to call a different `Person` constructor when I create a
+`Student` object?
+
+```cpp
+class Student : public Person {
+ private:
+  int ID;
+
+ public:
+  Student() { ID = 0; }
+  // or
+  Student() : Person(), ID(0) { }
+
+  // initializer's list after the :
+  Student(string n, int a, int d) : Person(n,a) {
+    ID = d;
+  }
+};
+
+int main() {
+  Student s("Armaan", 20, 354);
+  // 1. Person(n,a)
+  // 2. Student(n,a,d)
+}
+```
+
+We have data (private data members) that is inaccesible from the base class.
+
+There is a way to inherit data members and make all of it accessible in the
+derived class, but mainstain privacy to this data in other classes.
+
+```cpp
+class Person {
+  protected:
+    // inherited and accessible
+    int age;
+    string name;
+};
+
+class Student : public Person {
+  protected:
+    int ID;
+
+  public:
+    Student(string n, int a, int d) {
+      Person::name = n;
+      Person::age = a;
+      ID = d;
+    }
+};
+
+Student s("Armaan", 20, 354);
+
+// s.name will not work
+// name is a protected member of Person
+// it can't be accessed outside of Person and Student
+```
+
+::: {.callout-note icon=false}
+## Example
+
+Multiple inheritances: Insert wheel image with wheel circle radius.
+
+```cpp
+class Circle {
+  protected:
+    int radius;
+
+  public:
+    void print() { cout << "Circle" << radius << endl; }
+};
+
+class Wheel : public Circle {
+  // inherits radius and print
+
+  protected:
+    int radius; // another variable with identical name to inherited radius
+
+  public:
+    Wheel(int rw) {
+      radius = rw;
+    }
+
+    Wheel(int rc, int rw) : Circle(rc) { 
+      radius = rw;
+    }
+
+    void print() {
+      // radius of circle
+      Circle::print();
+      
+      // radius of wheel
+      cout << "Wheel" << radius << endl;
+    }
+}
+
+class Tire : public Wheel {
+  // inherits radius of wheel, radius of circle, and print of wheel
+  protected:
+    int radius;
+
+  public:
+    Tire(int rc, int rw, int rt) : Wheel(rc, rw) { 
+      radius = rt;
+    }
+
+    Tire(int rc, int rw, int rt) : Wheel(rw), Circle(rc) {
+      radius = rt;
+    }
+
+    void print() {
+      Wheel::print();
+      cout << "Tire" << radius << endl;
+    }
+
+    void set(int rc, int rw, int rt) {
+      Circle::radius = rc;
+      Wheel::radius = rw;
+      radius = rt;
+    }
+};
+
+int main() {
+  Tire t; // 1. Default constructor of Circle
+          // 2. Default constructor of Wheel
+          // 3. Default constructor of Tire is called
+          //    It's provided by the compiler
+
+  t.set(3,4,6); // circle = 3, wheel = 4, tire = 6
+  t.print();
+}
+```
+
+## Class hierarchy
+
+ADD DIAGRAM
+
+```cpp
+class Person {
+  // ...
+};
+
+class Student : public Person {
+  // ...
+}
+
+class Employee : public Person {
+  // ...
+}
+
+class Grad : public Student {
+  // ...
+}
+
+class TA : public Grad, public Employee {
+  // ...
+}
+```
+
+## Pointers to dynamic memory in a derived class
+
+We do not inherit
+
+1. Constructors
+2. Copy constructors
+3. Operator equal
+4. Destructors
+
+1: Specify.
+2-4: We have to create our own if we need to.

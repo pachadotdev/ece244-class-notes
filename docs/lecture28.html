@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hiram: ECE244 Tidy Notes - Lecture 27 - Nov 14, 2023</title>
+<title>Hiram: ECE244 Tidy Notes - Lecture 28 - Nov 16, 2023</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./lecture28.html" rel="next">
-<link href="./lecture26.html" rel="prev">
+<link href="./lecture29.html" rel="next">
+<link href="./lecture27.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -108,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture27.html"><span class="chapter-title">Lecture 27 - Nov 14, 2023</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture28.html"><span class="chapter-title">Lecture 28 - Nov 16, 2023</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -270,17 +270,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture27.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Lecture 27 - Nov 14, 2023</span></a>
+  <a href="./lecture27.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 27 - Nov 14, 2023</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture28.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 28 - Nov 16, 2023</span></a>
+  <a href="./lecture28.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Lecture 28 - Nov 16, 2023</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture29.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 28 - Nov 17, 2023</span></a>
+  <a href="./lecture29.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 29 - Nov 17, 2023</span></a>
   </div>
 </li>
     </ul>
@@ -296,12 +296,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#last-lecture" id="toc-last-lecture" class="nav-link" data-scroll-target="#last-lecture">Last lecture</a></li>
   <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
-  <li><a href="#inheritance" id="toc-inheritance" class="nav-link" data-scroll-target="#inheritance">Inheritance</a></li>
   <li><a href="#inheritance-versus-membership" id="toc-inheritance-versus-membership" class="nav-link" data-scroll-target="#inheritance-versus-membership">Inheritance versus membership</a>
   <ul class="collapse">
-  <li><a href="#inheritance-1" id="toc-inheritance-1" class="nav-link" data-scroll-target="#inheritance-1">Inheritance</a></li>
+  <li><a href="#inheritance" id="toc-inheritance" class="nav-link" data-scroll-target="#inheritance">Inheritance</a></li>
   <li><a href="#membership" id="toc-membership" class="nav-link" data-scroll-target="#membership">Membership</a></li>
+  <li><a href="#access-different-constructors" id="toc-access-different-constructors" class="nav-link" data-scroll-target="#access-different-constructors">Access different constructors</a></li>
   </ul></li>
+  <li><a href="#data-protection" id="toc-data-protection" class="nav-link" data-scroll-target="#data-protection">Data protection</a></li>
   </ul>
 </nav>
     </div>
@@ -310,7 +311,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Lecture 27 - Nov 14, 2023</span></h1>
+<h1 class="title"><span class="chapter-title">Lecture 28 - Nov 16, 2023</span></h1>
 </div>
 
 
@@ -327,30 +328,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>In this lecture, we introduce a new pillar of object-oriented programming: inheritance. Inheritance is a process in which a class acquires all properties and behavior of the parent class.</p>
+<p>In this lecture, we continue our discussion on inheritance, data protection within a derived classes and pointers to derived classes.</p>
 </section>
 <section id="last-lecture" class="level2">
 <h2 class="anchored" data-anchor-id="last-lecture">Last lecture</h2>
-<p>Complexity analysis.</p>
+<p>Inheritance.</p>
 </section>
 <section id="today" class="level2">
 <h2 class="anchored" data-anchor-id="today">Today</h2>
-<p>Inheritance.</p>
-</section>
-<section id="inheritance" class="level2">
-<h2 class="anchored" data-anchor-id="inheritance">Inheritance</h2>
-<p>Inheritance is a process in which a class acquired all properties and behaviour of the parent class. This is one of the pillar of object-oriented programming.</p>
-<p>This allows programmers to extend/improve existing classes without modifying the code of these classes.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Example
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<p>Inheritance continuation.</p>
+<p>We inherit the attributes from <code>Person</code>.</p>
+<p>We do not inherit constructors.</p>
+<p>If we create a new <code>setName()</code>, it will overwrite the previous one.</p>
 <p>In <code>Person.h</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -366,67 +355,52 @@ Example
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="st">""</span><span class="op">;</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    age <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  Person<span class="op">(</span>string n<span class="op">,</span> <span class="dt">int</span> a<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> n<span class="op">;</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    age <span class="op">=</span> a<span class="op">;</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="dt">void</span> setName<span class="op">(</span>string n<span class="op">)</span> <span class="op">{</span> name <span class="op">=</span> n<span class="op">;</span> <span class="op">}</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="dt">void</span> print<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Name: "</span> <span class="op">&lt;&lt;</span> name <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Age: "</span> <span class="op">&lt;&lt;</span> age <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>After we implemented the <code>Person</code> class, we want another class that is more specific to a<code>Student</code>.</p>
-<p>The <code>Student</code> class has data members of <code>name</code>, <code>age</code>, <code>ID</code>. We want the <code>print()</code> member function to print all these data members. We still want <code>setName()</code> to set the name of the student.</p>
-<p>Options:</p>
-<ol type="1">
-<li>Write the <code>Student</code> class from scratch. Issue: Re-write code.</li>
-<li>Copy and paste the <code>Person</code> class and change it. Issue: You need to understand all the details of <code>Person</code>.</li>
-<li>Inherit the <code>Person</code> class.</li>
-</ol>
-<ul>
-<li>Benefits: Re-use code and you need to understand what <code>Person</code> does (not the details)</li>
-<li>Disadvantage: Double-sided weapon. All updates to <code>Person</code> will affect <code>Student</code>.</li>
-</ul>
-<p>Base class is <code>Person</code>.</p>
-<p>Derived class is <code>Student</code>.</p>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  Person<span class="op">(</span>string n<span class="op">,</span> <span class="dt">int</span> a<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> n<span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    age <span class="op">=</span> a<span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">void</span> setName<span class="op">(</span>string n<span class="op">)</span> <span class="op">{</span> name <span class="op">=</span> n<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="dt">void</span> print<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Name: "</span> <span class="op">&lt;&lt;</span> name <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Age: "</span> <span class="op">&lt;&lt;</span> age <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In <code>Student.h</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                <span class="co">// inherit from Person class</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Student <span class="op">:</span> <span class="kw">public</span> Person <span class="op">{</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a> <span class="kw">private</span><span class="op">:</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">// string name and int age are inherited</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">// age and name are innaccessible  </span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> ID<span class="op">;</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">// we don't inherit constructors of Person</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a> <span class="kw">public</span><span class="op">:</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  Student<span class="op">()</span> <span class="op">{</span> ID <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="op">}</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">// setName is inherited and accessible</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="dt">void</span> setNameID<span class="op">(</span>string n<span class="op">,</span> <span class="dt">int</span> d <span class="op">=</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">// name = n // no, name is not accessible</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    Person<span class="op">::</span>setName<span class="op">(</span>n<span class="op">);</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    ID <span class="op">=</span> d<span class="op">;</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">// method overriding</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">// cancel/overwrite the print function inherited from Person</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="co">// we write our own</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">void</span> print<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">// I can't access age and name</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    Person<span class="op">::</span>print<span class="op">();</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"ID: "</span> <span class="op">&lt;&lt;</span> ID <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>An overriding method, e.g.&nbsp;print, is not the same as an overloaded method. Overloaded function has different arguments and/or return type.</p>
-<p><code>Student</code> is inherited from <code>Person</code>. All data and function members, except for overridden print function.</p>
-<p><code>Student</code> cannot access private members of <code>Person</code>.</p>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Student <span class="op">:</span> <span class="kw">public</span> Person <span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a> <span class="kw">private</span><span class="op">:</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> ID<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">// age and name are innaccessible</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">// we don't inherit constructors of Person</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a> <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  Student<span class="op">()</span> <span class="op">{</span> ID <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">// setName is inherited</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">void</span> setNameID<span class="op">(</span>string n<span class="op">,</span> <span class="dt">int</span> d <span class="op">=</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    Person<span class="op">::</span>setName<span class="op">(</span>n<span class="op">);</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    ID <span class="op">=</span> d<span class="op">;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">// cancel/overwrite the print function inherited from Person</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">// we write our own</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="dt">void</span> print<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">// I can't access age and name</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    Person<span class="op">::</span>print<span class="op">();</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"ID: "</span> <span class="op">&lt;&lt;</span> ID <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="op">~</span>Student<span class="op">()</span> <span class="op">{</span> cout <span class="op">&lt;&lt;</span> <span class="st">"Student destructor"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In <code>main.cpp</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"Person.h"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"Student.h"</span></span>
@@ -434,32 +408,27 @@ Example
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  Person p<span class="op">(</span><span class="st">"Joe"</span><span class="op">,</span> <span class="dv">23</span><span class="op">);</span> <span class="co">// constructor of Person</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  Person p<span class="op">(</span><span class="st">"Joe"</span><span class="op">,</span> <span class="dv">23</span><span class="op">);</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  Student s<span class="op">;</span>  <span class="co">// 2 constructors are called</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 1st is Person() default constructor</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 2nd is Student() default constructor</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  p<span class="op">.</span>setName<span class="op">(</span><span class="st">"Joseph"</span><span class="op">);</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  p<span class="op">.</span>print<span class="op">();</span>  <span class="co">// from Person</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  s<span class="op">.</span>setNameID<span class="op">(</span><span class="st">"Ryan"</span><span class="op">);</span>  <span class="co">// setNameID is inherited from Person</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  s<span class="op">.</span>print<span class="op">();</span>  <span class="co">// from Student</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>              <span class="co">// we invoke print on Student object, hence we call print of</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>              <span class="co">// Student, not of person</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  s<span class="op">.</span>setNameID<span class="op">(</span><span class="st">"Marina"</span><span class="op">,</span> <span class="dv">125</span><span class="op">);</span> <span class="co">// from Student</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  s<span class="op">.</span>print<span class="op">();</span> <span class="co">// from Student</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The type of <code>s</code> is <code>Student</code> and <code>Person</code>. The type of <code>p</code> is <code>Person</code>.</p>
-</div>
-</div>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  p<span class="op">.</span>setName<span class="op">(</span><span class="st">"Joseph"</span><span class="op">);</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  p<span class="op">.</span>print<span class="op">();</span>  <span class="co">// print name and age</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  s<span class="op">.</span>setNameID<span class="op">(</span><span class="st">"Ryan"</span><span class="op">);</span>  <span class="co">// setNameID is inherited from Person</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  s<span class="op">.</span>print<span class="op">();</span>  <span class="co">// we invoke print on Student object, hence we call print of</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>              <span class="co">// Student, not of person</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  s<span class="op">.</span>setNameID<span class="op">(</span><span class="st">"Marina"</span><span class="op">,</span> <span class="dv">125</span><span class="op">);</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  s<span class="op">.</span>print<span class="op">();</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="inheritance-versus-membership" class="level2">
 <h2 class="anchored" data-anchor-id="inheritance-versus-membership">Inheritance versus membership</h2>
-<section id="inheritance-1" class="level3">
-<h3 class="anchored" data-anchor-id="inheritance-1">Inheritance</h3>
+<section id="inheritance" class="level3">
+<h3 class="anchored" data-anchor-id="inheritance">Inheritance</h3>
 <p>Inheritance represents an “is-a” relationship.</p>
 <p>Example: <code>Student</code> is a <code>Person</code>, as <code>Student</code> inherits from <code>Person</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Person <span class="op">{</span></span>
@@ -491,9 +460,82 @@ Example
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">// s is Student</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">// s is NOT person</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-
 </section>
+<section id="access-different-constructors" class="level3">
+<h3 class="anchored" data-anchor-id="access-different-constructors">Access different constructors</h3>
+<p>What if I want to call a different <code>Person</code> constructor when I create a <code>Student</code> object?</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Student <span class="op">:</span> <span class="kw">public</span> Person <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">private</span><span class="op">:</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> ID<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    Student<span class="op">()</span> <span class="op">{</span> ID <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// or</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Student() : ID(0);</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// call the 2nd constructor in Person</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// between fun() and {, the space allows an initializer's list</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    Student<span class="op">(</span>string n<span class="op">,</span> <span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> d<span class="op">)</span> <span class="op">:</span> Person<span class="op">(</span>n<span class="op">,</span>a<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>      ID <span class="op">=</span> d<span class="op">;</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 1. Person(n,a)</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 2. Student(n,a,d)</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  Student s<span class="op">(</span><span class="st">"Armaan"</span><span class="op">,</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">354</span><span class="op">);</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="data-protection" class="level2">
+<h2 class="anchored" data-anchor-id="data-protection">Data protection</h2>
+<p><code>protected</code>data and function members are inherited and accessible to derived classes but not to all classes (somewhere between <code>public</code> and <code>private</code>).</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Person <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">protected</span><span class="op">:</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> age<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    string name<span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Student <span class="op">:</span> <span class="kw">public</span> Person <span class="op">{</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">private</span><span class="op">:</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> ID<span class="op">;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    Student<span class="op">(</span>string n<span class="op">,</span> <span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> d<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      Person<span class="op">::</span>name <span class="op">=</span> n<span class="op">;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>      Person<span class="op">::</span>age <span class="op">=</span> a<span class="op">;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>      ID <span class="op">=</span> d<span class="op">;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Important</strong>. We do not inherit</p>
+<ol type="1">
+<li>Constructors: You can call them.</li>
+<li>Copy constructors</li>
+<li>Operator equal</li>
+<li>Destructors</li>
+</ol>
+<p>2-4: You can create derived’s own version of them.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  Student s<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  Person p<span class="op">;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  p <span class="op">=</span> s<span class="op">;</span> <span class="co">// =&gt; p.operator=(s)</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">// Person&amp; operator=(Person&amp; rhs) { ... }</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  s <span class="op">=</span> p<span class="op">;</span> <span class="co">// =&gt; s.operator=(p) - LHS is student, RHS is person =&gt; ERROR</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Very important</strong>. <code>student</code> is a <code>Person</code> and <code>Student</code>. <code>person</code> is a <code>Person</code> only.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Student<span class="op">*</span> s1<span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Person<span class="op">*</span> p1<span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">=</span> <span class="op">&amp;</span>s<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>p1</code> pointer can be used to access <code>Person</code> members which also exist in <code>Student</code> <code>s</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>p1<span class="op">-&gt;</span>setName<span class="op">(</span><span class="st">"Selim"</span><span class="op">);</span> <span class="co">// calls setName of Person</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>p1<span class="op">-&gt;</span>print<span class="op">();</span> <span class="co">// calls print of Person</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">// p1-&gt;setNameID(); // error, because setNameID is not a member of Person</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>s1</code> pointer cannot access all <code>Student</code> members as not all of them exist in <code>Person</code> (base class).</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">// s1 = &amp;p; // error</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -732,13 +774,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./lecture26.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Lecture 26 - Nov 14, 2023</span></span>
+      <a href="./lecture27.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Lecture 27 - Nov 14, 2023</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./lecture28.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-title">Lecture 28 - Nov 16, 2023</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./lecture29.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Lecture 29 - Nov 17, 2023</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

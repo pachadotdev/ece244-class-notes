@@ -1094,30 +1094,30 @@
   {
     "objectID": "lecture27.html#summary",
     "href": "lecture27.html#summary",
-    "title": "Lecture 27 - Nov 16, 2023",
+    "title": "Lecture 27 - Nov 14, 2023",
     "section": "Summary",
-    "text": "Summary\nCOMPLETE"
+    "text": "Summary\nIn this lecture, we introduce a new pillar of object-oriented programming: inheritance. Inheritance is a process in which a class acquires all properties and behavior of the parent class."
   },
   {
     "objectID": "lecture27.html#last-lecture",
     "href": "lecture27.html#last-lecture",
-    "title": "Lecture 27 - Nov 16, 2023",
+    "title": "Lecture 27 - Nov 14, 2023",
     "section": "Last lecture",
-    "text": "Last lecture\nInheritance."
+    "text": "Last lecture\nComplexity analysis."
   },
   {
     "objectID": "lecture27.html#today",
     "href": "lecture27.html#today",
-    "title": "Lecture 27 - Nov 16, 2023",
+    "title": "Lecture 27 - Nov 14, 2023",
     "section": "Today",
-    "text": "Today\nWe inherit the attributes from Person.\nWe do not inherit constructors.\nIf we create a new setName(), it will overwrite the previous one.\nIn main.cpp:\n#include \"Person.h\"\n#include \"Student.h\"\n\nint main() {\n  Person p(\"Joe\", 23);\n  Student s;  // 2 constructors are called\n  // 1st is Person() default constructor\n  // 2nd is Student() default constructor\n  p.setName(\"Joseph\");\n  p.print();  // print name and age\n\n  s.setNameID(\"Ryan\");  // setNameID is inherited from Person\n  s.print();  // we invoke print on Student object, hence we call print of\n              // Student, not of person\n\n  s.setNameID(\"Marina\", 125);\n  s.print();\n\n  return 0;\n}\nIn Person.h:\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nclass Person {\n private:\n  string name;\n  int age;\n\n public:\n  Person() {\n    name = \"\";\n    age = 0;\n  }\n  Person(string n, int a) {\n    name = n;\n    age = a;\n  }\n  void setName(string n) { name = n; }\n  void print() {\n    cout &lt;&lt; \"Name: \" &lt;&lt; name &lt;&lt; endl;\n    cout &lt;&lt; \"Age: \" &lt;&lt; age &lt;&lt; endl;\n  }\n};\nIn Student.h:\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nclass Student : public Person {\n private:\n  int ID;\n\n  // age and name are innaccessible\n\n  // we don't inherit constructors of Person\n\n public:\n  Student() { ID = 0; }\n  using Person::setName;\n\n  // setName is inherited\n  void setNameID(string n, int d = 0) {\n    Person::setName(n);\n    ID = d;\n  }\n\n  // cancel/overwrite the print function inherited from Person\n  // we write our own\n  void print() {\n    // I can't access age and name\n    Person::print();\n    cout &lt;&lt; \"ID: \" &lt;&lt; ID &lt;&lt; endl;\n  }\n};"
+    "text": "Today\nInheritance."
   },
   {
     "objectID": "lecture27.html#inheritance",
     "href": "lecture27.html#inheritance",
-    "title": "Lecture 27 - Nov 16, 2023",
-    "section": "Inheritance:",
-    "text": "Inheritance:\nclass Person {\n  ...\n\n};\n\nclass Student : public Person {\n  ...\n\n};\n\nStudent s;\ns.SetName();\n\n// s is Student\n// s is Person"
+    "title": "Lecture 27 - Nov 14, 2023",
+    "section": "Inheritance",
+    "text": "Inheritance\nInheritance is a process in which a class acquired all properties and behaviour of the parent class. This is one of the pillar of object-oriented programming.\nThis allows programmers to extend/improve existing classes without modifying the code of these classes.\n\n\n\n\n\n\nExample\n\n\n\nIn Person.h:\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nclass Person {\n private:\n  string name;\n  int age;\n\n public:\n  Person() {\n    name = \"\";\n    age = 0;\n  }\n  Person(string n, int a) {\n    name = n;\n    age = a;\n  }\n  void setName(string n) { name = n; }\n  void print() {\n    cout &lt;&lt; \"Name: \" &lt;&lt; name &lt;&lt; endl;\n    cout &lt;&lt; \"Age: \" &lt;&lt; age &lt;&lt; endl;\n  }\n};\nAfter we implemented the Person class, we want another class that is more specific to aStudent.\nThe Student class has data members of name, age, ID. We want the print() member function to print all these data members. We still want setName() to set the name of the student.\nOptions:\n\nWrite the Student class from scratch. Issue: Re-write code.\nCopy and paste the Person class and change it. Issue: You need to understand all the details of Person.\nInherit the Person class.\n\n\nBenefits: Re-use code and you need to understand what Person does (not the details)\nDisadvantage: Double-sided weapon. All updates to Person will affect Student.\n\nBase class is Person.\nDerived class is Student.\nIn Student.h:\n#include &lt;iostream&gt;\n\nusing namespace std;\n\n                // inherit from Person class\nclass Student : public Person {\n private:\n  // string name and int age are inherited\n  // age and name are innaccessible  \n  int ID;\n\n  // we don't inherit constructors of Person\n\n public:\n  Student() { ID = 0; }\n  \n  // setName is inherited and accessible\n\n  void setNameID(string n, int d = 0) {\n    // name = n // no, name is not accessible\n    Person::setName(n);\n    ID = d;\n  }\n\n  // method overriding\n  // cancel/overwrite the print function inherited from Person\n  // we write our own\n  void print() {\n    // I can't access age and name\n    Person::print();\n    cout &lt;&lt; \"ID: \" &lt;&lt; ID &lt;&lt; endl;\n  }\n};\nAn overriding method, e.g. print, is not the same as an overloaded method. Overloaded function has different arguments and/or return type.\nStudent is inherited from Person. All data and function members, except for overridden print function.\nStudent cannot access private members of Person.\nIn main.cpp:\n#include \"Person.h\"\n#include \"Student.h\"\n\nusing namespace std;\n\nint main() {\n  Person p(\"Joe\", 23); // constructor of Person\n  Student s;  // 2 constructors are called\n  // 1st is Person() default constructor\n  // 2nd is Student() default constructor\n\n  p.setName(\"Joseph\");\n  p.print();  // from Person\n\n  s.setNameID(\"Ryan\");  // setNameID is inherited from Person\n  s.print();  // from Student\n              // we invoke print on Student object, hence we call print of\n              // Student, not of person\n\n  s.setNameID(\"Marina\", 125); // from Student\n  s.print(); // from Student\n\n  return 0;\n}\nThe type of s is Student and Person. The type of p is Person."
   },
   {
     "objectID": "lecture27.html#membership",
@@ -1129,9 +1129,9 @@
   {
     "objectID": "lecture27.html#inheritance-versus-membership",
     "href": "lecture27.html#inheritance-versus-membership",
-    "title": "Lecture 27 - Nov 16, 2023",
+    "title": "Lecture 27 - Nov 14, 2023",
     "section": "Inheritance versus membership",
-    "text": "Inheritance versus membership\n\nThese are not the same\nInheritance is an “is-a” relationship\nMembership is a “has-a” relationship"
+    "text": "Inheritance versus membership\n\nInheritance\nInheritance represents an “is-a” relationship.\nExample: Student is a Person, as Student inherits from Person.\nclass Person {\n  ...\n\n};\n\nclass Student : public Person {\n  ...\n\n};\n\nStudent s;\ns.SetName();\n\n// s is Student\n// s is Person\n\n\nMembership\nMembership represents a “has-a” relationship.\nExample: Student has a member Person p.\nclass Student {\n  private:\n    Person p;\n};\n\nStudent s;\n\n// s is Student\n// s is NOT person"
   },
   {
     "objectID": "lecture27.html#access-different-constructors",
@@ -1139,5 +1139,103 @@
     "title": "Lecture 27 - Nov 16, 2023",
     "section": "Access different constructors",
     "text": "Access different constructors\nWhat if I want to access a different Person constructor (not default)?\nclass Student : public Person {\n  private:\n    int ID;\n\n  public:\n    Student() { ID = 0; }\n    // or\n    // Student() : ID(0);\n\n    // call the 2nd constructor in Person\n    // between fun() and {, the space allows an initializer's list\n    Student(string n, int a, int d) : Person(n,a) {\n      ID = d;\n    }\n};"
+  },
+  {
+    "objectID": "lecture28.html#summary",
+    "href": "lecture28.html#summary",
+    "title": "Lecture 28 - Nov 16, 2023",
+    "section": "Summary",
+    "text": "Summary\nIn this lecture, we continue our discussion on inheritance, data protection within a derived classes and pointers to derived classes."
+  },
+  {
+    "objectID": "lecture28.html#last-lecture",
+    "href": "lecture28.html#last-lecture",
+    "title": "Lecture 28 - Nov 16, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nInheritance."
+  },
+  {
+    "objectID": "lecture28.html#today",
+    "href": "lecture28.html#today",
+    "title": "Lecture 28 - Nov 16, 2023",
+    "section": "Today",
+    "text": "Today\nInheritance continuation.\nWe inherit the attributes from Person.\nWe do not inherit constructors.\nIf we create a new setName(), it will overwrite the previous one.\nIn Person.h:\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nclass Person {\n private:\n  string name;\n  int age;\n\n public:\n  Person() {\n    name = \"\";\n    age = 0;\n  }\n\n  Person(string n, int a) {\n    name = n;\n    age = a;\n  }\n\n  void setName(string n) { name = n; }\n\n  void print() {\n    cout &lt;&lt; \"Name: \" &lt;&lt; name &lt;&lt; endl;\n    cout &lt;&lt; \"Age: \" &lt;&lt; age &lt;&lt; endl;\n  }\n};\nIn Student.h:\n#include &lt;iostream&gt;\n\nusing namespace std;\n\nclass Student : public Person {\n private:\n  int ID;\n\n  // age and name are innaccessible\n\n  // we don't inherit constructors of Person\n\n public:\n  Student() { ID = 0; }\n\n  // setName is inherited\n  \n  void setNameID(string n, int d = 0) {\n    Person::setName(n);\n    ID = d;\n  }\n\n  // cancel/overwrite the print function inherited from Person\n  // we write our own\n  void print() {\n    // I can't access age and name\n    Person::print();\n    cout &lt;&lt; \"ID: \" &lt;&lt; ID &lt;&lt; endl;\n  }\n\n  ~Student() { cout &lt;&lt; \"Student destructor\" &lt;&lt; endl; }\n};\nIn main.cpp:\n#include \"Person.h\"\n#include \"Student.h\"\n\nusing namespace std;\n\nint main() {\n  Person p(\"Joe\", 23);\n  Student s;  // 2 constructors are called\n  // 1st is Person() default constructor\n  // 2nd is Student() default constructor\n  p.setName(\"Joseph\");\n  p.print();  // print name and age\n\n  s.setNameID(\"Ryan\");  // setNameID is inherited from Person\n  s.print();  // we invoke print on Student object, hence we call print of\n              // Student, not of person\n\n  s.setNameID(\"Marina\", 125);\n  s.print();\n\n  return 0;\n}"
+  },
+  {
+    "objectID": "lecture28.html#inheritance-versus-membership",
+    "href": "lecture28.html#inheritance-versus-membership",
+    "title": "Lecture 28 - Nov 16, 2023",
+    "section": "Inheritance versus membership",
+    "text": "Inheritance versus membership\n\nInheritance\nInheritance represents an “is-a” relationship.\nExample: Student is a Person, as Student inherits from Person.\nclass Person {\n  ...\n\n};\n\nclass Student : public Person {\n  ...\n\n};\n\nStudent s;\ns.SetName();\n\n// s is Student\n// s is Person\n\n\nMembership\nMembership represents a “has-a” relationship.\nExample: Student has a member Person p.\nclass Student {\n  private:\n    Person p;\n};\n\nStudent s;\n\n// s is Student\n// s is NOT person\n\n\nAccess different constructors\nWhat if I want to call a different Person constructor when I create a Student object?\nclass Student : public Person {\n  private:\n    int ID;\n\n  public:\n    Student() { ID = 0; }\n    // or\n    // Student() : ID(0);\n\n    // call the 2nd constructor in Person\n    // between fun() and {, the space allows an initializer's list\n    Student(string n, int a, int d) : Person(n,a) {\n      ID = d;\n    }\n};\n\nint main() {\n  // 1. Person(n,a)\n  // 2. Student(n,a,d)\n  Student s(\"Armaan\", 20, 354);\n}"
+  },
+  {
+    "objectID": "lecture28.html#data-protection",
+    "href": "lecture28.html#data-protection",
+    "title": "Lecture 28 - Nov 16, 2023",
+    "section": "Data protection",
+    "text": "Data protection\nprotecteddata and function members are inherited and accessible to derived classes but not to all classes (somewhere between public and private).\nclass Person {\n  protected:\n    int age;\n    string name;\n};\n\nclass Student : public Person {\n  private:\n    int ID;\n  public:\n    Student(string n, int a, int d) {\n      Person::name = n;\n      Person::age = a;\n      ID = d;\n    }\n};\nImportant. We do not inherit\n\nConstructors: You can call them.\nCopy constructors\nOperator equal\nDestructors\n\n2-4: You can create derived’s own version of them.\nint main() {\n  Student s;\n  Person p;\n\n  p = s; // =&gt; p.operator=(s)\n         // Person& operator=(Person& rhs) { ... }\n\n  s = p; // =&gt; s.operator=(p) - LHS is student, RHS is person =&gt; ERROR\n}\nVery important. student is a Person and Student. person is a Person only.\nStudent* s1;\nPerson* p1;\n\np1 = &s;\np1 pointer can be used to access Person members which also exist in Student s.\np1-&gt;setName(\"Selim\"); // calls setName of Person\np1-&gt;print(); // calls print of Person\n// p1-&gt;setNameID(); // error, because setNameID is not a member of Person\ns1 pointer cannot access all Student members as not all of them exist in Person (base class).\n// s1 = &p; // error"
+  },
+  {
+    "objectID": "lecture29.html#recap",
+    "href": "lecture29.html#recap",
+    "title": "Lecture 29 - Nov 17, 2023",
+    "section": "Recap",
+    "text": "Recap\nWhat of I want to call a different Person constructor when I create a Student object?\nclass Student : public Person {\n private:\n  int ID;\n\n public:\n  Student() { ID = 0; }\n  // or\n  Student() : Person(), ID(0) { }\n\n  // initializer's list after the :\n  Student(string n, int a, int d) : Person(n,a) {\n    ID = d;\n  }\n};\n\nint main() {\n  Student s(\"Armaan\", 20, 354);\n  // 1. Person(n,a)\n  // 2. Student(n,a,d)\n}\nWe have data (private data members) that is inaccesible from the base class.\nThere is a way to inherit data members and make all of it accessible in the derived class, but mainstain privacy to this data in other classes.\nclass Person {\n  protected:\n    // inherited and accessible\n    int age;\n    string name;\n};\n\nclass Student : public Person {\n  protected:\n    int ID;\n\n  public:\n    Student(string n, int a, int d) {\n      Person::name = n;\n      Person::age = a;\n      ID = d;\n    }\n};\n\nStudent s(\"Armaan\", 20, 354);\n\n// s.name will not work\n// name is a protected member of Person\n// it can't be accessed outside of Person and Student\n::: {.callout-note icon=false} ## Example\nMultiple inheritances: Insert wheel image with wheel circle radius.\nclass Circle {\n  protected:\n    int radius;\n\n  public:\n    void print() { cout &lt;&lt; \"Circle\" &lt;&lt; radius &lt;&lt; endl; }\n};\n\nclass Wheel : public Circle {\n  // inherits radius and print\n\n  protected:\n    int radius; // another variable with identical name to inherited radius\n\n  public:\n    Wheel(int rw) {\n      radius = rw;\n    }\n\n    Wheel(int rc, int rw) : Circle(rc) { \n      radius = rw;\n    }\n\n    void print() {\n      // radius of circle\n      Circle::print();\n      \n      // radius of wheel\n      cout &lt;&lt; \"Wheel\" &lt;&lt; radius &lt;&lt; endl;\n    }\n}\n\nclass Tire : public Wheel {\n  // inherits radius of wheel, radius of circle, and print of wheel\n  protected:\n    int radius;\n\n  public:\n    Tire(int rc, int rw, int rt) : Wheel(rc, rw) { \n      radius = rt;\n    }\n\n    Tire(int rc, int rw, int rt) : Wheel(rw), Circle(rc) {\n      radius = rt;\n    }\n\n    void print() {\n      Wheel::print();\n      cout &lt;&lt; \"Tire\" &lt;&lt; radius &lt;&lt; endl;\n    }\n\n    void set(int rc, int rw, int rt) {\n      Circle::radius = rc;\n      Wheel::radius = rw;\n      radius = rt;\n    }\n};\n\nint main() {\n  Tire t; // 1. Default constructor of Circle\n          // 2. Default constructor of Wheel\n          // 3. Default constructor of Tire is called\n          //    It's provided by the compiler\n\n  t.set(3,4,6); // circle = 3, wheel = 4, tire = 6\n  t.print();\n}"
+  },
+  {
+    "objectID": "lecture29.html#class-hierarchy",
+    "href": "lecture29.html#class-hierarchy",
+    "title": "Lecture 29 - Nov 17, 2023",
+    "section": "Class hierarchy",
+    "text": "Class hierarchy\nADD DIAGRAM\nclass Person {\n  // ...\n};\n\nclass Student : public Person {\n  // ...\n}\n\nclass Employee : public Person {\n  // ...\n}\n\nclass Grad : public Student {\n  // ...\n}\n\nclass TA : public Grad, public Employee {\n  // ...\n}"
+  },
+  {
+    "objectID": "lecture29.html#pointers-to-dynamic-memory-in-a-derived-class",
+    "href": "lecture29.html#pointers-to-dynamic-memory-in-a-derived-class",
+    "title": "Lecture 29 - Nov 17, 2023",
+    "section": "Pointers to dynamic memory in a derived class",
+    "text": "Pointers to dynamic memory in a derived class\nWe do not inherit\n\nConstructors\nCopy constructors\nOperator equal\nDestructors\n\n1: Specify. 2-4: We have to create our own if we need to."
+  },
+  {
+    "objectID": "lecture29.html#today",
+    "href": "lecture29.html#today",
+    "title": "Lecture 29 - Nov 17, 2023",
+    "section": "Today",
+    "text": "Today\nInheritance continuation"
+  },
+  {
+    "objectID": "lecture30.html#last-lecture",
+    "href": "lecture30.html#last-lecture",
+    "title": "Lecture 30 - Nov 21, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nInheritance continuation"
+  },
+  {
+    "objectID": "lecture30.html#today",
+    "href": "lecture30.html#today",
+    "title": "Lecture 30 - Nov 21, 2023",
+    "section": "Today",
+    "text": "Today\nDynamic memory allocation and polymorphism"
+  },
+  {
+    "objectID": "lecture30.html#pointers-to-dynamic-memory-in-derived-class",
+    "href": "lecture30.html#pointers-to-dynamic-memory-in-derived-class",
+    "title": "Lecture 30 - Nov 21, 2023",
+    "section": "Pointers to dynamic memory in derived class",
+    "text": "Pointers to dynamic memory in derived class\nWhen a class has members that point to dynamically allocated memory , we should have our own operator= and copy constructor.\nclass Person {\n  private:\n    int age;\n    char* name;\n\n  public:\n    // asume Person() and Person(int, char*) are implemented\n    Person(const Person& original) {\n      name = new char[strlen(original.name) + 1];\n      strcpy(name, original.name);\n      age = original.age;\n    }\n\n    Person& operator=(const Person& rhs) {\n      if (&rhs == this) {\n        return *this;\n      }\n      delete[] name;\n      name = new charr[strlen(rhs.name) + 1];\n      strcpy(name, rhs.name);\n      age = rhs.age;\n      return *this;\n    }\n\n    ~Person() {\n      delete[] name;\n    }\n}\n\nclass Student : public Person {\n  private:\n    int ID;\n\n  public:\n    // assume Student() and Student(int, char*, int) are implemented\n    // You have to explicitly call the copy constructor\n    // Otherwise, the default copy constructor will be called\n    Student(const Student& original) : Person(original) {\n      ID = original.ID;\n    }\n\n    Student& operator=(const Student& rhs) {\n      // rhs is also Person we can pass it to operator= of Person\n      Person::operator=(rhs);\n      ID = rhs.ID;\n      return *this;\n    }\n}"
+  },
+  {
+    "objectID": "lecture30.html#dynamic-versus-static-binding",
+    "href": "lecture30.html#dynamic-versus-static-binding",
+    "title": "Lecture 30 - Nov 21, 2023",
+    "section": "Dynamic versus static binding",
+    "text": "Dynamic versus static binding\nclass Polygon {\n  protected:\n    int width, height;\n\n  public:\n    void set(int w, int h) {\n      width = w;\n      height = h;\n    }\n};\n\nclass Rectangle : public Polygon {\n  public:\n    int area() {\n      return width * height;\n    }\n};\n\nclass Triangle : public Polygon {\n  public:\n    int area() {\n      return width * height / 2;\n    }\n};\n\nint main() {\n  Polygon p;\n  Rectangle r;\n\n  p = r; // p.operator = (s)\n         // p = polygon\n         // s = rectangle\n         // ok\n         // Polygon& operator=(Polygon& rhs) { ... }\n\n  r = p; // r.operator = (p)\n         // r = rectangle\n         // p = polygon - not rectangle\n         // error\n\n  // important\n  // rectangle: polygon and rectangle too\n  // polygon: polygon only\n\n  Rectangle* r1;\n  Polygon* p1;\n  pl = &r;\n\n  // p1 pointer can be used to access Polygon members which also exist in rectangle\n\n  p1 &lt;- set(3,4); // calls set of Polygon - ok\n\n  cout &lt;&lt; p1 -&gt; area(); // error as area() is a member of Rectangle, not Polygon\n\n  r1 = &p; // error\n\n  // r1 pointer cannot access all Rectangle members as not all of them exist in\n  // Polygon p (base class)\n}\nProblem: we cannot access members of a Derived object if the pointer pointing to it is of Base* type.\nSolution: virtual functions."
+  },
+  {
+    "objectID": "lecture30.html#virtual-functions",
+    "href": "lecture30.html#virtual-functions",
+    "title": "Lecture 30 - Nov 21, 2023",
+    "section": "Virtual functions",
+    "text": "Virtual functions\nIf a function is declared as a virtual function in the base class, then redefined or overriden in a derived class, a class to that function through a Base* pointer will invoke the function depending on the type of object (not pointer).\nclass Polygon {\n  protected:\n    int width, height;\n\n  public:\n    void set(int w, int h) {\n      width = w;\n      height = h;\n    }\n\n    virtual int area() {\n      return 0;\n    }\n};\n\np1 -&gt; area(); // will invoke the area function of what p1 is pointing to\n              // i.e., Rectangle = 12\n\n// if we remove virtual\n// p1 -&gt; area() and p2 -&gt; area() will both return 0\nNon-virtual functions are invoked depending on the type of pointer. This is known at compile-time.\nVirtual functions are invoked depending on the type the pointer points to. This is known at run-time.\nA class that inherits a virtual function is called polymorphic class (e.g., Rectangle and Triangle).\nWhy is this helpful? We can have an array of Polygon* and have different shapes on it.\nPENDING: INSERT DIAGRAM\ncout &lt;&lt; a[i] -&gt; area(); // will print out area according to shape"
   }
 ]

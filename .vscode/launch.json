@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/pacha/github/ece244-class-notes",
-      "program": "/home/pacha/github/ece244-class-notes/build/Debug/outDebug",
+      "cwd": "/home/pacha/github/ece244-class-notes/snippets/lecture27",
+      "program": "/home/pacha/github/ece244-class-notes/snippets/lecture27/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -1,0 +1,260 @@
+# Lecture 28 - Nov 16, 2023
+
+## Summary
+
+In this lecture, we continue our discussion on inheritance, data protection 
+within a derived classes and pointers to derived classes.
+
+## Last lecture
+
+Inheritance.
+
+## Today
+
+Inheritance continuation.
+
+We inherit the attributes from `Person`.
+
+We do not inherit constructors.
+
+If we create a new `setName()`, it will overwrite the previous one.
+
+In `Person.h`:
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Person {
+ private:
+  string name;
+  int age;
+
+ public:
+  Person() {
+    name = "";
+    age = 0;
+  }
+
+  Person(string n, int a) {
+    name = n;
+    age = a;
+  }
+
+  void setName(string n) { name = n; }
+
+  void print() {
+    cout << "Name: " << name << endl;
+    cout << "Age: " << age << endl;
+  }
+};
+```
+
+In `Student.h`:
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Student : public Person {
+ private:
+  int ID;
+
+  // age and name are innaccessible
+
+  // we don't inherit constructors of Person
+
+ public:
+  Student() { ID = 0; }
+
+  // setName is inherited
+  
+  void setNameID(string n, int d = 0) {
+    Person::setName(n);
+    ID = d;
+  }
+
+  // cancel/overwrite the print function inherited from Person
+  // we write our own
+  void print() {
+    // I can't access age and name
+    Person::print();
+    cout << "ID: " << ID << endl;
+  }
+
+  ~Student() { cout << "Student destructor" << endl; }
+};
+```
+
+In `main.cpp`:
+
+```cpp
+#include "Person.h"
+#include "Student.h"
+
+using namespace std;
+
+int main() {
+  Person p("Joe", 23);
+  Student s;  // 2 constructors are called
+  // 1st is Person() default constructor
+  // 2nd is Student() default constructor
+  p.setName("Joseph");
+  p.print();  // print name and age
+
+  s.setNameID("Ryan");  // setNameID is inherited from Person
+  s.print();  // we invoke print on Student object, hence we call print of
+              // Student, not of person
+
+  s.setNameID("Marina", 125);
+  s.print();
+
+  return 0;
+}
+```
+
+## Inheritance versus membership
+
+### Inheritance
+
+Inheritance represents an "is-a" relationship.
+
+Example: `Student` is a `Person`, as `Student` inherits from `Person`.
+
+```cpp
+class Person {
+  ...
+
+};
+
+class Student : public Person {
+  ...
+
+};
+
+Student s;
+s.SetName();
+
+// s is Student
+// s is Person
+```
+
+### Membership
+
+Membership represents a "has-a" relationship.
+
+Example: `Student` has a member `Person` `p`.
+
+```cpp
+class Student {
+  private:
+    Person p;
+};
+
+Student s;
+
+// s is Student
+// s is NOT person
+```
+
+### Access different constructors
+
+What if I want to call a different `Person` constructor when I create a
+`Student` object?
+
+```cpp
+class Student : public Person {
+  private:
+    int ID;
+
+  public:
+    Student() { ID = 0; }
+    // or
+    // Student() : ID(0);
+
+    // call the 2nd constructor in Person
+    // between fun() and {, the space allows an initializer's list
+    Student(string n, int a, int d) : Person(n,a) {
+      ID = d;
+    }
+};
+
+int main() {
+  // 1. Person(n,a)
+  // 2. Student(n,a,d)
+  Student s("Armaan", 20, 354);
+}
+```
+
+## Data protection
+
+`protected`data and function members are inherited and accessible to derived
+classes but not to all classes (somewhere between `public` and `private`).
+
+```cpp
+class Person {
+  protected:
+    int age;
+    string name;
+};
+
+class Student : public Person {
+  private:
+    int ID;
+  public:
+    Student(string n, int a, int d) {
+      Person::name = n;
+      Person::age = a;
+      ID = d;
+    }
+};
+```
+
+**Important**. We do not inherit
+
+1. Constructors: You can call them.
+2. Copy constructors
+3. Operator equal
+4. Destructors
+
+2-4: You can create derived's own version of them.
+
+```cpp
+int main() {
+  Student s;
+  Person p;
+
+  p = s; // => p.operator=(s)
+         // Person& operator=(Person& rhs) { ... }
+
+  s = p; // => s.operator=(p) - LHS is student, RHS is person => ERROR
+}
+```
+
+**Very important**. `student` is a `Person` and `Student`. `person` is a
+`Person` only.
+
+```cpp
+Student* s1;
+Person* p1;
+
+p1 = &s;
+```
+
+`p1` pointer can be used to access `Person` members which also exist in
+`Student` `s`.
+
+```cpp
+p1->setName("Selim"); // calls setName of Person
+p1->print(); // calls print of Person
+// p1->setNameID(); // error, because setNameID is not a member of Person
+```
+
+`s1` pointer cannot access all `Student` members as not all of them exist in
+`Person` (base class).
+
+```cpp
+// s1 = &p; // error
+```

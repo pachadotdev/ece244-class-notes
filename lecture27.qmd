@@ -1,45 +1,29 @@
-# Lecture 27 - Nov 16, 2023
+# Lecture 27 - Nov 14, 2023
 
 ## Summary
 
-COMPLETE
+In this lecture, we introduce a new pillar of object-oriented programming:
+inheritance. Inheritance is a process in which a class acquires all properties
+and behavior of the parent class.
 
 ## Last lecture
 
-Inheritance.
+Complexity analysis.
 
 ## Today
 
-We inherit the attributes from `Person`.
+Inheritance.
 
-We do not inherit constructors.
+## Inheritance
 
-If we create a new `setName()`, it will overwrite the previous one.
+Inheritance is a process in which a class acquired all properties and behaviour
+of the parent class. This is one of the pillar of object-oriented programming.
 
-In `main.cpp`:
+This allows programmers to extend/improve existing classes without modifying the
+code of these classes.
 
-```cpp
-#include "Person.h"
-#include "Student.h"
-
-int main() {
-  Person p("Joe", 23);
-  Student s;  // 2 constructors are called
-  // 1st is Person() default constructor
-  // 2nd is Student() default constructor
-  p.setName("Joseph");
-  p.print();  // print name and age
-
-  s.setNameID("Ryan");  // setNameID is inherited from Person
-  s.print();  // we invoke print on Student object, hence we call print of
-              // Student, not of person
-
-  s.setNameID("Marina", 125);
-  s.print();
-
-  return 0;
-}
-```
+::: {.callout-note icon=false}
+## Example
 
 In `Person.h`:
 
@@ -70,6 +54,28 @@ class Person {
 };
 ```
 
+After we implemented the `Person` class, we want another class that is more 
+specific to a`Student`.
+
+The `Student` class has data members of `name`, `age`, `ID`. We want the 
+`print()` member function to print all these data members. We still want 
+`setName()` to set the name of the student.
+
+Options:
+
+1. Write the `Student` class from scratch. Issue: Re-write code.
+2. Copy and paste the `Person` class and change it. Issue: You need to
+   understand all the details of `Person`.
+3. Inherit the `Person` class.
+  * Benefits: Re-use code and you need to understand what `Person` does
+    (not the details)
+  * Disadvantage: Double-sided weapon. All updates to `Person` will affect
+    `Student`.
+
+Base class is `Person`.
+
+Derived class is `Student`.
+
 In `Student.h`:
 
 ```cpp
@@ -77,24 +83,27 @@ In `Student.h`:
 
 using namespace std;
 
+                // inherit from Person class
 class Student : public Person {
  private:
+  // string name and int age are inherited
+  // age and name are innaccessible  
   int ID;
-
-  // age and name are innaccessible
 
   // we don't inherit constructors of Person
 
  public:
   Student() { ID = 0; }
-  using Person::setName;
+  
+  // setName is inherited and accessible
 
-  // setName is inherited
   void setNameID(string n, int d = 0) {
+    // name = n // no, name is not accessible
     Person::setName(n);
     ID = d;
   }
 
+  // method overriding
   // cancel/overwrite the print function inherited from Person
   // we write our own
   void print() {
@@ -105,7 +114,53 @@ class Student : public Person {
 };
 ```
 
-## Inheritance:
+An overriding method, e.g. print, is not the same as an overloaded method.
+Overloaded function has different arguments and/or return type.
+
+`Student` is inherited from `Person`. All data and function members, except for
+overridden print function.
+
+`Student` cannot access private members of `Person`.
+
+In `main.cpp`:
+
+```cpp
+#include "Person.h"
+#include "Student.h"
+
+using namespace std;
+
+int main() {
+  Person p("Joe", 23); // constructor of Person
+  Student s;  // 2 constructors are called
+  // 1st is Person() default constructor
+  // 2nd is Student() default constructor
+
+  p.setName("Joseph");
+  p.print();  // from Person
+
+  s.setNameID("Ryan");  // setNameID is inherited from Person
+  s.print();  // from Student
+              // we invoke print on Student object, hence we call print of
+              // Student, not of person
+
+  s.setNameID("Marina", 125); // from Student
+  s.print(); // from Student
+
+  return 0;
+}
+```
+
+The type of `s` is `Student` and `Person`. The type of `p` is `Person`.
+:::
+
+## Inheritance versus membership
+
+### Inheritance
+
+Inheritance represents an "is-a" relationship.
+
+Example: `Student` is a `Person`, as `Student` inherits from `Person`.
 
 ```cpp
 class Person {
@@ -125,11 +180,15 @@ s.SetName();
 // s is Person
 ```
 
-## Membership
+### Membership
+
+Membership represents a "has-a" relationship.
+
+Example: `Student` has a member `Person` `p`.
 
 ```cpp
 class Student {
-  public:
+  private:
     Person p;
 };
 
@@ -137,32 +196,4 @@ Student s;
 
 // s is Student
 // s is NOT person
-```
-
-## Inheritance versus membership
-
-* These are not the same
-* Inheritance is an "is-a" relationship
-* Membership is a "has-a" relationship
-
-## Access different constructors
-
-What if I want to access a different `Person` constructor (not default)?
-
-```cpp
-class Student : public Person {
-  private:
-    int ID;
-
-  public:
-    Student() { ID = 0; }
-    // or
-    // Student() : ID(0);
-
-    // call the 2nd constructor in Person
-    // between fun() and {, the space allows an initializer's list
-    Student(string n, int a, int d) : Person(n,a) {
-      ID = d;
-    }
-};
 ```
