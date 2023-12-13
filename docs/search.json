@@ -1409,49 +1409,49 @@
   {
     "objectID": "lecture36.html#last-lecture",
     "href": "lecture36.html#last-lecture",
-    "title": "Lecture 35 - Dec 5, 2023",
+    "title": "Lecture 36 - Dec 5, 2023",
     "section": "Last lecture",
     "text": "Last lecture\nHash tables."
   },
   {
     "objectID": "lecture36.html#today",
     "href": "lecture36.html#today",
-    "title": "Lecture 35 - Dec 5, 2023",
+    "title": "Lecture 36 - Dec 5, 2023",
     "section": "Today",
     "text": "Today\nHashing with chaining and linear probing."
   },
   {
     "objectID": "lecture36.html#recap",
     "href": "lecture36.html#recap",
-    "title": "Lecture 35 - Dec 5, 2023",
+    "title": "Lecture 36 - Dec 5, 2023",
     "section": "Recap",
     "text": "Recap\nHashing with chaining\nclass Node {\n  // for simplicity, all data members are public\n  public:\n    int key;\n    Node* next;\n    ~Node() { delete next; }\n};\n\nclass List {\n  private:\n    Node* head;\n\n  public:\n    List(); // sets head to NULL\n    void insert(int v); // inserts at head\n    ListNode* remove (int k); // remove node with key = k\n    bool isFound(int k); // returns true if node with key = k is found\n    ~List(); // deletes head\n}\n\n#define SIZE 7\n\nclass HashTable {\n  private:\n    List** table;\n  public:\n    HashTable() {\n      table = new List*[SIZE];\n      for (int i = 0; i &lt; SIZE; i++) {\n        table[i] = NULL;\n      }\n    }\n\n    bool search(int v) {\n      int idx = v % SIZE;\n      if (table[idx] != NULL) {\n        // table[idx] is of class List*\n        return table[idx]-&gt;isFound(v);\n      } else {\n        return false; // the list where v should be is not there\n      }\n    }\n\n    void insert(int v) {\n      if (search(v)) { // value already there\n        return;\n      } else {\n        int idx = v % SIZE;\n        if (table[idx] == NULL) {\n          table[idx] = new List();\n        }\n        // table[idx] is of class List*\n        table[idx]-&gt;insert(v);\n      }\n    }\n\n    ~HashTable() {\n      for (int i = 0; i &lt; SIZE; i++) {\n        delete table[i];\n      }\n      delete[] table;\n    }\n\n    void remove(int v);\n};\nHashing with linear probing:\nIf hash function lead to collision, insert value at the next available space in the table.\n\n\n\n\n\n\nExample\n\n\n\n\nIf it collides at \\(h(k)\\) then try \\([h(k) + 1] \\% SIZE\\)\nIf it collides at \\(h(k)\\) then try \\([h(k) + 2] \\% SIZE\\)\nIf it collides at \\(h(k)\\) then try \\([h(k) + 3] \\% SIZE\\)\n\n\n\nLinear probing is used tp find the next available space in the table."
   },
   {
     "objectID": "lecture36.html#solution-2-hashing-with-linear-probing",
     "href": "lecture36.html#solution-2-hashing-with-linear-probing",
-    "title": "Lecture 35 - Dec 5, 2023",
+    "title": "Lecture 36 - Dec 5, 2023",
     "section": "Solution 2: Hashing with linear probing",
     "text": "Solution 2: Hashing with linear probing\nclass Element {\n  public:\n    int key; // may want to store more data\n};\n\nint hash(int k); // hash function\n\n#define SIZE 7\n\nclass HashTable {\n  private:\n    Element** table;\n    int size;\n\n  public:\n    HashTable() {\n      table = new Element*[SIZE];\n      for (int i = 0; i &lt; SIZE; i++) {\n        table[i] = NULL;\n      }\n      size = 0;\n    }\n\n  // we return false if table is full\n  // return true if we inserted or the node was there\n  bool insert(int v) {\n    int idx = hash(v);\n    if (size == SIZE) { return false; }\n    for (int i=0; table[idx] != NULL; i++) {\n      // duplicate found\n      // table[idx] is of class Element*\n      if (table[idx]-&gt;key == v) { return true; }\n      idx = (hash(v) + i) % SIZE;\n    }\n    // exit loop when table[idx] == NULL\n    Element* temp = new Element;\n    temp-&gt;key = v;\n    table[idx] = temp;\n    size++;\n    return true;\n  }\n}\nUsing (hash(v) + i) % SIZE has a disadvantage: It would cause clustering of nodes in one area in the hashtable\nSolution: try uniformly distribution nodes by probing elsewhere."
   },
   {
     "objectID": "lecture36.html#solution-3-quadratic-probing",
     "href": "lecture36.html#solution-3-quadratic-probing",
-    "title": "Lecture 35 - Dec 5, 2023",
+    "title": "Lecture 36 - Dec 5, 2023",
     "section": "Solution 3: Quadratic probing",
     "text": "Solution 3: Quadratic probing\n(hash(v) + i*i) % SIZE"
   },
   {
     "objectID": "lecture36.html#solution-4-double-probing",
     "href": "lecture36.html#solution-4-double-probing",
-    "title": "Lecture 35 - Dec 5, 2023",
+    "title": "Lecture 36 - Dec 5, 2023",
     "section": "Solution 4: Double probing",
     "text": "Solution 4: Double probing\n(hash1(v) + i * hash2(v)) % SIZE"
   },
   {
     "objectID": "lecture36.html#exam-question",
     "href": "lecture36.html#exam-question",
-    "title": "Lecture 35 - Dec 5, 2023",
+    "title": "Lecture 36 - Dec 5, 2023",
     "section": "Exam question",
     "text": "Exam question\nChange Int class in such a way that there are no memory leaks, and output is 4 4 (not 4 3).\n#include &lt;iostream&gt;\nusing namespace std;\n\nclass Int {\n  private:\n    int* p;\n  public:\n    Int(int i) {\n      p = new int;\n      *p = i;\n    }\n    void set_val(int i) { *p = i; }\n    int get_val() { return *p; }\n    virtual void print() = 0;\n};\n\nclass SuperInt : public Int {\n  private:\n    int* q;\n  public:\n    SuperInt(int i) : Int(i) {\n      q = new int;\n      *q = i;\n    }\n    \n    ~SuperInt() {\n      delete q;\n    }\n\n    void set_val() {\n      Int::set_val(i);\n      *q = i;\n    }\n\n    void print() {\n      cout &lt;&lt; Int::get_val() &lt;&lt; \" \" &lt;&lt; q* &lt;&lt; endl;\n    }\n};\n\n// do not change main\nint main() {\n  Int* s = new SuperInt(3);\n  s-&gt;set_val(4);\n  s-&gt;print();\n  delete s;\n  return 0;\n}\nIn the class definition:\n\nInt is an abstract class\nvirtual void print() = 0; is a pure virtual function\nWe need to add virtual ~Int() { delete p; } to avoid memory leaks\nAlso prepend virtual to void set_val(int i) { *p = i; }\n\nIn main:\n\nIf set_val is virtual, it calls set_val depending on object type (not s type)\nIf the destructor is virtual, it calls the destructor of SuperInt as s points to SuperInt"
   }
