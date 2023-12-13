@@ -2,7 +2,7 @@
 
 ## Last lecture
 
-Inheritance continuation
+Inheritance continuation and polymorphism
 
 ## Today
 
@@ -174,8 +174,10 @@ A class that inherits a virtual function is called polymorphic class (e.g.,
 Why is this helpful? We can have an array of `Polygon*` and have different
 shapes on it.
 
-PENDING: INSERT DIAGRAM
+<img src="diagrams/lecture30-diagram1.svg" alt="diagrams/lecture30-diagram1.svg">
 
 ```cpp
-cout << a[i] -> area(); // will print out area according to shape
+for (int i = 0; i < 5; i++) {
+  cout << a[i] -> area(); // will print out area according to shape
+}
 ```

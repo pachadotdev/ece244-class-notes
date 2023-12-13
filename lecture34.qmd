@@ -1,0 +1,169 @@
+# Lecture 34 - Nov 30, 2023
+
+## Last lecture
+
+BST (insert and print)
+
+## Today
+
+Delete a node in a BST.
+
+## Node deletion in BST
+
+```cpp
+class BSTNode {
+  private:
+    int value;
+    BSTNode *left, *right;
+
+  public:
+    BSTNode(int v) { value = v; left = right = NULL; }
+    ~BSTNode() { delete left; delete right; }
+    int getValue() { return value; }
+    BSTNode *getLeft() { return left; }
+    BSTNode *getRight() { return right; }
+    void setLeft(BSTNode *l) { left = l; }
+    void setRight(BSTNode *r) { right = r; }
+};
+
+class BSTree {
+  private:
+    BSTNode *root;
+    bool searchNode(int v, BSTNode *n);
+    void insertHelper(int v, BSTNode *n);
+    void printInOrderHelper(BSTNode *n);
+    BSTNode* minValueNodeHelper(BSTNode *n);
+  
+  public:
+    BSTree() { root = NULL; }
+    ~BSTree() { delete root; }
+    BSTNode* getRoot() { return root; }
+    bool search(int v);
+    void insert(int v);
+    void printInOrder();
+    BSTNode* minValueNode();
+};
+
+BSTNode* BSTree::minValueNode() {
+  return minValueNodeHelper(root);
+}
+
+BSTNode* BSTree::minValueNodeHelper(BSTNode* p) {
+  // p != NULL in case the root is NULL
+  if (p != NULL && p->getLeft() != NULL) {
+    return minValueNodeHelper(p->getLeft());
+  } else {
+    return p;
+  }
+}
+```
+
+To delete a node in a BST, we have to make sure the properties of a BST are
+maintained when the node is removed.
+
+1. Find the node
+2. If the node has no children, delete node and update parent node pointer
+
+```
+     8
+   /   \
+  3     10
+ / \      \
+1   6      14
+   / \    /
+  4   7 13
+```
+
+For example, nodes 1, 4, 7 and 13.
+
+3. If the node has only one subtree, make the parent node point to the parent
+   of the subtree
+
+For example, nodes 10 and 14.
+
+4. If the node has two subtrees, replace the node data with the minimum in the
+   right subtree, delete the node with the minimum value in the right subtree
+
+For example, delete 3.
+
+```
+     8
+   /   \
+  4     10
+ / \      \
+1   6      14
+     \    /
+      7 13
+```
+
+Could 4 have children? Yes, in the right subtree.
+Delete 4 by calling the delete node function on 4.
+
+```
+     8
+   /   \
+  4     10
+ / \      \
+1   6      14
+   / \    /
+  5   7 13
+```
+
+```cpp
+BSTNode* BSTree::deleteNode(int v, BSTNode* node) {
+  if (node == NULL) {
+    return node;
+  }
+
+  if (v < node->getValue()) {
+    node->setLeft(deleteNode(v, node->getLeft()));
+  } else if (v > node->getValue()) {
+    node->setRight(deleteNode(v, node->getRight()));
+  } else {
+    // one or no children
+    if (node->getLeft() == NULL) {
+      BSTNode* temp = node->getRight();
+      node->setRight(NULL);
+      delete node;
+      return temp; // want to put it in the BST back
+    } else if (node->getRight() == NULL) {
+      // one child on left
+      BSTNode* temp = node->getLeft();
+      delete node;
+      return temp; // we want to put it in the BST back
+    } else {
+      // node has two children
+      BSTNode* temp = minValue(node->getRight());
+      node->setValue(temp->getValue());
+      // look in the right subtree
+      node->setRight(deleteNode(temp->getValue(), node->getRight()));
+    }
+  }
+
+  return node;
+}
+```
+
+Trace:
+
+Before
+
+```
+   3
+ /   \
+1     6
+     / \
+    4   7
+     \
+      5
+```
+
+After
+
+```
+   3
+ /   \
+1     6
+     / \
+    5   7
+```

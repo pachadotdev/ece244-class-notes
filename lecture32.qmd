@@ -1,0 +1,164 @@
+# Lecture 32 - Nov 24, 2023
+
+## Last lecture
+
+Inheritance.
+
+## Today
+
+Binary trees.
+
+Recall: We used linked lists to have a more dynamic and flexible data structure
+to store information.
+
+However, the way a data structure is organized can "speed up" or "slow down"
+the run time of some operations like searching, inserting, and deleting nodes.
+
+## Trees
+
+`Trees` is another data structure that stores data for different purposes (e.g.,
+to store directories/files in Unix)
+
+## Properties of trees
+
+1. Have nodes and edges connect nodes
+2. Have no cycles
+3. Have 1 parent, multiple children
+4. Have 1 root (or empty trees have no root)
+
+This is a tree
+```
+  A
+ /
+B
+```
+
+This is not a tree (cycle)
+```
+  A
+ / \
+B - C
+```
+
+## Binary trees
+
+1. The root is at the top and leaves are at the bottom
+2. Each node stores some data
+3. Each node has at most 2 child nodes, and one parent (Except root)
+4. An edge links a node to its children
+5. Nodes with no children are leaf nodes
+
+<img src="diagrams/lecture32-diagram1.svg" alt="diagrams/lecture32-diagram1.svg">
+
+In binary search trees (BST), an additional feature is that for every node:
+
+1. All nodes in the left subtree have values less than the node's value
+2. All nodes in the right subtree have values greater than the node's value
+
+Facts:
+
+1. The minimum value is in the most left node
+2. The maximum value is in the most right node
+
+As opposed to linked lists and arrays, BST is organized in such a way that
+allows quick search.
+
+::: {.callout-note icon=false}
+## Example
+
+Search for a number $x$
+
+$T(n) = O(n)$, where $n$ is the size of the array
+
+```
+1 | 3 | 4 | 8 | 9 | 10 | 11
+```
+
+Start from the root 
+
+```
+     8
+   /   \
+  3     10
+ / \   /  \
+1   4 9    11
+```
+
+If $x<8$, go left
+If $x>8$, go right
+
+Worst case will find $x$ at a left node.
+
+$\text{No. of steps} = \text{height of BST}$
+:::
+
+## Complexity cases
+
+If BST
+
+```
+      8
+     /
+    4
+   /
+  3
+ /
+1 
+```
+
+Height is $n$. Then $T(n) = O(n)$, like arrays or linked lists.
+
+If BST
+
+```
+     8
+   /   \
+  3     10
+ / \   /  \
+1   4 9    11
+```
+
+Height is $\log(n)$. Then $T(n) = O(\log(n))$.
+
+## BST implementation
+
+```cpp
+class BSTNode {
+  private:
+    int value;
+    BSTNode *left, *right;
+
+  public:
+    BSTNode(int v) { value = v; left = right = NULL; }
+    ~BSTnode() { delete left; delete right; }
+    int getValue() { return value; }
+    BSTNode *getRight() { return left; }
+    BSTNode *getLeft() { return left; }
+    void setRight(BSTNode *r) { right = r; }
+    void setLeft(BSTNode *l) { left = l; }
+};
+
+class BSTree {
+  private:
+    BSTNode* root;
+    bool searchNode(int v, BSTNode *n) {
+      if (n == NULL) {
+        return false;
+      } else if (n->getValue() == v) {
+        return true;
+      } else if (n->getValue() > v) {
+        return searchNode(v, n->getLeft());
+      } else {
+        return searchNode(v, n->getRight());
+      } 
+    }
+  
+  public:
+    BSTree() { root = NULL; }
+    ~BSTree() { delete root; }
+    BSTNode* getRoot() { return root; }
+    bool search(int v) { return searchNode(v, root); }
+    
+    // next lecture: print insert
+}
+```

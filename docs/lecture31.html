@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hiram: ECE244 Tidy Notes - Lecture 30 - Nov 21, 2023</title>
+<title>Hiram: ECE244 Tidy Notes - Lecture 31 - Nov 23, 2023</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./lecture31.html" rel="next">
-<link href="./lecture29.html" rel="prev">
+<link href="./lecture32.html" rel="next">
+<link href="./lecture30.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -108,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture30.html"><span class="chapter-title">Lecture 30 - Nov 21, 2023</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture31.html"><span class="chapter-title">Lecture 31 - Nov 23, 2023</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -285,12 +285,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture30.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Lecture 30 - Nov 21, 2023</span></a>
+  <a href="./lecture30.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 30 - Nov 21, 2023</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture31.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 31 - Nov 23, 2023</span></a>
+  <a href="./lecture31.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Lecture 31 - Nov 23, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture32.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 32 - Nov 24, 2023</span></a>
   </div>
 </li>
     </ul>
@@ -305,9 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#last-lecture" id="toc-last-lecture" class="nav-link active" data-scroll-target="#last-lecture">Last lecture</a></li>
   <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
-  <li><a href="#pointers-to-dynamic-memory-in-derived-class" id="toc-pointers-to-dynamic-memory-in-derived-class" class="nav-link" data-scroll-target="#pointers-to-dynamic-memory-in-derived-class">Pointers to dynamic memory in derived class</a></li>
-  <li><a href="#dynamic-versus-static-binding" id="toc-dynamic-versus-static-binding" class="nav-link" data-scroll-target="#dynamic-versus-static-binding">Dynamic versus static binding</a></li>
-  <li><a href="#virtual-functions" id="toc-virtual-functions" class="nav-link" data-scroll-target="#virtual-functions">Virtual functions</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
   </ul>
 </nav>
     </div>
@@ -316,7 +319,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Lecture 30 - Nov 21, 2023</span></h1>
+<h1 class="title"><span class="chapter-title">Lecture 31 - Nov 23, 2023</span></h1>
 </div>
 
 
@@ -333,66 +336,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="last-lecture" class="level2">
 <h2 class="anchored" data-anchor-id="last-lecture">Last lecture</h2>
-<p>Inheritance continuation and polymorphism</p>
+<p>Inheritance continuation and polymorphism.</p>
 </section>
 <section id="today" class="level2">
 <h2 class="anchored" data-anchor-id="today">Today</h2>
-<p>Dynamic memory allocation and polymorphism</p>
+<p>Virtual functions and abstract classes.</p>
 </section>
-<section id="pointers-to-dynamic-memory-in-derived-class" class="level2">
-<h2 class="anchored" data-anchor-id="pointers-to-dynamic-memory-in-derived-class">Pointers to dynamic memory in derived class</h2>
-<p>When a class has members that point to dynamically allocated memory , we should have our own <code>operator=</code> and copy constructor.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Person <span class="op">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">private</span><span class="op">:</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> age<span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span><span class="op">*</span> name<span class="op">;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// asume Person() and Person(int, char*) are implemented</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    Person<span class="op">(</span><span class="at">const</span> Person<span class="op">&amp;</span> original<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      name <span class="op">=</span> <span class="kw">new</span> <span class="dt">char</span><span class="op">[</span>strlen<span class="op">(</span>original<span class="op">.</span>name<span class="op">)</span> <span class="op">+</span> <span class="dv">1</span><span class="op">];</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      strcpy<span class="op">(</span>name<span class="op">,</span> original<span class="op">.</span>name<span class="op">);</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      age <span class="op">=</span> original<span class="op">.</span>age<span class="op">;</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    Person<span class="op">&amp;</span> <span class="kw">operator</span><span class="op">=(</span><span class="at">const</span> Person<span class="op">&amp;</span> rhs<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(&amp;</span>rhs <span class="op">==</span> <span class="kw">this</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">*</span><span class="kw">this</span><span class="op">;</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="kw">delete</span><span class="op">[]</span> name<span class="op">;</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>      name <span class="op">=</span> <span class="kw">new</span> charr<span class="op">[</span>strlen<span class="op">(</span>rhs<span class="op">.</span>name<span class="op">)</span> <span class="op">+</span> <span class="dv">1</span><span class="op">];</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      strcpy<span class="op">(</span>name<span class="op">,</span> rhs<span class="op">.</span>name<span class="op">);</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      age <span class="op">=</span> rhs<span class="op">.</span>age<span class="op">;</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="op">*</span><span class="kw">this</span><span class="op">;</span></span>
+<section id="recap" class="level2">
+<h2 class="anchored" data-anchor-id="recap">Recap</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Polygon <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">protected</span><span class="op">:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> width<span class="op">,</span> height<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> set<span class="op">(</span><span class="dt">int</span> w<span class="op">,</span> <span class="dt">int</span> h<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      width <span class="op">=</span> w<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      height <span class="op">=</span> h<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Rectangle<span class="op">:</span> <span class="kw">public</span> Polygon <span class="op">{</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> area<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> width <span class="op">*</span> height<span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Triangle <span class="op">:</span> <span class="kw">public</span> Polygon <span class="op">{</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> area<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> width <span class="op">*</span> height <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">~</span>Person<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>      <span class="kw">delete</span><span class="op">[]</span> name<span class="op">;</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Student <span class="op">:</span> <span class="kw">public</span> Person <span class="op">{</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="kw">private</span><span class="op">:</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> ID<span class="op">;</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">// assume Student() and Student(int, char*, int) are implemented</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="co">// You have to explicitly call the copy constructor</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Otherwise, the default copy constructor will be called</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    Student<span class="op">(</span><span class="at">const</span> Student<span class="op">&amp;</span> original<span class="op">)</span> <span class="op">:</span> Person<span class="op">(</span>original<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>      ID <span class="op">=</span> original<span class="op">.</span>ID<span class="op">;</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    Student<span class="op">&amp;</span> <span class="kw">operator</span><span class="op">=(</span><span class="at">const</span> Student<span class="op">&amp;</span> rhs<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>      <span class="co">// rhs is also Person we can pass it to operator= of Person</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>      Person<span class="op">::</span><span class="kw">operator</span><span class="op">=(</span>rhs<span class="op">);</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>      ID <span class="op">=</span> rhs<span class="op">.</span>ID<span class="op">;</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="op">*</span><span class="kw">this</span><span class="op">;</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="dynamic-versus-static-binding" class="level2">
-<h2 class="anchored" data-anchor-id="dynamic-versus-static-binding">Dynamic versus static binding</h2>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  Rectangle r<span class="op">;</span> r<span class="op">.</span>set<span class="op">(</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">);</span> Polygon<span class="op">*</span> pr <span class="op">=</span> <span class="op">&amp;</span>r<span class="op">;</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  cout <span class="op">&lt;&lt;</span> pr <span class="op">-&gt;</span> area<span class="op">();</span> <span class="co">// cannot invoke area as it is a member of Rectangle</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Problem: We cannot access members of a <code>Derived</code> object if the pointer pointing to it is of <code>Base*</code> type.</p>
+<p>Solution: If a function is declared as a virtual function in base class, and redefined/overriden in derived class, a call to that function through a <code>Base*</code> pointer will invoke the function depending on the type of object (not pointer).</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Polygon <span class="op">{</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">protected</span><span class="op">:</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> width<span class="op">,</span> height<span class="op">;</span></span>
@@ -402,90 +384,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      width <span class="op">=</span> w<span class="op">;</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      height <span class="op">=</span> h<span class="op">;</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Rectangle <span class="op">:</span> <span class="kw">public</span> Polygon <span class="op">{</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> area<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> width <span class="op">*</span> height<span class="op">;</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Triangle <span class="op">:</span> <span class="kw">public</span> Polygon <span class="op">{</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> area<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> width <span class="op">*</span> height <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  Polygon p<span class="op">;</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  Rectangle r<span class="op">;</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  p <span class="op">=</span> r<span class="op">;</span> <span class="co">// p.operator = (s)</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>         <span class="co">// p = polygon</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>         <span class="co">// s = rectangle</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>         <span class="co">// ok</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>         <span class="co">// Polygon&amp; operator=(Polygon&amp; rhs) { ... }</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  r <span class="op">=</span> p<span class="op">;</span> <span class="co">// r.operator = (p)</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>         <span class="co">// r = rectangle</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>         <span class="co">// p = polygon - not rectangle</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>         <span class="co">// error</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  <span class="co">// important</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  <span class="co">// rectangle: polygon and rectangle too</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  <span class="co">// polygon: polygon only</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  Rectangle<span class="op">*</span> r1<span class="op">;</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  Polygon<span class="op">*</span> p1<span class="op">;</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  pl <span class="op">=</span> <span class="op">&amp;</span>r<span class="op">;</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  <span class="co">// p1 pointer can be used to access Polygon members which also exist in rectangle</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>  p1 <span class="op">&lt;-</span> set<span class="op">(</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">);</span> <span class="co">// calls set of Polygon - ok</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>  cout <span class="op">&lt;&lt;</span> p1 <span class="op">-&gt;</span> area<span class="op">();</span> <span class="co">// error as area() is a member of Rectangle, not Polygon</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>  r1 <span class="op">=</span> <span class="op">&amp;</span>p<span class="op">;</span> <span class="co">// error</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>  <span class="co">// r1 pointer cannot access all Rectangle members as not all of them exist in</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Polygon p (base class)</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Problem: we cannot access members of a <code>Derived</code> object if the pointer pointing to it is of <code>Base*</code> type.</p>
-<p>Solution: virtual functions.</p>
-</section>
-<section id="virtual-functions" class="level2">
-<h2 class="anchored" data-anchor-id="virtual-functions">Virtual functions</h2>
-<p>If a function is declared as a virtual function in the base class, then redefined or overriden in a derived class, a class to that function through a <code>Base*</code> pointer will invoke the function depending on the type of object (not pointer).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Polygon <span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">protected</span><span class="op">:</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> width<span class="op">,</span> height<span class="op">;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> set<span class="op">(</span><span class="dt">int</span> w<span class="op">,</span> <span class="dt">int</span> h<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      width <span class="op">=</span> w<span class="op">;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      height <span class="op">=</span> h<span class="op">;</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">virtual</span> <span class="dt">int</span> area<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">-&gt;</span> area<span class="op">();</span> <span class="co">// will invoke the area function of what p1 is pointing to</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>              <span class="co">// i.e., Rectangle = 12</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">// if we remove virtual</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">// p1 -&gt; area() and p2 -&gt; area() will both return 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Non-virtual functions are invoked depending on the type of pointer. This is known at compile-time.</p>
-<p>Virtual functions are invoked depending on the type the pointer points to. This is known at run-time.</p>
-<p>A class that inherits a virtual function is called polymorphic class (e.g., <code>Rectangle</code> and <code>Triangle</code>).</p>
-<p>Why is this helpful? We can have an array of <code>Polygon*</code> and have different shapes on it.</p>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">virtual</span> <span class="dt">int</span> area<span class="op">()</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// if we remove virtual p1 -&gt; area() will return 0</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Non-virtual functions are invoked depending on the type of pointer. This is known at compile time.</p>
+<p>Virtual function are invoked depending on the type the pointer points to. This is known at run time.</p>
+<p>A class that inherits a virtual function is called polymorphic class (e.g., <code>Rectangle</code> and <code>Triangle</code>)</p>
 <p><img src="diagrams/lecture30-diagram1.svg" alt="diagrams/lecture30-diagram1.svg"></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">5</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  cout <span class="op">&lt;&lt;</span> a<span class="op">[</span>i<span class="op">]</span> <span class="op">-&gt;</span> area<span class="op">();</span> <span class="co">// will print out area according to shape</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">3</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  cout <span class="op">&lt;&lt;</span> a<span class="op">[</span>i<span class="op">]</span> <span class="op">-&gt;</span> area<span class="op">();</span> <span class="co">// will print out area according to shape</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If the function is virtual, it is also the destructor.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Polygon <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">protected</span><span class="op">:</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> width<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">virtual</span> <span class="op">~</span>Polygon<span class="op">()</span> <span class="op">{};</span> <span class="co">// does nothing</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Rectangle<span class="op">:</span><span class="kw">public</span> Polygon <span class="op">{</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">protected</span><span class="op">:</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span><span class="op">*</span> length<span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    Rectangle<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>      length <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">;</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">~</span>Rectangle<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>      <span class="kw">delete</span> length<span class="op">;</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  Polygon<span class="op">*</span> p <span class="op">=</span> <span class="kw">new</span> Rectangle<span class="op">;</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">delete</span> p<span class="op">;</span> <span class="co">// if the destructor was not virtual</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>            <span class="co">// the destructor of Polygon will be called</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>            <span class="co">// and the length will not be freed</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Problem: This neccessitates that we implement the <code>area()</code> function in <code>Polygon</code>. We may need <code>Polygon</code> class to exist with some functions, but never implement these functions as we will not need them.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Polygon <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">protected</span><span class="op">:</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> width<span class="op">,</span> length<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> set<span class="op">(</span><span class="dt">int</span> w<span class="op">,</span> <span class="dt">int</span> l<span class="op">)</span> <span class="op">{</span> <span class="op">...</span> <span class="op">};</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">virtual</span> <span class="dt">int</span> area<span class="op">()</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="co">// pure virtual function</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A class with a pure virtual function is an abstract class.</p>
+<p>You cannot instantiate an object of an abstract class.</p>
+<p><code>Polygon p;</code> is incorrect as <code>p</code> is of abstract class.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Rectangle r<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Polygon<span class="op">*</span> pr <span class="op">=</span> <span class="op">&amp;</span>r<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>cout <span class="op">&lt;&lt;</span> pr <span class="op">-&gt;</span> area<span class="op">();</span> <span class="co">// will invoke Rectangle::area()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -726,13 +679,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./lecture29.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Lecture 29 - Nov 17, 2023</span></span>
+      <a href="./lecture30.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Lecture 30 - Nov 21, 2023</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./lecture31.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-title">Lecture 31 - Nov 23, 2023</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./lecture32.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Lecture 32 - Nov 24, 2023</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

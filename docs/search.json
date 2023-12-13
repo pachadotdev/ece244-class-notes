@@ -1208,7 +1208,7 @@
     "href": "lecture30.html#last-lecture",
     "title": "Lecture 30 - Nov 21, 2023",
     "section": "Last lecture",
-    "text": "Last lecture\nInheritance continuation"
+    "text": "Last lecture\nInheritance continuation and polymorphism"
   },
   {
     "objectID": "lecture30.html#today",
@@ -1236,6 +1236,223 @@
     "href": "lecture30.html#virtual-functions",
     "title": "Lecture 30 - Nov 21, 2023",
     "section": "Virtual functions",
-    "text": "Virtual functions\nIf a function is declared as a virtual function in the base class, then redefined or overriden in a derived class, a class to that function through a Base* pointer will invoke the function depending on the type of object (not pointer).\nclass Polygon {\n  protected:\n    int width, height;\n\n  public:\n    void set(int w, int h) {\n      width = w;\n      height = h;\n    }\n\n    virtual int area() {\n      return 0;\n    }\n};\n\np1 -&gt; area(); // will invoke the area function of what p1 is pointing to\n              // i.e., Rectangle = 12\n\n// if we remove virtual\n// p1 -&gt; area() and p2 -&gt; area() will both return 0\nNon-virtual functions are invoked depending on the type of pointer. This is known at compile-time.\nVirtual functions are invoked depending on the type the pointer points to. This is known at run-time.\nA class that inherits a virtual function is called polymorphic class (e.g., Rectangle and Triangle).\nWhy is this helpful? We can have an array of Polygon* and have different shapes on it.\nPENDING: INSERT DIAGRAM\ncout &lt;&lt; a[i] -&gt; area(); // will print out area according to shape"
+    "text": "Virtual functions\nIf a function is declared as a virtual function in the base class, then redefined or overriden in a derived class, a class to that function through a Base* pointer will invoke the function depending on the type of object (not pointer).\nclass Polygon {\n  protected:\n    int width, height;\n\n  public:\n    void set(int w, int h) {\n      width = w;\n      height = h;\n    }\n\n    virtual int area() {\n      return 0;\n    }\n};\n\np1 -&gt; area(); // will invoke the area function of what p1 is pointing to\n              // i.e., Rectangle = 12\n\n// if we remove virtual\n// p1 -&gt; area() and p2 -&gt; area() will both return 0\nNon-virtual functions are invoked depending on the type of pointer. This is known at compile-time.\nVirtual functions are invoked depending on the type the pointer points to. This is known at run-time.\nA class that inherits a virtual function is called polymorphic class (e.g., Rectangle and Triangle).\nWhy is this helpful? We can have an array of Polygon* and have different shapes on it.\n\nfor (int i = 0; i &lt; 5; i++) {\n  cout &lt;&lt; a[i] -&gt; area(); // will print out area according to shape\n}"
+  },
+  {
+    "objectID": "lecture31.html#last-lecture",
+    "href": "lecture31.html#last-lecture",
+    "title": "Lecture 31 - Nov 23, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nInheritance continuation and polymorphism."
+  },
+  {
+    "objectID": "lecture31.html#today",
+    "href": "lecture31.html#today",
+    "title": "Lecture 31 - Nov 23, 2023",
+    "section": "Today",
+    "text": "Today\nVirtual functions and abstract classes."
+  },
+  {
+    "objectID": "lecture31.html#recap",
+    "href": "lecture31.html#recap",
+    "title": "Lecture 31 - Nov 23, 2023",
+    "section": "Recap",
+    "text": "Recap\nclass Polygon {\n  protected:\n    int width, height;\n\n  public:\n    void set(int w, int h) {\n      width = w;\n      height = h;\n    }\n};\n\nclass Rectangle: public Polygon {\n  public:\n    int area() {\n      return width * height;\n    }\n};\n\nclass Triangle : public Polygon {\n  public:\n    int area() {\n      return width * height / 2;\n    }\n};\n\nint main() {\n  Rectangle r; r.set(3,4); Polygon* pr = &r;\n  cout &lt;&lt; pr -&gt; area(); // cannot invoke area as it is a member of Rectangle\n}\nProblem: We cannot access members of a Derived object if the pointer pointing to it is of Base* type.\nSolution: If a function is declared as a virtual function in base class, and redefined/overriden in derived class, a call to that function through a Base* pointer will invoke the function depending on the type of object (not pointer).\nclass Polygon {\n  protected:\n    int width, height;\n\n  public:\n    void set(int w, int h) {\n      width = w;\n      height = h;\n    }\n    virtual int area() = 0;\n    // if we remove virtual p1 -&gt; area() will return 0\n}\nNon-virtual functions are invoked depending on the type of pointer. This is known at compile time.\nVirtual function are invoked depending on the type the pointer points to. This is known at run time.\nA class that inherits a virtual function is called polymorphic class (e.g., Rectangle and Triangle)\n\nfor (int i = 0; i &lt; 3; i++) {\n  cout &lt;&lt; a[i] -&gt; area(); // will print out area according to shape\n}\nIf the function is virtual, it is also the destructor.\nclass Polygon {\n  protected:\n    int width;\n\n  public:\n    virtual ~Polygon() {}; // does nothing\n};\n\nclass Rectangle:public Polygon {\n  protected:\n    int* length;\n\n  public:\n    Rectangle() {\n      length = new int;\n    }\n\n    ~Rectangle() {\n      delete length;\n    }\n};\n\nint main() {\n  Polygon* p = new Rectangle;\n  delete p; // if the destructor was not virtual\n            // the destructor of Polygon will be called\n            // and the length will not be freed\n  return 0;\n}\nProblem: This neccessitates that we implement the area() function in Polygon. We may need Polygon class to exist with some functions, but never implement these functions as we will not need them.\nclass Polygon {\n  protected:\n    int width, length;\n\n  public:\n    void set(int w, int l) { ... };\n    virtual int area() = 0; // pure virtual function\n};\nA class with a pure virtual function is an abstract class.\nYou cannot instantiate an object of an abstract class.\nPolygon p; is incorrect as p is of abstract class.\nRectangle r;\nPolygon* pr = &r;\ncout &lt;&lt; pr -&gt; area(); // will invoke Rectangle::area()"
+  },
+  {
+    "objectID": "lecture32.html#last-lecture",
+    "href": "lecture32.html#last-lecture",
+    "title": "Lecture 32 - Nov 24, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nInheritance."
+  },
+  {
+    "objectID": "lecture32.html#today",
+    "href": "lecture32.html#today",
+    "title": "Lecture 32 - Nov 24, 2023",
+    "section": "Today",
+    "text": "Today\nBinary trees.\nRecall: We used linked lists to have a more dynamic and flexible data structure to store information.\nHowever, the way a data structure is organized can “speed up” or “slow down” the run time of some operations like searching, inserting, and deleting nodes."
+  },
+  {
+    "objectID": "lecture32.html#trees",
+    "href": "lecture32.html#trees",
+    "title": "Lecture 32 - Nov 24, 2023",
+    "section": "Trees",
+    "text": "Trees\nTrees is another data structure that stores data for different purposes (e.g., to store directories/files in Unix)"
+  },
+  {
+    "objectID": "lecture32.html#properties-of-trees",
+    "href": "lecture32.html#properties-of-trees",
+    "title": "Lecture 32 - Nov 24, 2023",
+    "section": "Properties of trees",
+    "text": "Properties of trees\n\nHave nodes and edges connect nodes\nHave no cycles\nHave 1 parent, multiple children\nHave 1 root (or empty trees have no root)\n\nThis is a tree\n  A\n /\nB\nThis is not a tree (cycle)\n  A\n / \\\nB - C"
+  },
+  {
+    "objectID": "lecture32.html#binary-trees",
+    "href": "lecture32.html#binary-trees",
+    "title": "Lecture 32 - Nov 24, 2023",
+    "section": "Binary trees",
+    "text": "Binary trees\n\nThe root is at the top and leaves are at the bottom\nEach node stores some data\nEach node has at most 2 child nodes, and one parent (Except root)\nAn edge links a node to its children\nNodes with no children are leaf nodes\n\n\nIn binary search trees (BST), an additional feature is that for every node:\n\nAll nodes in the left subtree have values less than the node’s value\nAll nodes in the right subtree have values greater than the node’s value\n\nFacts:\n\nThe minimum value is in the most left node\nThe maximum value is in the most right node\n\nAs opposed to linked lists and arrays, BST is organized in such a way that allows quick search.\n\n\n\n\n\n\nExample\n\n\n\nSearch for a number \\(x\\)\n\\(T(n) = O(n)\\), where \\(n\\) is the size of the array\n1 | 3 | 4 | 8 | 9 | 10 | 11\nStart from the root\n     8\n   /   \\\n  3     10\n / \\   /  \\\n1   4 9    11\nIf \\(x&lt;8\\), go left If \\(x&gt;8\\), go right\nWorst case will find \\(x\\) at a left node.\n\\(\\text{No. of steps} = \\text{height of BST}\\)"
+  },
+  {
+    "objectID": "lecture32.html#complexity-cases",
+    "href": "lecture32.html#complexity-cases",
+    "title": "Lecture 32 - Nov 24, 2023",
+    "section": "Complexity cases",
+    "text": "Complexity cases\nIf BST\n      8\n     /\n    4\n   /\n  3\n /\n1 \nHeight is \\(n\\). Then \\(T(n) = O(n)\\), like arrays or linked lists.\nIf BST\n     8\n   /   \\\n  3     10\n / \\   /  \\\n1   4 9    11\nHeight is \\(\\log(n)\\). Then \\(T(n) = O(\\log(n))\\)."
+  },
+  {
+    "objectID": "lecture32.html#bst-implementation",
+    "href": "lecture32.html#bst-implementation",
+    "title": "Lecture 32 - Nov 24, 2023",
+    "section": "BST implementation",
+    "text": "BST implementation\nclass BSTNode {\n  private:\n    int value;\n    BSTNode *left, *right;\n\n  public:\n    BSTNode(int v) { value = v; left = right = NULL; }\n    ~BSTnode() { delete left; delete right; }\n    int getValue() { return value; }\n    BSTNode *getRight() { return left; }\n    BSTNode *getLeft() { return left; }\n    void setRight(BSTNode *r) { right = r; }\n    void setLeft(BSTNode *l) { left = l; }\n};\n\nclass BSTree {\n  private:\n    BSTNode* root;\n    bool searchNode(int v, BSTNode *n) {\n      if (n == NULL) {\n        return false;\n      } else if (n-&gt;getValue() == v) {\n        return true;\n      } else if (n-&gt;getValue() &gt; v) {\n        return searchNode(v, n-&gt;getLeft());\n      } else {\n        return searchNode(v, n-&gt;getRight());\n      } \n    }\n  \n  public:\n    BSTree() { root = NULL; }\n    ~BSTree() { delete root; }\n    BSTNode* getRoot() { return root; }\n    bool search(int v) { return searchNode(v, root); }\n    \n    // next lecture: print insert\n}"
+  },
+  {
+    "objectID": "lecture33.html#last-lecture",
+    "href": "lecture33.html#last-lecture",
+    "title": "Lecture 33 - Nov 28, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nIntroduction to trees, binary trees and binary search trees.\nSearch."
+  },
+  {
+    "objectID": "lecture33.html#today",
+    "href": "lecture33.html#today",
+    "title": "Lecture 33 - Nov 28, 2023",
+    "section": "Today",
+    "text": "Today\nRecursive print and insert operations in binary search trees."
+  },
+  {
+    "objectID": "lecture34.html#last-lecture",
+    "href": "lecture34.html#last-lecture",
+    "title": "Lecture 34 - Nov 30, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nBST (insert and print)"
+  },
+  {
+    "objectID": "lecture34.html#today",
+    "href": "lecture34.html#today",
+    "title": "Lecture 34 - Nov 30, 2023",
+    "section": "Today",
+    "text": "Today\nDelete a node in a BST."
+  },
+  {
+    "objectID": "lecture33.html#recursive-print-and-insert-in-bst",
+    "href": "lecture33.html#recursive-print-and-insert-in-bst",
+    "title": "Lecture 33 - Nov 28, 2023",
+    "section": "Recursive print and insert in BST",
+    "text": "Recursive print and insert in BST\n     8\n   /   \\\n  4     10\n / \\      \\\n1   6      12\nclass BSTNode {\n  private:\n    int value;\n    BSTNode *left, *right;\n  \n  public:\n    BSTNode(int v) {\n      value v;\n      left = right = NULL;\n    }\n    ~BSTNode() {\n      delete left;\n      delete right;\n    }\n    int getValue() {\n      return value;\n    }\n    BSTNode *getLeft() {\n      return left;\n    }\n    BSTNode *getRight() {\n      return right;\n    }\n    void setLeft(BSTNode *l) {\n      left = l;\n    }\n    void setRight(BSTNode *r) {\n      right = r;\n    }\n};\n\nclass BSTree {\n  private:\n    BSTNode* root;\n\n    bool searchNode(int v, BSTNode* n) {\n      if (n == NULL) {\n        return false;\n      } else if (n-&gt;getValue() == v) {\n        return true;\n      } else if (n-&gt;getValue() &gt; v) {\n        return searchNode(v, n-&gt;getLeft());\n      } else {\n        return searchNode(v, n-&gt;getRight());\n      }\n    }\n\n    void insertHelper(int v, BSTNode* n);\n    void printInOrderHelper(BSTNode* n);\n\n  public:\n    BSTree() {\n      root = NULL;\n    }\n    ~BSTree() {\n      delete root;\n    }\n    BSTNode* getRoot() {\n      return root;\n    }\n    bool search(int v) {\n      return searchNode(v, root);\n    }\n    void insert(int v);\n    void printInOrder();\n};\n\nvoid BSTree::insertHelper(int v, BSTNode* n) {\n  if (n-&gt;getValue() == v) {\n    return; // no two nodes have the same value\n  } else if (v &lt; n-&gt;getValue()) {\n    if (n-&gt;getLeft() == NULL) {\n      n-&gt;setLeft(new BSTNode(v)); // insert to the left of a leaf node\n    } else {\n      insertHelper(v, n-&gt;getLeft());\n    }\n  } else {\n    if (n-&gt;getRight() == NULL) {\n      n-&gt;setRight(new BSTNode(v)); // insert to the right of a leaf node\n    } else {\n      insertHelper(v, n-&gt;getRight());\n    }\n  }\n}\n\nvoid BSTree::printInOrderHelper(BSTNode* n) {\n  if (n != NULL) {\n    print(n-&gt;getLeft());\n    cout &lt;&lt; n-&gt;getValue() &lt;&lt; \" \";\n    print(n-&gt;getRight());\n  }\n}\nprint(8)\n|- print(4)\n|  |- print(NULL)\n|  |- cout &lt;&lt; 4\n|  |- print(6)\n|     |- print(NULL)\n|     |- cout &lt;&lt; 6\n|     |- print(NULL)\n|- cout &lt;&lt; 8\n|- print(10)\n   |- print(NULL)\n   |- cout &lt;&lt; 10\n   |- print(NULL)\nvoid BSTree::printInOrder() {\n  return printInOrderHelper(root);\n}\nWe may print the BST in different orders\nvoid BSTree::printPreOrderHelper(BSTNode* n) {\n  if (n != NULL) {\n    cout &lt;&lt; n-&gt;getValue() &lt;&lt; \" \";\n    printPreOrder(n-&gt;getLeft());\n    printPreOrder(n-&gt;getRight());\n  }\n}\n| 8 | 4 | 6 | 10 |\nprints node first, then left, then right subtree\nvoid BSTree::printPostOrderHelper(BSTNode* n) {\n  if (n != NULL) {\n    printPostOrder(n-&gt;getLeft());\n    printPostOrder(n-&gt;getRight());\n    cout &lt;&lt; n-&gt;getValue() &lt;&lt; \" \";\n  }\n}\n| 6 | 4 | 10 | 8 |\nprints left subtree first, then right, then node\nHomework: Implement minValueNode and maxValueNode.\nBSTNode* BSTree::minValueNode(BSTNode* n) {\n  return minValueNodeHelper(n-&gt;getLeft());\n}\n\n\n\n\n\n\nPacha’s note\n\n\n\nHere is the implementation of minValueNodeHelper:\nBSTNode* BSTree::minValueNodeHelper(BSTNode* n) {\n  // n != NULL in case the root is NULL\n  if (n != NULL && n-&gt;getLeft() !== NULL) {\n    return minValueNodeHelper(n-&gt;getLeft());\n  } else {\n    return n;\n  }\n}\nBSTNode* BSTree::maxValueNode(BSTNode* n) {\n  return maxValueNodeHelper(n-&gt;getRight());\n}\n\nBSTNode* BSTree::maxValueNodeHelper(BSTNode* n) {\n  if (n != NULL && n-&gt;getRight() !== NULL) {\n    return maxValueNodeHelper(n-&gt;getRight());\n  } else {\n    return n;\n  }\n}"
+  },
+  {
+    "objectID": "lecture34.html#node-deletion-in-bst",
+    "href": "lecture34.html#node-deletion-in-bst",
+    "title": "Lecture 34 - Nov 30, 2023",
+    "section": "Node deletion in BST",
+    "text": "Node deletion in BST\nclass BSTNode {\n  private:\n    int value;\n    BSTNode *left, *right;\n\n  public:\n    BSTNode(int v) { value = v; left = right = NULL; }\n    ~BSTNode() { delete left; delete right; }\n    int getValue() { return value; }\n    BSTNode *getLeft() { return left; }\n    BSTNode *getRight() { return right; }\n    void setLeft(BSTNode *l) { left = l; }\n    void setRight(BSTNode *r) { right = r; }\n};\n\nclass BSTree {\n  private:\n    BSTNode *root;\n    bool searchNode(int v, BSTNode *n);\n    void insertHelper(int v, BSTNode *n);\n    void printInOrderHelper(BSTNode *n);\n    BSTNode* minValueNodeHelper(BSTNode *n);\n  \n  public:\n    BSTree() { root = NULL; }\n    ~BSTree() { delete root; }\n    BSTNode* getRoot() { return root; }\n    bool search(int v);\n    void insert(int v);\n    void printInOrder();\n    BSTNode* minValueNode();\n};\n\nBSTNode* BSTree::minValueNode() {\n  return minValueNodeHelper(root);\n}\n\nBSTNode* BSTree::minValueNodeHelper(BSTNode* p) {\n  // p != NULL in case the root is NULL\n  if (p != NULL && p-&gt;getLeft() != NULL) {\n    return minValueNodeHelper(p-&gt;getLeft());\n  } else {\n    return p;\n  }\n}\nTo delete a node in a BST, we have to make sure the properties of a BST are maintained when the node is removed.\n\nFind the node\nIf the node has no children, delete node and update parent node pointer\n\n     8\n   /   \\\n  3     10\n / \\      \\\n1   6      14\n   / \\    /\n  4   7 13\nFor example, nodes 1, 4, 7 and 13.\n\nIf the node has only one subtree, make the parent node point to the parent of the subtree\n\nFor example, nodes 10 and 14.\n\nIf the node has two subtrees, replace the node data with the minimum in the right subtree, delete the node with the minimum value in the right subtree\n\nFor example, delete 3.\n     8\n   /   \\\n  4     10\n / \\      \\\n1   6      14\n     \\    /\n      7 13\nCould 4 have children? Yes, in the right subtree. Delete 4 by calling the delete node function on 4.\n     8\n   /   \\\n  4     10\n / \\      \\\n1   6      14\n   / \\    /\n  5   7 13\nBSTNode* BSTree::deleteNode(int v, BSTNode* node) {\n  if (node == NULL) {\n    return node;\n  }\n\n  if (v &lt; node-&gt;getValue()) {\n    node-&gt;setLeft(deleteNode(v, node-&gt;getLeft()));\n  } else if (v &gt; node-&gt;getValue()) {\n    node-&gt;setRight(deleteNode(v, node-&gt;getRight()));\n  } else {\n    // one or no children\n    if (node-&gt;getLeft() == NULL) {\n      BSTNode* temp = node-&gt;getRight();\n      node-&gt;setRight(NULL);\n      delete node;\n      return temp; // want to put it in the BST back\n    } else if (node-&gt;getRight() == NULL) {\n      // one child on left\n      BSTNode* temp = node-&gt;getLeft();\n      delete node;\n      return temp; // we want to put it in the BST back\n    } else {\n      // node has two children\n      BSTNode* temp = minValue(node-&gt;getRight());\n      node-&gt;setValue(temp-&gt;getValue());\n      // look in the right subtree\n      node-&gt;setRight(deleteNode(temp-&gt;getValue(), node-&gt;getRight()));\n    }\n  }\n\n  return node;\n}\nTrace:\nBefore\n   3\n /   \\\n1     6\n     / \\\n    4   7\n     \\\n      5\nAfter\n   3\n /   \\\n1     6\n     / \\\n    5   7"
+  },
+  {
+    "objectID": "lecture35.html#last-lecture",
+    "href": "lecture35.html#last-lecture",
+    "title": "Lecture 35 - Dec 1, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nDelete a node in BST."
+  },
+  {
+    "objectID": "lecture35.html#today",
+    "href": "lecture35.html#today",
+    "title": "Lecture 35 - Dec 1, 2023",
+    "section": "Today",
+    "text": "Today\nHash tables"
+  },
+  {
+    "objectID": "lecture35.html#data-structures-and-run-time-of-operations",
+    "href": "lecture35.html#data-structures-and-run-time-of-operations",
+    "title": "Lecture 35 - Dec 1, 2023",
+    "section": "Data structures and run time of operations",
+    "text": "Data structures and run time of operations\n       | Unsorted List | Sorted List | BST      |\nInsert | O(1)          | O(n)        | O(log n) |\nSearch | O(n)          | O(log n)    | O(log n) |"
+  },
+  {
+    "objectID": "lecture35.html#hash-tables",
+    "href": "lecture35.html#hash-tables",
+    "title": "Lecture 35 - Dec 1, 2023",
+    "section": "Hash tables",
+    "text": "Hash tables\nHash tables provides average performance on search/insert/deletion.\n\nVery large array\nEach key maps to a unique index\nHash function \\(h(k)\\) maps key to array index\n\nExample: \\(h(k) = k \\% (m + 1)\\)\nUse cases:\n\nDatabases\nCaching\n\nIn both cases quick data retrieval is critical.\nExample: \\(h(key) = k \\% 7\\)\ninsert(16): h(16) = 2\ninsert(25): h(25) = 4\ninsert(77): h(77) = 0\ninsert(7): h(7) = 2\n0 | 77\n1 |\n2 | 16\n3 |\n4 | 25\n5 |\n6 |"
+  },
+  {
+    "objectID": "lecture35.html#problem",
+    "href": "lecture35.html#problem",
+    "title": "Lecture 35 - Dec 1, 2023",
+    "section": "Problem",
+    "text": "Problem\nCollision happens when two keys map to the same index."
+  },
+  {
+    "objectID": "lecture35.html#solution-1-hashing-with-chaining",
+    "href": "lecture35.html#solution-1-hashing-with-chaining",
+    "title": "Lecture 35 - Dec 1, 2023",
+    "section": "Solution 1: Hashing with chaining",
+    "text": "Solution 1: Hashing with chaining\nEach hash table entry contrains a pointer to a linked list of keys that map to the same entry.\nBut we may have collisions always and one array entry has a linked list of all keys. This leads to an \\(O(n)\\) search.\nUsually, good hash functions can reduce the number of collisions. Ideally, we want the length of each linked list to be one maximum.\nUsually, good hash function involve multiplying key with large prime number (e.g., \\(h(k) = 3k \\% m\\), where \\(m\\) is the size of the array)\n0 | 77 -&gt; 7\n1\n2 | 16\n3\n4 | 25\n5\n6\nclass Node {\n  // for simplicity, all data members are public\n  public:\n    int key;\n    Node *next;\n    ~Node() { delete next; }\n};\n\nclass List {\n  public:\n    List(); // sets head to NULL\n    bool isEmpty(); // returns true if head is NULL\n    void insert(int v); // inserts at head\n    ListNode* remove(int k); // removes first node with key = k\n    bool isFound(int k); // returns true if key k is found\n    ~List();\n};\n\n#define SIZE 7\n\nclass HashTable {\n  private:\n    List** table;\n  public:\n    HashTable() {\n      table = new List*[SIZE];\n      for (int i = 0; i &lt; SIZE; i++) {\n        table[i] = NULL;\n      }\n    }\n\n    bool search(int v) {\n      int idx = v % SIZE;\n      if (table[idx] != NULL) {\n        // table[idx] is of class List*\n        return table[idx]-&gt;isFound(v);\n      } else {\n        return false; // the list where v should be is not there\n      }\n    }\n\n    void insert(int v) {\n      if (search(v)) { // value already there\n        return;\n      } else {\n        int idx = v % SIZE;\n        if (table[idx] == NULL) {\n          table[idx] = new List();\n        }\n        // table[idx] is of class List*\n        table[idx]-&gt;insert(v);\n      }\n    }\n\n    ~HashTable() {\n      for (int i = 0; i &lt; SIZE; i++) {\n        delete table[i];\n      }\n      delete[] table;\n    }\n\n    void remove(int v);\n};\nDIAGRAM PENDING\nHomework: Implement remove for HashTable.\n\n\n\n\n\n\nPacha’s note\n\n\n\nHere is the implementation\nListNode* List::remove(int k) {\n  if (isEmpty()) {\n    return NULL;\n  }\n\n  Node *current = head;\n  Node *previous = NULL;\n\n  while (current != NULL && current-&gt;key != k) {\n    previous = current;\n    current = current-&gt;next;\n  }\n\n  if (current == NULL) {\n    return NULL; // key not found in the list\n  }\n\n  if (previous == NULL) {\n    // The node to be removed is the head\n    head = current-&gt;next;\n  } else {\n    // The node to be removed is not the head\n    previous-&gt;next = current-&gt;next;\n  }\n\n  current-&gt;next = NULL; // Prevent recursive deletion of the entire list\n  return current; // Return the removed node\n}"
+  },
+  {
+    "objectID": "lecture35.html#solution-2-closed-hashing-with-linear-probing",
+    "href": "lecture35.html#solution-2-closed-hashing-with-linear-probing",
+    "title": "Lecture 35 - Dec 1, 2023",
+    "section": "Solution 2: Closed hashing with linear probing",
+    "text": "Solution 2: Closed hashing with linear probing\nIf hash function lead to collision, insert value at the next available space in the table.\n\n\n\n\n\n\nExample\n\n\n\n\nIf it collides at \\(h(k)\\) then try \\([h(k) + 1] \\% SIZE\\)\nIf it collides at \\(h(k)\\) then try \\([h(k) + 2] \\% SIZE\\)\nIf it collides at \\(h(k)\\) then try \\([h(k) + 3] \\% SIZE\\)\n\n\n\nLinear probing is used tp find the next available space in the table."
+  },
+  {
+    "objectID": "lecture35.html#additional-code-from-the-class",
+    "href": "lecture35.html#additional-code-from-the-class",
+    "title": "Lecture 35 - Dec 1, 2023",
+    "section": "Additional code from the class",
+    "text": "Additional code from the class\nList.h:\n#ifndef LIST_H_\n#define LIST_H_\n#include &lt;iostream&gt;\nusing namespace std;\n\nclass Node {\n public:\n  int key;\n  Node* next;\n  ~Node(){delete next;}\n};\n\nclass List {\n private:\n  Node* head;\n\n public:\n  List(){head = NULL;}\n\n  bool isFound(int k) {\n    Node* p = head;\n    while (p != NULL) {\n      // cout &lt;&lt; \"p-&gt;name is \" &lt;&lt; p-&gt;name &lt;&lt; \" and name is \" &lt;&lt; name &lt;&lt; endl;\n      if (p-&gt;key == k) {\n        return true;\n      }\n      p = p-&gt;next;\n    }\n    return false;\n  }\n  Node* remove(int v) {\n    Node* p = head;\n    Node* prev = NULL;\n    while (p != NULL) {\n      if (p-&gt;key == v) {\n        if (prev != NULL) {\n          prev-&gt;next = p-&gt;next;\n          p-&gt;next = NULL;\n        } else {\n          head = p-&gt;next;\n          p-&gt;next = NULL;\n        }\n        return p;\n      }\n      prev = p;\n      p = p-&gt;next;\n    }\n    return NULL;\n  }\n  void insert(int v) {\n    Node* node = new Node;\n    node-&gt;key = v;\n    node-&gt;next = NULL;\n    node-&gt;next = head;\n    head = node;\n  }\n  void print(){\n    Node* current = head;\n    while(current != NULL){\n        cout &lt;&lt; current-&gt;key &lt;&lt; \" \";\n        current = current-&gt;next;\n    }\n    cout &lt;&lt; endl;\n  }\n  ~List() { delete head; }\n};\n\n#endif\nHashTable.h:\n#ifndef HASH_H_\n#define HASH_H_\n#define SIZE 7\n#include \"List.h\"\n\nclass HashTable {\n private:\n  List** table;\n\n public:\n  HashTable() {\n    table = new List*[SIZE];\n    for (int i = 0; i &lt; SIZE; i++) {\n      table[i] = NULL;\n    }\n  }\n  bool search(int v) {\n    int idx = v % SIZE;\n    if (table[idx] != NULL) {\n      return table[idx]-&gt;isFound(v);\n    } else {\n      return false;\n    }\n  }\n  void insert(int v) {\n    if (search(v)) {\n      return;\n    } else {\n      int idx = v % SIZE;\n      if (table[idx] == NULL) {\n        table[idx] = new List;\n      }\n      table[idx]-&gt;insert(v);\n    }\n  }\n  void display() {\n    for (int i = 0; i &lt; SIZE; i++) {\n      if (table[i] != NULL) {\n        table[i]-&gt;print();\n      }\n    }\n  }\n  void remove(int v) {\n    if (!search(v)) {\n      return;\n    } else {\n      int idx = v % SIZE;\n      if (table[idx] == NULL) {\n        return;\n      } else {\n        delete table[idx]-&gt;remove(v);\n      }\n    }\n  }\n  ~HashTable() {\n    for (int i = 0; i &lt; SIZE; i++) {\n      delete table[i];\n    }\n    delete[] table;\n  }\n};\n\n#endif\nmain.cpp:\n#include &lt;iostream&gt;\n#include \"HashTable.h\"\nusing namespace std;\n\nint main(){\n    HashTable H;\n    H.insert(4);\n    H.insert(7);\n    H.insert(77);\n    \n    H.remove(77);\n    H.display();\n    return 0;\n}"
+  },
+  {
+    "objectID": "lecture36.html#last-lecture",
+    "href": "lecture36.html#last-lecture",
+    "title": "Lecture 35 - Dec 5, 2023",
+    "section": "Last lecture",
+    "text": "Last lecture\nHash tables."
+  },
+  {
+    "objectID": "lecture36.html#today",
+    "href": "lecture36.html#today",
+    "title": "Lecture 35 - Dec 5, 2023",
+    "section": "Today",
+    "text": "Today\nHashing with chaining and linear probing."
+  },
+  {
+    "objectID": "lecture36.html#recap",
+    "href": "lecture36.html#recap",
+    "title": "Lecture 35 - Dec 5, 2023",
+    "section": "Recap",
+    "text": "Recap\nHashing with chaining\nclass Node {\n  // for simplicity, all data members are public\n  public:\n    int key;\n    Node* next;\n    ~Node() { delete next; }\n};\n\nclass List {\n  private:\n    Node* head;\n\n  public:\n    List(); // sets head to NULL\n    void insert(int v); // inserts at head\n    ListNode* remove (int k); // remove node with key = k\n    bool isFound(int k); // returns true if node with key = k is found\n    ~List(); // deletes head\n}\n\n#define SIZE 7\n\nclass HashTable {\n  private:\n    List** table;\n  public:\n    HashTable() {\n      table = new List*[SIZE];\n      for (int i = 0; i &lt; SIZE; i++) {\n        table[i] = NULL;\n      }\n    }\n\n    bool search(int v) {\n      int idx = v % SIZE;\n      if (table[idx] != NULL) {\n        // table[idx] is of class List*\n        return table[idx]-&gt;isFound(v);\n      } else {\n        return false; // the list where v should be is not there\n      }\n    }\n\n    void insert(int v) {\n      if (search(v)) { // value already there\n        return;\n      } else {\n        int idx = v % SIZE;\n        if (table[idx] == NULL) {\n          table[idx] = new List();\n        }\n        // table[idx] is of class List*\n        table[idx]-&gt;insert(v);\n      }\n    }\n\n    ~HashTable() {\n      for (int i = 0; i &lt; SIZE; i++) {\n        delete table[i];\n      }\n      delete[] table;\n    }\n\n    void remove(int v);\n};\nHashing with linear probing:\nIf hash function lead to collision, insert value at the next available space in the table.\n\n\n\n\n\n\nExample\n\n\n\n\nIf it collides at \\(h(k)\\) then try \\([h(k) + 1] \\% SIZE\\)\nIf it collides at \\(h(k)\\) then try \\([h(k) + 2] \\% SIZE\\)\nIf it collides at \\(h(k)\\) then try \\([h(k) + 3] \\% SIZE\\)\n\n\n\nLinear probing is used tp find the next available space in the table."
+  },
+  {
+    "objectID": "lecture36.html#solution-2-hashing-with-linear-probing",
+    "href": "lecture36.html#solution-2-hashing-with-linear-probing",
+    "title": "Lecture 35 - Dec 5, 2023",
+    "section": "Solution 2: Hashing with linear probing",
+    "text": "Solution 2: Hashing with linear probing\nclass Element {\n  public:\n    int key; // may want to store more data\n};\n\nint hash(int k); // hash function\n\n#define SIZE 7\n\nclass HashTable {\n  private:\n    Element** table;\n    int size;\n\n  public:\n    HashTable() {\n      table = new Element*[SIZE];\n      for (int i = 0; i &lt; SIZE; i++) {\n        table[i] = NULL;\n      }\n      size = 0;\n    }\n\n  // we return false if table is full\n  // return true if we inserted or the node was there\n  bool insert(int v) {\n    int idx = hash(v);\n    if (size == SIZE) { return false; }\n    for (int i=0; table[idx] != NULL; i++) {\n      // duplicate found\n      // table[idx] is of class Element*\n      if (table[idx]-&gt;key == v) { return true; }\n      idx = (hash(v) + i) % SIZE;\n    }\n    // exit loop when table[idx] == NULL\n    Element* temp = new Element;\n    temp-&gt;key = v;\n    table[idx] = temp;\n    size++;\n    return true;\n  }\n}\nUsing (hash(v) + i) % SIZE has a disadvantage: It would cause clustering of nodes in one area in the hashtable\nSolution: try uniformly distribution nodes by probing elsewhere."
+  },
+  {
+    "objectID": "lecture36.html#solution-3-quadratic-probing",
+    "href": "lecture36.html#solution-3-quadratic-probing",
+    "title": "Lecture 35 - Dec 5, 2023",
+    "section": "Solution 3: Quadratic probing",
+    "text": "Solution 3: Quadratic probing\n(hash(v) + i*i) % SIZE"
+  },
+  {
+    "objectID": "lecture36.html#solution-4-double-probing",
+    "href": "lecture36.html#solution-4-double-probing",
+    "title": "Lecture 35 - Dec 5, 2023",
+    "section": "Solution 4: Double probing",
+    "text": "Solution 4: Double probing\n(hash1(v) + i * hash2(v)) % SIZE"
+  },
+  {
+    "objectID": "lecture36.html#exam-question",
+    "href": "lecture36.html#exam-question",
+    "title": "Lecture 35 - Dec 5, 2023",
+    "section": "Exam question",
+    "text": "Exam question\nChange Int class in such a way that there are no memory leaks, and output is 4 4 (not 4 3).\n#include &lt;iostream&gt;\nusing namespace std;\n\nclass Int {\n  private:\n    int* p;\n  public:\n    Int(int i) {\n      p = new int;\n      *p = i;\n    }\n    void set_val(int i) { *p = i; }\n    int get_val() { return *p; }\n    virtual void print() = 0;\n};\n\nclass SuperInt : public Int {\n  private:\n    int* q;\n  public:\n    SuperInt(int i) : Int(i) {\n      q = new int;\n      *q = i;\n    }\n    \n    ~SuperInt() {\n      delete q;\n    }\n\n    void set_val() {\n      Int::set_val(i);\n      *q = i;\n    }\n\n    void print() {\n      cout &lt;&lt; Int::get_val() &lt;&lt; \" \" &lt;&lt; q* &lt;&lt; endl;\n    }\n};\n\n// do not change main\nint main() {\n  Int* s = new SuperInt(3);\n  s-&gt;set_val(4);\n  s-&gt;print();\n  delete s;\n  return 0;\n}\nIn the class definition:\n\nInt is an abstract class\nvirtual void print() = 0; is a pure virtual function\nWe need to add virtual ~Int() { delete p; } to avoid memory leaks\nAlso prepend virtual to void set_val(int i) { *p = i; }\n\nIn main:\n\nIf set_val is virtual, it calls set_val depending on object type (not s type)\nIf the destructor is virtual, it calls the destructor of SuperInt as s points to SuperInt"
   }
 ]

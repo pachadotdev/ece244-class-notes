@@ -1,0 +1,210 @@
+# Lecture 33 - Nov 28, 2023
+
+## Last lecture
+
+Introduction to trees, binary trees and binary search trees.
+
+Search.
+
+## Today
+
+Recursive print and insert operations in binary search trees.
+
+## Recursive print and insert in BST
+
+```
+     8
+   /   \
+  4     10
+ / \      \
+1   6      12
+```
+
+```cpp
+class BSTNode {
+  private:
+    int value;
+    BSTNode *left, *right;
+  
+  public:
+    BSTNode(int v) {
+      value v;
+      left = right = NULL;
+    }
+    ~BSTNode() {
+      delete left;
+      delete right;
+    }
+    int getValue() {
+      return value;
+    }
+    BSTNode *getLeft() {
+      return left;
+    }
+    BSTNode *getRight() {
+      return right;
+    }
+    void setLeft(BSTNode *l) {
+      left = l;
+    }
+    void setRight(BSTNode *r) {
+      right = r;
+    }
+};
+
+class BSTree {
+  private:
+    BSTNode* root;
+
+    bool searchNode(int v, BSTNode* n) {
+      if (n == NULL) {
+        return false;
+      } else if (n->getValue() == v) {
+        return true;
+      } else if (n->getValue() > v) {
+        return searchNode(v, n->getLeft());
+      } else {
+        return searchNode(v, n->getRight());
+      }
+    }
+
+    void insertHelper(int v, BSTNode* n);
+    void printInOrderHelper(BSTNode* n);
+
+  public:
+    BSTree() {
+      root = NULL;
+    }
+    ~BSTree() {
+      delete root;
+    }
+    BSTNode* getRoot() {
+      return root;
+    }
+    bool search(int v) {
+      return searchNode(v, root);
+    }
+    void insert(int v);
+    void printInOrder();
+};
+
+void BSTree::insertHelper(int v, BSTNode* n) {
+  if (n->getValue() == v) {
+    return; // no two nodes have the same value
+  } else if (v < n->getValue()) {
+    if (n->getLeft() == NULL) {
+      n->setLeft(new BSTNode(v)); // insert to the left of a leaf node
+    } else {
+      insertHelper(v, n->getLeft());
+    }
+  } else {
+    if (n->getRight() == NULL) {
+      n->setRight(new BSTNode(v)); // insert to the right of a leaf node
+    } else {
+      insertHelper(v, n->getRight());
+    }
+  }
+}
+
+void BSTree::printInOrderHelper(BSTNode* n) {
+  if (n != NULL) {
+    print(n->getLeft());
+    cout << n->getValue() << " ";
+    print(n->getRight());
+  }
+}
+```
+
+```
+print(8)
+|- print(4)
+|  |- print(NULL)
+|  |- cout << 4
+|  |- print(6)
+|     |- print(NULL)
+|     |- cout << 6
+|     |- print(NULL)
+|- cout << 8
+|- print(10)
+   |- print(NULL)
+   |- cout << 10
+   |- print(NULL)
+```
+
+```cpp
+void BSTree::printInOrder() {
+  return printInOrderHelper(root);
+}
+```
+
+We may print the BST in different orders
+
+```cpp
+void BSTree::printPreOrderHelper(BSTNode* n) {
+  if (n != NULL) {
+    cout << n->getValue() << " ";
+    printPreOrder(n->getLeft());
+    printPreOrder(n->getRight());
+  }
+}
+```
+
+```
+| 8 | 4 | 6 | 10 |
+```
+
+prints `node` first, then `left`, then `right` subtree
+
+```cpp
+void BSTree::printPostOrderHelper(BSTNode* n) {
+  if (n != NULL) {
+    printPostOrder(n->getLeft());
+    printPostOrder(n->getRight());
+    cout << n->getValue() << " ";
+  }
+}
+```
+
+```
+| 6 | 4 | 10 | 8 |
+```
+
+prints `left` subtree first, then `right`, then `node`
+
+**Homework**: Implement `minValueNode` and `maxValueNode`.
+
+```cpp
+BSTNode* BSTree::minValueNode(BSTNode* n) {
+  return minValueNodeHelper(n->getLeft());
+}
+```
+
+::: {.callout-note icon=false}
+## Pacha's note
+
+Here is the implementation of `minValueNodeHelper`:
+```cpp
+BSTNode* BSTree::minValueNodeHelper(BSTNode* n) {
+  // n != NULL in case the root is NULL
+  if (n != NULL && n->getLeft() !== NULL) {
+    return minValueNodeHelper(n->getLeft());
+  } else {
+    return n;
+  }
+}
+```
+
+```cpp
+BSTNode* BSTree::maxValueNode(BSTNode* n) {
+  return maxValueNodeHelper(n->getRight());
+}
+
+BSTNode* BSTree::maxValueNodeHelper(BSTNode* n) {
+  if (n != NULL && n->getRight() !== NULL) {
+    return maxValueNodeHelper(n->getRight());
+  } else {
+    return n;
+  }
+}
+```
+:::

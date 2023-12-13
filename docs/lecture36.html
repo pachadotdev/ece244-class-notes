@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Hiram: ECE244 Tidy Notes - Lecture 35 - Dec 5, 2023</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./lecture35.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture36.html"><span class="chapter-title">Lecture 35 - Dec 5, 2023</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Hiram: ECE244 Tidy Notes</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 1 - Sept 7, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 2 - Sept 8, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 3 - Sept 12, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 4 - Sept 14, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 5 - Sept 15, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 6 - Sept 19, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture7.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 7 - Sept 22, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture8.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 8 - Sept 22, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture9.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 9 - Sept 26, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture10.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 10 - Sept 28, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture11.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 11 - Sept 29, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture12.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 12 - Oct 3, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture13.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 13 - Oct 5, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture14.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 14 - Oct 6, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture15.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 15 - Oct 10, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture16.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 16 - Oct 12, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture17.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 17 - Oct 13, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture18.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 18 - Oct 17, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture19.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 19 - Oct 19, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture20.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 20 - Oct 20, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture21.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 21 - Oct 24, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture22.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 22 - Oct 26, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture23.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 23 - Oct 23, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture24.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 24 - Oct 23, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture25.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 25 - Nov 2, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture26.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 26 - Nov 14, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture27.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 27 - Nov 14, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture28.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 28 - Nov 16, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture29.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 29 - Nov 17, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture30.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 30 - Nov 21, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture31.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 31 - Nov 23, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture32.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 32 - Nov 24, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture33.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 33 - Nov 28, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture34.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 34 - Nov 30, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture35.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 35 - Dec 1, 2023</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lecture36.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Lecture 35 - Dec 5, 2023</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#last-lecture" id="toc-last-lecture" class="nav-link active" data-scroll-target="#last-lecture">Last lecture</a></li>
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  <li><a href="#solution-2-hashing-with-linear-probing" id="toc-solution-2-hashing-with-linear-probing" class="nav-link" data-scroll-target="#solution-2-hashing-with-linear-probing">Solution 2: Hashing with linear probing</a></li>
+  <li><a href="#solution-3-quadratic-probing" id="toc-solution-3-quadratic-probing" class="nav-link" data-scroll-target="#solution-3-quadratic-probing">Solution 3: Quadratic probing</a></li>
+  <li><a href="#solution-4-double-probing" id="toc-solution-4-double-probing" class="nav-link" data-scroll-target="#solution-4-double-probing">Solution 4: Double probing</a></li>
+  <li><a href="#exam-question" id="toc-exam-question" class="nav-link" data-scroll-target="#exam-question">Exam question</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Lecture 35 - Dec 5, 2023</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="last-lecture" class="level2">
+<h2 class="anchored" data-anchor-id="last-lecture">Last lecture</h2>
+<p>Hash tables.</p>
+</section>
+<section id="today" class="level2">
+<h2 class="anchored" data-anchor-id="today">Today</h2>
+<p>Hashing with chaining and linear probing.</p>
+</section>
+<section id="recap" class="level2">
+<h2 class="anchored" data-anchor-id="recap">Recap</h2>
+<p>Hashing with chaining</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Node <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// for simplicity, all data members are public</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> key<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> next<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">~</span>Node<span class="op">()</span> <span class="op">{</span> <span class="kw">delete</span> next<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> List <span class="op">{</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">private</span><span class="op">:</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> head<span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    List<span class="op">();</span> <span class="co">// sets head to NULL</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> insert<span class="op">(</span><span class="dt">int</span> v<span class="op">);</span> <span class="co">// inserts at head</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    ListNode<span class="op">*</span> remove <span class="op">(</span><span class="dt">int</span> k<span class="op">);</span> <span class="co">// remove node with key = k</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> isFound<span class="op">(</span><span class="dt">int</span> k<span class="op">);</span> <span class="co">// returns true if node with key = k is found</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">~</span>List<span class="op">();</span> <span class="co">// deletes head</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SIZE </span><span class="dv">7</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> HashTable <span class="op">{</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="kw">private</span><span class="op">:</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    List<span class="op">**</span> table<span class="op">;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    HashTable<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>      table <span class="op">=</span> <span class="kw">new</span> List<span class="op">*[</span>SIZE<span class="op">];</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> SIZE<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        table<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> search<span class="op">(</span><span class="dt">int</span> v<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>      <span class="dt">int</span> idx <span class="op">=</span> v <span class="op">%</span> SIZE<span class="op">;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>table<span class="op">[</span>idx<span class="op">]</span> <span class="op">!=</span> NULL<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="co">// table[idx] is of class List*</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> table<span class="op">[</span>idx<span class="op">]-&gt;</span>isFound<span class="op">(</span>v<span class="op">);</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span> <span class="co">// the list where v should be is not there</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> insert<span class="op">(</span><span class="dt">int</span> v<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>search<span class="op">(</span>v<span class="op">))</span> <span class="op">{</span> <span class="co">// value already there</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> idx <span class="op">=</span> v <span class="op">%</span> SIZE<span class="op">;</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>table<span class="op">[</span>idx<span class="op">]</span> <span class="op">==</span> NULL<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>          table<span class="op">[</span>idx<span class="op">]</span> <span class="op">=</span> <span class="kw">new</span> List<span class="op">();</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="co">// table[idx] is of class List*</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        table<span class="op">[</span>idx<span class="op">]-&gt;</span>insert<span class="op">(</span>v<span class="op">);</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    <span class="op">~</span>HashTable<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> SIZE<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="kw">delete</span> table<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>      <span class="kw">delete</span><span class="op">[]</span> table<span class="op">;</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> remove<span class="op">(</span><span class="dt">int</span> v<span class="op">);</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Hashing with linear probing:</p>
+<p>If hash function lead to collision, insert value at the next available space in the table.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>If it collides at <span class="math inline">\(h(k)\)</span> then try <span class="math inline">\([h(k) + 1] \% SIZE\)</span></li>
+<li>If it collides at <span class="math inline">\(h(k)\)</span> then try <span class="math inline">\([h(k) + 2] \% SIZE\)</span></li>
+<li>If it collides at <span class="math inline">\(h(k)\)</span> then try <span class="math inline">\([h(k) + 3] \% SIZE\)</span></li>
+</ol>
+</div>
+</div>
+<p>Linear probing is used tp find the next available space in the table.</p>
+</section>
+<section id="solution-2-hashing-with-linear-probing" class="level2">
+<h2 class="anchored" data-anchor-id="solution-2-hashing-with-linear-probing">Solution 2: Hashing with linear probing</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Element <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> key<span class="op">;</span> <span class="co">// may want to store more data</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> hash<span class="op">(</span><span class="dt">int</span> k<span class="op">);</span> <span class="co">// hash function</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SIZE </span><span class="dv">7</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> HashTable <span class="op">{</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">private</span><span class="op">:</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    Element<span class="op">**</span> table<span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> size<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    HashTable<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      table <span class="op">=</span> <span class="kw">new</span> Element<span class="op">*[</span>SIZE<span class="op">];</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> SIZE<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        table<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>      size <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">// we return false if table is full</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">// return true if we inserted or the node was there</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="dt">bool</span> insert<span class="op">(</span><span class="dt">int</span> v<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> idx <span class="op">=</span> hash<span class="op">(</span>v<span class="op">);</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>size <span class="op">==</span> SIZE<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> table<span class="op">[</span>idx<span class="op">]</span> <span class="op">!=</span> NULL<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>      <span class="co">// duplicate found</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>      <span class="co">// table[idx] is of class Element*</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>table<span class="op">[</span>idx<span class="op">]-&gt;</span>key <span class="op">==</span> v<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>      idx <span class="op">=</span> <span class="op">(</span>hash<span class="op">(</span>v<span class="op">)</span> <span class="op">+</span> i<span class="op">)</span> <span class="op">%</span> SIZE<span class="op">;</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">// exit loop when table[idx] == NULL</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    Element<span class="op">*</span> temp <span class="op">=</span> <span class="kw">new</span> Element<span class="op">;</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    temp<span class="op">-&gt;</span>key <span class="op">=</span> v<span class="op">;</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    table<span class="op">[</span>idx<span class="op">]</span> <span class="op">=</span> temp<span class="op">;</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    size<span class="op">++;</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Using <code>(hash(v) + i) % SIZE</code> has a disadvantage: It would cause clustering of nodes in one area in the hashtable</p>
+<p>Solution: try uniformly distribution nodes by probing elsewhere.</p>
+</section>
+<section id="solution-3-quadratic-probing" class="level2">
+<h2 class="anchored" data-anchor-id="solution-3-quadratic-probing">Solution 3: Quadratic probing</h2>
+<p><code>(hash(v) + i*i) % SIZE</code></p>
+</section>
+<section id="solution-4-double-probing" class="level2">
+<h2 class="anchored" data-anchor-id="solution-4-double-probing">Solution 4: Double probing</h2>
+<p><code>(hash1(v) + i * hash2(v)) % SIZE</code></p>
+</section>
+<section id="exam-question" class="level2">
+<h2 class="anchored" data-anchor-id="exam-question">Exam question</h2>
+<p>Change <code>Int</code> class in such a way that there are no memory leaks, and output is <code>4 4</code> (not <code>4 3</code>).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Int <span class="op">{</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">private</span><span class="op">:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span><span class="op">*</span> p<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    Int<span class="op">(</span><span class="dt">int</span> i<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>      p <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      <span class="op">*</span>p <span class="op">=</span> i<span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> set_val<span class="op">(</span><span class="dt">int</span> i<span class="op">)</span> <span class="op">{</span> <span class="op">*</span>p <span class="op">=</span> i<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> get_val<span class="op">()</span> <span class="op">{</span> <span class="cf">return</span> <span class="op">*</span>p<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">virtual</span> <span class="dt">void</span> print<span class="op">()</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SuperInt <span class="op">:</span> <span class="kw">public</span> Int <span class="op">{</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="kw">private</span><span class="op">:</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span><span class="op">*</span> q<span class="op">;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    SuperInt<span class="op">(</span><span class="dt">int</span> i<span class="op">)</span> <span class="op">:</span> Int<span class="op">(</span>i<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>      q <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>      <span class="op">*</span>q <span class="op">=</span> i<span class="op">;</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">~</span>SuperInt<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>      <span class="kw">delete</span> q<span class="op">;</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> set_val<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>      Int<span class="op">::</span>set_val<span class="op">(</span>i<span class="op">);</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>      <span class="op">*</span>q <span class="op">=</span> i<span class="op">;</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> print<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>      cout <span class="op">&lt;&lt;</span> Int<span class="op">::</span>get_val<span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="st">" "</span> <span class="op">&lt;&lt;</span> q<span class="op">*</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="co">// do not change main</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  Int<span class="op">*</span> s <span class="op">=</span> <span class="kw">new</span> SuperInt<span class="op">(</span><span class="dv">3</span><span class="op">);</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  s<span class="op">-&gt;</span>set_val<span class="op">(</span><span class="dv">4</span><span class="op">);</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  s<span class="op">-&gt;</span>print<span class="op">();</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  <span class="kw">delete</span> s<span class="op">;</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the class definition:</p>
+<ol type="1">
+<li><code>Int</code> is an abstract class</li>
+<li><code>virtual void print() = 0;</code> is a pure virtual function</li>
+<li>We need to add <code>virtual ~Int() { delete p; }</code> to avoid memory leaks</li>
+<li>Also prepend <code>virtual</code> to <code>void set_val(int i) { *p = i; }</code></li>
+</ol>
+<p>In main:</p>
+<ol type="1">
+<li>If <code>set_val</code> is virtual, it calls <code>set_val</code> depending on object type (not <code>s</code> type)</li>
+<li>If the destructor is virtual, it calls the destructor of <code>SuperInt</code> as <code>s</code> points to <code>SuperInt</code></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./lecture35.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Lecture 35 - Dec 1, 2023</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

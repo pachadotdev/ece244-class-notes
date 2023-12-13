@@ -1,0 +1,143 @@
+# Lecture 31 - Nov 23, 2023
+
+## Last lecture
+
+Inheritance continuation and polymorphism.
+
+## Today
+
+Virtual functions and abstract classes. 
+
+## Recap
+
+```cpp
+class Polygon {
+  protected:
+    int width, height;
+
+  public:
+    void set(int w, int h) {
+      width = w;
+      height = h;
+    }
+};
+
+class Rectangle: public Polygon {
+  public:
+    int area() {
+      return width * height;
+    }
+};
+
+class Triangle : public Polygon {
+  public:
+    int area() {
+      return width * height / 2;
+    }
+};
+
+int main() {
+  Rectangle r; r.set(3,4); Polygon* pr = &r;
+  cout << pr -> area(); // cannot invoke area as it is a member of Rectangle
+}
+```
+
+Problem: We cannot access members of a `Derived` object if the pointer pointing
+to it is of `Base*` type.
+
+Solution: If a function is declared as a virtual function in base class, and
+redefined/overriden in derived class, a call to that function through a `Base*`
+pointer will invoke the function depending on the type of object (not pointer).
+
+```cpp
+class Polygon {
+  protected:
+    int width, height;
+
+  public:
+    void set(int w, int h) {
+      width = w;
+      height = h;
+    }
+    virtual int area() = 0;
+    // if we remove virtual p1 -> area() will return 0
+}
+```
+
+Non-virtual functions are invoked depending on the type of pointer. This is
+known at compile time.
+
+Virtual function are invoked depending on the type the pointer points to. This
+is known at run time.
+
+A class that inherits a virtual function is called polymorphic class (e.g.,
+`Rectangle` and `Triangle`)
+
+<img src="diagrams/lecture30-diagram1.svg" alt="diagrams/lecture30-diagram1.svg">
+
+```cpp
+for (int i = 0; i < 3; i++) {
+  cout << a[i] -> area(); // will print out area according to shape
+}
+```
+
+If the function is virtual, it is also the destructor.
+
+```cpp
+class Polygon {
+  protected:
+    int width;
+
+  public:
+    virtual ~Polygon() {}; // does nothing
+};
+
+class Rectangle:public Polygon {
+  protected:
+    int* length;
+
+  public:
+    Rectangle() {
+      length = new int;
+    }
+
+    ~Rectangle() {
+      delete length;
+    }
+};
+
+int main() {
+  Polygon* p = new Rectangle;
+  delete p; // if the destructor was not virtual
+            // the destructor of Polygon will be called
+            // and the length will not be freed
+  return 0;
+}
+```
+
+Problem: This neccessitates that we implement the `area()` function in
+`Polygon`. We may need `Polygon` class to exist with some functions, but never
+implement these functions as we will not need them.
+
+```cpp
+class Polygon {
+  protected:
+    int width, length;
+
+  public:
+    void set(int w, int l) { ... };
+    virtual int area() = 0; // pure virtual function
+};
+```
+
+A class with a pure virtual function is an abstract class.
+
+You cannot instantiate an object of an abstract class.
+
+`Polygon p;` is incorrect as `p` is of abstract class.
+
+```cpp
+Rectangle r;
+Polygon* pr = &r;
+cout << pr -> area(); // will invoke Rectangle::area()
+```

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hiram: ECE244 Tidy Notes</title>
+<title>Hiram: ECE244 Tidy Notes - Lecture 32 - Nov 24, 2023</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./lecture1.html" rel="next">
+<link href="./lecture31.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -61,6 +95,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -73,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-title">Introduction</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture32.html"><span class="chapter-title">Lecture 32 - Nov 24, 2023</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -100,7 +136,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Introduction</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -260,27 +296,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture32.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 32 - Nov 24, 2023</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lecture33.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 33 - Nov 28, 2023</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lecture34.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 34 - Nov 30, 2023</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lecture35.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 35 - Dec 1, 2023</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lecture36.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture 35 - Dec 5, 2023</span></a>
+  <a href="./lecture32.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Lecture 32 - Nov 24, 2023</span></a>
   </div>
 </li>
     </ul>
@@ -293,13 +309,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
-  <li><a href="#why-hiram" id="toc-why-hiram" class="nav-link" data-scroll-target="#why-hiram">Why Hiram?</a></li>
-  <li><a href="#about-ece244---programming-fundamentals" id="toc-about-ece244---programming-fundamentals" class="nav-link" data-scroll-target="#about-ece244---programming-fundamentals">About ECE244 - Programming Fundamentals</a></li>
-  <li><a href="#in-memoriam" id="toc-in-memoriam" class="nav-link" data-scroll-target="#in-memoriam">In memoriam</a></li>
-  <li><a href="#pachas-notes" id="toc-pachas-notes" class="nav-link" data-scroll-target="#pachas-notes">Pacha’s notes</a></li>
-  </ul></li>
+  <li><a href="#last-lecture" id="toc-last-lecture" class="nav-link active" data-scroll-target="#last-lecture">Last lecture</a></li>
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
+  <li><a href="#trees" id="toc-trees" class="nav-link" data-scroll-target="#trees">Trees</a></li>
+  <li><a href="#properties-of-trees" id="toc-properties-of-trees" class="nav-link" data-scroll-target="#properties-of-trees">Properties of trees</a></li>
+  <li><a href="#binary-trees" id="toc-binary-trees" class="nav-link" data-scroll-target="#binary-trees">Binary trees</a></li>
+  <li><a href="#complexity-cases" id="toc-complexity-cases" class="nav-link" data-scroll-target="#complexity-cases">Complexity cases</a></li>
+  <li><a href="#bst-implementation" id="toc-bst-implementation" class="nav-link" data-scroll-target="#bst-implementation">BST implementation</a></li>
   </ul>
 </nav>
     </div>
@@ -308,7 +324,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Hiram: ECE244 Tidy Notes</h1>
+<h1 class="title"><span class="chapter-title">Lecture 32 - Nov 24, 2023</span></h1>
 </div>
 
 
@@ -323,32 +339,144 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<section id="why-hiram" class="level3">
-<h3 class="anchored" data-anchor-id="why-hiram">Why Hiram?</h3>
-<p>Professor Emara is from Egypt and she is also a master programmer. She titled her notes Snefru and Khufu (C and C++, respectively).</p>
-<p>Because I am learning from her and I come from Political Science, I am like Hiram, a blacksmith from Tyre (today’s Lebanon) who learned stone masonry from master craftsmen from Egypt.</p>
+<section id="last-lecture" class="level2">
+<h2 class="anchored" data-anchor-id="last-lecture">Last lecture</h2>
+<p>Inheritance.</p>
 </section>
-<section id="about-ece244---programming-fundamentals" class="level3">
-<h3 class="anchored" data-anchor-id="about-ece244---programming-fundamentals">About ECE244 - Programming Fundamentals</h3>
-<p>This course provides a foundation in programming using an object-oriented programming language. Topics include classes and objects, inheritance, basic data structures (lists, tree, hash tables, etc.), Big-O complexity analysis, and testing and debugging. The laboratory assignments emphasize the use of object-oriented programming constructs in the design and implementation of reasonably large programs.</p>
+<section id="today" class="level2">
+<h2 class="anchored" data-anchor-id="today">Today</h2>
+<p>Binary trees.</p>
+<p>Recall: We used linked lists to have a more dynamic and flexible data structure to store information.</p>
+<p>However, the way a data structure is organized can “speed up” or “slow down” the run time of some operations like searching, inserting, and deleting nodes.</p>
 </section>
-<section id="in-memoriam" class="level3">
-<h3 class="anchored" data-anchor-id="in-memoriam">In memoriam</h3>
-<p>While tidying these notes, it was impossible not to go back to the many talks about mathematics with Prof.&nbsp;Luis Armando Dissett Vélez (1963-2021), who always answered my questions about convex separation properties, and I always ended up knowing more than I wanted to know about different theorems of the alternative and connections from calculus to statistics to graph theory. I will always remember him as a great teacher and a great person that truly represented the values of the Pontificia Universidad Católica de Chile.</p>
+<section id="trees" class="level2">
+<h2 class="anchored" data-anchor-id="trees">Trees</h2>
+<p><code>Trees</code> is another data structure that stores data for different purposes (e.g., to store directories/files in Unix)</p>
 </section>
-<section id="pachas-notes" class="level3">
-<h3 class="anchored" data-anchor-id="pachas-notes">Pacha’s notes</h3>
-<ul>
-<li>The notes are 100% adjusted to the class.</li>
-<li>In the snippets folder, I have included some (unofficial) code snippets with the same examples from the notes, that I use to check if the code compiles.</li>
-<li>Some of the examples in the notes have small additions, such as <code>using namespace std;</code> or <code>#include &lt;iostream&gt;</code>, to make them compile.</li>
-<li>The diagrams are kinda ugly, my apologies! I’m not a graphic designer.</li>
-</ul>
+<section id="properties-of-trees" class="level2">
+<h2 class="anchored" data-anchor-id="properties-of-trees">Properties of trees</h2>
+<ol type="1">
+<li>Have nodes and edges connect nodes</li>
+<li>Have no cycles</li>
+<li>Have 1 parent, multiple children</li>
+<li>Have 1 root (or empty trees have no root)</li>
+</ol>
+<p>This is a tree</p>
+<pre><code>  A
+ /
+B</code></pre>
+<p>This is not a tree (cycle)</p>
+<pre><code>  A
+ / \
+B - C</code></pre>
+</section>
+<section id="binary-trees" class="level2">
+<h2 class="anchored" data-anchor-id="binary-trees">Binary trees</h2>
+<ol type="1">
+<li>The root is at the top and leaves are at the bottom</li>
+<li>Each node stores some data</li>
+<li>Each node has at most 2 child nodes, and one parent (Except root)</li>
+<li>An edge links a node to its children</li>
+<li>Nodes with no children are leaf nodes</li>
+</ol>
+<p><img src="diagrams/lecture32-diagram1.svg" alt="diagrams/lecture32-diagram1.svg"></p>
+<p>In binary search trees (BST), an additional feature is that for every node:</p>
+<ol type="1">
+<li>All nodes in the left subtree have values less than the node’s value</li>
+<li>All nodes in the right subtree have values greater than the node’s value</li>
+</ol>
+<p>Facts:</p>
+<ol type="1">
+<li>The minimum value is in the most left node</li>
+<li>The maximum value is in the most right node</li>
+</ol>
+<p>As opposed to linked lists and arrays, BST is organized in such a way that allows quick search.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Search for a number <span class="math inline">\(x\)</span></p>
+<p><span class="math inline">\(T(n) = O(n)\)</span>, where <span class="math inline">\(n\)</span> is the size of the array</p>
+<pre><code>1 | 3 | 4 | 8 | 9 | 10 | 11</code></pre>
+<p>Start from the root</p>
+<pre><code>     8
+   /   \
+  3     10
+ / \   /  \
+1   4 9    11</code></pre>
+<p>If <span class="math inline">\(x&lt;8\)</span>, go left If <span class="math inline">\(x&gt;8\)</span>, go right</p>
+<p>Worst case will find <span class="math inline">\(x\)</span> at a left node.</p>
+<p><span class="math inline">\(\text{No. of steps} = \text{height of BST}\)</span></p>
+</div>
+</div>
+</section>
+<section id="complexity-cases" class="level2">
+<h2 class="anchored" data-anchor-id="complexity-cases">Complexity cases</h2>
+<p>If BST</p>
+<pre><code>      8
+     /
+    4
+   /
+  3
+ /
+1 </code></pre>
+<p>Height is <span class="math inline">\(n\)</span>. Then <span class="math inline">\(T(n) = O(n)\)</span>, like arrays or linked lists.</p>
+<p>If BST</p>
+<pre><code>     8
+   /   \
+  3     10
+ / \   /  \
+1   4 9    11</code></pre>
+<p>Height is <span class="math inline">\(\log(n)\)</span>. Then <span class="math inline">\(T(n) = O(\log(n))\)</span>.</p>
+</section>
+<section id="bst-implementation" class="level2">
+<h2 class="anchored" data-anchor-id="bst-implementation">BST implementation</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BSTNode <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">private</span><span class="op">:</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> value<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    BSTNode <span class="op">*</span>left<span class="op">,</span> <span class="op">*</span>right<span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    BSTNode<span class="op">(</span><span class="dt">int</span> v<span class="op">)</span> <span class="op">{</span> value <span class="op">=</span> v<span class="op">;</span> left <span class="op">=</span> right <span class="op">=</span> NULL<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">~</span>BSTnode<span class="op">()</span> <span class="op">{</span> <span class="kw">delete</span> left<span class="op">;</span> <span class="kw">delete</span> right<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> getValue<span class="op">()</span> <span class="op">{</span> <span class="cf">return</span> value<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    BSTNode <span class="op">*</span>getRight<span class="op">()</span> <span class="op">{</span> <span class="cf">return</span> left<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    BSTNode <span class="op">*</span>getLeft<span class="op">()</span> <span class="op">{</span> <span class="cf">return</span> left<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> setRight<span class="op">(</span>BSTNode <span class="op">*</span>r<span class="op">)</span> <span class="op">{</span> right <span class="op">=</span> r<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> setLeft<span class="op">(</span>BSTNode <span class="op">*</span>l<span class="op">)</span> <span class="op">{</span> left <span class="op">=</span> l<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BSTree <span class="op">{</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">private</span><span class="op">:</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    BSTNode<span class="op">*</span> root<span class="op">;</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> searchNode<span class="op">(</span><span class="dt">int</span> v<span class="op">,</span> BSTNode <span class="op">*</span>n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>n <span class="op">==</span> NULL<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>n<span class="op">-&gt;</span>getValue<span class="op">()</span> <span class="op">==</span> v<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>n<span class="op">-&gt;</span>getValue<span class="op">()</span> <span class="op">&gt;</span> v<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> searchNode<span class="op">(</span>v<span class="op">,</span> n<span class="op">-&gt;</span>getLeft<span class="op">());</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> searchNode<span class="op">(</span>v<span class="op">,</span> n<span class="op">-&gt;</span>getRight<span class="op">());</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span> </span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    BSTree<span class="op">()</span> <span class="op">{</span> root <span class="op">=</span> NULL<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="op">~</span>BSTree<span class="op">()</span> <span class="op">{</span> <span class="kw">delete</span> root<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    BSTNode<span class="op">*</span> getRoot<span class="op">()</span> <span class="op">{</span> <span class="cf">return</span> root<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> search<span class="op">(</span><span class="dt">int</span> v<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> searchNode<span class="op">(</span>v<span class="op">,</span> root<span class="op">);</span> <span class="op">}</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">// next lecture: print insert</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -587,11 +715,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./lecture31.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Lecture 31 - Nov 23, 2023</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./lecture1.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-title">Lecture 1 - Sept 7, 2023</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

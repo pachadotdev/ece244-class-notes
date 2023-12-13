@@ -1,0 +1,223 @@
+# Lecture 35 - Dec 5, 2023
+
+## Last lecture
+
+Hash tables.
+
+## Today
+
+Hashing with chaining and linear probing.
+
+## Recap
+
+Hashing with chaining
+
+```cpp
+class Node {
+  // for simplicity, all data members are public
+  public:
+    int key;
+    Node* next;
+    ~Node() { delete next; }
+};
+
+class List {
+  private:
+    Node* head;
+
+  public:
+    List(); // sets head to NULL
+    void insert(int v); // inserts at head
+    ListNode* remove (int k); // remove node with key = k
+    bool isFound(int k); // returns true if node with key = k is found
+    ~List(); // deletes head
+}
+
+#define SIZE 7
+
+class HashTable {
+  private:
+    List** table;
+  public:
+    HashTable() {
+      table = new List*[SIZE];
+      for (int i = 0; i < SIZE; i++) {
+        table[i] = NULL;
+      }
+    }
+
+    bool search(int v) {
+      int idx = v % SIZE;
+      if (table[idx] != NULL) {
+        // table[idx] is of class List*
+        return table[idx]->isFound(v);
+      } else {
+        return false; // the list where v should be is not there
+      }
+    }
+
+    void insert(int v) {
+      if (search(v)) { // value already there
+        return;
+      } else {
+        int idx = v % SIZE;
+        if (table[idx] == NULL) {
+          table[idx] = new List();
+        }
+        // table[idx] is of class List*
+        table[idx]->insert(v);
+      }
+    }
+
+    ~HashTable() {
+      for (int i = 0; i < SIZE; i++) {
+        delete table[i];
+      }
+      delete[] table;
+    }
+
+    void remove(int v);
+};
+```
+
+Hashing with linear probing:
+
+If hash function lead to collision, insert value at the next available space
+in the table.
+
+::: {.callout-note icon=false}
+## Example
+
+1. If it collides at $h(k)$ then try $[h(k) + 1] \% SIZE$
+2. If it collides at $h(k)$ then try $[h(k) + 2] \% SIZE$
+3. If it collides at $h(k)$ then try $[h(k) + 3] \% SIZE$
+:::
+
+Linear probing is used tp find the next available space in the table.
+
+## Solution 2: Hashing with linear probing
+
+```cpp
+class Element {
+  public:
+    int key; // may want to store more data
+};
+
+int hash(int k); // hash function
+
+#define SIZE 7
+
+class HashTable {
+  private:
+    Element** table;
+    int size;
+
+  public:
+    HashTable() {
+      table = new Element*[SIZE];
+      for (int i = 0; i < SIZE; i++) {
+        table[i] = NULL;
+      }
+      size = 0;
+    }
+
+  // we return false if table is full
+  // return true if we inserted or the node was there
+  bool insert(int v) {
+    int idx = hash(v);
+    if (size == SIZE) { return false; }
+    for (int i=0; table[idx] != NULL; i++) {
+      // duplicate found
+      // table[idx] is of class Element*
+      if (table[idx]->key == v) { return true; }
+      idx = (hash(v) + i) % SIZE;
+    }
+    // exit loop when table[idx] == NULL
+    Element* temp = new Element;
+    temp->key = v;
+    table[idx] = temp;
+    size++;
+    return true;
+  }
+}
+```
+
+Using `(hash(v) + i) % SIZE` has a disadvantage: It would cause clustering of
+nodes in one area in the hashtable
+
+Solution: try uniformly distribution nodes by probing elsewhere.
+
+## Solution 3: Quadratic probing
+
+`(hash(v) + i*i) % SIZE`
+
+## Solution 4: Double probing
+
+`(hash1(v) + i * hash2(v)) % SIZE`
+
+## Exam question
+
+Change `Int` class in such a way that there are no memory leaks, and output is
+`4 4` (not `4 3`).
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Int {
+  private:
+    int* p;
+  public:
+    Int(int i) {
+      p = new int;
+      *p = i;
+    }
+    void set_val(int i) { *p = i; }
+    int get_val() { return *p; }
+    virtual void print() = 0;
+};
+
+class SuperInt : public Int {
+  private:
+    int* q;
+  public:
+    SuperInt(int i) : Int(i) {
+      q = new int;
+      *q = i;
+    }
+    
+    ~SuperInt() {
+      delete q;
+    }
+
+    void set_val() {
+      Int::set_val(i);
+      *q = i;
+    }
+
+    void print() {
+      cout << Int::get_val() << " " << q* << endl;
+    }
+};
+
+// do not change main
+int main() {
+  Int* s = new SuperInt(3);
+  s->set_val(4);
+  s->print();
+  delete s;
+  return 0;
+}
+```
+
+In the class definition:
+
+1. `Int` is an abstract class
+2. `virtual void print() = 0;` is a pure virtual function
+3. We need to add `virtual ~Int() { delete p; }` to avoid memory leaks
+4. Also prepend `virtual` to `void set_val(int i) { *p = i; }`
+
+In main:
+
+1. If `set_val` is virtual, it calls `set_val` depending on object type (not `s` type)
+2. If the destructor is virtual, it calls the destructor of `SuperInt` as `s` points to `SuperInt`

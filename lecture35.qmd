@@ -1,0 +1,365 @@
+# Lecture 35 - Dec 1, 2023
+
+## Last lecture
+
+Delete a node in BST.
+
+## Today
+
+Hash tables
+
+## Data structures and run time of operations
+
+```
+       | Unsorted List | Sorted List | BST      |
+Insert | O(1)          | O(n)        | O(log n) |
+Search | O(n)          | O(log n)    | O(log n) |
+```
+
+## Hash tables
+
+Hash tables provides average performance on search/insert/deletion.
+
+1. Very large array
+2. Each key maps to a unique index
+3. Hash function $h(k)$ maps key to array index
+
+Example: $h(k) = k \% (m + 1)$
+
+Use cases:
+
+1. Databases
+2. Caching
+
+In both cases quick data retrieval is critical.
+
+Example: $h(key) = k \% 7$
+
+```
+insert(16): h(16) = 2
+insert(25): h(25) = 4
+insert(77): h(77) = 0
+insert(7): h(7) = 2
+```
+
+```
+0 | 77
+1 |
+2 | 16
+3 |
+4 | 25
+5 |
+6 |
+```
+
+## Problem
+
+Collision happens when two keys map to the same index.
+
+## Solution 1: Hashing with chaining
+
+Each hash table entry contrains a pointer to a linked list of keys that map to
+the same entry.
+
+But we may have collisions always and one array entry has a linked list of all
+keys. This leads to an $O(n)$ search.
+
+Usually, good hash functions can reduce the number of collisions. Ideally,
+we want the length of each linked list to be one maximum.
+
+Usually, good hash function involve multiplying key with large prime number
+(e.g., $h(k) = 3k \% m$, where $m$ is the size of the array)
+
+```
+0 | 77 -> 7
+1
+2 | 16
+3
+4 | 25
+5
+6
+```
+
+```cpp
+class Node {
+  // for simplicity, all data members are public
+  public:
+    int key;
+    Node *next;
+    ~Node() { delete next; }
+};
+
+class List {
+  public:
+    List(); // sets head to NULL
+    bool isEmpty(); // returns true if head is NULL
+    void insert(int v); // inserts at head
+    ListNode* remove(int k); // removes first node with key = k
+    bool isFound(int k); // returns true if key k is found
+    ~List();
+};
+
+#define SIZE 7
+
+class HashTable {
+  private:
+    List** table;
+  public:
+    HashTable() {
+      table = new List*[SIZE];
+      for (int i = 0; i < SIZE; i++) {
+        table[i] = NULL;
+      }
+    }
+
+    bool search(int v) {
+      int idx = v % SIZE;
+      if (table[idx] != NULL) {
+        // table[idx] is of class List*
+        return table[idx]->isFound(v);
+      } else {
+        return false; // the list where v should be is not there
+      }
+    }
+
+    void insert(int v) {
+      if (search(v)) { // value already there
+        return;
+      } else {
+        int idx = v % SIZE;
+        if (table[idx] == NULL) {
+          table[idx] = new List();
+        }
+        // table[idx] is of class List*
+        table[idx]->insert(v);
+      }
+    }
+
+    ~HashTable() {
+      for (int i = 0; i < SIZE; i++) {
+        delete table[i];
+      }
+      delete[] table;
+    }
+
+    void remove(int v);
+};
+```
+
+DIAGRAM PENDING
+
+**Homework**: Implement remove for HashTable.
+
+::: {.callout-note icon=false}
+## Pacha's note
+
+Here is the implementation
+
+```cpp
+ListNode* List::remove(int k) {
+  if (isEmpty()) {
+    return NULL;
+  }
+
+  Node *current = head;
+  Node *previous = NULL;
+
+  while (current != NULL && current->key != k) {
+    previous = current;
+    current = current->next;
+  }
+
+  if (current == NULL) {
+    return NULL; // key not found in the list
+  }
+
+  if (previous == NULL) {
+    // The node to be removed is the head
+    head = current->next;
+  } else {
+    // The node to be removed is not the head
+    previous->next = current->next;
+  }
+
+  current->next = NULL; // Prevent recursive deletion of the entire list
+  return current; // Return the removed node
+}
+```
+:::
+
+## Solution 2: Closed hashing with linear probing
+
+If hash function lead to collision, insert value at the next available space
+in the table.
+
+::: {.callout-note icon=false}
+## Example
+
+1. If it collides at $h(k)$ then try $[h(k) + 1] \% SIZE$
+2. If it collides at $h(k)$ then try $[h(k) + 2] \% SIZE$
+3. If it collides at $h(k)$ then try $[h(k) + 3] \% SIZE$
+:::
+
+Linear probing is used tp find the next available space in the table.
+
+## Additional code from the class
+
+`List.h`:
+
+```cpp
+#ifndef LIST_H_
+#define LIST_H_
+#include <iostream>
+using namespace std;
+
+class Node {
+ public:
+  int key;
+  Node* next;
+  ~Node(){delete next;}
+};
+
+class List {
+ private:
+  Node* head;
+
+ public:
+  List(){head = NULL;}
+
+  bool isFound(int k) {
+    Node* p = head;
+    while (p != NULL) {
+      // cout << "p->name is " << p->name << " and name is " << name << endl;
+      if (p->key == k) {
+        return true;
+      }
+      p = p->next;
+    }
+    return false;
+  }
+  Node* remove(int v) {
+    Node* p = head;
+    Node* prev = NULL;
+    while (p != NULL) {
+      if (p->key == v) {
+        if (prev != NULL) {
+          prev->next = p->next;
+          p->next = NULL;
+        } else {
+          head = p->next;
+          p->next = NULL;
+        }
+        return p;
+      }
+      prev = p;
+      p = p->next;
+    }
+    return NULL;
+  }
+  void insert(int v) {
+    Node* node = new Node;
+    node->key = v;
+    node->next = NULL;
+    node->next = head;
+    head = node;
+  }
+  void print(){
+    Node* current = head;
+    while(current != NULL){
+        cout << current->key << " ";
+        current = current->next;
+    }
+    cout << endl;
+  }
+  ~List() { delete head; }
+};
+
+#endif
+```
+
+`HashTable.h`:
+
+```cpp
+#ifndef HASH_H_
+#define HASH_H_
+#define SIZE 7
+#include "List.h"
+
+class HashTable {
+ private:
+  List** table;
+
+ public:
+  HashTable() {
+    table = new List*[SIZE];
+    for (int i = 0; i < SIZE; i++) {
+      table[i] = NULL;
+    }
+  }
+  bool search(int v) {
+    int idx = v % SIZE;
+    if (table[idx] != NULL) {
+      return table[idx]->isFound(v);
+    } else {
+      return false;
+    }
+  }
+  void insert(int v) {
+    if (search(v)) {
+      return;
+    } else {
+      int idx = v % SIZE;
+      if (table[idx] == NULL) {
+        table[idx] = new List;
+      }
+      table[idx]->insert(v);
+    }
+  }
+  void display() {
+    for (int i = 0; i < SIZE; i++) {
+      if (table[i] != NULL) {
+        table[i]->print();
+      }
+    }
+  }
+  void remove(int v) {
+    if (!search(v)) {
+      return;
+    } else {
+      int idx = v % SIZE;
+      if (table[idx] == NULL) {
+        return;
+      } else {
+        delete table[idx]->remove(v);
+      }
+    }
+  }
+  ~HashTable() {
+    for (int i = 0; i < SIZE; i++) {
+      delete table[i];
+    }
+    delete[] table;
+  }
+};
+
+#endif
+```
+
+`main.cpp`:
+
+```cpp
+#include <iostream>
+#include "HashTable.h"
+using namespace std;
+
+int main(){
+    HashTable H;
+    H.insert(4);
+    H.insert(7);
+    H.insert(77);
+    
+    H.remove(77);
+    H.display();
+    return 0;
+}
+```
