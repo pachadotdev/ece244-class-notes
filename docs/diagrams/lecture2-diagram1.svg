@@ -2,13 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="117.69035mm"
-   height="147.6044mm"
-   viewBox="0 0 117.69036 147.6044"
+   width="119.17085mm"
+   height="150.772mm"
+   viewBox="0 0 119.17086 150.772"
    version="1.1"
    id="svg5"
    sodipodi:docname="lecture2-diagram1.svg"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,36 +25,45 @@
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     fit-margin-top="5"
-     fit-margin-left="5"
-     fit-margin-bottom="5"
-     fit-margin-right="5"
+     fit-margin-top="3"
+     fit-margin-left="3"
+     fit-margin-bottom="3"
+     fit-margin-right="3"
      inkscape:zoom="0.68328423"
-     inkscape:cx="188.79405"
-     inkscape:cy="228.30909"
+     inkscape:cx="215.13741"
+     inkscape:cy="146.35198"
      inkscape:window-width="1920"
      inkscape:window-height="1043"
-     inkscape:window-x="0"
+     inkscape:window-x="1920"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      inkscape:showpageshadow="2"
-     inkscape:deskcolor="#d1d1d1">
+     inkscape:deskcolor="#d1d1d1"
+     lock-margins="true">
     <sodipodi:guide
-       position="13.026583,93.760218"
+       position="14.677352,95.277823"
        orientation="1,0"
        id="guide41629"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="76.199582,121.61216"
+       position="77.85035,123.12977"
        orientation="0,-1"
        id="guide41744"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="59.738784,55.957976"
+       position="61.389552,57.475581"
        orientation="0,-1"
        id="guide31643"
        inkscape:locked="false" />
+    <sodipodi:guide
+       position="98.77799,147.61581"
+       orientation="1,0"
+       id="guide952" />
+    <sodipodi:guide
+       position="57.685466,87.69102"
+       orientation="0,-1"
+       id="guide5369" />
   </sodipodi:namedview>
   <defs
      id="defs2">
@@ -189,119 +198,131 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-6.1859241,-34.297832)">
+     transform="translate(-4.5351555,-32.647834)">
     <rect
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.31241;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect29607"
-       width="88.103531"
-       height="15.331902"
-       x="7.6859241"
-       y="35.797832" />
+       width="95.62101"
+       height="15.319491"
+       x="7.6921291"
+       y="35.804039" />
     <text
        xml:space="preserve"
        style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;stroke-width:0.264583"
-       x="51.890091"
+       x="55.714504"
        y="41.929203"
        id="text21350"><tspan
          sodipodi:role="line"
          id="tspan21348"
          style="text-align:center;text-anchor:middle;stroke-width:0.264583"
-         x="51.890091"
+         x="55.714504"
          y="41.929203">Software</tspan><tspan
          sodipodi:role="line"
          style="text-align:center;text-anchor:middle;stroke-width:0.264583"
-         x="51.890091"
+         x="55.714504"
          y="47.220863"
          id="tspan30425">Applications like games, web browser, etc.</tspan></text>
     <rect
-       style="fill:#c2c3e6;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:#c2c3e6;stroke:#000000;stroke-width:0.312427;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect24219"
-       width="88.103531"
-       height="15.331902"
-       x="7.6859264"
-       y="51.076866" />
+       width="95.621773"
+       height="15.321016"
+       x="7.6913691"
+       y="51.08231" />
     <text
        xml:space="preserve"
        style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;stroke-width:0.264583"
-       x="51.68689"
+       x="55.498119"
        y="57.383919"
        id="text24223"><tspan
          sodipodi:role="line"
          id="tspan24221"
          style="text-align:center;text-anchor:middle;stroke-width:0.264583"
-         x="51.68689"
+         x="55.498119"
          y="57.383919">Operating system</tspan><tspan
          sodipodi:role="line"
          style="text-align:center;text-anchor:middle;stroke-width:0.264583"
-         x="51.68689"
+         x="55.498119"
          y="62.675583"
          id="tspan24409">Windows, Mac OS, UNIX</tspan></text>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 82.385505,60.290084 c 2.761567,4.068786 3.48532,8.137573 2.568903,12.206359"
-       id="path39643"
-       sodipodi:nodetypes="cc" />
-    <text
-       xml:space="preserve"
-       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;stroke-width:0.264583"
-       x="68.829712"
-       y="77.522766"
-       id="text34704"><tspan
-         sodipodi:role="line"
-         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+    <g
+       id="g965"
+       transform="translate(9.4065024,-1.0605225e-5)">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 82.385505,60.290084 c 2.761567,4.068786 3.48532,8.137573 2.568903,12.206359"
+         id="path39643"
+         sodipodi:nodetypes="cc" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;stroke-width:0.264583"
          x="68.829712"
          y="77.522766"
-         id="tspan34702">Provides an interface</tspan><tspan
-         sodipodi:role="line"
-         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
-         x="68.829712"
-         y="82.81443"
-         id="tspan37166">between applications</tspan><tspan
-         sodipodi:role="line"
-         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
-         x="68.829712"
-         y="88.106094"
-         id="tspan37168">and computer hardware</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;stroke-width:0.264583"
-       x="20.095745"
-       y="83.29068"
-       id="text39940"><tspan
-         sodipodi:role="line"
-         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         id="text34704"><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+           x="68.829712"
+           y="77.522766"
+           id="tspan34702">Provides an interface</tspan><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+           x="68.829712"
+           y="82.81443"
+           id="tspan37166">between applications</tspan><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+           x="68.829712"
+           y="88.106094"
+           id="tspan37168">and computer hardware</tspan></text>
+    </g>
+    <g
+       id="g958">
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;stroke-width:0.264583"
          x="20.095745"
          y="83.29068"
-         id="tspan39938">Hardware</tspan></text>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
-       d="M 19.212506,60.29008 V 76.903777"
-       id="path41746" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#TriangleInM)"
-       d="M 22.916675,60.29008 V 76.903777"
-       id="path1306" />
+         id="text39940"><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+           x="20.095745"
+           y="83.29068"
+           id="tspan39938">Hardware</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
+         d="M 19.212506,60.29008 V 76.903777"
+         id="path41746" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#TriangleInM)"
+         d="M 22.916675,60.29008 V 76.903777"
+         id="path1306" />
+    </g>
     <text
        xml:space="preserve"
        style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;stroke-width:0.264583"
        x="93.504967"
-       y="102.14456"
+       y="98.969559"
        id="text7639"><tspan
          sodipodi:role="line"
          style="text-align:center;text-anchor:middle;stroke-width:0.264583"
          x="93.504967"
-         y="102.14456"
+         y="98.969559"
          id="tspan7637">Executes commands/</tspan><tspan
          sodipodi:role="line"
          style="text-align:center;text-anchor:middle;stroke-width:0.264583"
          x="93.504967"
-         y="107.43623"
+         y="104.26122"
          id="tspan9126">instructions in native/</tspan><tspan
          sodipodi:role="line"
          style="text-align:center;text-anchor:middle;stroke-width:0.264583"
          x="93.504967"
-         y="112.72789"
-         id="tspan9128">machine code (i.e., 0s and 1s)</tspan></text>
+         y="109.55289"
+         id="tspan9128">machine code </tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="93.504967"
+         y="114.84454"
+         id="tspan2017">(i.e., 0s and 1s)</tspan></text>
     <rect
        style="fill:#d2e5cc;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect1308"

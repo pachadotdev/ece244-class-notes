@@ -2,13 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="131.72548mm"
-   height="91.990768mm"
-   viewBox="0 0 131.72548 91.990768"
+   width="138.37827mm"
+   height="95.073563mm"
+   viewBox="0 0 138.37827 95.073562"
    version="1.1"
    id="svg5"
    sodipodi:docname="lecture5-diagram1.svg"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,48 +25,49 @@
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     fit-margin-top="5"
-     fit-margin-left="5"
-     fit-margin-bottom="5"
-     fit-margin-right="5"
+     fit-margin-top="3"
+     fit-margin-left="3"
+     fit-margin-bottom="3"
+     fit-margin-right="3"
      inkscape:zoom="1.3665685"
-     inkscape:cx="199.03869"
-     inkscape:cy="185.86701"
+     inkscape:cx="204.89277"
+     inkscape:cy="191.72109"
      inkscape:window-width="1920"
      inkscape:window-height="1043"
-     inkscape:window-x="0"
+     inkscape:window-x="1920"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="g123862"
      inkscape:showpageshadow="2"
-     inkscape:deskcolor="#d1d1d1">
+     inkscape:deskcolor="#d1d1d1"
+     lock-margins="true">
     <sodipodi:guide
-       position="79.00243,75.300555"
+       position="80.502427,76.800564"
        orientation="0,-1"
        id="guide123891"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="79.54711,69.989855"
+       position="81.047107,71.489864"
        orientation="0,-1"
        id="guide123893"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="119.69845,69.989855"
+       position="121.19845,71.489864"
        orientation="1,0"
        id="guide123895"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="57.66313,32.577756"
+       position="59.163127,34.077765"
        orientation="0,-1"
        id="guide152049"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="74.45575,84.988745"
+       position="75.955747,86.488754"
        orientation="0,-1"
        id="guide152136"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="114.02268,75.300565"
+       position="115.52268,76.800574"
        orientation="1,0"
        id="guide153348"
        inkscape:locked="false" />
@@ -232,7 +233,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-135.5425,-114.60231)">
+     transform="translate(-134.0425,-113.01952)">
     <g
        id="g152116"
        transform="translate(107.84117,0.0837824)">
@@ -268,12 +269,12 @@
            sodipodi:role="line"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
            x="31.402746"
-           y="132.53215"
+           y="132.42586"
            id="tspan86115"> ...</tspan><tspan
            sodipodi:role="line"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
            x="31.402746"
-           y="137.93011"
+           y="137.71751"
            id="tspan86117">};</tspan></text>
     </g>
     <g
@@ -311,12 +312,12 @@
            sodipodi:role="line"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
            x="31.659658"
-           y="164.68472"
+           y="164.57841"
            id="tspan110063" /><tspan
            sodipodi:role="line"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
            x="31.659658"
-           y="170.08267"
+           y="169.87009"
            id="tspan77431">void func(struct A);</tspan></text>
     </g>
     <g
@@ -354,12 +355,12 @@
            sodipodi:role="line"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
            x="31.427155"
-           y="194.38765"
+           y="194.28134"
            id="tspan107307" /><tspan
            sodipodi:role="line"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
            x="31.427155"
-           y="199.7856"
+           y="199.57301"
            id="tspan87664">void func2(struct A);</tspan></text>
     </g>
     <g
@@ -429,32 +430,32 @@
            sodipodi:role="line"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#a51d1e;stroke-width:0.264583"
            x="220.75156"
-           y="132.53215"
+           y="132.42586"
            id="tspan98779">#include &quot;b.h&quot;</tspan><tspan
            sodipodi:role="line"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#a51d1e;stroke-width:0.264583"
            x="220.75156"
-           y="137.93011"
+           y="137.71751"
            id="tspan102853">#include &quot;c.h&quot;</tspan><tspan
            sodipodi:role="line"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
            x="220.75156"
-           y="143.32806"
+           y="143.00919"
            id="tspan102851" /><tspan
            sodipodi:role="line"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
            x="220.75156"
-           y="148.72603"
+           y="148.30084"
            id="tspan102855">int main() {</tspan><tspan
            sodipodi:role="line"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
            x="220.75156"
-           y="154.12399"
+           y="153.5925"
            id="tspan102857"> ...</tspan><tspan
            sodipodi:role="line"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
            x="220.75156"
-           y="159.52194"
+           y="158.88417"
            id="tspan102859">};</tspan></text>
       <path
          style="fill:none;stroke:#000000;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"

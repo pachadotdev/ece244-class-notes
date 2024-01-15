@@ -146,7 +146,7 @@ class HashTable {
 };
 ```
 
-DIAGRAM PENDING
+<img src="diagrams/lecture35-diagram1.svg" alt="diagrams/lecture35-diagram1.svg">
 
 **Homework**: Implement remove for HashTable.
 
